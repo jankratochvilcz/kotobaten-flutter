@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
@@ -7,8 +5,10 @@ import 'package:kotobaten/views/screens/login.model.dart';
 
 class LoginScreenViewModel extends StateNotifier<LoginModel> {
   final KotobatenApiService _apiService;
-  
-  LoginScreenViewModel(KotobatenApiService apiService) : _apiService = apiService, super(const LoginModel.initial());
+
+  LoginScreenViewModel(KotobatenApiService apiService)
+      : _apiService = apiService,
+        super(const LoginModel.initial());
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();

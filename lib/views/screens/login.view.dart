@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/screens/login.model.dart';
 import 'package:kotobaten/views/screens/login.viewmodel.dart';
 
 final _viewModelProvider =
     StateNotifierProvider<LoginScreenViewModel, LoginModel>(
-        (ref) => LoginScreenViewModel());
+        (ref) => LoginScreenViewModel(ref.watch(kotobatenApiServiceProvider)));
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kotobaten/views/screens/login.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/views/screens/login.view.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const ProviderScope(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return (const MaterialApp(
       title: 'Kotobaten',
       home: Scaffold(
-        body: LoginScreen()
+        body: LoginView()
       ),
     ));
   }

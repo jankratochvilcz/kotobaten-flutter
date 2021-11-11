@@ -36,6 +36,7 @@ dependencies:
   build_runner: ^2.1.5
   tuple: ^2.0.0
   path: ^1.8.0
+  shared_preferences: ^2.0.8
 
   http: ^0.13.4
 

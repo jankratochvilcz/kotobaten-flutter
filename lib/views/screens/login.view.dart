@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/screens/login.model.dart';
 import 'package:kotobaten/views/screens/login.viewmodel.dart';
 
-final _viewModelProvider =
-    StateNotifierProvider<LoginScreenViewModel, LoginModel>(
-        (ref) => LoginScreenViewModel(ref.watch(kotobatenApiServiceProvider)));
+final _viewModelProvider = StateNotifierProvider<LoginViewModel, LoginModel>(
+    (ref) => LoginViewModel(ref.watch(kotobatenApiServiceProvider),
+        ref.watch(authenticationServiceProvider)));
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);
-
-  void login() => {};
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(_viewModelProvider.notifier);
     final model = ref.watch(_viewModelProvider);
 
-    return Center(
-        child: Container(
+    if (model is Success) {
+      viewModel.reset();
+      Future.microtask(() => Navigator.pushNamedAndRemoveUntil(
+          context, homeRoute, (route) => false));
+    }
+
+    return Scaffold(
+        body: Center(
+            child: Container(
       constraints: const BoxConstraints(maxWidth: 300),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,6 +41,6 @@ class LoginView extends HookConsumerWidget {
           if (model is Error) Text(model.error)
         ],
       ),
-    ));
+    )));
   }
 }

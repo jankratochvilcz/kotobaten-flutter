@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/services/authentication.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/views/screens/login.model.dart';
 
-class LoginScreenViewModel extends StateNotifier<LoginModel> {
+class LoginViewModel extends StateNotifier<LoginModel> {
   final KotobatenApiService _apiService;
+  final AuthenticationService _authenticationService;
 
-  LoginScreenViewModel(KotobatenApiService apiService)
-      : _apiService = apiService,
+  LoginViewModel(KotobatenApiService apiService, AuthenticationService authenticationService)
+      : _apiService = apiService, _authenticationService = authenticationService,
         super(const LoginModel.initial());
 
   TextEditingController email = TextEditingController();
@@ -23,8 +25,13 @@ class LoginScreenViewModel extends StateNotifier<LoginModel> {
       return false;
     }
 
+    await _authenticationService.setToken(result.item2);
     state = LoginModel.success(result.item2);
 
     return true;
+  }
+
+  void reset() {
+    state = const LoginModel.initial();
   }
 }

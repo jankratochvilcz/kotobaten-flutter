@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
@@ -9,11 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (const MaterialApp(
+    return (MaterialApp(
       title: 'Kotobaten',
-      home: Scaffold(
-        body: LoginView()
-      ),
+      initialRoute: homeRoute,
+      routes: {
+        homeRoute: (_) => const HomeView(),
+        loginRoute: (_) => const LoginView()
+      },
     ));
   }
 }

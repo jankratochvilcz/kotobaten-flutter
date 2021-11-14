@@ -13,6 +13,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return (MaterialApp(
       title: 'Kotobaten',
+      theme: ThemeData(colorScheme: const ColorScheme(
+        primary: Color(0xffBD0029),
+        secondary: Color(0xff554562),
+        onSurface: Color(0xff333333),
+        background: Color(0xffffffff),
+        brightness: Brightness.light,
+        error: Color(0xffFFDDDD),
+        onBackground: Color(0xff333333),
+        onError: Color(0xff6C0000),
+        onPrimary: Color(0xffffffff),
+        onSecondary: Color(0xffffffff),
+        primaryVariant: Color(0xff9E0022),
+        secondaryVariant: Color(0xff352B3D),
+        surface: Color(0xffffffff))
+      ),
       initialRoute: homeRoute,
       routes: {
         homeRoute: (_) => const HomeView(),

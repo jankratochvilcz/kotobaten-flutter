@@ -6,6 +6,7 @@ import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
+import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
 import 'package:kotobaten/views/screens/home.viewmodel.dart';
@@ -69,29 +70,32 @@ class HomeView extends HookConsumerWidget {
                     ),
                     Padding(
                         padding: topPadding(PaddingType.large),
-                        child: ElevatedButton(
-                            onPressed: () => {},
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(Icons.bolt_outlined),
-                                Text('Learn')
-                              ],
-                            )))
+                        child: const Button('Learn',
+                            icon: Icons.bolt_outlined,
+                            size: ButtonSize.big,
+                            type: ButtonType.primary))
                   ]),
                   'Learn',
                   HeadingStyle.h1)),
           Headed(
-              DescriptionRichText(
-                [
-                  const TextSpan(text: 'You added '),
-                  TextSpan(
-                      text:
-                          '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  const TextSpan(text: ' this week.')
-                ],
-              ),
+              Column(children: [
+                DescriptionRichText(
+                  [
+                    const TextSpan(text: 'You added '),
+                    TextSpan(
+                        text:
+                            '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const TextSpan(text: ' this week.')
+                  ],
+                ),
+                Padding(
+                    padding: topPadding(PaddingType.large),
+                    child: const Button('Add word',
+                            icon: Icons.add_circle_outline,
+                            size: ButtonSize.big,
+                            type: ButtonType.secondary))
+              ]),
               'Collect',
               HeadingStyle.h1)
         ],

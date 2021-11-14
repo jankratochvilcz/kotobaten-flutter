@@ -35,7 +35,7 @@ class Heading extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
       child: Text(
         data,
-        style: TextStyle(fontSize: _getFontSize(style)),
+        style: TextStyle(fontSize: _getFontSize(style), fontWeight: FontWeight.bold),
       ),
       padding: _getBottomPadding(style));
 }

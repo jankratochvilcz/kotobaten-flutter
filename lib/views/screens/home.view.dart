@@ -22,7 +22,7 @@ class HomeView extends HookConsumerWidget {
     }
 
     if (model is RequiresLogin) {
-      viewModel.reset();
+      Future.microtask(() => viewModel.reset());
       Future.microtask(() => Navigator.pushNamedAndRemoveUntil(
           context, loginRoute, (route) => false));
     }

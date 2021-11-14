@@ -18,9 +18,10 @@ class LoginView extends HookConsumerWidget {
     final model = ref.watch(_viewModelProvider);
 
     if (model is Success) {
-      viewModel.reset();
-      Future.microtask(() => Navigator.pushNamedAndRemoveUntil(
-          context, homeRoute, (route) => false));
+      Future.microtask(() {
+        viewModel.reset();
+        Navigator.pushNamedAndRemoveUntil(context, homeRoute, (route) => false);
+      });
     }
 
     return Scaffold(
@@ -31,8 +32,16 @@ class LoginView extends HookConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          TextField(controller: viewModel.email),
-          TextField(controller: viewModel.password, obscureText: true),
+          TextField(
+            controller: viewModel.email,
+            autofocus: true,
+            decoration: const InputDecoration(hintText: 'Email'),
+          ),
+          TextField(
+            controller: viewModel.password,
+            obscureText: true,
+            decoration: const InputDecoration(hintText: 'Password'),
+          ),
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
               child: ElevatedButton(

@@ -21,8 +21,24 @@ class _$HomeModelTearOff {
     return const Initial();
   }
 
+  Initializing initializing() {
+    return const Initializing();
+  }
+
   RequiresLogin requiresLogin() {
     return const RequiresLogin();
+  }
+
+  Initialized initialized(User user) {
+    return Initialized(
+      user,
+    );
+  }
+
+  InitializationError initializationError(String error) {
+    return InitializationError(
+      error,
+    );
   }
 }
 
@@ -34,38 +50,56 @@ mixin _$HomeModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() initializing,
     required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
     required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -125,7 +159,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() initializing,
     required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
   }) {
     return initial();
   }
@@ -134,7 +171,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
   }) {
     return initial?.call();
   }
@@ -143,7 +183,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -156,7 +199,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
     required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
   }) {
     return initial(this);
   }
@@ -165,7 +211,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
   }) {
     return initial?.call(this);
   }
@@ -174,7 +223,10 @@ class _$Initial extends Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -187,6 +239,129 @@ class _$Initial extends Initial {
 abstract class Initial extends HomeModel {
   const factory Initial() = _$Initial;
   const Initial._() : super._();
+}
+
+/// @nodoc
+abstract class $InitializingCopyWith<$Res> {
+  factory $InitializingCopyWith(
+          Initializing value, $Res Function(Initializing) then) =
+      _$InitializingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitializingCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
+    implements $InitializingCopyWith<$Res> {
+  _$InitializingCopyWithImpl(
+      Initializing _value, $Res Function(Initializing) _then)
+      : super(_value, (v) => _then(v as Initializing));
+
+  @override
+  Initializing get _value => super._value as Initializing;
+}
+
+/// @nodoc
+
+class _$Initializing extends Initializing {
+  const _$Initializing() : super._();
+
+  @override
+  String toString() {
+    return 'HomeModel.initializing()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Initializing);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() initializing,
+    required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
+  }) {
+    return initializing();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+  }) {
+    return initializing?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initializing != null) {
+      return initializing();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
+    required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
+  }) {
+    return initializing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+  }) {
+    return initializing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initializing != null) {
+      return initializing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initializing extends HomeModel {
+  const factory Initializing() = _$Initializing;
+  const Initializing._() : super._();
 }
 
 /// @nodoc
@@ -230,7 +405,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() initializing,
     required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
   }) {
     return requiresLogin();
   }
@@ -239,7 +417,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
   }) {
     return requiresLogin?.call();
   }
@@ -248,7 +429,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? initializing,
     TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -261,7 +445,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
     required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
   }) {
     return requiresLogin(this);
   }
@@ -270,7 +457,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
   }) {
     return requiresLogin?.call(this);
   }
@@ -279,7 +469,10 @@ class _$RequiresLogin extends RequiresLogin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
     TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -292,4 +485,307 @@ class _$RequiresLogin extends RequiresLogin {
 abstract class RequiresLogin extends HomeModel {
   const factory RequiresLogin() = _$RequiresLogin;
   const RequiresLogin._() : super._();
+}
+
+/// @nodoc
+abstract class $InitializedCopyWith<$Res> {
+  factory $InitializedCopyWith(
+          Initialized value, $Res Function(Initialized) then) =
+      _$InitializedCopyWithImpl<$Res>;
+  $Res call({User user});
+}
+
+/// @nodoc
+class _$InitializedCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
+    implements $InitializedCopyWith<$Res> {
+  _$InitializedCopyWithImpl(
+      Initialized _value, $Res Function(Initialized) _then)
+      : super(_value, (v) => _then(v as Initialized));
+
+  @override
+  Initialized get _value => super._value as Initialized;
+
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(Initialized(
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Initialized extends Initialized {
+  const _$Initialized(this.user) : super._();
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'HomeModel.initialized(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Initialized &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  $InitializedCopyWith<Initialized> get copyWith =>
+      _$InitializedCopyWithImpl<Initialized>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() initializing,
+    required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
+  }) {
+    return initialized(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+  }) {
+    return initialized?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initialized != null) {
+      return initialized(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
+    required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
+  }) {
+    return initialized(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+  }) {
+    return initialized?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initialized != null) {
+      return initialized(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Initialized extends HomeModel {
+  const factory Initialized(User user) = _$Initialized;
+  const Initialized._() : super._();
+
+  User get user;
+  @JsonKey(ignore: true)
+  $InitializedCopyWith<Initialized> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InitializationErrorCopyWith<$Res> {
+  factory $InitializationErrorCopyWith(
+          InitializationError value, $Res Function(InitializationError) then) =
+      _$InitializationErrorCopyWithImpl<$Res>;
+  $Res call({String error});
+}
+
+/// @nodoc
+class _$InitializationErrorCopyWithImpl<$Res>
+    extends _$HomeModelCopyWithImpl<$Res>
+    implements $InitializationErrorCopyWith<$Res> {
+  _$InitializationErrorCopyWithImpl(
+      InitializationError _value, $Res Function(InitializationError) _then)
+      : super(_value, (v) => _then(v as InitializationError));
+
+  @override
+  InitializationError get _value => super._value as InitializationError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(InitializationError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitializationError extends InitializationError {
+  const _$InitializationError(this.error) : super._();
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'HomeModel.initializationError(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InitializationError &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  $InitializationErrorCopyWith<InitializationError> get copyWith =>
+      _$InitializationErrorCopyWithImpl<InitializationError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() initializing,
+    required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
+  }) {
+    return initializationError(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+  }) {
+    return initializationError?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initializationError != null) {
+      return initializationError(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
+    required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
+  }) {
+    return initializationError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+  }) {
+    return initializationError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+    required TResult orElse(),
+  }) {
+    if (initializationError != null) {
+      return initializationError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializationError extends HomeModel {
+  const factory InitializationError(String error) = _$InitializationError;
+  const InitializationError._() : super._();
+
+  String get error;
+  @JsonKey(ignore: true)
+  $InitializationErrorCopyWith<InitializationError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -7,16 +7,22 @@ class HomeViewModel extends StateNotifier<HomeModel> {
   final KotobatenApiService _apiService;
   final AuthenticationService _authenticationService;
 
-  HomeViewModel(KotobatenApiService apiService, AuthenticationService authenticationService)
-      : _apiService = apiService, _authenticationService = authenticationService,
-        super(const HomeModel.initial());
+  HomeViewModel(this._apiService, this._authenticationService)
+      : super(const HomeModel.initial());
 
   Future initialize() async {
-    state = const HomeModel.initial();
+    state = const HomeModel.initializing();
 
-    if(!await _authenticationService.hasToken()) {
+    if (!await _authenticationService.hasToken()) {
       state = const HomeModel.requiresLogin();
       return;
+    }
+
+    try {
+      final user = await _apiService.getUser();
+      state = HomeModel.initialized(user);
+    } catch (e) {
+      state = HomeModel.initializationError(e.toString());
     }
   }
 

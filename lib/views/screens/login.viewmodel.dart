@@ -8,9 +8,8 @@ class LoginViewModel extends StateNotifier<LoginModel> {
   final KotobatenApiService _apiService;
   final AuthenticationService _authenticationService;
 
-  LoginViewModel(KotobatenApiService apiService, AuthenticationService authenticationService)
-      : _apiService = apiService, _authenticationService = authenticationService,
-        super(const LoginModel.initial());
+  LoginViewModel(this._apiService, this._authenticationService)
+      : super(const LoginModel.initial());
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();

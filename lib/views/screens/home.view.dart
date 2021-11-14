@@ -18,7 +18,7 @@ class HomeView extends HookConsumerWidget {
     final model = ref.watch(_viewModelProvider);
 
     if (model is Initial) {
-      viewModel.initialize();
+      Future.microtask(() => viewModel.initialize());
     }
 
     if (model is RequiresLogin) {
@@ -27,6 +27,14 @@ class HomeView extends HookConsumerWidget {
           context, loginRoute, (route) => false));
     }
 
-    return const Scaffold(body: Center(child: Text('Hello')));
+    return Scaffold(
+        body: Center(
+            child: model.when(
+                initial: () => const CircularProgressIndicator(),
+                initializing: () => const CircularProgressIndicator(),
+                requiresLogin: () => const CircularProgressIndicator(),
+                initialized: (user) =>
+                    Text(user.stats.leftToPractice.toString()),
+                initializationError: (error) => Text(error))));
   }
 }

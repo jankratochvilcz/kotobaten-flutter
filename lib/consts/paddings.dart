@@ -5,6 +5,7 @@ enum PaddingType {
   standard,
   large,
   largePlus,
+  largePlusPlus,
   none
 }
 
@@ -18,7 +19,9 @@ double getPadding(PaddingType type)
     case PaddingType.large:
       return 16;
     case PaddingType.largePlus:
-      return 48;
+      return 64;
+    case PaddingType.largePlusPlus:
+      return 96;
     default:
       return 0;
   }

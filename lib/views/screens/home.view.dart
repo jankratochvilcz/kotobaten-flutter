@@ -40,8 +40,11 @@ class HomeView extends HookConsumerWidget {
       return Scaffold(
           body: Center(
               child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+              child: const Image(
+                  image: AssetImage('assets/logos/square_gray.png'), width: 80),
+              padding: EdgeInsets.all(getPadding(PaddingType.largePlusPlus))),
           Padding(
               padding: bottomPadding(PaddingType.largePlus),
               child: Headed(
@@ -92,9 +95,9 @@ class HomeView extends HookConsumerWidget {
                 Padding(
                     padding: topPadding(PaddingType.large),
                     child: const Button('Add word',
-                            icon: Icons.add_circle_outline,
-                            size: ButtonSize.big,
-                            type: ButtonType.secondary))
+                        icon: Icons.add_circle_outline,
+                        size: ButtonSize.big,
+                        type: ButtonType.secondary))
               ]),
               'Collect',
               HeadingStyle.h1)

@@ -1,4 +1,4 @@
-package com.example.kotobaten
+package janjanxyz.kotobaten
 
 import io.flutter.embedding.android.FlutterActivity
 

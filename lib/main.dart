@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/fonts.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return (MaterialApp(
       title: 'Kotobaten',
       theme: ThemeData(
+          fontFamily: defaultFont,
           colorScheme: const ColorScheme(
               primary: Color(0xffBD0029),
               secondary: Color(0xff554562),

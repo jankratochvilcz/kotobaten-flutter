@@ -49,7 +49,7 @@ class KotobatenApiService {
       throw Exception('Error ${userResponse.statusCode} while requesting user $body');
     }
 
-    final user = User.fromJson(jsonDecode(body));
+    final user = InitializedUser.fromJson(jsonDecode(body));
     return user;
   }
 }

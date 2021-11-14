@@ -6,10 +6,18 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
+_$InitialUser _$$InitialUserFromJson(Map<String, dynamic> json) =>
+    _$InitialUser();
+
+Map<String, dynamic> _$$InitialUserToJson(_$InitialUser instance) =>
+    <String, dynamic>{};
+
+_$InitializedUser _$$InitializedUserFromJson(Map<String, dynamic> json) =>
+    _$InitializedUser(
       Statistics.fromJson(json['stats'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$$InitializedUserToJson(_$InitializedUser instance) =>
+    <String, dynamic>{
       'stats': instance.stats,
     };

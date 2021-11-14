@@ -1,17 +1,15 @@
 
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kotobaten/models/user/statistics.dart';
 
+part 'user.freezed.dart';
 part 'user.g.dart';
 
-@JsonSerializable()
-class User
+@freezed
+class User with _$User
 {
-  User(this.stats);
-
-  Statistics stats;
+  factory User.initial() = InitialUser;
+  factory User.initialized(Statistics stats) = InitializedUser;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

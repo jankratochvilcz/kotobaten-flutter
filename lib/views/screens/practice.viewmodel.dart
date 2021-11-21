@@ -68,7 +68,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
     state = currentState.copyWith(
         revealed: false,
-        remainingImpressions: nextRemainingImpressions.toList(),
+        remainingImpressions: nextRemainingImpressions.toList().sublist(1),
         currentImpression: currentState.remainingImpressions.first);
 
     saveStatistics(await _apiService.postImpression(

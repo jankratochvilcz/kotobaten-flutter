@@ -8,6 +8,7 @@ import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
+import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
 import 'package:kotobaten/views/screens/home.viewmodel.dart';
 
@@ -107,6 +108,6 @@ class HomeView extends HookConsumerWidget {
       )));
     }
 
-    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    return const Loading();
   }
 }

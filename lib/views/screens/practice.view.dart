@@ -5,6 +5,7 @@ import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/organisms/impression_card.dart';
+import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/screens/practice.model.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 
@@ -24,6 +25,13 @@ class PracticeView extends HookConsumerWidget {
       Future.microtask(() => viewModel.initialize());
     }
 
+    if(model is Finished) {
+      Future.microtask(() {
+        viewModel.reset();
+        Navigator.pop(context);
+      });
+    }
+
     if (model is InProgress) {
       return Scaffold(
           body: SafeArea(
@@ -32,11 +40,13 @@ class PracticeView extends HookConsumerWidget {
           Padding(
               padding: topPadding(PaddingType.largePlus),
               child: CircularProgressIndicator(
+                backgroundColor: Colors.black12,
+                strokeWidth: 2,
                 value: (model.allImpressions.length -
                         model.remainingImpressions.length) /
                     model.allImpressions.length,
               )),
-          Expanded(child: ImpressionCard(viewModel.getImpressionText())),
+          ImpressionCard(viewModel.getImpressionText()),
           Padding(
               padding: bottomPadding(PaddingType.largePlusPlus),
               child: !model.revealed
@@ -76,6 +86,6 @@ class PracticeView extends HookConsumerWidget {
       )));
     }
 
-    return Text('loading');
+    return const loading.Loading();
   }
 }

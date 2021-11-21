@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
-ButtonStyle _noPaddingWithRadiusStyle = ElevatedButton.styleFrom(
-    padding: EdgeInsets.zero,
-    shape: RoundedRectangleBorder(borderRadius: _borderRadius));
 
 LinearGradient _getPrimaryGradient(BuildContext context) => LinearGradient(
         colors: [
@@ -25,18 +22,31 @@ class Button extends StatelessWidget {
   final IconData? icon;
   final ButtonSize size;
   final ButtonType type;
+  final Color? color;
+  final VoidCallback onPressed;
 
-  const Button(this.label,
+  const Button(this.label, this.onPressed,
       {Key? key,
       this.icon,
       this.size = ButtonSize.standard,
-      this.type = ButtonType.standard})
+      this.type = ButtonType.standard,
+      this.color})
       : super(key: key);
+
+  _getButtonStyle() {
+    return ElevatedButton.styleFrom(
+        onPrimary: color,
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: _borderRadius));
+  }
 
   @override
   Widget build(BuildContext context) {
     final buttonContents = Container(
-        width: 220,
+        width: size == ButtonSize.big ? 220 : null,
+        padding: size != ButtonSize.big
+            ? horizontalPadding(PaddingType.large)
+            : null,
         height: 42,
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -53,8 +63,8 @@ class Button extends StatelessWidget {
 
     if (type == ButtonType.primary) {
       return ElevatedButton(
-          onPressed: () => {},
-          style: _noPaddingWithRadiusStyle,
+          onPressed: onPressed,
+          style: _getButtonStyle(),
           child: Ink(
               decoration: BoxDecoration(
                   gradient: _getPrimaryGradient(context),
@@ -62,6 +72,9 @@ class Button extends StatelessWidget {
               child: buttonContents));
     }
 
-    return TextButton(onPressed: () => {}, child: buttonContents, style: _noPaddingWithRadiusStyle);
+    return TextButton(
+        onPressed: onPressed,
+        child: buttonContents,
+        style: _getButtonStyle());
   }
 }

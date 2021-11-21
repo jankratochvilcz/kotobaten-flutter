@@ -4,6 +4,7 @@ import 'package:kotobaten/consts/fonts.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
+import 'package:kotobaten/views/screens/practice.view.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
       initialRoute: homeRoute,
       routes: {
         homeRoute: (_) => const HomeView(),
-        loginRoute: (_) => const LoginView()
+        loginRoute: (_) => const LoginView(),
+        practiceRoute: (_) => const PracticeView()
       },
     ));
   }

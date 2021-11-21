@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 
-enum PaddingType {
-  small,
-  standard,
-  large,
-  largePlus,
-  largePlusPlus,
-  none
-}
+enum PaddingType { small, standard, large, largePlus, largePlusPlus, none }
 
-double getPadding(PaddingType type)
-{
+double getPadding(PaddingType type) {
   switch (type) {
     case PaddingType.small:
       return 8;
@@ -27,7 +19,20 @@ double getPadding(PaddingType type)
   }
 }
 
-EdgeInsetsGeometry topPadding(PaddingType type) => EdgeInsets.fromLTRB(0, getPadding(type), 0, 0);
-EdgeInsetsGeometry bottomPadding(PaddingType type) => EdgeInsets.fromLTRB(0, 0, 0, getPadding(type));
-EdgeInsetsGeometry leftPadding(PaddingType type) => EdgeInsets.fromLTRB(getPadding(type), 0, 0, 0);
-EdgeInsetsGeometry rightPadding(PaddingType type) => EdgeInsets.fromLTRB(0, 0, getPadding(type), 0);
+EdgeInsetsGeometry topPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(0, getPadding(type), 0, 0);
+
+EdgeInsetsGeometry bottomPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(0, 0, 0, getPadding(type));
+
+EdgeInsetsGeometry leftPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(getPadding(type), 0, 0, 0);
+
+EdgeInsetsGeometry rightPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(0, 0, getPadding(type), 0);
+
+EdgeInsetsGeometry allPadding(PaddingType type) => EdgeInsets.fromLTRB(
+    getPadding(type), getPadding(type), getPadding(type), getPadding(type));
+
+EdgeInsetsGeometry horizontalPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(getPadding(type), 0, getPadding(type), 0);

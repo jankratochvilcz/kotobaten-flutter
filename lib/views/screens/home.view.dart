@@ -73,7 +73,8 @@ class HomeView extends HookConsumerWidget {
                     ),
                     Padding(
                         padding: topPadding(PaddingType.large),
-                        child: const Button('Learn',
+                        child: Button('Learn',
+                            () => Navigator.pushNamed(context, practiceRoute),
                             icon: Icons.bolt_outlined,
                             size: ButtonSize.big,
                             type: ButtonType.primary))
@@ -94,7 +95,8 @@ class HomeView extends HookConsumerWidget {
                 ),
                 Padding(
                     padding: topPadding(PaddingType.large),
-                    child: const Button('Add word',
+                    child: Button('Add word',
+                        () => {},
                         icon: Icons.add_circle_outline,
                         size: ButtonSize.big,
                         type: ButtonType.secondary))

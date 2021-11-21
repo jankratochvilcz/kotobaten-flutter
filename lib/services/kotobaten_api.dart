@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/authentication.dart';
+import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:tuple/tuple.dart';
 
 const _apiRoot = 'kotobaten-api.azurewebsites.net';
@@ -31,25 +33,28 @@ class KotobatenApiService {
     return Tuple2(true, token);
   }
 
-  Future<User> getUser() async {
+  Future<User> getUser() async =>
+      InitializedUser.fromJson(await _getAuthenticated('user'));
+
+  Future<List<Impression>> getImpressions() async =>
+      ImpressionsResponse.fromJson(
+              await _getAuthenticated('practice', params: {'count': '15'}))
+          .impressions;
+
+  Future<dynamic> _getAuthenticated(String relativePath,
+      {Map<String, dynamic>? params}) async {
     final token = await _authenticationService.getToken();
 
     if (token == null) {
       throw Exception('User not authenticated, cannot call getUser');
     }
 
-    final url = Uri.https(_apiRoot, 'user');
-    final userResponse = await Client().get(url, headers: {
-      'Authorization': 'Bearer $token'
-    });
+    final url = Uri.https(_apiRoot, relativePath, params);
 
-    final body = utf8.decode(userResponse.bodyBytes);
+    final response =
+        await Client().get(url, headers: {'Authorization': 'Bearer $token'});
 
-    if(userResponse.statusCode != 200) {
-      throw Exception('Error ${userResponse.statusCode} while requesting user $body');
-    }
-
-    final user = InitializedUser.fromJson(jsonDecode(body));
-    return user;
+    final body = utf8.decode(response.bodyBytes);
+    return jsonDecode(body);
   }
 }

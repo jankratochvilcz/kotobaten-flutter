@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'impressions_response.dart';
+part of 'practice_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,45 +13,45 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ImpressionsResponse _$ImpressionsResponseFromJson(Map<String, dynamic> json) {
+PracticeResponse _$PracticeResponseFromJson(Map<String, dynamic> json) {
   return Initialized.fromJson(json);
 }
 
 /// @nodoc
-class _$ImpressionsResponseTearOff {
-  const _$ImpressionsResponseTearOff();
+class _$PracticeResponseTearOff {
+  const _$PracticeResponseTearOff();
 
-  Initialized initialized(Statistics userStats) {
+  Initialized initialized(List<Impression> impressions) {
     return Initialized(
-      userStats,
+      impressions,
     );
   }
 
-  ImpressionsResponse fromJson(Map<String, Object?> json) {
-    return ImpressionsResponse.fromJson(json);
+  PracticeResponse fromJson(Map<String, Object?> json) {
+    return PracticeResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-const $ImpressionsResponse = _$ImpressionsResponseTearOff();
+const $PracticeResponse = _$PracticeResponseTearOff();
 
 /// @nodoc
-mixin _$ImpressionsResponse {
-  Statistics get userStats => throw _privateConstructorUsedError;
+mixin _$PracticeResponse {
+  List<Impression> get impressions => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Statistics userStats) initialized,
+    required TResult Function(List<Impression> impressions) initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(List<Impression> impressions)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(List<Impression> impressions)? initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,53 +73,53 @@ mixin _$ImpressionsResponse {
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ImpressionsResponseCopyWith<ImpressionsResponse> get copyWith =>
+  $PracticeResponseCopyWith<PracticeResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImpressionsResponseCopyWith<$Res> {
-  factory $ImpressionsResponseCopyWith(
-          ImpressionsResponse value, $Res Function(ImpressionsResponse) then) =
-      _$ImpressionsResponseCopyWithImpl<$Res>;
-  $Res call({Statistics userStats});
+abstract class $PracticeResponseCopyWith<$Res> {
+  factory $PracticeResponseCopyWith(
+          PracticeResponse value, $Res Function(PracticeResponse) then) =
+      _$PracticeResponseCopyWithImpl<$Res>;
+  $Res call({List<Impression> impressions});
 }
 
 /// @nodoc
-class _$ImpressionsResponseCopyWithImpl<$Res>
-    implements $ImpressionsResponseCopyWith<$Res> {
-  _$ImpressionsResponseCopyWithImpl(this._value, this._then);
+class _$PracticeResponseCopyWithImpl<$Res>
+    implements $PracticeResponseCopyWith<$Res> {
+  _$PracticeResponseCopyWithImpl(this._value, this._then);
 
-  final ImpressionsResponse _value;
+  final PracticeResponse _value;
   // ignore: unused_field
-  final $Res Function(ImpressionsResponse) _then;
+  final $Res Function(PracticeResponse) _then;
 
   @override
   $Res call({
-    Object? userStats = freezed,
+    Object? impressions = freezed,
   }) {
     return _then(_value.copyWith(
-      userStats: userStats == freezed
-          ? _value.userStats
-          : userStats // ignore: cast_nullable_to_non_nullable
-              as Statistics,
+      impressions: impressions == freezed
+          ? _value.impressions
+          : impressions // ignore: cast_nullable_to_non_nullable
+              as List<Impression>,
     ));
   }
 }
 
 /// @nodoc
 abstract class $InitializedCopyWith<$Res>
-    implements $ImpressionsResponseCopyWith<$Res> {
+    implements $PracticeResponseCopyWith<$Res> {
   factory $InitializedCopyWith(
           Initialized value, $Res Function(Initialized) then) =
       _$InitializedCopyWithImpl<$Res>;
   @override
-  $Res call({Statistics userStats});
+  $Res call({List<Impression> impressions});
 }
 
 /// @nodoc
 class _$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionsResponseCopyWithImpl<$Res>
+    extends _$PracticeResponseCopyWithImpl<$Res>
     implements $InitializedCopyWith<$Res> {
   _$InitializedCopyWithImpl(
       Initialized _value, $Res Function(Initialized) _then)
@@ -130,13 +130,13 @@ class _$InitializedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? userStats = freezed,
+    Object? impressions = freezed,
   }) {
     return _then(Initialized(
-      userStats == freezed
-          ? _value.userStats
-          : userStats // ignore: cast_nullable_to_non_nullable
-              as Statistics,
+      impressions == freezed
+          ? _value.impressions
+          : impressions // ignore: cast_nullable_to_non_nullable
+              as List<Impression>,
     ));
   }
 }
@@ -144,17 +144,17 @@ class _$InitializedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Initialized implements Initialized {
-  _$Initialized(this.userStats);
+  _$Initialized(this.impressions);
 
   factory _$Initialized.fromJson(Map<String, dynamic> json) =>
       _$$InitializedFromJson(json);
 
   @override
-  final Statistics userStats;
+  final List<Impression> impressions;
 
   @override
   String toString() {
-    return 'ImpressionsResponse.initialized(userStats: $userStats)';
+    return 'PracticeResponse.initialized(impressions: $impressions)';
   }
 
   @override
@@ -162,12 +162,13 @@ class _$Initialized implements Initialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Initialized &&
-            (identical(other.userStats, userStats) ||
-                other.userStats == userStats));
+            const DeepCollectionEquality()
+                .equals(other.impressions, impressions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userStats);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(impressions));
 
   @JsonKey(ignore: true)
   @override
@@ -177,27 +178,27 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Statistics userStats) initialized,
+    required TResult Function(List<Impression> impressions) initialized,
   }) {
-    return initialized(userStats);
+    return initialized(impressions);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(List<Impression> impressions)? initialized,
   }) {
-    return initialized?.call(userStats);
+    return initialized?.call(impressions);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(List<Impression> impressions)? initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(userStats);
+      return initialized(impressions);
     }
     return orElse();
   }
@@ -236,14 +237,14 @@ class _$Initialized implements Initialized {
   }
 }
 
-abstract class Initialized implements ImpressionsResponse {
-  factory Initialized(Statistics userStats) = _$Initialized;
+abstract class Initialized implements PracticeResponse {
+  factory Initialized(List<Impression> impressions) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
 
   @override
-  Statistics get userStats;
+  List<Impression> get impressions;
   @override
   @JsonKey(ignore: true)
   $InitializedCopyWith<Initialized> get copyWith =>

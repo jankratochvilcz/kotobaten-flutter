@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'impressions_response.dart';
+part of 'practice_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,10 +8,12 @@ part of 'impressions_response.dart';
 
 _$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
     _$Initialized(
-      Statistics.fromJson(json['userStats'] as Map<String, dynamic>),
+      (json['impressions'] as List<dynamic>)
+          .map((e) => Impression.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
     <String, dynamic>{
-      'userStats': instance.userStats,
+      'impressions': instance.impressions,
     };

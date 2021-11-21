@@ -9,8 +9,8 @@ part of 'card.dart';
 Card _$CardFromJson(Map<String, dynamic> json) => Card(
       json['id'] as int,
       json['sense'] as String,
-      json['kana'] as String?,
-      json['kanji'] as String?,
+      toNonEmptyString(json['kana']),
+      toNonEmptyString(json['kanji']),
     );
 
 Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{

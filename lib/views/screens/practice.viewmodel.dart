@@ -1,15 +1,20 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/impression_type.dart';
+import 'package:kotobaten/models/user/statistics.dart';
+import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
+import 'package:kotobaten/services/repositories/user_repository.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 
 enum CardType { standard, discover, none }
 
 class PracticeViewModel extends StateNotifier<PracticeModel> {
   final KotobatenApiService _apiService;
+  final UserRepository _userRepository;
 
-  PracticeViewModel(this._apiService) : super(const PracticeModel.initial());
+  PracticeViewModel(this._apiService, this._userRepository)
+      : super(const PracticeModel.initial());
 
   void reset() {
     state = const PracticeModel.initial();
@@ -32,7 +37,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     state = currentState.copyWith(revealed: true);
   }
 
-  void evaluateCorrect() {
+  Future evaluateCorrect() async {
     final currentState = state;
     if (currentState is! InProgress) {
       throw const Error('Cannot evaluate while not in-progress');
@@ -47,9 +52,12 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         revealed: false,
         remainingImpressions: currentState.remainingImpressions.sublist(1),
         currentImpression: currentState.remainingImpressions.first);
+
+    saveStatistics(
+        await _apiService.postImpression(currentState.currentImpression, true));
   }
 
-  void evaluateWrong() {
+  Future evaluateWrong() async {
     final currentState = state;
     if (currentState is! InProgress) {
       throw const Error('Cannot evaluate while not in-progress');
@@ -62,6 +70,19 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         revealed: false,
         remainingImpressions: nextRemainingImpressions.toList(),
         currentImpression: currentState.remainingImpressions.first);
+
+    saveStatistics(await _apiService.postImpression(
+        currentState.currentImpression, false));
+  }
+
+  Future saveStatistics(Statistics stats) async {
+    final user = _userRepository.get();
+
+    if (user is! InitializedUser) {
+      return;
+    }
+
+    await _userRepository.set(user.copyWith(stats: stats));
   }
 
   CardType getCardType() {
@@ -77,19 +98,16 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         : CardType.none;
   }
 
-  String getImpressionText() {
+  String getPrimaryText() {
     final currentState = state;
     if (currentState is! InProgress) {
       return '';
     }
 
     if (currentState.revealed) {
-      return currentState.currentImpression.impressionType ==
-              ImpressionType.kana
-          ? currentState.currentImpression.card.kana ??
-              currentState.currentImpression.card.kanji ??
-              ''
-          : currentState.currentImpression.card.sense;
+      return currentState.currentImpression.card.kanji != null
+          ? currentState.currentImpression.card.kanji ?? ''
+          : currentState.currentImpression.card.kana ?? '';
     }
 
     return currentState.currentImpression.impressionType == ImpressionType.sense
@@ -100,6 +118,26 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
             currentState.currentImpression.card.sense;
   }
 
+  String? getFurigana() {
+    final currentState = state;
+    if (currentState is! InProgress || !currentState.revealed) {
+      return null;
+    }
+
+    return currentState.currentImpression.card.kanji != null
+        ? currentState.currentImpression.card.kana
+        : null;
+  }
+
+  String? getSecondaryText() {
+    final currentState = state;
+    if (currentState is! InProgress || !currentState.revealed) {
+      return null;
+    }
+
+    return currentState.currentImpression.card.sense;
+  }
+
   String getHintText() {
     final currentState = state;
     if (currentState is! InProgress) {
@@ -107,7 +145,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     }
 
     return currentState.currentImpression.impressionType == ImpressionType.kana
-        ? 'the kanji'
+        ? 'the kana'
         : 'the meaning';
   }
 }

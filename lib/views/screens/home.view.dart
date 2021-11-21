@@ -32,9 +32,11 @@ class HomeView extends HookConsumerWidget {
     }
 
     if (model is RequiresLogin) {
-      Future.microtask(() => viewModel.reset());
-      Future.microtask(() => Navigator.pushNamedAndRemoveUntil(
-          context, loginRoute, (route) => false));
+      Future.microtask(() {
+        viewModel.reset();
+        Navigator.pushNamedAndRemoveUntil(
+          context, loginRoute, (route) => false);
+      });
     }
 
     if (model is Initialized && user is InitializedUser) {
@@ -75,7 +77,9 @@ class HomeView extends HookConsumerWidget {
                     Padding(
                         padding: topPadding(PaddingType.large),
                         child: Button('Learn',
-                            () => Navigator.pushNamed(context, practiceRoute),
+                            () {
+                              Navigator.pushNamed(context, practiceRoute);
+                            },
                             icon: Icons.bolt_outlined,
                             size: ButtonSize.big,
                             type: ButtonType.primary))

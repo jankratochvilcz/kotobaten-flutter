@@ -17,7 +17,8 @@ extension ListExtensions<T> on List<T> {
           .followedBy(_shuffleIntoListOnce(secondHalf, element));
     }
 
-    return _shuffleIntoListOnce(this, element);
+    final result = _shuffleIntoListOnce(this, element);
+    return result;
   }
 }
 

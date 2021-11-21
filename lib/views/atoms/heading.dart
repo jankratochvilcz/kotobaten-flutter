@@ -14,6 +14,17 @@ double _getFontSize(HeadingStyle style) {
   }
 }
 
+FontWeight _getFontWeight(HeadingStyle style) {
+  switch (style) {
+    case HeadingStyle.h1:
+      return FontWeight.bold;
+    case HeadingStyle.h2:
+      return FontWeight.w500;
+    default:
+      return FontWeight.normal;
+  }
+}
+
 EdgeInsetsGeometry _getBottomPadding(HeadingStyle style) {
   switch (style) {
     case HeadingStyle.h1:
@@ -28,14 +39,16 @@ EdgeInsetsGeometry _getBottomPadding(HeadingStyle style) {
 class Heading extends StatelessWidget {
   final String data;
   final HeadingStyle style;
+  final TextAlign? textAlign;
 
-  const Heading(this.data, this.style, {Key? key}) : super(key: key);
+  const Heading(this.data, this.style, {Key? key, this.textAlign}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Padding(
       child: Text(
         data,
-        style: TextStyle(fontSize: _getFontSize(style), fontWeight: FontWeight.bold),
+        textAlign: textAlign,
+        style: TextStyle(fontSize: _getFontSize(style), fontWeight: _getFontWeight(style)),
       ),
       padding: _getBottomPadding(style));
 }

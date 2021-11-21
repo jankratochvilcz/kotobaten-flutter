@@ -10,8 +10,9 @@ import 'package:kotobaten/views/screens/practice.model.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 
 final _viewModelProvider =
-    StateNotifierProvider<PracticeViewModel, PracticeModel>(
-        (ref) => PracticeViewModel(ref.watch(kotobatenApiServiceProvider)));
+    StateNotifierProvider<PracticeViewModel, PracticeModel>((ref) =>
+        PracticeViewModel(ref.watch(kotobatenApiServiceProvider),
+            ref.watch(userRepositoryProvider.notifier)));
 
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class PracticeView extends HookConsumerWidget {
       Future.microtask(() => viewModel.initialize());
     }
 
-    if(model is Finished) {
+    if (model is Finished) {
       Future.microtask(() {
         viewModel.reset();
         Navigator.pop(context);
@@ -46,7 +47,11 @@ class PracticeView extends HookConsumerWidget {
                         model.remainingImpressions.length) /
                     model.allImpressions.length,
               )),
-          ImpressionCard(viewModel.getImpressionText()),
+          ImpressionCard(
+            viewModel.getPrimaryText(),
+            secondaryText: viewModel.getSecondaryText(),
+            furigana: viewModel.getFurigana(),
+          ),
           Padding(
               padding: bottomPadding(PaddingType.largePlusPlus),
               child: !model.revealed

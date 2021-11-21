@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/impression_type.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
@@ -53,6 +54,14 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     if (currentState is! InProgress) {
       throw const Error('Cannot evaluate while not in-progress');
     }
+
+    final nextRemainingImpressions = currentState.remainingImpressions
+        .shuffleElementIntoListUpToTwice(currentState.currentImpression);
+
+    state = currentState.copyWith(
+        revealed: false,
+        remainingImpressions: nextRemainingImpressions.toList(),
+        currentImpression: currentState.remainingImpressions.first);
   }
 
   CardType getCardType() {

@@ -7,7 +7,7 @@ import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/services/repositories/user_repository.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 
-enum CardType { standard, discover, none }
+enum ImpressionViewType { hidden, revealed, discover, none }
 
 class PracticeViewModel extends StateNotifier<PracticeModel> {
   final KotobatenApiService _apiService;
@@ -85,17 +85,19 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     await _userRepository.set(user.copyWith(stats: stats));
   }
 
-  CardType getCardType() {
+  ImpressionViewType getImpressionViewType() {
     final currentState = state;
 
     if (currentState is! InProgress) {
-      return CardType.none;
+      return ImpressionViewType.none;
     }
 
     return currentState.currentImpression.impressionType ==
             ImpressionType.discover
-        ? CardType.discover
-        : CardType.none;
+        ? ImpressionViewType.discover
+        : currentState.revealed
+            ? ImpressionViewType.revealed
+            : ImpressionViewType.hidden;
   }
 
   String getPrimaryText() {

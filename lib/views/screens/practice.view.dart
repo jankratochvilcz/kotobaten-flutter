@@ -4,6 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
+import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
@@ -32,6 +33,31 @@ class PracticeView extends HookConsumerWidget {
       });
     }
 
+    Widget? impressionView;
+    switch (viewModel.getImpressionViewType()) {
+      case ImpressionViewType.hidden:
+        impressionView = ImpressionHidden(viewModel.getPrimaryText(),
+            viewModel.getHintText(), viewModel.reveal);
+        break;
+      case ImpressionViewType.revealed:
+        impressionView = ImpressionRevealed(
+            viewModel.getPrimaryText(),
+            viewModel.getSecondaryText(),
+            viewModel.getFurigana(),
+            (correct) => correct
+                ? viewModel.evaluateCorrect()
+                : viewModel.evaluateWrong());
+        break;
+      case ImpressionViewType.discover:
+        impressionView = ImpressionNew(
+            viewModel.getPrimaryText(),
+            viewModel.getSecondaryText(),
+            viewModel.getFurigana(),
+            viewModel.evaluateCorrect);
+        break;
+      default:
+    }
+
     if (model is InProgress) {
       return Scaffold(
           body: SafeArea(
@@ -46,16 +72,7 @@ class PracticeView extends HookConsumerWidget {
                         model.remainingImpressions.length) /
                     model.allImpressions.length,
               )),
-          !model.revealed
-              ? ImpressionHidden(viewModel.getPrimaryText(),
-                  viewModel.getHintText(), viewModel.reveal)
-              : ImpressionRevealed(
-                  viewModel.getPrimaryText(),
-                  viewModel.getSecondaryText(),
-                  viewModel.getFurigana(),
-                  (correct) => correct
-                      ? viewModel.evaluateCorrect()
-                      : viewModel.evaluateWrong())
+          if (impressionView != null) impressionView
         ],
       )));
     }

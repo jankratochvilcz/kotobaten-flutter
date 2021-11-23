@@ -8,8 +8,9 @@ class ImpressionCard extends StatelessWidget {
   final String text;
   final String? secondaryText;
   final String? furigana;
+  final bool accented;
 
-  const ImpressionCard(this.text, {Key? key, this.secondaryText, this.furigana})
+  const ImpressionCard(this.text, {Key? key, this.secondaryText, this.furigana, this.accented = false})
       : super(key: key);
 
   @override
@@ -18,6 +19,8 @@ class ImpressionCard extends StatelessWidget {
         padding: allPadding(PaddingType.largePlus),
         child: Center(
             child: Card(
+                elevation: accented ? 10: 2,
+                shadowColor: accented ? Colors.orangeAccent : null,
                 child: AspectRatio(
                     aspectRatio: 1,
                     child: Padding(

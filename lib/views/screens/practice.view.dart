@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/services/providers.dart';
-import 'package:kotobaten/views/atoms/description_rich_text.dart';
-import 'package:kotobaten/views/molecules/button.dart';
-import 'package:kotobaten/views/organisms/impression_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
+import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
+import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 
@@ -47,46 +46,16 @@ class PracticeView extends HookConsumerWidget {
                         model.remainingImpressions.length) /
                     model.allImpressions.length,
               )),
-          ImpressionCard(
-            viewModel.getPrimaryText(),
-            secondaryText: viewModel.getSecondaryText(),
-            furigana: viewModel.getFurigana(),
-          ),
-          Padding(
-              padding: bottomPadding(PaddingType.largePlusPlus),
-              child: !model.revealed
-                  ? Column(children: [
-                      Button(
-                        'Reveal answer',
-                        viewModel.reveal,
-                        type: ButtonType.primary,
-                        icon: Icons.remove_red_eye_outlined,
-                        size: ButtonSize.big,
-                      ),
-                      Padding(
-                          padding: topPadding(PaddingType.largePlus),
-                          child: DescriptionRichText([
-                            const TextSpan(text: 'Try to remember '),
-                            TextSpan(
-                                text: viewModel.getHintText(),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w900)),
-                            const TextSpan(text: ' for this card.')
-                          ]))
-                    ])
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Button('Not there yet.', viewModel.evaluateWrong,
-                            icon: Icons.close, color: Colors.black45),
-                        Button(
-                          'Got it!',
-                          viewModel.evaluateCorrect,
-                          icon: Icons.check,
-                          color: Colors.green,
-                        )
-                      ],
-                    ))
+          !model.revealed
+              ? ImpressionHidden(viewModel.getPrimaryText(),
+                  viewModel.getHintText(), viewModel.reveal)
+              : ImpressionRevealed(
+                  viewModel.getPrimaryText(),
+                  viewModel.getSecondaryText(),
+                  viewModel.getFurigana(),
+                  (correct) => correct
+                      ? viewModel.evaluateCorrect()
+                      : viewModel.evaluateWrong())
         ],
       )));
     }

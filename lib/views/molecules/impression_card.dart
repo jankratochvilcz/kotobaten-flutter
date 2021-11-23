@@ -34,9 +34,11 @@ class ImpressionCard extends StatelessWidget {
                                     style:
                                         const TextStyle(color: Colors.black54))
                               ]),
-                            Heading(text, HeadingStyle.h1, textAlign: TextAlign.center),
+                            Heading(text, HeadingStyle.h1,
+                                textAlign: TextAlign.center),
                             if (secondaryText != null)
-                              Heading(secondaryText ?? '', HeadingStyle.h2, textAlign: TextAlign.center)
+                              Heading(secondaryText ?? '', HeadingStyle.h2,
+                                  textAlign: TextAlign.center)
                           ],
                         )))))));
   }

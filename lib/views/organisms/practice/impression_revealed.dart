@@ -27,19 +27,21 @@ class ImpressionRevealed extends StatelessWidget {
             child: Column(children: [
               ImpressionCard(primaryText,
                   secondaryText: secondaryText, furigana: furiganaText),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Button('Not there yet.', () => onAnswered(false),
-                      icon: Icons.close, color: Colors.black45),
-                  Button(
-                    'Got it!',
-                    () => onAnswered(true),
-                    icon: Icons.check,
-                    color: Colors.green,
-                  )
-                ],
-              )
+              ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Button('Not there yet.', () => onAnswered(false),
+                          icon: Icons.close, color: Colors.black45),
+                      Button(
+                        'Got it!',
+                        () => onAnswered(true),
+                        icon: Icons.check,
+                        color: Colors.green,
+                      )
+                    ],
+                  ))
             ])));
   }
 }

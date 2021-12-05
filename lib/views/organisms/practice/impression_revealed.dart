@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/impression_card.dart';
 
@@ -16,22 +17,29 @@ class ImpressionRevealed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ImpressionCard(primaryText,
-          secondaryText: secondaryText, furigana: furiganaText),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Button('Not there yet.', () => onAnswered(false),
-              icon: Icons.close, color: Colors.black45),
-          Button(
-            'Got it!',
-            () => onAnswered(true),
-            icon: Icons.check,
-            color: Colors.green,
-          )
-        ],
-      )
-    ]);
+    return CallbackShortcuts(
+        bindings: {
+          LogicalKeySet(LogicalKeyboardKey.keyN): () => onAnswered(false),
+          LogicalKeySet(LogicalKeyboardKey.enter): () => onAnswered(true)
+        },
+        child: Focus(
+            autofocus: true,
+            child: Column(children: [
+              ImpressionCard(primaryText,
+                  secondaryText: secondaryText, furigana: furiganaText),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Button('Not there yet.', () => onAnswered(false),
+                      icon: Icons.close, color: Colors.black45),
+                  Button(
+                    'Got it!',
+                    () => onAnswered(true),
+                    icon: Icons.check,
+                    color: Colors.green,
+                  )
+                ],
+              )
+            ])));
   }
 }

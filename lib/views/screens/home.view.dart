@@ -4,6 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -93,11 +94,22 @@ class HomeView extends HookConsumerWidget {
                     const TextSpan(text: 'You added '),
                     TextSpan(
                         text:
-                            '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
+                            '${user.stats.addedWeek > 0 ? user.stats.addedWeek.toString() : 'no'} words',
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                     const TextSpan(text: ' this week.')
                   ],
                 ),
+                if (user.stats.nextToDiscoverCreated != null)
+                  DescriptionRichText(
+                    [
+                      const TextSpan(text: 'You\'re learning words from '),
+                      TextSpan(
+                          text: user.stats.nextToDiscoverCreated
+                              ?.getRelativeToNowString(DateTime.now()),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      const TextSpan(text: '.')
+                    ],
+                  ),
                 Padding(
                     padding: topPadding(PaddingType.large),
                     child: Button('Add word', () => {},

@@ -4,11 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/providers.dart';
-import 'package:kotobaten/extensions/datetime.dart';
-import 'package:kotobaten/views/atoms/description_rich_text.dart';
-import 'package:kotobaten/views/atoms/heading.dart';
-import 'package:kotobaten/views/molecules/button.dart';
-import 'package:kotobaten/views/molecules/headed.dart';
+import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
 import 'package:kotobaten/views/screens/home.viewmodel.dart';
@@ -52,73 +48,8 @@ class HomeView extends HookConsumerWidget {
               padding: EdgeInsets.all(getPadding(PaddingType.largePlusPlus))),
           Padding(
               padding: bottomPadding(PaddingType.largePlus),
-              child: Headed(
-                  Column(children: [
-                    DescriptionRichText(
-                      [
-                        const TextSpan(text: 'You have '),
-                        TextSpan(
-                            text:
-                                '${user.stats.leftToPractice > 0 ? user.stats.leftToPractice.toString() : 'no'} words',
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        const TextSpan(text: ' to refresh.')
-                      ],
-                    ),
-                    DescriptionRichText(
-                      [
-                        const TextSpan(text: 'You learned '),
-                        TextSpan(
-                            text:
-                                '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        const TextSpan(text: ' this week.')
-                      ],
-                    ),
-                    Padding(
-                        padding: topPadding(PaddingType.large),
-                        child: Button('Learn', () {
-                          Navigator.pushNamed(context, practiceRoute);
-                        },
-                            icon: Icons.bolt_outlined,
-                            size: ButtonSize.big,
-                            type: ButtonType.primary))
-                  ]),
-                  'Learn',
-                  HeadingStyle.h1)),
-          Headed(
-              Column(children: [
-                DescriptionRichText(
-                  [
-                    const TextSpan(text: 'You added '),
-                    TextSpan(
-                        text:
-                            '${user.stats.addedWeek > 0 ? user.stats.addedWeek.toString() : 'no'} words',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    const TextSpan(text: ' this week.')
-                  ],
-                ),
-                if (user.stats.nextToDiscoverCreated != null)
-                  DescriptionRichText(
-                    [
-                      const TextSpan(text: 'You\'re learning words from '),
-                      TextSpan(
-                          text: user.stats.nextToDiscoverCreated
-                              ?.getRelativeToNowString(DateTime.now()),
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const TextSpan(text: '.')
-                    ],
-                  ),
-                Padding(
-                    padding: topPadding(PaddingType.large),
-                    child: Button('Add word', () => {},
-                        icon: Icons.add_circle_outline,
-                        size: ButtonSize.big,
-                        type: ButtonType.secondary))
-              ]),
-              'Collect',
-              HeadingStyle.h1)
+              child: CardLearn(user)),
+          CardLearn(user)
         ],
       )));
     }

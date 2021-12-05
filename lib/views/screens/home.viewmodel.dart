@@ -30,6 +30,10 @@ class HomeViewModel extends StateNotifier<HomeModel> {
     }
   }
 
+  void redirectedToLogin() {
+    state = const HomeModel.awaitingLogin();
+  }
+
   void reset() {
     state = const HomeModel.initial();
   }

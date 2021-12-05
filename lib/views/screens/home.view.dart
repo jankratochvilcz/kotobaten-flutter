@@ -27,15 +27,16 @@ class HomeView extends HookConsumerWidget {
     final model = ref.watch(_viewModelProvider);
     final user = ref.watch(userRepositoryProvider);
 
-    if (model is Initial) {
+    if (model is Initial ||
+        (model is AwaitingLogin && user is InitializedUser)) {
       Future.microtask(() => viewModel.initialize());
     }
 
     if (model is RequiresLogin) {
       Future.microtask(() {
-        viewModel.reset();
+        viewModel.redirectedToLogin();
         Navigator.pushNamedAndRemoveUntil(
-          context, loginRoute, (route) => false);
+            context, loginRoute, (route) => false);
       });
     }
 
@@ -76,10 +77,9 @@ class HomeView extends HookConsumerWidget {
                     ),
                     Padding(
                         padding: topPadding(PaddingType.large),
-                        child: Button('Learn',
-                            () {
-                              Navigator.pushNamed(context, practiceRoute);
-                            },
+                        child: Button('Learn', () {
+                          Navigator.pushNamed(context, practiceRoute);
+                        },
                             icon: Icons.bolt_outlined,
                             size: ButtonSize.big,
                             type: ButtonType.primary))
@@ -100,8 +100,7 @@ class HomeView extends HookConsumerWidget {
                 ),
                 Padding(
                     padding: topPadding(PaddingType.large),
-                    child: Button('Add word',
-                        () => {},
+                    child: Button('Add word', () => {},
                         icon: Icons.add_circle_outline,
                         size: ButtonSize.big,
                         type: ButtonType.secondary))

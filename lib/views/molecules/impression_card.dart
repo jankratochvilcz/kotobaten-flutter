@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';

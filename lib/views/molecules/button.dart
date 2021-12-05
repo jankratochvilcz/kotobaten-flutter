@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 
@@ -73,8 +72,6 @@ class Button extends StatelessWidget {
     }
 
     return TextButton(
-        onPressed: onPressed,
-        child: buttonContents,
-        style: _getButtonStyle());
+        onPressed: onPressed, child: buttonContents, style: _getButtonStyle());
   }
 }

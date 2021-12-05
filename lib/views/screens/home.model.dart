@@ -11,5 +11,7 @@ class HomeModel with _$HomeModel {
   const factory HomeModel.initializing() = Initializing;
   const factory HomeModel.requiresLogin() = RequiresLogin;
   const factory HomeModel.initialized(User user) = Initialized;
-  const factory HomeModel.initializationError(String error) = InitializationError;
+  const factory HomeModel.initializationError(String error) =
+      InitializationError;
+  const factory HomeModel.awaitingLogin() = AwaitingLogin;
 }

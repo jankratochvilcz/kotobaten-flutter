@@ -6,8 +6,10 @@ import 'package:kotobaten/views/screens/login.model.dart';
 import 'package:kotobaten/views/screens/login.viewmodel.dart';
 
 final _viewModelProvider = StateNotifierProvider<LoginViewModel, LoginModel>(
-    (ref) => LoginViewModel(ref.watch(kotobatenApiServiceProvider),
-        ref.watch(authenticationServiceProvider)));
+    (ref) => LoginViewModel(
+        ref.watch(kotobatenApiServiceProvider),
+        ref.watch(authenticationServiceProvider),
+        ref.watch(userRepositoryProvider.notifier)));
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -45,11 +47,16 @@ class LoginView extends HookConsumerWidget {
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
               child: ElevatedButton(
-                  onPressed: model is! Loading ? viewModel.login : null,
-                  child: Text(model is! Loading ? 'Login' : 'Logging in...'))),
-          if (model is Error) Text(model.error)
+                  onPressed: model is! Loading
+                      ? () => viewModel.login(onLoginError(context))
+                      : null,
+                  child: Text(model is! Loading ? 'Login' : 'Logging in...')))
         ],
       ),
     )));
   }
+
+  onLoginError(BuildContext context) =>
+      (String error) => ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(error)));
 }

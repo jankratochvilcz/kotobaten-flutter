@@ -11,7 +11,10 @@ import 'package:kotobaten/services/serialization/responses/impressions_response.
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:tuple/tuple.dart';
 
-const _apiRoot = 'kotobaten-api.azurewebsites.net';
+const _apiRoot =
+    _isProduction ? 'kotobaten-api.azurewebsites.net' : 'localhost:5000';
+
+const _isProduction = bool.fromEnvironment('dart.vm.product');
 
 class KotobatenApiService {
   final AuthenticationService _authenticationService;
@@ -19,34 +22,42 @@ class KotobatenApiService {
   KotobatenApiService(this._authenticationService);
 
   Future<Tuple2<bool, String>> login(String username, String password) async {
-    final url = Uri.https(_apiRoot, 'auth/login');
-    final loginResponse = await Client().post(url, body: {
-      'grant_type': 'password',
-      'username': username,
-      'password': password
-    });
+    final url = _getUrl(_apiRoot, 'auth/login');
 
-    final body = utf8.decode(loginResponse.bodyBytes);
+    try {
+      final loginResponse = await Client().post(url, body: {
+        'grant_type': 'password',
+        'username': username,
+        'password': password
+      });
 
-    if (loginResponse.statusCode != 200) {
-      return Tuple2(
-          false, body.isNotEmpty ? body : loginResponse.statusCode.toString());
+      final body = utf8.decode(loginResponse.bodyBytes);
+
+      if (loginResponse.statusCode != 200) {
+        return Tuple2(
+            false,
+            body.isNotEmpty
+                ? body
+                : loginResponse.reasonPhrase ??
+                    loginResponse.statusCode.toString());
+      }
+
+      final token = jsonDecode(body)['access_token'] as String;
+      return Tuple2(true, token);
+    } on ClientException catch (e) {
+      return Tuple2(false, e.message);
     }
-
-    final token = jsonDecode(body)['access_token'] as String;
-    return Tuple2(true, token);
   }
 
   Future<User> getUser() async =>
       InitializedUser.fromJson(await _getAuthenticated('user'));
 
-  Future<List<Impression>> getImpressions() async =>
-      PracticeResponse.fromJson(
-              await _getAuthenticated('practice', params: {'count': '15'}))
-          .impressions;
+  Future<List<Impression>> getImpressions() async => PracticeResponse.fromJson(
+          await _getAuthenticated('practice', params: {'count': '15'}))
+      .impressions;
 
   Future<Statistics> postImpression(Impression impression, bool success) async {
-    final url = Uri.https(_apiRoot, 'impressions');
+    final url = _getUrl(_apiRoot, 'impressions');
 
     final request = ImpressionsRequest.initialized(
         impression.impressionType, impression.card.id, success, DateTime.now());
@@ -54,7 +65,8 @@ class KotobatenApiService {
     var headers = await _getTokenHeadersOrThrow();
     headers.addEntries([contentTypeJsonHeader]);
 
-    final response = await Client().post(url, body: json.encode(request.toJson()), headers: headers);
+    final response = await Client()
+        .post(url, body: json.encode(request.toJson()), headers: headers);
     final body = utf8.decode(response.bodyBytes);
     final stats = ImpressionsResponse.fromJson(jsonDecode(body)).userStats;
     return stats;
@@ -62,7 +74,7 @@ class KotobatenApiService {
 
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
-    final url = Uri.https(_apiRoot, relativePath, params);
+    final url = _getUrl(_apiRoot, relativePath, params);
 
     final response =
         await Client().get(url, headers: await _getTokenHeadersOrThrow());
@@ -79,4 +91,10 @@ class KotobatenApiService {
     }
     return {'Authorization': 'Bearer $token'};
   }
+
+  _getUrl(String authority, String unencodedPath,
+          [Map<String, dynamic>? queryParameters]) =>
+      _isProduction
+          ? Uri.https(authority, unencodedPath, queryParameters)
+          : Uri.http(authority, unencodedPath, queryParameters);
 }

@@ -40,6 +40,10 @@ class _$HomeModelTearOff {
       error,
     );
   }
+
+  AwaitingLogin awaitingLogin() {
+    return const AwaitingLogin();
+  }
 }
 
 /// @nodoc
@@ -54,6 +58,7 @@ mixin _$HomeModel {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$HomeModel {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +78,7 @@ mixin _$HomeModel {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +89,7 @@ mixin _$HomeModel {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,6 +99,7 @@ mixin _$HomeModel {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +109,7 @@ mixin _$HomeModel {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +173,7 @@ class _$Initial extends Initial {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) {
     return initial();
   }
@@ -175,6 +186,7 @@ class _$Initial extends Initial {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) {
     return initial?.call();
   }
@@ -187,6 +199,7 @@ class _$Initial extends Initial {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -203,6 +216,7 @@ class _$Initial extends Initial {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) {
     return initial(this);
   }
@@ -215,6 +229,7 @@ class _$Initial extends Initial {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) {
     return initial?.call(this);
   }
@@ -227,6 +242,7 @@ class _$Initial extends Initial {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -286,6 +302,7 @@ class _$Initializing extends Initializing {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) {
     return initializing();
   }
@@ -298,6 +315,7 @@ class _$Initializing extends Initializing {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) {
     return initializing?.call();
   }
@@ -310,6 +328,7 @@ class _$Initializing extends Initializing {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initializing != null) {
@@ -326,6 +345,7 @@ class _$Initializing extends Initializing {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) {
     return initializing(this);
   }
@@ -338,6 +358,7 @@ class _$Initializing extends Initializing {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) {
     return initializing?.call(this);
   }
@@ -350,6 +371,7 @@ class _$Initializing extends Initializing {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initializing != null) {
@@ -409,6 +431,7 @@ class _$RequiresLogin extends RequiresLogin {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) {
     return requiresLogin();
   }
@@ -421,6 +444,7 @@ class _$RequiresLogin extends RequiresLogin {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) {
     return requiresLogin?.call();
   }
@@ -433,6 +457,7 @@ class _$RequiresLogin extends RequiresLogin {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -449,6 +474,7 @@ class _$RequiresLogin extends RequiresLogin {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) {
     return requiresLogin(this);
   }
@@ -461,6 +487,7 @@ class _$RequiresLogin extends RequiresLogin {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) {
     return requiresLogin?.call(this);
   }
@@ -473,6 +500,7 @@ class _$RequiresLogin extends RequiresLogin {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) {
     if (requiresLogin != null) {
@@ -564,6 +592,7 @@ class _$Initialized extends Initialized {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) {
     return initialized(user);
   }
@@ -576,6 +605,7 @@ class _$Initialized extends Initialized {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) {
     return initialized?.call(user);
   }
@@ -588,6 +618,7 @@ class _$Initialized extends Initialized {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -604,6 +635,7 @@ class _$Initialized extends Initialized {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) {
     return initialized(this);
   }
@@ -616,6 +648,7 @@ class _$Initialized extends Initialized {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) {
     return initialized?.call(this);
   }
@@ -628,6 +661,7 @@ class _$Initialized extends Initialized {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -716,6 +750,7 @@ class _$InitializationError extends InitializationError {
     required TResult Function() requiresLogin,
     required TResult Function(User user) initialized,
     required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
   }) {
     return initializationError(error);
   }
@@ -728,6 +763,7 @@ class _$InitializationError extends InitializationError {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
   }) {
     return initializationError?.call(error);
   }
@@ -740,6 +776,7 @@ class _$InitializationError extends InitializationError {
     TResult Function()? requiresLogin,
     TResult Function(User user)? initialized,
     TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initializationError != null) {
@@ -756,6 +793,7 @@ class _$InitializationError extends InitializationError {
     required TResult Function(RequiresLogin value) requiresLogin,
     required TResult Function(Initialized value) initialized,
     required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
   }) {
     return initializationError(this);
   }
@@ -768,6 +806,7 @@ class _$InitializationError extends InitializationError {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
   }) {
     return initializationError?.call(this);
   }
@@ -780,6 +819,7 @@ class _$InitializationError extends InitializationError {
     TResult Function(RequiresLogin value)? requiresLogin,
     TResult Function(Initialized value)? initialized,
     TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
     required TResult orElse(),
   }) {
     if (initializationError != null) {
@@ -797,4 +837,133 @@ abstract class InitializationError extends HomeModel {
   @JsonKey(ignore: true)
   $InitializationErrorCopyWith<InitializationError> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AwaitingLoginCopyWith<$Res> {
+  factory $AwaitingLoginCopyWith(
+          AwaitingLogin value, $Res Function(AwaitingLogin) then) =
+      _$AwaitingLoginCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AwaitingLoginCopyWithImpl<$Res> extends _$HomeModelCopyWithImpl<$Res>
+    implements $AwaitingLoginCopyWith<$Res> {
+  _$AwaitingLoginCopyWithImpl(
+      AwaitingLogin _value, $Res Function(AwaitingLogin) _then)
+      : super(_value, (v) => _then(v as AwaitingLogin));
+
+  @override
+  AwaitingLogin get _value => super._value as AwaitingLogin;
+}
+
+/// @nodoc
+
+class _$AwaitingLogin extends AwaitingLogin {
+  const _$AwaitingLogin() : super._();
+
+  @override
+  String toString() {
+    return 'HomeModel.awaitingLogin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is AwaitingLogin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() initializing,
+    required TResult Function() requiresLogin,
+    required TResult Function(User user) initialized,
+    required TResult Function(String error) initializationError,
+    required TResult Function() awaitingLogin,
+  }) {
+    return awaitingLogin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
+  }) {
+    return awaitingLogin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? initializing,
+    TResult Function()? requiresLogin,
+    TResult Function(User user)? initialized,
+    TResult Function(String error)? initializationError,
+    TResult Function()? awaitingLogin,
+    required TResult orElse(),
+  }) {
+    if (awaitingLogin != null) {
+      return awaitingLogin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Initializing value) initializing,
+    required TResult Function(RequiresLogin value) requiresLogin,
+    required TResult Function(Initialized value) initialized,
+    required TResult Function(InitializationError value) initializationError,
+    required TResult Function(AwaitingLogin value) awaitingLogin,
+  }) {
+    return awaitingLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
+  }) {
+    return awaitingLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Initializing value)? initializing,
+    TResult Function(RequiresLogin value)? requiresLogin,
+    TResult Function(Initialized value)? initialized,
+    TResult Function(InitializationError value)? initializationError,
+    TResult Function(AwaitingLogin value)? awaitingLogin,
+    required TResult orElse(),
+  }) {
+    if (awaitingLogin != null) {
+      return awaitingLogin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AwaitingLogin extends HomeModel {
+  const factory AwaitingLogin() = _$AwaitingLogin;
+  const AwaitingLogin._() : super._();
 }

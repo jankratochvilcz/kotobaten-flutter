@@ -4,6 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
@@ -49,7 +50,7 @@ class HomeView extends HookConsumerWidget {
           Padding(
               padding: bottomPadding(PaddingType.largePlus),
               child: CardLearn(user)),
-          CardLearn(user)
+          CardCollect(user)
         ],
       )));
     }

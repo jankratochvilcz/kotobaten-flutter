@@ -7,10 +7,10 @@ import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 
-class CardLearn extends StatelessWidget {
+class CardCollect extends StatelessWidget {
   final InitializedUser user;
 
-  const CardLearn(this.user, {Key? key}) : super(key: key);
+  const CardCollect(this.user, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Headed(

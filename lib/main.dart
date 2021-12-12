@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               surface: Color(0xffffffff))),
       initialRoute: homeRoute,
       routes: {
-        homeRoute: (_) => const HomeView(),
+        homeRoute: (_) => HomeView(),
         loginRoute: (_) => const LoginView(),
         practiceRoute: (_) => const PracticeView(),
         profileRoute: (_) => const ProfileView()

@@ -11,6 +11,7 @@ import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
 import 'package:kotobaten/views/screens/home.viewmodel.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 final _viewModelProvider = StateNotifierProvider<HomeViewModel, HomeModel>(
     (ref) => HomeViewModel(
@@ -19,7 +20,9 @@ final _viewModelProvider = StateNotifierProvider<HomeViewModel, HomeModel>(
         ref.watch(userRepositoryProvider.notifier)));
 
 class HomeView extends HookConsumerWidget {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final _pullToRefeshController = RefreshController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,21 +45,35 @@ class HomeView extends HookConsumerWidget {
       });
     }
 
-    if (model is Initialized && user is InitializedUser) {
-      return ScaffoldDefault(Center(
-          child: CallbackShortcuts(
-              bindings: {LogicalKeySet(LogicalKeyboardKey.enter): goToPractice},
-              child: Focus(
-                  autofocus: true,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: bottomPadding(PaddingType.largePlus),
-                          child: CardLearn(user, goToPractice)),
-                      CardCollect(user)
-                    ],
-                  )))));
+    if (model is! Initializing) {
+      _pullToRefeshController.refreshCompleted();
+    }
+
+    if (user is InitializedUser) {
+      return ScaffoldDefault(SmartRefresher(
+          enablePullDown: true,
+          controller: _pullToRefeshController,
+          onRefresh: () => viewModel.initialize(),
+          header: WaterDropMaterialHeader(
+            color: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+          ),
+          child: Center(
+              child: CallbackShortcuts(
+                  bindings: {
+                LogicalKeySet(LogicalKeyboardKey.enter): goToPractice
+              },
+                  child: Focus(
+                      autofocus: true,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                              padding: bottomPadding(PaddingType.largePlus),
+                              child: CardLearn(user, goToPractice)),
+                          CardCollect(user)
+                        ],
+                      ))))));
     }
 
     return const Loading();

@@ -32,13 +32,19 @@ class ImpressionRevealed extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Button('Not there yet.', () => onAnswered(false),
-                          icon: Icons.close, color: Colors.black45),
+                      Button(
+                        'Not there yet.',
+                        () => onAnswered(false),
+                        icon: Icons.close,
+                        color: Colors.black45,
+                        shortcut: 'n',
+                      ),
                       Button(
                         'Got it!',
                         () => onAnswered(true),
                         icon: Icons.check,
                         color: Colors.green,
+                        shortcut: '⏎',
                       )
                     ],
                   ))

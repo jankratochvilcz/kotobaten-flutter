@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/impression_card.dart';
 
@@ -16,14 +17,24 @@ class ImpressionNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ImpressionCard(primaryText,
-          secondaryText: secondaryText, furigana: furiganaText, accented: true),
-      Center(
-          child: Button('Got it!', onDiscovered,
-              icon: Icons.lightbulb_outline,
-              type: ButtonType.primary,
-              size: ButtonSize.big))
-    ]);
+    return CallbackShortcuts(
+        bindings: {LogicalKeySet(LogicalKeyboardKey.enter): onDiscovered},
+        child: Focus(
+            autofocus: true,
+            child: Column(children: [
+              ImpressionCard(primaryText,
+                  secondaryText: secondaryText,
+                  furigana: furiganaText,
+                  accented: true),
+              Center(
+                  child: Button(
+                'Got it!',
+                onDiscovered,
+                icon: Icons.lightbulb_outline,
+                type: ButtonType.primary,
+                size: ButtonSize.big,
+                shortcut: '⏎',
+              ))
+            ])));
   }
 }

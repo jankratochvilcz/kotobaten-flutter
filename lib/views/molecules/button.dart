@@ -23,13 +23,15 @@ class Button extends StatelessWidget {
   final ButtonType type;
   final Color? color;
   final VoidCallback onPressed;
+  final String? shortcut;
 
   const Button(this.label, this.onPressed,
       {Key? key,
       this.icon,
       this.size = ButtonSize.standard,
       this.type = ButtonType.standard,
-      this.color})
+      this.color,
+      this.shortcut})
       : super(key: key);
 
   _getButtonStyle() {
@@ -56,7 +58,19 @@ class Button extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(fontWeight: FontWeight.w900),
-            )
+            ),
+            if (shortcut != null)
+              Padding(
+                child: Text(
+                  '[$shortcut]',
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: type == ButtonType.primary
+                          ? Colors.white24
+                          : Colors.black26),
+                ),
+                padding: leftPadding(PaddingType.small),
+              )
           ],
         ));
 

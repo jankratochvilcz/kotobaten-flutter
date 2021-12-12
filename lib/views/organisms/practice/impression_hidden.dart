@@ -29,6 +29,7 @@ class ImpressionHidden extends StatelessWidget {
                   type: ButtonType.primary,
                   icon: Icons.remove_red_eye_outlined,
                   size: ButtonSize.big,
+                  shortcut: '⏎',
                 ),
                 Padding(
                     padding: topPadding(PaddingType.largePlus),

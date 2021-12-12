@@ -68,9 +68,7 @@ class PracticeView extends HookConsumerWidget {
               child: CircularProgressIndicator(
                 backgroundColor: Colors.black12,
                 strokeWidth: 2,
-                value: (model.allImpressions.length -
-                        model.remainingImpressions.length) /
-                    model.allImpressions.length,
+                value: viewModel.getProgress(),
               )),
           if (impressionView != null) impressionView
         ],

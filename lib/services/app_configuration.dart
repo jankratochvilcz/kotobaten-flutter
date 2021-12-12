@@ -1,4 +1,4 @@
-import 'package:kotobaten/consts/routes-external.dart';
+import 'package:kotobaten/consts/routes_external.dart';
 import 'package:kotobaten/models/app_configuration.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 

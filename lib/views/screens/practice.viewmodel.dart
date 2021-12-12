@@ -150,4 +150,19 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         ? 'the kana'
         : 'the meaning';
   }
+
+  double getProgress() {
+    final currentState = state;
+
+    if (currentState is! InProgress) {
+      return 0;
+    }
+
+    final progress = (currentState.allImpressions.length -
+            currentState.remainingImpressions.length -
+            1) /
+        currentState.allImpressions.length;
+
+    return progress;
+  }
 }

@@ -11,7 +11,6 @@ import 'package:kotobaten/services/serialization/requests/impressions_request.da
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:tuple/tuple.dart';
-import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 
 class KotobatenApiService {
@@ -97,3 +96,6 @@ class KotobatenApiService {
           ? Uri.https(authority, unencodedPath, queryParameters)
           : Uri.http(authority, unencodedPath, queryParameters);
 }
+
+@GenerateMocks([KotobatenApiService])
+void main() {}

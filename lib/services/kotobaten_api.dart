@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 import 'package:kotobaten/consts/http.dart';
+import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/user/statistics.dart';
 import 'package:kotobaten/models/user/user.dart';
@@ -10,19 +11,17 @@ import 'package:kotobaten/services/serialization/requests/impressions_request.da
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:tuple/tuple.dart';
-
-const _apiRoot =
-    _isProduction ? 'kotobaten-api.azurewebsites.net' : 'localhost:5000';
-
-const _isProduction = bool.fromEnvironment('dart.vm.product');
+import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 
 class KotobatenApiService {
   final AuthenticationService _authenticationService;
+  final AppConfiguration _appConfiguration;
 
-  KotobatenApiService(this._authenticationService);
+  KotobatenApiService(this._authenticationService, this._appConfiguration);
 
   Future<Tuple2<bool, String>> login(String username, String password) async {
-    final url = _getUrl(_apiRoot, 'auth/login');
+    final url = _getUrl(_appConfiguration.apiRoot, 'auth/login');
 
     try {
       final loginResponse = await Client().post(url, body: {
@@ -57,7 +56,7 @@ class KotobatenApiService {
       .impressions;
 
   Future<Statistics> postImpression(Impression impression, bool success) async {
-    final url = _getUrl(_apiRoot, 'impressions');
+    final url = _getUrl(_appConfiguration.apiRoot, 'impressions');
 
     final request = ImpressionsRequest.initialized(
         impression.impressionType, impression.card.id, success, DateTime.now());
@@ -74,7 +73,7 @@ class KotobatenApiService {
 
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
-    final url = _getUrl(_apiRoot, relativePath, params);
+    final url = _getUrl(_appConfiguration.apiRoot, relativePath, params);
 
     final response =
         await Client().get(url, headers: await _getTokenHeadersOrThrow());
@@ -94,7 +93,7 @@ class KotobatenApiService {
 
   _getUrl(String authority, String unencodedPath,
           [Map<String, dynamic>? queryParameters]) =>
-      _isProduction
+      _appConfiguration.isApiHttps
           ? Uri.https(authority, unencodedPath, queryParameters)
           : Uri.http(authority, unencodedPath, queryParameters);
 }

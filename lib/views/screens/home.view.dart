@@ -10,6 +10,7 @@ import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/home.model.dart';
 import 'package:kotobaten/views/screens/home.viewmodel.dart';
+import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 
 final _viewModelProvider = StateNotifierProvider<HomeViewModel, HomeModel>(
     (ref) => HomeViewModel(
@@ -42,29 +43,20 @@ class HomeView extends HookConsumerWidget {
     }
 
     if (model is Initialized && user is InitializedUser) {
-      return Scaffold(
-          body: Center(
-              child: CallbackShortcuts(
-                  bindings: {
-            LogicalKeySet(LogicalKeyboardKey.enter): goToPractice
-          },
-                  child: Focus(
-                      autofocus: true,
-                      child: Column(
-                        children: [
-                          Padding(
-                              child: const Image(
-                                  image: AssetImage(
-                                      'assets/logos/square_gray.png'),
-                                  width: 80),
-                              padding: EdgeInsets.all(
-                                  getPadding(PaddingType.largePlusPlus))),
-                          Padding(
-                              padding: bottomPadding(PaddingType.largePlus),
-                              child: CardLearn(user, goToPractice)),
-                          CardCollect(user)
-                        ],
-                      )))));
+      return ScaffoldDefault(Center(
+          child: CallbackShortcuts(
+              bindings: {LogicalKeySet(LogicalKeyboardKey.enter): goToPractice},
+              child: Focus(
+                  autofocus: true,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: bottomPadding(PaddingType.largePlus),
+                          child: CardLearn(user, goToPractice)),
+                      CardCollect(user)
+                    ],
+                  )))));
     }
 
     return const Loading();

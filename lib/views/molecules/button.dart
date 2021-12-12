@@ -46,7 +46,8 @@ class Button extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final configuration = ref.watch(appConfigurationProvider);
+    final deviceType =
+        ref.watch(appConfigurationProvider.select((value) => value.deviceType));
 
     final buttonContents = Container(
         width: size == ButtonSize.big ? 220 : null,
@@ -64,7 +65,7 @@ class Button extends HookConsumerWidget {
               label,
               style: const TextStyle(fontWeight: FontWeight.w900),
             ),
-            if (shortcut != null && configuration.deviceType == DeviceType.web)
+            if (shortcut != null && deviceType == DeviceType.web)
               Padding(
                 child: Text(
                   '[$shortcut]',

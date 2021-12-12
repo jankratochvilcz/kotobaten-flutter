@@ -36,3 +36,6 @@ EdgeInsetsGeometry allPadding(PaddingType type) => EdgeInsets.fromLTRB(
 
 EdgeInsetsGeometry horizontalPadding(PaddingType type) =>
     EdgeInsets.fromLTRB(getPadding(type), 0, getPadding(type), 0);
+
+EdgeInsetsGeometry verticalPadding(PaddingType type) =>
+    EdgeInsets.fromLTRB(0, getPadding(type), 0, getPadding(type));

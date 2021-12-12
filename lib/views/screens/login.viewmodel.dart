@@ -31,7 +31,7 @@ class LoginViewModel extends StateNotifier<LoginModel> {
     await _authenticationService.setToken(result.item2);
 
     final user = await _apiService.getUser();
-    _userRepository.set(user);
+    await _userRepository.set(user);
 
     state = LoginModel.success(result.item2);
 

@@ -5,6 +5,7 @@ import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
 import 'package:kotobaten/views/screens/practice.view.dart';
+import 'package:kotobaten/views/screens/profile.view.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Kotobaten',
       theme: ThemeData(
           fontFamily: defaultFont,
@@ -35,7 +37,8 @@ class MyApp extends StatelessWidget {
       routes: {
         homeRoute: (_) => const HomeView(),
         loginRoute: (_) => const LoginView(),
-        practiceRoute: (_) => const PracticeView()
+        practiceRoute: (_) => const PracticeView(),
+        profileRoute: (_) => const ProfileView()
       },
     ));
   }

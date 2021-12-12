@@ -23,7 +23,7 @@ class HomeViewModel extends StateNotifier<HomeModel> {
 
     try {
       final user = await _apiService.getUser();
-      _userRepository.set(user);
+      await _userRepository.set(user);
       state = HomeModel.initialized(user);
     } catch (e) {
       state = HomeModel.initializationError(e.toString());

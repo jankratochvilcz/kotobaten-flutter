@@ -14,4 +14,9 @@ class AuthenticationService {
     final preferences = await SharedPreferences.getInstance();
     await preferences.setString(_tokenKey, token);
   }
+
+  Future deleteToken() async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.remove(_tokenKey);
+  }
 }

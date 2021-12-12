@@ -10,6 +10,7 @@ class AppConfigurationService {
     const isDevEndpoint = isWeb && !isProduction;
     const apiRoot = isDevEndpoint ? apiRootDev : apiRootProduction;
 
-    return AppConfiguration.initialized(apiRoot, !isDevEndpoint);
+    return AppConfiguration.initialized(
+        apiRoot, !isDevEndpoint, isWeb ? DeviceType.web : DeviceType.mobile);
   }
 }

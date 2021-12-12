@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
@@ -9,8 +8,9 @@ import 'package:kotobaten/views/molecules/headed.dart';
 
 class CardLearn extends StatelessWidget {
   final InitializedUser user;
+  final VoidCallback goToPractice;
 
-  const CardLearn(this.user, {Key? key}) : super(key: key);
+  const CardLearn(this.user, this.goToPractice, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Headed(
@@ -37,12 +37,14 @@ class CardLearn extends StatelessWidget {
         ),
         Padding(
             padding: topPadding(PaddingType.large),
-            child: Button('Learn', () {
-              Navigator.pushNamed(context, practiceRoute);
-            },
-                icon: Icons.bolt_outlined,
-                size: ButtonSize.big,
-                type: ButtonType.primary))
+            child: Button(
+              'Learn',
+              goToPractice,
+              icon: Icons.bolt_outlined,
+              size: ButtonSize.big,
+              type: ButtonType.primary,
+              shortcut: '⏎',
+            ))
       ]),
       'Learn',
       HeadingStyle.h1);

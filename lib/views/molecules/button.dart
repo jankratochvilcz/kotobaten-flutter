@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/models/app_configuration.dart';
+import 'package:kotobaten/services/providers.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
 
@@ -16,7 +19,7 @@ enum ButtonSize { standard, big }
 
 enum ButtonType { standard, primary, secondary }
 
-class Button extends StatelessWidget {
+class Button extends HookConsumerWidget {
   final String label;
   final IconData? icon;
   final ButtonSize size;
@@ -42,7 +45,9 @@ class Button extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final configuration = ref.watch(appConfigurationProvider);
+
     final buttonContents = Container(
         width: size == ButtonSize.big ? 220 : null,
         padding: size != ButtonSize.big
@@ -59,7 +64,7 @@ class Button extends StatelessWidget {
               label,
               style: const TextStyle(fontWeight: FontWeight.w900),
             ),
-            if (shortcut != null)
+            if (shortcut != null && configuration.deviceType == DeviceType.web)
               Padding(
                 child: Text(
                   '[$shortcut]',

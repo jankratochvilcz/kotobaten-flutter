@@ -17,10 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppConfigurationTearOff {
   const _$AppConfigurationTearOff();
 
-  AppConfigurationInitialized initialized(String apiRoot, bool isApiHttps) {
+  AppConfigurationInitialized initialized(
+      String apiRoot, bool isApiHttps, DeviceType deviceType) {
     return AppConfigurationInitialized(
       apiRoot,
       isApiHttps,
+      deviceType,
     );
   }
 }
@@ -32,20 +34,25 @@ const $AppConfiguration = _$AppConfigurationTearOff();
 mixin _$AppConfiguration {
   String get apiRoot => throw _privateConstructorUsedError;
   bool get isApiHttps => throw _privateConstructorUsedError;
+  DeviceType get deviceType => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String apiRoot, bool isApiHttps) initialized,
+    required TResult Function(
+            String apiRoot, bool isApiHttps, DeviceType deviceType)
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps)? initialized,
+    TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType)?
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps)? initialized,
+    TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType)?
+        initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,7 +83,7 @@ abstract class $AppConfigurationCopyWith<$Res> {
   factory $AppConfigurationCopyWith(
           AppConfiguration value, $Res Function(AppConfiguration) then) =
       _$AppConfigurationCopyWithImpl<$Res>;
-  $Res call({String apiRoot, bool isApiHttps});
+  $Res call({String apiRoot, bool isApiHttps, DeviceType deviceType});
 }
 
 /// @nodoc
@@ -92,6 +99,7 @@ class _$AppConfigurationCopyWithImpl<$Res>
   $Res call({
     Object? apiRoot = freezed,
     Object? isApiHttps = freezed,
+    Object? deviceType = freezed,
   }) {
     return _then(_value.copyWith(
       apiRoot: apiRoot == freezed
@@ -102,6 +110,10 @@ class _$AppConfigurationCopyWithImpl<$Res>
           ? _value.isApiHttps
           : isApiHttps // ignore: cast_nullable_to_non_nullable
               as bool,
+      deviceType: deviceType == freezed
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as DeviceType,
     ));
   }
 }
@@ -114,7 +126,7 @@ abstract class $AppConfigurationInitializedCopyWith<$Res>
           $Res Function(AppConfigurationInitialized) then) =
       _$AppConfigurationInitializedCopyWithImpl<$Res>;
   @override
-  $Res call({String apiRoot, bool isApiHttps});
+  $Res call({String apiRoot, bool isApiHttps, DeviceType deviceType});
 }
 
 /// @nodoc
@@ -133,6 +145,7 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
   $Res call({
     Object? apiRoot = freezed,
     Object? isApiHttps = freezed,
+    Object? deviceType = freezed,
   }) {
     return _then(AppConfigurationInitialized(
       apiRoot == freezed
@@ -143,6 +156,10 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
           ? _value.isApiHttps
           : isApiHttps // ignore: cast_nullable_to_non_nullable
               as bool,
+      deviceType == freezed
+          ? _value.deviceType
+          : deviceType // ignore: cast_nullable_to_non_nullable
+              as DeviceType,
     ));
   }
 }
@@ -150,16 +167,18 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppConfigurationInitialized implements AppConfigurationInitialized {
-  _$AppConfigurationInitialized(this.apiRoot, this.isApiHttps);
+  _$AppConfigurationInitialized(this.apiRoot, this.isApiHttps, this.deviceType);
 
   @override
   final String apiRoot;
   @override
   final bool isApiHttps;
+  @override
+  final DeviceType deviceType;
 
   @override
   String toString() {
-    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps)';
+    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps, deviceType: $deviceType)';
   }
 
   @override
@@ -169,11 +188,13 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
             other is AppConfigurationInitialized &&
             (identical(other.apiRoot, apiRoot) || other.apiRoot == apiRoot) &&
             (identical(other.isApiHttps, isApiHttps) ||
-                other.isApiHttps == isApiHttps));
+                other.isApiHttps == isApiHttps) &&
+            (identical(other.deviceType, deviceType) ||
+                other.deviceType == deviceType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, apiRoot, isApiHttps);
+  int get hashCode => Object.hash(runtimeType, apiRoot, isApiHttps, deviceType);
 
   @JsonKey(ignore: true)
   @override
@@ -184,27 +205,31 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String apiRoot, bool isApiHttps) initialized,
+    required TResult Function(
+            String apiRoot, bool isApiHttps, DeviceType deviceType)
+        initialized,
   }) {
-    return initialized(apiRoot, isApiHttps);
+    return initialized(apiRoot, isApiHttps, deviceType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps)? initialized,
+    TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType)?
+        initialized,
   }) {
-    return initialized?.call(apiRoot, isApiHttps);
+    return initialized?.call(apiRoot, isApiHttps, deviceType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps)? initialized,
+    TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType)?
+        initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(apiRoot, isApiHttps);
+      return initialized(apiRoot, isApiHttps, deviceType);
     }
     return orElse();
   }
@@ -239,13 +264,16 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
 }
 
 abstract class AppConfigurationInitialized implements AppConfiguration {
-  factory AppConfigurationInitialized(String apiRoot, bool isApiHttps) =
+  factory AppConfigurationInitialized(
+          String apiRoot, bool isApiHttps, DeviceType deviceType) =
       _$AppConfigurationInitialized;
 
   @override
   String get apiRoot;
   @override
   bool get isApiHttps;
+  @override
+  DeviceType get deviceType;
   @override
   @JsonKey(ignore: true)
   $AppConfigurationInitializedCopyWith<AppConfigurationInitialized>

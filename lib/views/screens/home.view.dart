@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
@@ -25,6 +26,8 @@ class HomeView extends HookConsumerWidget {
     final model = ref.watch(_viewModelProvider);
     final user = ref.watch(userRepositoryProvider);
 
+    goToPractice() => Navigator.pushNamed(context, practiceRoute);
+
     if (model is Initial ||
         (model is AwaitingLogin && user is InitializedUser)) {
       Future.microtask(() => viewModel.initialize());
@@ -41,18 +44,27 @@ class HomeView extends HookConsumerWidget {
     if (model is Initialized && user is InitializedUser) {
       return Scaffold(
           body: Center(
-              child: Column(
-        children: [
-          Padding(
-              child: const Image(
-                  image: AssetImage('assets/logos/square_gray.png'), width: 80),
-              padding: EdgeInsets.all(getPadding(PaddingType.largePlusPlus))),
-          Padding(
-              padding: bottomPadding(PaddingType.largePlus),
-              child: CardLearn(user)),
-          CardCollect(user)
-        ],
-      )));
+              child: CallbackShortcuts(
+                  bindings: {
+            LogicalKeySet(LogicalKeyboardKey.enter): goToPractice
+          },
+                  child: Focus(
+                      autofocus: true,
+                      child: Column(
+                        children: [
+                          Padding(
+                              child: const Image(
+                                  image: AssetImage(
+                                      'assets/logos/square_gray.png'),
+                                  width: 80),
+                              padding: EdgeInsets.all(
+                                  getPadding(PaddingType.largePlusPlus))),
+                          Padding(
+                              padding: bottomPadding(PaddingType.largePlus),
+                              child: CardLearn(user, goToPractice)),
+                          CardCollect(user)
+                        ],
+                      )))));
     }
 
     return const Loading();

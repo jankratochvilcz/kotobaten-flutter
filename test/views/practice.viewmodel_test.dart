@@ -59,6 +59,27 @@ void main() {
       expect(dependencies.target.getProgress(), 0);
     });
   });
+
+  group("evaluateWrong", () {
+    test("last remaining word triggers it again", () async {
+      final dependencies = getDependencies();
+      final impressions = getImpressions(1).toList();
+
+      when(dependencies.apiService.getImpressions())
+          .thenAnswer((_) async => impressions);
+
+      setupStatisticsUpdates(dependencies);
+
+      await dependencies.target.initialize();
+      dependencies.target.reveal();
+      await dependencies.target.evaluateWrong();
+
+      expect(dependencies.target.getImpressionViewType().name,
+          impressions[0].impressionType.name);
+
+      expect(dependencies.target.getProgress(), 0);
+    });
+  });
 }
 
 class PractiveViewModelTestDependencies {

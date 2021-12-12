@@ -63,6 +63,11 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
       throw const Error('Cannot evaluate while not in-progress');
     }
 
+    if (currentState.remainingImpressions.isEmpty) {
+      state = currentState.copyWith(revealed: false);
+      return;
+    }
+
     final nextRemainingImpressions = currentState.remainingImpressions
         .shuffleElementIntoListUpToTwice(currentState.currentImpression);
 

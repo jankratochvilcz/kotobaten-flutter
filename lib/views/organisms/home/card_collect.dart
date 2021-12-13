@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/models/card.dart' as card_model;
@@ -20,8 +19,6 @@ class CardCollect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSavingNewWord = useState(false);
-
     return Headed(
         Column(children: [
           DescriptionRichText(
@@ -58,7 +55,6 @@ class CardCollect extends StatelessWidget {
                       builder: (context) => Padding(
                           padding: MediaQuery.of(context).viewInsets,
                           child: WordAddForm((card) async {
-                            isSavingNewWord.value = true;
                             final createdCard = await _onWordSubmit(card);
 
                             if (createdCard == null) {
@@ -69,8 +65,6 @@ class CardCollect extends StatelessWidget {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
                                     'Card for ${createdCard.sense} created.')));
-
-                            isSavingNewWord.value = false;
                           }))),
                   icon: Icons.add_circle_outline,
                   size: ButtonSize.big,

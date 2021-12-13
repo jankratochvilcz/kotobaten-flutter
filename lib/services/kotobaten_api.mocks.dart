@@ -2,12 +2,13 @@
 // in kotobaten/services/kotobaten_api.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
-import 'package:kotobaten/models/impression.dart' as _i7;
+import 'package:kotobaten/models/card.dart' as _i5;
+import 'package:kotobaten/models/impression.dart' as _i8;
 import 'package:kotobaten/models/user/statistics.dart' as _i4;
 import 'package:kotobaten/models/user/user.dart' as _i3;
-import 'package:kotobaten/services/kotobaten_api.dart' as _i5;
+import 'package:kotobaten/services/kotobaten_api.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:tuple/tuple.dart' as _i2;
 
@@ -26,39 +27,46 @@ class _FakeUser_1 extends _i1.Fake implements _i3.User {}
 
 class _FakeStatistics_2 extends _i1.Fake implements _i4.Statistics {}
 
+class _FakeCard_3 extends _i1.Fake implements _i5.Card {}
+
 /// A class which mocks [KotobatenApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockKotobatenApiService extends _i1.Mock
-    implements _i5.KotobatenApiService {
+    implements _i6.KotobatenApiService {
   MockKotobatenApiService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i2.Tuple2<bool, String>> login(
+  _i7.Future<_i2.Tuple2<bool, String>> login(
           String? username, String? password) =>
       (super.noSuchMethod(Invocation.method(#login, [username, password]),
               returnValue: Future<_i2.Tuple2<bool, String>>.value(
                   _FakeTuple2_0<bool, String>()))
-          as _i6.Future<_i2.Tuple2<bool, String>>);
+          as _i7.Future<_i2.Tuple2<bool, String>>);
   @override
-  _i6.Future<_i3.User> getUser() =>
+  _i7.Future<_i3.User> getUser() =>
       (super.noSuchMethod(Invocation.method(#getUser, []),
               returnValue: Future<_i3.User>.value(_FakeUser_1()))
-          as _i6.Future<_i3.User>);
+          as _i7.Future<_i3.User>);
   @override
-  _i6.Future<List<_i7.Impression>> getImpressions() => (super.noSuchMethod(
+  _i7.Future<List<_i8.Impression>> getImpressions() => (super.noSuchMethod(
           Invocation.method(#getImpressions, []),
-          returnValue: Future<List<_i7.Impression>>.value(<_i7.Impression>[]))
-      as _i6.Future<List<_i7.Impression>>);
+          returnValue: Future<List<_i8.Impression>>.value(<_i8.Impression>[]))
+      as _i7.Future<List<_i8.Impression>>);
   @override
-  _i6.Future<_i4.Statistics> postImpression(
-          _i7.Impression? impression, bool? success) =>
+  _i7.Future<_i4.Statistics> postImpression(
+          _i8.Impression? impression, bool? success) =>
       (super.noSuchMethod(
               Invocation.method(#postImpression, [impression, success]),
               returnValue: Future<_i4.Statistics>.value(_FakeStatistics_2()))
-          as _i6.Future<_i4.Statistics>);
+          as _i7.Future<_i4.Statistics>);
+  @override
+  _i7.Future<_i5.Card> postCard(_i5.Card? card) =>
+      (super.noSuchMethod(Invocation.method(#postCard, [card]),
+              returnValue: Future<_i5.Card>.value(_FakeCard_3()))
+          as _i7.Future<_i5.Card>);
   @override
   String toString() => super.toString();
 }

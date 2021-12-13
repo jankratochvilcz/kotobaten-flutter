@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/services/authentication.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/services/repositories/user_repository.dart';
@@ -37,4 +38,6 @@ class HomeViewModel extends StateNotifier<HomeModel> {
   void reset() {
     state = const HomeModel.initial();
   }
+
+  Future<Card> createCard(Card card) => _apiService.postCard(card);
 }

@@ -103,8 +103,8 @@ PractiveViewModelTestDependencies getDependencies() {
 
 Iterable<Impression> getImpressions(int count) sync* {
   for (var i = 0; i < count; i++) {
-    yield Impression.initialized(
-        Card(1, 'a', 'b', 'c'), ImpressionType.discover);
+    yield Impression.initialized(Card(1, 'a', 'b', 'c', 'd') as CardInitialized,
+        ImpressionType.discover);
   }
 }
 

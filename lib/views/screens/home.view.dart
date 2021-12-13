@@ -71,7 +71,7 @@ class HomeView extends HookConsumerWidget {
                           Padding(
                               padding: bottomPadding(PaddingType.largePlus),
                               child: CardLearn(user, goToPractice)),
-                          CardCollect(user)
+                          CardCollect(user, viewModel.createCard)
                         ],
                       ))))));
     }

@@ -13,7 +13,8 @@ void main() {
       await tester.pumpWidget(ProviderScope(
           overrides: [
             appConfigurationProvider.overrideWithValue(
-                AppConfiguration.initialized('apiRoot', false, DeviceType.web))
+                AppConfiguration.initialized(
+                    'apiRoot', false, DeviceType.web, '1.0'))
           ],
           child: Directionality(
               textDirection: TextDirection.ltr,
@@ -34,7 +35,7 @@ void main() {
           overrides: [
             appConfigurationProvider.overrideWithValue(
                 AppConfiguration.initialized(
-                    'apiRoot', false, DeviceType.mobile))
+                    'apiRoot', false, DeviceType.mobile, '1.0'))
           ],
           child: Directionality(
               textDirection: TextDirection.ltr,

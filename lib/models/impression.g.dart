@@ -8,7 +8,7 @@ part of 'impression.dart';
 
 _$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
     _$Initialized(
-      Card.fromJson(json['card'] as Map<String, dynamic>),
+      CardInitialized.fromJson(json['card'] as Map<String, dynamic>),
       $enumDecode(_$ImpressionTypeEnumMap, json['impressionType']),
     );
 

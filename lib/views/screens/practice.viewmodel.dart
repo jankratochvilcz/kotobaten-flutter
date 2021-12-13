@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/impression_type.dart';
@@ -53,8 +55,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         remainingImpressions: currentState.remainingImpressions.sublist(1),
         currentImpression: currentState.remainingImpressions.first);
 
-    saveStatistics(
-        await _apiService.postImpression(currentState.currentImpression, true));
+    unawaited(saveStatistics(await _apiService.postImpression(
+        currentState.currentImpression, true)));
   }
 
   Future evaluateWrong() async {
@@ -76,8 +78,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         remainingImpressions: nextRemainingImpressions.toList().sublist(1),
         currentImpression: currentState.remainingImpressions.first);
 
-    saveStatistics(await _apiService.postImpression(
-        currentState.currentImpression, false));
+    unawaited(saveStatistics(await _apiService.postImpression(
+        currentState.currentImpression, false)));
   }
 
   Future saveStatistics(Statistics stats) async {

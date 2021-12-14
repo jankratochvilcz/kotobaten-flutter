@@ -5,6 +5,7 @@ import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/services/providers.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
+const smallButtonSize = 16.0;
 
 LinearGradient _getPrimaryGradient(BuildContext context) => LinearGradient(
         colors: [
@@ -15,7 +16,7 @@ LinearGradient _getPrimaryGradient(BuildContext context) => LinearGradient(
         end: Alignment.bottomRight,
         tileMode: TileMode.clamp);
 
-enum ButtonSize { standard, big }
+enum ButtonSize { small, standard, big }
 
 enum ButtonType { standard, primary, secondary }
 
@@ -60,16 +61,28 @@ class Button extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-                child: Icon(icon), padding: rightPadding(PaddingType.small)),
+                child: Icon(
+                  icon,
+                  size: size == ButtonSize.small ? smallButtonSize : null,
+                  color: type == ButtonType.secondary ? Colors.black54 : null,
+                ),
+                padding: label.isNotEmpty
+                    ? rightPadding(PaddingType.small)
+                    : EdgeInsets.zero),
             Text(
               label,
-              style: const TextStyle(fontWeight: FontWeight.w900),
+              style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: size == ButtonSize.small ? smallButtonSize : null,
+                  color: type == ButtonType.secondary ? Colors.black54 : null),
             ),
             if (shortcut != null && deviceType == DeviceType.web)
               Padding(
                 child: Text(
                   '[$shortcut]',
                   style: TextStyle(
+                      fontSize:
+                          size == ButtonSize.small ? smallButtonSize : null,
                       fontWeight: FontWeight.normal,
                       color: type == ButtonType.primary
                           ? Colors.white24

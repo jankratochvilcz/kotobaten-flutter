@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/fonts.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/views/screens/collection.view.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
 import 'package:kotobaten/views/screens/practice.view.dart';
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         homeRoute: (_) => HomeView(),
         loginRoute: (_) => const LoginView(),
         practiceRoute: (_) => const PracticeView(),
-        profileRoute: (_) => const ProfileView()
+        profileRoute: (_) => const ProfileView(),
+        collectionRoute: (_) => const CollectionView()
       },
     ));
   }

@@ -68,5 +68,11 @@ class MockKotobatenApiService extends _i1.Mock
               returnValue: Future<_i5.Card>.value(_FakeCard_3()))
           as _i7.Future<_i5.Card>);
   @override
+  _i7.Future<List<_i5.CardInitialized>> getCards(int? page, int? pageSize) =>
+      (super.noSuchMethod(Invocation.method(#getCards, [page, pageSize]),
+              returnValue: Future<List<_i5.CardInitialized>>.value(
+                  <_i5.CardInitialized>[]))
+          as _i7.Future<List<_i5.CardInitialized>>);
+  @override
   String toString() => super.toString();
 }

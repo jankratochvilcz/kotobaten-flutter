@@ -62,7 +62,7 @@ class KotobatenApiService {
     final requestBody = ImpressionsRequest.initialized(
         impression.impressionType, impression.card.id, success, DateTime.now());
 
-    final responseBody = _postJson('impressions', requestBody.toJson());
+    final responseBody = await _postJson('impressions', requestBody.toJson());
 
     final stats = ImpressionsResponse.fromJson(responseBody).userStats;
     return stats;
@@ -72,6 +72,15 @@ class KotobatenApiService {
     final responseBody = await _postJson('cards', card.toJson());
     final createdCard = CardInitialized.fromJson(responseBody);
     return createdCard;
+  }
+
+  Future<List<CardInitialized>> getCards(int page, int pageSize) async {
+    final responseJson = await _getAuthenticated('cards',
+        params: {'pageSize': pageSize.toString(), 'page': page.toString()});
+    final result = List<CardInitialized>.from(
+        responseJson.map((model) => CardInitialized.fromJson(model)));
+
+    return result;
   }
 
   Future<dynamic> _getAuthenticated(String relativePath,

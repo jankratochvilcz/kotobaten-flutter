@@ -177,13 +177,14 @@ class _$Initialized implements Initialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Initialized &&
-            (identical(other.card, card) || other.card == card) &&
+            const DeepCollectionEquality().equals(other.card, card) &&
             (identical(other.impressionType, impressionType) ||
                 other.impressionType == impressionType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, card, impressionType);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(card), impressionType);
 
   @JsonKey(ignore: true)
   @override

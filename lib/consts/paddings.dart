@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
-enum PaddingType { small, standard, large, largePlus, largePlusPlus, none }
+enum PaddingType {
+  extraSmall,
+  small,
+  standard,
+  large,
+  largePlus,
+  largePlusPlus,
+  none
+}
 
 double getPadding(PaddingType type) {
   switch (type) {
+    case PaddingType.extraSmall:
+      return 2;
     case PaddingType.small:
       return 8;
     case PaddingType.standard:

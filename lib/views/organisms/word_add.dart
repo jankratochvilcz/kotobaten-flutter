@@ -7,29 +7,35 @@ import 'package:kotobaten/views/molecules/button.dart';
 const _hintTextStyle = TextStyle(color: Colors.black12);
 
 showWordAddBottomSheet(BuildContext context,
-        Future<card_model.Card?> Function(card_model.Card card) onSubmit) =>
+        Future<card_model.Card?> Function(card_model.Card card) onSubmit,
+        {card_model.CardInitialized? existingWord}) =>
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         shape: defaultBottomSheetShape,
         builder: (context) => Padding(
             padding: MediaQuery.of(context).viewInsets,
-            child: WordAddForm((card) async {
-              final createdCard = await onSubmit(card);
+            child: WordAddForm(
+              (card) async {
+                final createdCard = await onSubmit(card);
 
-              if (createdCard == null) {
-                return;
-              }
+                if (createdCard == null) {
+                  return;
+                }
 
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Card for ${createdCard.sense} created.')));
-            })));
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Card for ${createdCard.sense} created.')));
+              },
+              existingWord: existingWord,
+            )));
 
 class WordAddForm extends StatefulWidget {
   final void Function(card_model.Card card) _onSubmit;
+  final card_model.CardInitialized? existingWord;
 
-  const WordAddForm(this._onSubmit, {Key? key}) : super(key: key);
+  const WordAddForm(this._onSubmit, {Key? key, this.existingWord})
+      : super(key: key);
 
   @override
   _WordAddFormState createState() => _WordAddFormState();
@@ -43,11 +49,35 @@ class _WordAddFormState extends State<WordAddForm> {
   final _noteController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.existingWord != null) {
+      _senseController.text = widget.existingWord?.sense ?? '';
+      _kanjiController.text = widget.existingWord?.kanji ?? '';
+      _kanaController.text = widget.existingWord?.kana ?? '';
+      _noteController.text = widget.existingWord?.note ?? '';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     onEditComplete() {
       if (_formKey.currentState!.validate()) {
-        widget._onSubmit(card_model.Card.newCard(_senseController.text,
-            _kanaController.text, _kanjiController.text, _noteController.text));
+        if (widget.existingWord?.id != null) {
+          widget._onSubmit(card_model.Card(
+              widget.existingWord!.id,
+              _senseController.text,
+              _kanaController.text,
+              _kanjiController.text,
+              _noteController.text));
+        } else {
+          widget._onSubmit(card_model.Card.newCard(
+              _senseController.text,
+              _kanaController.text,
+              _kanjiController.text,
+              _noteController.text));
+        }
       }
     }
 
@@ -113,9 +143,11 @@ class _WordAddFormState extends State<WordAddForm> {
                 Align(
                     alignment: Alignment.centerRight,
                     child: Button(
-                      'Add word',
+                      widget.existingWord != null ? 'Edit word' : 'Add word',
                       onEditComplete,
-                      icon: Icons.add_circle_outline,
+                      icon: widget.existingWord != null
+                          ? Icons.edit_outlined
+                          : Icons.add_circle_outline,
                       type: ButtonType.primary,
                       size: ButtonSize.big,
                     ))

@@ -63,7 +63,8 @@ class CollectionViewModel extends StateNotifier<CollectionModel> {
 
     final currentState = state;
     if (currentState is CollectionModelInitialized) {
-      final index = currentState.cards.indexOf(card);
+      final index = currentState.cards
+          .indexOf(currentState.cards.firstWhere((x) => x.id == editedCard.id));
       currentState.cards.removeAt(index);
       currentState.cards.insert(index, editedCard);
       state = currentState.copyWith(cards: currentState.cards);

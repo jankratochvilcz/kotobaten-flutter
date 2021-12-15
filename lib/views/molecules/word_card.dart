@@ -5,6 +5,7 @@ import 'package:kotobaten/models/card.dart' as card_model;
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/organisms/word_add.dart';
 
 const minimumCardHeight = 80.0;
 
@@ -83,7 +84,13 @@ class WordCard extends StatelessWidget {
                                         leading:
                                             const Icon(Icons.edit_outlined),
                                         title: const Text('Edit word'),
-                                        onTap: () {},
+                                        onTap: () => showWordAddBottomSheet(
+                                            context, (word) async {
+                                          await onEdit(word
+                                              as card_model.CardInitialized);
+                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pop();
+                                        }, existingWord: card),
                                       ),
                                       ListTile(
                                         iconColor: Colors.red,

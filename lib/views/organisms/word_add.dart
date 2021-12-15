@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/card.dart' as card_model;
 import 'package:kotobaten/views/molecules/button.dart';
 
 const _hintTextStyle = TextStyle(color: Colors.black12);
+
+showWordAddBottomSheet(BuildContext context,
+        Future<card_model.Card?> Function(card_model.Card card) onSubmit) =>
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: defaultBottomSheetShape,
+        builder: (context) => Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: WordAddForm((card) async {
+              final createdCard = await onSubmit(card);
+
+              if (createdCard == null) {
+                return;
+              }
+
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Card for ${createdCard.sense} created.')));
+            })));
 
 class WordAddForm extends StatefulWidget {
   final void Function(card_model.Card card) _onSubmit;

@@ -27,7 +27,7 @@ class _FakeUser_1 extends _i1.Fake implements _i3.User {}
 
 class _FakeStatistics_2 extends _i1.Fake implements _i4.Statistics {}
 
-class _FakeCard_3 extends _i1.Fake implements _i5.Card {}
+class _FakeCardInitialized_3 extends _i1.Fake implements _i5.CardInitialized {}
 
 /// A class which mocks [KotobatenApiService].
 ///
@@ -63,10 +63,15 @@ class MockKotobatenApiService extends _i1.Mock
               returnValue: Future<_i4.Statistics>.value(_FakeStatistics_2()))
           as _i7.Future<_i4.Statistics>);
   @override
-  _i7.Future<_i5.Card> postCard(_i5.Card? card) =>
+  _i7.Future<_i5.CardInitialized> postCard(_i5.Card? card) =>
       (super.noSuchMethod(Invocation.method(#postCard, [card]),
-              returnValue: Future<_i5.Card>.value(_FakeCard_3()))
-          as _i7.Future<_i5.Card>);
+              returnValue:
+                  Future<_i5.CardInitialized>.value(_FakeCardInitialized_3()))
+          as _i7.Future<_i5.CardInitialized>);
+  @override
+  _i7.Future<bool> deleteCard(int? cardId) =>
+      (super.noSuchMethod(Invocation.method(#deleteCard, [cardId]),
+          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
   @override
   _i7.Future<List<_i5.CardInitialized>> getCards(int? page, int? pageSize) =>
       (super.noSuchMethod(Invocation.method(#getCards, [page, pageSize]),

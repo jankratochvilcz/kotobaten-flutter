@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/views/screens/collection.model.dart';
 
@@ -32,6 +33,43 @@ class CollectionViewModel extends StateNotifier<CollectionModel> {
 
     state = currentState.copyWith(
         cards: updatedCards, loadingNextPage: false, pagesLoaded: nextPage);
+  }
+
+  Future<Card> createCard(Card card) async {
+    final newCard = await _apiService.postCard(card);
+
+    final currentState = state;
+    if (currentState is CollectionModelInitialized) {
+      state = currentState.copyWith(cards: [newCard, ...currentState.cards]);
+    }
+
+    return newCard;
+  }
+
+  Future<bool> deleteCard(CardInitialized card) async {
+    final deleteCardResult = await _apiService.deleteCard(card.id);
+
+    final currentState = state;
+    if (deleteCardResult && currentState is CollectionModelInitialized) {
+      state = currentState.copyWith(
+          cards: currentState.cards.where((x) => x != card).toList());
+    }
+
+    return deleteCardResult;
+  }
+
+  Future<CardInitialized> editCard(CardInitialized card) async {
+    final editedCard = await _apiService.postCard(card);
+
+    final currentState = state;
+    if (currentState is CollectionModelInitialized) {
+      final index = currentState.cards.indexOf(card);
+      currentState.cards.removeAt(index);
+      currentState.cards.insert(index, editedCard);
+      state = currentState.copyWith(cards: currentState.cards);
+    }
+
+    return editedCard;
   }
 
   void reset() {

@@ -4,11 +4,14 @@ import 'package:kotobaten/consts/routes.dart';
 
 class ScaffoldDefault extends StatelessWidget {
   final Widget child;
+  final FloatingActionButton? floatingActionButton;
 
-  const ScaffoldDefault(this.child, {Key? key}) : super(key: key);
+  const ScaffoldDefault(this.child, {Key? key, this.floatingActionButton})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
+      floatingActionButton: floatingActionButton,
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primaryVariant,
           actions: [

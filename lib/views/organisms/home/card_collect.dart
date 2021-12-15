@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
-import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/models/card.dart' as card_model;
 import 'package:kotobaten/models/user/user.dart';
@@ -54,26 +53,8 @@ class CardCollect extends StatelessWidget {
                   icon: Icons.inbox_outlined,
                   type: ButtonType.secondary,
                 ),
-                Button(
-                    'Add word',
-                    () => showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: defaultBottomSheetShape,
-                        builder: (context) => Padding(
-                            padding: MediaQuery.of(context).viewInsets,
-                            child: WordAddForm((card) async {
-                              final createdCard = await _onWordSubmit(card);
-
-                              if (createdCard == null) {
-                                return;
-                              }
-
-                              Navigator.pop(context);
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Card for ${createdCard.sense} created.')));
-                            }))),
+                Button('Add word',
+                    () => showWordAddBottomSheet(context, _onWordSubmit),
                     icon: Icons.move_to_inbox_outlined,
                     type: ButtonType.standard)
               ]))

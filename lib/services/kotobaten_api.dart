@@ -68,10 +68,21 @@ class KotobatenApiService {
     return stats;
   }
 
-  Future<Card> postCard(Card card) async {
+  Future<CardInitialized> postCard(Card card) async {
     final responseBody = await _postJson('cards', card.toJson());
     final createdCard = CardInitialized.fromJson(responseBody);
     return createdCard;
+  }
+
+  Future<bool> deleteCard(int cardId) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'cards/$cardId');
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    await _kotobatenClient.delete(url, headers: headers);
+
+    return true;
   }
 
   Future<List<CardInitialized>> getCards(int page, int pageSize) async {

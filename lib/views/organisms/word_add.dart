@@ -111,8 +111,16 @@ class _WordAddFormState extends State<WordAddForm> {
                 TextFormField(
                   controller: _kanjiController,
                   textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if ((value == null || value.isEmpty) &&
+                        (_kanaController.text.isEmpty)) {
+                      return 'You need to fill in at least either the kanji or kana.';
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
-                      labelText: 'Kanji (optional)',
+                      labelText: 'Kanji',
                       hintText: 'e.g., 確かめる',
                       hintStyle: _hintTextStyle),
                 ),
@@ -122,6 +130,14 @@ class _WordAddFormState extends State<WordAddForm> {
                 TextFormField(
                   controller: _kanaController,
                   textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if ((value == null || value.isEmpty) &&
+                        (_kanjiController.text.isEmpty)) {
+                      return 'You need to fill in at least either the kanji or kana.';
+                    }
+
+                    return null;
+                  },
                   decoration: const InputDecoration(
                       labelText: 'Kana',
                       hintText: 'e.g., たしかめる',

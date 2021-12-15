@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/views/molecules/goal_rings_painter.dart';
+import 'package:tuple/tuple.dart';
 
 class ScaffoldDefault extends StatelessWidget {
   final Widget child;
@@ -18,7 +20,17 @@ class ScaffoldDefault extends StatelessWidget {
             IconButton(
                 onPressed: () => Navigator.of(context).pushNamed(profileRoute),
                 tooltip: 'Your profile',
-                icon: const Icon(Icons.person_outline_rounded))
+                icon: CustomPaint(
+                  size: Size.infinite,
+                  painter: GoalRingsPainter(
+                      Theme.of(context).colorScheme.primaryVariant,
+                      [
+                        Tuple2(Colors.blue.shade400, 0.5),
+                        Tuple2(Colors.pink.shade400, 0.5),
+                        Tuple2(Colors.green.shade400, 0.5)
+                      ],
+                      2),
+                ))
           ],
           title: SizedBox(
             height: kToolbarHeight,

@@ -74,10 +74,32 @@ void main() {
       dependencies.target.reveal();
       await dependencies.target.evaluateWrong();
 
-      expect(dependencies.target.getImpressionViewType().name,
-          impressions[0].impressionType.name);
+      expect(dependencies.target.getCurrentAndRemainingImpressions().single,
+          impressions[0]);
 
       expect(dependencies.target.getProgress(), 0);
+    });
+
+    test("re-adds wrong word twice", () async {
+      final dependencies = getDependencies();
+      final impressions = getImpressions(3).toList();
+
+      when(dependencies.apiService.getImpressions())
+          .thenAnswer((_) async => impressions);
+
+      setupStatisticsUpdates(dependencies);
+
+      await dependencies.target.initialize();
+      dependencies.target.reveal();
+      await dependencies.target.evaluateWrong();
+
+      expect(
+          dependencies.target
+              .getCurrentAndRemainingImpressions()
+              .where((x) => x.card.id == 0)
+              .length,
+          2);
+      expect(dependencies.target.getCurrentAndRemainingImpressions().length, 4);
     });
   });
 }
@@ -103,8 +125,8 @@ PractiveViewModelTestDependencies getDependencies() {
 
 Iterable<Impression> getImpressions(int count) sync* {
   for (var i = 0; i < count; i++) {
-    yield Impression.initialized(Card(1, 'a', 'b', 'c', 'd') as CardInitialized,
-        ImpressionType.discover);
+    yield Impression.initialized(
+        Card(i, 'a', 'b', 'c', 'd') as CardInitialized, ImpressionType.kana);
   }
 }
 

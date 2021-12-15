@@ -33,7 +33,7 @@ class WordCard extends StatelessWidget {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: minimumCardHeight),
+                constraints: const BoxConstraints(minHeight: minimumCardHeight),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -152,12 +152,13 @@ class WordCard extends StatelessWidget {
                           size: 12,
                           color: Colors.black45,
                         )),
-                    Padding(
-                        padding: leftPadding(PaddingType.small),
-                        child: Text(card.note ?? '',
-                            softWrap: true,
-                            style: const TextStyle(
-                                color: Colors.black54, fontSize: 12)))
+                    Expanded(
+                        child: Padding(
+                            padding: leftPadding(PaddingType.small),
+                            child: Text(card.note ?? '',
+                                softWrap: true,
+                                style: const TextStyle(
+                                    color: Colors.black54, fontSize: 12))))
                   ])),
           ])),
     );

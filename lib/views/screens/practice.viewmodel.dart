@@ -1,13 +1,16 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
+import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/impression_type.dart';
 import 'package:kotobaten/models/user/statistics.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/services/repositories/user_repository.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
+import 'package:path/path.dart';
 
 enum ImpressionViewType { hidden, revealed, discover, none }
 
@@ -16,7 +19,20 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   final UserRepository _userRepository;
 
   PracticeViewModel(this._apiService, this._userRepository)
-      : super(const PracticeModel.initial());
+      : super(const PracticeModel.initial()) {
+    addListener((state) {
+      if (state is InProgress) {
+        developer.log(
+            state.remainingImpressions.isNotEmpty
+                ? state.remainingImpressions
+                    .map((x) =>
+                        '${x.impressionType.toString().substring(15, 16)}-${x.card.sense}')
+                    .reduce((a, b) => '$a,$b')
+                : 'empty',
+            name: 'practicemodel-changed');
+      }
+    });
+  }
 
   void reset() {
     state = const PracticeModel.initial();
@@ -70,13 +86,17 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
       return;
     }
 
-    final nextRemainingImpressions = currentState.remainingImpressions
-        .shuffleElementIntoListUpToTwice(currentState.currentImpression);
+    final nextImpressions = currentState.remainingImpressions
+        .shuffleElementIntoListUpToTwice(currentState.currentImpression)
+        .toList();
+
+    final nextCurrentImpression = nextImpressions.first;
+    final nextRemainingImpressions = nextImpressions.sublist(1);
 
     state = currentState.copyWith(
         revealed: false,
-        remainingImpressions: nextRemainingImpressions.toList().sublist(1),
-        currentImpression: currentState.remainingImpressions.first);
+        remainingImpressions: nextRemainingImpressions,
+        currentImpression: nextCurrentImpression);
 
     unawaited(saveStatistics(await _apiService.postImpression(
         currentState.currentImpression, false)));
@@ -171,5 +191,12 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         currentState.allImpressions.length;
 
     return progress;
+  }
+
+  List<Impression> getCurrentAndRemainingImpressions() {
+    final currentState = state;
+    return currentState is InProgress
+        ? [currentState.currentImpression, ...currentState.remainingImpressions]
+        : <Impression>[];
   }
 }

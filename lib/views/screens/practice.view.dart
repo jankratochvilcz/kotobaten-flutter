@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
@@ -59,6 +60,12 @@ class PracticeView extends HookConsumerWidget {
     }
 
     if (model is InProgress) {
+      final speechPath = viewModel.getSpeechToPlay();
+      if (speechPath != null) {
+        AudioPlayer().play(speechPath);
+        Future.microtask(viewModel.markSpeechAsPlayed);
+      }
+
       return Scaffold(
           body: SafeArea(
               child: Column(

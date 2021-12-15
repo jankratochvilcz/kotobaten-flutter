@@ -21,10 +21,12 @@ Impression _$ImpressionFromJson(Map<String, dynamic> json) {
 class _$ImpressionTearOff {
   const _$ImpressionTearOff();
 
-  Initialized initialized(CardInitialized card, ImpressionType impressionType) {
+  Initialized initialized(
+      CardInitialized card, ImpressionType impressionType, String? speechPath) {
     return Initialized(
       card,
       impressionType,
+      speechPath,
     );
   }
 
@@ -40,23 +42,26 @@ const $Impression = _$ImpressionTearOff();
 mixin _$Impression {
   CardInitialized get card => throw _privateConstructorUsedError;
   ImpressionType get impressionType => throw _privateConstructorUsedError;
+  String? get speechPath => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            CardInitialized card, ImpressionType impressionType)
+    required TResult Function(CardInitialized card,
+            ImpressionType impressionType, String? speechPath)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType)?
+    TResult Function(CardInitialized card, ImpressionType impressionType,
+            String? speechPath)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType)?
+    TResult Function(CardInitialized card, ImpressionType impressionType,
+            String? speechPath)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -88,7 +93,10 @@ abstract class $ImpressionCopyWith<$Res> {
   factory $ImpressionCopyWith(
           Impression value, $Res Function(Impression) then) =
       _$ImpressionCopyWithImpl<$Res>;
-  $Res call({CardInitialized card, ImpressionType impressionType});
+  $Res call(
+      {CardInitialized card,
+      ImpressionType impressionType,
+      String? speechPath});
 }
 
 /// @nodoc
@@ -103,6 +111,7 @@ class _$ImpressionCopyWithImpl<$Res> implements $ImpressionCopyWith<$Res> {
   $Res call({
     Object? card = freezed,
     Object? impressionType = freezed,
+    Object? speechPath = freezed,
   }) {
     return _then(_value.copyWith(
       card: card == freezed
@@ -113,6 +122,10 @@ class _$ImpressionCopyWithImpl<$Res> implements $ImpressionCopyWith<$Res> {
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
+      speechPath: speechPath == freezed
+          ? _value.speechPath
+          : speechPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,7 +136,10 @@ abstract class $InitializedCopyWith<$Res> implements $ImpressionCopyWith<$Res> {
           Initialized value, $Res Function(Initialized) then) =
       _$InitializedCopyWithImpl<$Res>;
   @override
-  $Res call({CardInitialized card, ImpressionType impressionType});
+  $Res call(
+      {CardInitialized card,
+      ImpressionType impressionType,
+      String? speechPath});
 }
 
 /// @nodoc
@@ -140,6 +156,7 @@ class _$InitializedCopyWithImpl<$Res> extends _$ImpressionCopyWithImpl<$Res>
   $Res call({
     Object? card = freezed,
     Object? impressionType = freezed,
+    Object? speechPath = freezed,
   }) {
     return _then(Initialized(
       card == freezed
@@ -150,6 +167,10 @@ class _$InitializedCopyWithImpl<$Res> extends _$ImpressionCopyWithImpl<$Res>
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
+      speechPath == freezed
+          ? _value.speechPath
+          : speechPath // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -157,7 +178,7 @@ class _$InitializedCopyWithImpl<$Res> extends _$ImpressionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Initialized implements Initialized {
-  _$Initialized(this.card, this.impressionType);
+  _$Initialized(this.card, this.impressionType, this.speechPath);
 
   factory _$Initialized.fromJson(Map<String, dynamic> json) =>
       _$$InitializedFromJson(json);
@@ -166,10 +187,12 @@ class _$Initialized implements Initialized {
   final CardInitialized card;
   @override
   final ImpressionType impressionType;
+  @override
+  final String? speechPath;
 
   @override
   String toString() {
-    return 'Impression.initialized(card: $card, impressionType: $impressionType)';
+    return 'Impression.initialized(card: $card, impressionType: $impressionType, speechPath: $speechPath)';
   }
 
   @override
@@ -179,12 +202,14 @@ class _$Initialized implements Initialized {
             other is Initialized &&
             const DeepCollectionEquality().equals(other.card, card) &&
             (identical(other.impressionType, impressionType) ||
-                other.impressionType == impressionType));
+                other.impressionType == impressionType) &&
+            (identical(other.speechPath, speechPath) ||
+                other.speechPath == speechPath));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(card), impressionType);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(card), impressionType, speechPath);
 
   @JsonKey(ignore: true)
   @override
@@ -194,31 +219,33 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            CardInitialized card, ImpressionType impressionType)
+    required TResult Function(CardInitialized card,
+            ImpressionType impressionType, String? speechPath)
         initialized,
   }) {
-    return initialized(card, impressionType);
+    return initialized(card, impressionType, speechPath);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType)?
+    TResult Function(CardInitialized card, ImpressionType impressionType,
+            String? speechPath)?
         initialized,
   }) {
-    return initialized?.call(card, impressionType);
+    return initialized?.call(card, impressionType, speechPath);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType)?
+    TResult Function(CardInitialized card, ImpressionType impressionType,
+            String? speechPath)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(card, impressionType);
+      return initialized(card, impressionType, speechPath);
     }
     return orElse();
   }
@@ -258,8 +285,8 @@ class _$Initialized implements Initialized {
 }
 
 abstract class Initialized implements Impression {
-  factory Initialized(CardInitialized card, ImpressionType impressionType) =
-      _$Initialized;
+  factory Initialized(CardInitialized card, ImpressionType impressionType,
+      String? speechPath) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
@@ -268,6 +295,8 @@ abstract class Initialized implements Impression {
   CardInitialized get card;
   @override
   ImpressionType get impressionType;
+  @override
+  String? get speechPath;
   @override
   @JsonKey(ignore: true)
   $InitializedCopyWith<Initialized> get copyWith =>

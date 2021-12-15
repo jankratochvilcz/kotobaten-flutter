@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.0.8
   json_annotation: ^4.3.0
   pull_to_refresh: ^2.0.0
+  audioplayers: ^0.20.1
 
   http: ^0.13.4
 

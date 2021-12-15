@@ -7,8 +7,8 @@ part 'impression.g.dart';
 
 @freezed
 class Impression with _$Impression {
-  factory Impression.initialized(
-      CardInitialized card, ImpressionType impressionType) = Initialized;
+  factory Impression.initialized(CardInitialized card,
+      ImpressionType impressionType, String? speechPath) = Initialized;
 
   factory Impression.fromJson(Map<String, dynamic> json) =>
       _$ImpressionFromJson(json);

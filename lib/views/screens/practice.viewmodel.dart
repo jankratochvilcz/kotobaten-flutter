@@ -10,7 +10,6 @@ import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/services/repositories/user_repository.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
-import 'package:path/path.dart';
 
 enum ImpressionViewType { hidden, revealed, discover, none }
 
@@ -43,7 +42,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
     final impressions = await _apiService.getImpressions();
     state = PracticeModel.inProgress(
-        impressions, impressions.sublist(1), impressions.first, false);
+        impressions, impressions.sublist(1), impressions.first, false, false);
   }
 
   void reveal() {
@@ -68,6 +67,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
     state = currentState.copyWith(
         revealed: false,
+        speechPlayed: false,
         remainingImpressions: currentState.remainingImpressions.sublist(1),
         currentImpression: currentState.remainingImpressions.first);
 
@@ -95,6 +95,7 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
     state = currentState.copyWith(
         revealed: false,
+        speechPlayed: false,
         remainingImpressions: nextRemainingImpressions,
         currentImpression: nextCurrentImpression);
 
@@ -110,6 +111,23 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     }
 
     await _userRepository.set(user.copyWith(stats: stats));
+  }
+
+  String? getSpeechToPlay() {
+    final currentState = state;
+    return currentState is InProgress &&
+            !currentState.speechPlayed &&
+            currentState.currentImpression.speechPath != null &&
+            currentState.currentImpression.impressionType != ImpressionType.kana
+        ? currentState.currentImpression.speechPath
+        : null;
+  }
+
+  markSpeechAsPlayed() {
+    final currentState = state;
+    if (currentState is InProgress) {
+      state = currentState.copyWith(speechPlayed: true);
+    }
   }
 
   ImpressionViewType getImpressionViewType() {

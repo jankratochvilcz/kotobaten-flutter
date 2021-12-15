@@ -39,12 +39,14 @@ class _$PracticeModelTearOff {
       List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
-      bool revealed) {
+      bool revealed,
+      bool speechPlayed) {
     return InProgress(
       allImpressions,
       remainingImpressions,
       currentImpression,
       revealed,
+      speechPlayed,
     );
   }
 }
@@ -64,7 +66,8 @@ mixin _$PracticeModel {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,7 +81,8 @@ mixin _$PracticeModel {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) =>
       throw _privateConstructorUsedError;
@@ -92,7 +96,8 @@ mixin _$PracticeModel {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) =>
@@ -196,7 +201,8 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) {
     return initial();
@@ -213,7 +219,8 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) {
     return initial?.call();
@@ -230,7 +237,8 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -338,7 +346,8 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) {
     return loading();
@@ -355,7 +364,8 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) {
     return loading?.call();
@@ -372,7 +382,8 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -505,7 +516,8 @@ class _$Error extends Error with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) {
     return error(this.error);
@@ -522,7 +534,8 @@ class _$Error extends Error with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) {
     return error?.call(this.error);
@@ -539,7 +552,8 @@ class _$Error extends Error with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -651,7 +665,8 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) {
     return finished();
@@ -668,7 +683,8 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) {
     return finished?.call();
@@ -685,7 +701,8 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -750,7 +767,8 @@ abstract class $InProgressCopyWith<$Res> {
       {List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
-      bool revealed});
+      bool revealed,
+      bool speechPlayed});
 
   $ImpressionCopyWith<$Res> get currentImpression;
 }
@@ -770,6 +788,7 @@ class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
     Object? remainingImpressions = freezed,
     Object? currentImpression = freezed,
     Object? revealed = freezed,
+    Object? speechPlayed = freezed,
   }) {
     return _then(InProgress(
       allImpressions == freezed
@@ -788,6 +807,10 @@ class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
           ? _value.revealed
           : revealed // ignore: cast_nullable_to_non_nullable
               as bool,
+      speechPlayed == freezed
+          ? _value.speechPlayed
+          : speechPlayed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -803,7 +826,7 @@ class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
 
 class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   const _$InProgress(this.allImpressions, this.remainingImpressions,
-      this.currentImpression, this.revealed)
+      this.currentImpression, this.revealed, this.speechPlayed)
       : super._();
 
   @override
@@ -814,10 +837,12 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   final Impression currentImpression;
   @override
   final bool revealed;
+  @override
+  final bool speechPlayed;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PracticeModel.inProgress(allImpressions: $allImpressions, remainingImpressions: $remainingImpressions, currentImpression: $currentImpression, revealed: $revealed)';
+    return 'PracticeModel.inProgress(allImpressions: $allImpressions, remainingImpressions: $remainingImpressions, currentImpression: $currentImpression, revealed: $revealed, speechPlayed: $speechPlayed)';
   }
 
   @override
@@ -828,7 +853,8 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('allImpressions', allImpressions))
       ..add(DiagnosticsProperty('remainingImpressions', remainingImpressions))
       ..add(DiagnosticsProperty('currentImpression', currentImpression))
-      ..add(DiagnosticsProperty('revealed', revealed));
+      ..add(DiagnosticsProperty('revealed', revealed))
+      ..add(DiagnosticsProperty('speechPlayed', speechPlayed));
   }
 
   @override
@@ -843,7 +869,9 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
             (identical(other.currentImpression, currentImpression) ||
                 other.currentImpression == currentImpression) &&
             (identical(other.revealed, revealed) ||
-                other.revealed == revealed));
+                other.revealed == revealed) &&
+            (identical(other.speechPlayed, speechPlayed) ||
+                other.speechPlayed == speechPlayed));
   }
 
   @override
@@ -852,7 +880,8 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(allImpressions),
       const DeepCollectionEquality().hash(remainingImpressions),
       currentImpression,
-      revealed);
+      revealed,
+      speechPlayed);
 
   @JsonKey(ignore: true)
   @override
@@ -870,11 +899,12 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)
+            bool revealed,
+            bool speechPlayed)
         inProgress,
   }) {
-    return inProgress(
-        allImpressions, remainingImpressions, currentImpression, revealed);
+    return inProgress(allImpressions, remainingImpressions, currentImpression,
+        revealed, speechPlayed);
   }
 
   @override
@@ -888,11 +918,12 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
   }) {
-    return inProgress?.call(
-        allImpressions, remainingImpressions, currentImpression, revealed);
+    return inProgress?.call(allImpressions, remainingImpressions,
+        currentImpression, revealed, speechPlayed);
   }
 
   @override
@@ -906,13 +937,14 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
             Impression currentImpression,
-            bool revealed)?
+            bool revealed,
+            bool speechPlayed)?
         inProgress,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
-      return inProgress(
-          allImpressions, remainingImpressions, currentImpression, revealed);
+      return inProgress(allImpressions, remainingImpressions, currentImpression,
+          revealed, speechPlayed);
     }
     return orElse();
   }
@@ -963,13 +995,15 @@ abstract class InProgress extends PracticeModel {
       List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
-      bool revealed) = _$InProgress;
+      bool revealed,
+      bool speechPlayed) = _$InProgress;
   const InProgress._() : super._();
 
   List<Impression> get allImpressions;
   List<Impression> get remainingImpressions;
   Impression get currentImpression;
   bool get revealed;
+  bool get speechPlayed;
   @JsonKey(ignore: true)
   $InProgressCopyWith<InProgress> get copyWith =>
       throw _privateConstructorUsedError;

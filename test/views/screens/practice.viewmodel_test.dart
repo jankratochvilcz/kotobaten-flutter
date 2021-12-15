@@ -102,6 +102,54 @@ void main() {
       expect(dependencies.target.getCurrentAndRemainingImpressions().length, 4);
     });
   });
+
+  group('getSpeechToPlay', () {
+    const speechPath = 'abc';
+
+    test('returns path if available', () async {
+      final dependencies = getDependencies();
+      final impressions = getImpressions(1,
+              speechPath: speechPath, impressionType: ImpressionType.sense)
+          .toList();
+
+      when(dependencies.apiService.getImpressions())
+          .thenAnswer((_) async => impressions);
+
+      await dependencies.target.initialize();
+      final actual = dependencies.target.getSpeechToPlay();
+
+      expect(actual, speechPath);
+    });
+
+    test('returns null for kana', () async {
+      final dependencies = getDependencies();
+      final impressions = getImpressions(1,
+              speechPath: speechPath, impressionType: ImpressionType.kana)
+          .toList();
+
+      when(dependencies.apiService.getImpressions())
+          .thenAnswer((_) async => impressions);
+
+      await dependencies.target.initialize();
+      final actual = dependencies.target.getSpeechToPlay();
+
+      expect(actual, null);
+    });
+
+    test('returns null after marked as played', () async {
+      final dependencies = getDependencies();
+      final impressions = getImpressions(1, speechPath: speechPath).toList();
+
+      when(dependencies.apiService.getImpressions())
+          .thenAnswer((_) async => impressions);
+
+      await dependencies.target.initialize();
+      dependencies.target.markSpeechAsPlayed();
+      final actual = dependencies.target.getSpeechToPlay();
+
+      expect(actual, null);
+    });
+  });
 }
 
 class PractiveViewModelTestDependencies {
@@ -123,10 +171,12 @@ PractiveViewModelTestDependencies getDependencies() {
       userRepository);
 }
 
-Iterable<Impression> getImpressions(int count) sync* {
+Iterable<Impression> getImpressions(int count,
+    {String? speechPath,
+    ImpressionType impressionType = ImpressionType.kana}) sync* {
   for (var i = 0; i < count; i++) {
-    yield Impression.initialized(
-        Card(i, 'a', 'b', 'c', 'd') as CardInitialized, ImpressionType.kana);
+    yield Impression.initialized(Card(i, 'a', 'b', 'c', 'd') as CardInitialized,
+        impressionType, speechPath);
   }
 }
 

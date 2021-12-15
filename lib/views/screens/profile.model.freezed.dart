@@ -257,12 +257,11 @@ class _$Initialized extends Initialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Initialized &&
-            const DeepCollectionEquality().equals(other.user, user));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override

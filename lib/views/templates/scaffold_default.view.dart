@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
-import 'package:kotobaten/views/molecules/goal_rings_painter.dart';
-import 'package:tuple/tuple.dart';
+import 'package:kotobaten/views/organisms/goal_rings.dart';
 
-class ScaffoldDefault extends StatelessWidget {
+class ScaffoldDefault extends HookConsumerWidget {
   final Widget child;
   final FloatingActionButton? floatingActionButton;
 
@@ -12,7 +12,7 @@ class ScaffoldDefault extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) => Scaffold(
       floatingActionButton: floatingActionButton,
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primaryVariant,
@@ -20,17 +20,7 @@ class ScaffoldDefault extends StatelessWidget {
             IconButton(
                 onPressed: () => Navigator.of(context).pushNamed(profileRoute),
                 tooltip: 'Your profile',
-                icon: CustomPaint(
-                  size: Size.infinite,
-                  painter: GoalRingsPainter(
-                      Theme.of(context).colorScheme.primaryVariant,
-                      [
-                        Tuple2(Colors.blue.shade400, 0.5),
-                        Tuple2(Colors.pink.shade400, 0.5),
-                        Tuple2(Colors.green.shade400, 0.5)
-                      ],
-                      2),
-                ))
+                icon: const GoalRings())
           ],
           title: SizedBox(
             height: kToolbarHeight,

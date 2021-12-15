@@ -16,10 +16,12 @@ _$InitializedUser _$$InitializedUserFromJson(Map<String, dynamic> json) =>
     _$InitializedUser(
       Statistics.fromJson(json['stats'] as Map<String, dynamic>),
       UserCore.fromJson(json['user'] as Map<String, dynamic>),
+      Goals.fromJson(json['goals'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$InitializedUserToJson(_$InitializedUser instance) =>
     <String, dynamic>{
       'stats': instance.stats,
       'user': instance.user,
+      'goals': instance.goals,
     };

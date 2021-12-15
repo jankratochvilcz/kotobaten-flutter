@@ -34,10 +34,11 @@ class _$UserTearOff {
     return InitialUser();
   }
 
-  InitializedUser initialized(Statistics stats, UserCore user) {
+  InitializedUser initialized(Statistics stats, UserCore user, Goals goals) {
     return InitializedUser(
       stats,
       user,
+      goals,
     );
   }
 
@@ -54,19 +55,20 @@ mixin _$User {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Statistics stats, UserCore user) initialized,
+    required TResult Function(Statistics stats, UserCore user, Goals goals)
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -151,7 +153,8 @@ class _$InitialUser implements InitialUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Statistics stats, UserCore user) initialized,
+    required TResult Function(Statistics stats, UserCore user, Goals goals)
+        initialized,
   }) {
     return initial();
   }
@@ -160,7 +163,7 @@ class _$InitialUser implements InitialUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
   }) {
     return initial?.call();
   }
@@ -169,7 +172,7 @@ class _$InitialUser implements InitialUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -227,9 +230,10 @@ abstract class $InitializedUserCopyWith<$Res> {
   factory $InitializedUserCopyWith(
           InitializedUser value, $Res Function(InitializedUser) then) =
       _$InitializedUserCopyWithImpl<$Res>;
-  $Res call({Statistics stats, UserCore user});
+  $Res call({Statistics stats, UserCore user, Goals goals});
 
   $UserCoreCopyWith<$Res> get user;
+  $GoalsCopyWith<$Res> get goals;
 }
 
 /// @nodoc
@@ -246,6 +250,7 @@ class _$InitializedUserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   $Res call({
     Object? stats = freezed,
     Object? user = freezed,
+    Object? goals = freezed,
   }) {
     return _then(InitializedUser(
       stats == freezed
@@ -256,6 +261,10 @@ class _$InitializedUserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserCore,
+      goals == freezed
+          ? _value.goals
+          : goals // ignore: cast_nullable_to_non_nullable
+              as Goals,
     ));
   }
 
@@ -265,12 +274,19 @@ class _$InitializedUserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       return _then(_value.copyWith(user: value));
     });
   }
+
+  @override
+  $GoalsCopyWith<$Res> get goals {
+    return $GoalsCopyWith<$Res>(_value.goals, (value) {
+      return _then(_value.copyWith(goals: value));
+    });
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$InitializedUser implements InitializedUser {
-  _$InitializedUser(this.stats, this.user);
+  _$InitializedUser(this.stats, this.user, this.goals);
 
   factory _$InitializedUser.fromJson(Map<String, dynamic> json) =>
       _$$InitializedUserFromJson(json);
@@ -279,10 +295,12 @@ class _$InitializedUser implements InitializedUser {
   final Statistics stats;
   @override
   final UserCore user;
+  @override
+  final Goals goals;
 
   @override
   String toString() {
-    return 'User.initialized(stats: $stats, user: $user)';
+    return 'User.initialized(stats: $stats, user: $user, goals: $goals)';
   }
 
   @override
@@ -291,11 +309,12 @@ class _$InitializedUser implements InitializedUser {
         (other.runtimeType == runtimeType &&
             other is InitializedUser &&
             (identical(other.stats, stats) || other.stats == stats) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.goals, goals) || other.goals == goals));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stats, user);
+  int get hashCode => Object.hash(runtimeType, stats, user, goals);
 
   @JsonKey(ignore: true)
   @override
@@ -306,29 +325,30 @@ class _$InitializedUser implements InitializedUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(Statistics stats, UserCore user) initialized,
+    required TResult Function(Statistics stats, UserCore user, Goals goals)
+        initialized,
   }) {
-    return initialized(stats, user);
+    return initialized(stats, user, goals);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
   }) {
-    return initialized?.call(stats, user);
+    return initialized?.call(stats, user, goals);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(Statistics stats, UserCore user)? initialized,
+    TResult Function(Statistics stats, UserCore user, Goals goals)? initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(stats, user);
+      return initialized(stats, user, goals);
     }
     return orElse();
   }
@@ -371,13 +391,15 @@ class _$InitializedUser implements InitializedUser {
 }
 
 abstract class InitializedUser implements User {
-  factory InitializedUser(Statistics stats, UserCore user) = _$InitializedUser;
+  factory InitializedUser(Statistics stats, UserCore user, Goals goals) =
+      _$InitializedUser;
 
   factory InitializedUser.fromJson(Map<String, dynamic> json) =
       _$InitializedUser.fromJson;
 
   Statistics get stats;
   UserCore get user;
+  Goals get goals;
   @JsonKey(ignore: true)
   $InitializedUserCopyWith<InitializedUser> get copyWith =>
       throw _privateConstructorUsedError;

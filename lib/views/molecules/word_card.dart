@@ -146,7 +146,7 @@ class WordCard extends StatelessWidget {
                       getPadding(PaddingType.standard), 0, 0),
                   child: Row(children: [
                     Padding(
-                        padding: topPadding(PaddingType.extraSmall),
+                        padding: topPadding(PaddingType.xSmall),
                         child: const Icon(
                           Icons.description_outlined,
                           size: 12,

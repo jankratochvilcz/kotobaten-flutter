@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kotobaten/extensions/color.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:tuple/tuple.dart';
 
 const pi = 3.141592653589793238;
@@ -38,8 +38,7 @@ class GoalRingsPainter extends CustomPainter {
 
     final shapeBounds = Rect.fromLTRB(0 + offset, topOffset + offset,
         rectangleSize, rectangleSize + topOffset);
-    final paint = Paint()
-      ..color = progress < 1 ? foreground : Colors.amber.shade500;
+    final paint = Paint()..color = progress < 1 ? foreground : successColor;
 
     final degrees = progress * 360;
     final radian = degreeToRadian(degrees);
@@ -48,7 +47,7 @@ class GoalRingsPainter extends CustomPainter {
         shapeBounds,
         Paint()
           ..color = previousRingProgress == null || previousRingProgress < 1
-              ? background.darken(0.02)
+              ? placeholderBackroundColor(background)
               : Colors.black12);
     canvas.drawArc(
         shapeBounds, degreeToRadian(degreeShift - 90), radian, true, paint);

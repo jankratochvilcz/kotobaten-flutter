@@ -15,6 +15,8 @@ Statistics _$StatisticsFromJson(Map<String, dynamic> json) => Statistics(
       json['nextToDiscoverCreated'] == null
           ? null
           : DateTime.parse(json['nextToDiscoverCreated'] as String),
+      (json['currentBackstop'] as num?)?.toDouble(),
+      (json['retentionThreshold'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$StatisticsToJson(Statistics instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$StatisticsToJson(Statistics instance) =>
       'addedWeek': instance.addedWeek,
       'nextToDiscoverCreated':
           instance.nextToDiscoverCreated?.toIso8601String(),
+      'currentBackstop': instance.currentBackstop,
+      'retentionThreshold': instance.retentionThreshold,
     };

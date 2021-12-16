@@ -3,7 +3,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 
 class ProgressInfobox extends StatelessWidget {
-  final String heading;
+  final String? heading;
   final int current;
   final int goal;
   final Color color;
@@ -19,6 +19,7 @@ class ProgressInfobox extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
@@ -29,9 +30,10 @@ class ProgressInfobox extends StatelessWidget {
               Text(' /$goal', style: TextStyle(color: color)),
             ],
           ),
-          Padding(
-              padding: topPadding(PaddingType.extraSmall),
-              child: Heading(heading, HeadingStyle.h3)),
+          if (heading != null)
+            Padding(
+                padding: topPadding(PaddingType.xSmall),
+                child: Heading(heading!, HeadingStyle.h3)),
         ],
       ));
 }

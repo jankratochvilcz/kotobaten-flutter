@@ -32,7 +32,7 @@ class ImpressionHidden extends StatelessWidget {
                   shortcut: '⏎',
                 ),
                 Padding(
-                    padding: topPadding(PaddingType.largePlus),
+                    padding: topPadding(PaddingType.xxLarge),
                     child: DescriptionRichText([
                       const TextSpan(text: 'Try to remember '),
                       TextSpan(

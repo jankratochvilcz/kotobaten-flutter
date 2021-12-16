@@ -20,4 +20,7 @@ extension InitializedUserExtensions on InitializedUser {
 
     return UserGoalsProgress(dailyProgress, weeklyProgress, monthlyProgress);
   }
+
+  double getNormalizedConsistency() =>
+      (1 / stats.retentionThreshold) * (stats.currentBackstop ?? 0);
 }

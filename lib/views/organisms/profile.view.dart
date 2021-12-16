@@ -6,10 +6,12 @@ import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/consts/shapes.dart';
+import 'package:kotobaten/extensions/user.dart';
 import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/progress_infobox.dart';
+import 'package:kotobaten/views/organisms/consistency_bar.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/profile.model.dart';
@@ -48,6 +50,8 @@ class ProfileView extends HookConsumerWidget {
     }
 
     if (model is Initialized) {
+      final normalizedConsistency = model.user.getNormalizedConsistency();
+
       return Padding(
           padding: horizontalPadding(PaddingType.standard),
           child: Column(
@@ -93,7 +97,22 @@ class ProfileView extends HookConsumerWidget {
                       model.user.goals.discoverMonthly,
                       model.user.stats.discoveredMonth),
                 ],
-              )
+              ),
+              Padding(
+                  padding: topPadding(PaddingType.xLarge),
+                  child: const Heading('Consistency', HeadingStyle.h2)),
+              Padding(
+                  padding: allPadding(PaddingType.large),
+                  child: const Heading(
+                    'Practice every day to keep your active recollection optimal.',
+                    HeadingStyle.h3,
+                    textAlign: TextAlign.center,
+                  )),
+              Padding(
+                  padding: allPadding(PaddingType.large),
+                  child: ConsistencyBar(normalizedConsistency)),
+              ProgressInfobox(null, successColor, 100,
+                  (normalizedConsistency * 100).toInt()),
             ],
           ));
     }

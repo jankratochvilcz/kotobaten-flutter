@@ -16,7 +16,7 @@ class ImpressionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: allPadding(PaddingType.largePlus),
+        padding: allPadding(PaddingType.xxLarge),
         child: Center(
             child: Card(
                 elevation: accented ? 10 : 2,

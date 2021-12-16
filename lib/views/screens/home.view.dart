@@ -69,7 +69,7 @@ class HomeView extends HookConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                              padding: bottomPadding(PaddingType.largePlus),
+                              padding: bottomPadding(PaddingType.xxLarge),
                               child: CardLearn(user, goToPractice)),
                           CardCollect(user, viewModel.createCard)
                         ],

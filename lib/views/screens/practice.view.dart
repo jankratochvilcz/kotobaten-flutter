@@ -71,7 +71,7 @@ class PracticeView extends HookConsumerWidget {
               child: Column(
         children: [
           Padding(
-              padding: topPadding(PaddingType.largePlus),
+              padding: topPadding(PaddingType.xxLarge),
               child: CircularProgressIndicator(
                 backgroundColor: Colors.black12,
                 strokeWidth: 2,

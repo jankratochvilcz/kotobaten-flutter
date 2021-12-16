@@ -28,8 +28,8 @@ const RESOURCES = {
 "assets/assets/logos/square_gray.png": "94dedd76690a7fd043901f7c1acefd2e",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"index.html": "404544b0acff8b3028d0bd8809b3b882",
-"/": "404544b0acff8b3028d0bd8809b3b882",
+"index.html": "86974fc789b7075f68146e2a4d507d0e",
+"/": "86974fc789b7075f68146e2a4d507d0e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 

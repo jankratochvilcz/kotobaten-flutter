@@ -13,6 +13,7 @@ import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/progress_infobox.dart';
 import 'package:kotobaten/views/organisms/consistency_bar.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
+import 'package:kotobaten/views/organisms/goals_edit.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/profile.model.dart';
 import 'package:kotobaten/views/organisms/profile.viewmodel.dart';
@@ -22,7 +23,8 @@ final _viewModelProvider =
         ProfileViewModel(
             const ProfileModel.initial(),
             ref.watch(authenticationServiceProvider),
-            ref.watch(userRepositoryProvider.notifier)));
+            ref.watch(userRepositoryProvider.notifier),
+            ref.watch(kotobatenApiServiceProvider)));
 
 showProfileBottomSheet(BuildContext context) => showModalBottomSheet(
     context: context,
@@ -55,6 +57,7 @@ class ProfileView extends HookConsumerWidget {
       return Padding(
           padding: horizontalPadding(PaddingType.standard),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
                 children: [
@@ -68,8 +71,26 @@ class ProfileView extends HookConsumerWidget {
                 ],
               ),
               Padding(
-                  padding: verticalPadding(PaddingType.standard),
-                  child: const Heading('Goals', HeadingStyle.h2)),
+                  padding: bottomPadding(PaddingType.xLarge),
+                  child: Stack(
+                    children: [
+                      const Positioned.fill(
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Heading(
+                                'Goals',
+                                HeadingStyle.h2,
+                                noPadding: true,
+                              ))),
+                      Align(
+                          alignment: Alignment.centerRight,
+                          child: IconButton(
+                              onPressed: () => showGoalsEditDialog(context,
+                                  viewModel.updateGoals, model.user.goals),
+                              color: Colors.black26,
+                              icon: const Icon(Icons.edit_outlined)))
+                    ],
+                  )),
               Row(
                 children: [
                   Expanded(
@@ -100,7 +121,11 @@ class ProfileView extends HookConsumerWidget {
               ),
               Padding(
                   padding: topPadding(PaddingType.xLarge),
-                  child: const Heading('Consistency', HeadingStyle.h2)),
+                  child: const Heading(
+                    'Consistency',
+                    HeadingStyle.h2,
+                    textAlign: TextAlign.center,
+                  )),
               Padding(
                   padding: allPadding(PaddingType.large),
                   child: const Heading(

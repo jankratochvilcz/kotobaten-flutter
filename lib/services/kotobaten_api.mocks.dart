@@ -2,13 +2,14 @@
 // in kotobaten/services/kotobaten_api.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i7;
+import 'dart:async' as _i8;
 
 import 'package:kotobaten/models/card.dart' as _i5;
-import 'package:kotobaten/models/impression.dart' as _i8;
+import 'package:kotobaten/models/impression.dart' as _i9;
+import 'package:kotobaten/models/user/goals.dart' as _i6;
 import 'package:kotobaten/models/user/statistics.dart' as _i4;
 import 'package:kotobaten/models/user/user.dart' as _i3;
-import 'package:kotobaten/services/kotobaten_api.dart' as _i6;
+import 'package:kotobaten/services/kotobaten_api.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:tuple/tuple.dart' as _i2;
 
@@ -29,55 +30,62 @@ class _FakeStatistics_2 extends _i1.Fake implements _i4.Statistics {}
 
 class _FakeCardInitialized_3 extends _i1.Fake implements _i5.CardInitialized {}
 
+class _FakeGoals_4 extends _i1.Fake implements _i6.Goals {}
+
 /// A class which mocks [KotobatenApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockKotobatenApiService extends _i1.Mock
-    implements _i6.KotobatenApiService {
+    implements _i7.KotobatenApiService {
   MockKotobatenApiService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.Future<_i2.Tuple2<bool, String>> login(
+  _i8.Future<_i2.Tuple2<bool, String>> login(
           String? username, String? password) =>
       (super.noSuchMethod(Invocation.method(#login, [username, password]),
               returnValue: Future<_i2.Tuple2<bool, String>>.value(
                   _FakeTuple2_0<bool, String>()))
-          as _i7.Future<_i2.Tuple2<bool, String>>);
+          as _i8.Future<_i2.Tuple2<bool, String>>);
   @override
-  _i7.Future<_i3.User> getUser() =>
+  _i8.Future<_i3.User> getUser() =>
       (super.noSuchMethod(Invocation.method(#getUser, []),
               returnValue: Future<_i3.User>.value(_FakeUser_1()))
-          as _i7.Future<_i3.User>);
+          as _i8.Future<_i3.User>);
   @override
-  _i7.Future<List<_i8.Impression>> getImpressions() => (super.noSuchMethod(
+  _i8.Future<List<_i9.Impression>> getImpressions() => (super.noSuchMethod(
           Invocation.method(#getImpressions, []),
-          returnValue: Future<List<_i8.Impression>>.value(<_i8.Impression>[]))
-      as _i7.Future<List<_i8.Impression>>);
+          returnValue: Future<List<_i9.Impression>>.value(<_i9.Impression>[]))
+      as _i8.Future<List<_i9.Impression>>);
   @override
-  _i7.Future<_i4.Statistics> postImpression(
-          _i8.Impression? impression, bool? success) =>
+  _i8.Future<_i4.Statistics> postImpression(
+          _i9.Impression? impression, bool? success) =>
       (super.noSuchMethod(
               Invocation.method(#postImpression, [impression, success]),
               returnValue: Future<_i4.Statistics>.value(_FakeStatistics_2()))
-          as _i7.Future<_i4.Statistics>);
+          as _i8.Future<_i4.Statistics>);
   @override
-  _i7.Future<_i5.CardInitialized> postCard(_i5.Card? card) =>
+  _i8.Future<_i5.CardInitialized> postCard(_i5.Card? card) =>
       (super.noSuchMethod(Invocation.method(#postCard, [card]),
               returnValue:
                   Future<_i5.CardInitialized>.value(_FakeCardInitialized_3()))
-          as _i7.Future<_i5.CardInitialized>);
+          as _i8.Future<_i5.CardInitialized>);
   @override
-  _i7.Future<bool> deleteCard(int? cardId) =>
+  _i8.Future<bool> deleteCard(int? cardId) =>
       (super.noSuchMethod(Invocation.method(#deleteCard, [cardId]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
   @override
-  _i7.Future<List<_i5.CardInitialized>> getCards(int? page, int? pageSize) =>
+  _i8.Future<_i6.Goals> updateGoals(_i6.Goals? goals) =>
+      (super.noSuchMethod(Invocation.method(#updateGoals, [goals]),
+              returnValue: Future<_i6.Goals>.value(_FakeGoals_4()))
+          as _i8.Future<_i6.Goals>);
+  @override
+  _i8.Future<List<_i5.CardInitialized>> getCards(int? page, int? pageSize) =>
       (super.noSuchMethod(Invocation.method(#getCards, [page, pageSize]),
               returnValue: Future<List<_i5.CardInitialized>>.value(
                   <_i5.CardInitialized>[]))
-          as _i7.Future<List<_i5.CardInitialized>>);
+          as _i8.Future<List<_i5.CardInitialized>>);
   @override
   String toString() => super.toString();
 }

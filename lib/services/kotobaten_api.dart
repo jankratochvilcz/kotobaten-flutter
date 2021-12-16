@@ -5,6 +5,7 @@ import 'package:kotobaten/consts/http.dart';
 import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/models/impression.dart';
+import 'package:kotobaten/models/user/goals.dart';
 import 'package:kotobaten/models/user/statistics.dart';
 import 'package:kotobaten/models/user/user.dart';
 import 'package:kotobaten/services/authentication.dart';
@@ -83,6 +84,21 @@ class KotobatenApiService {
     await _kotobatenClient.delete(url, headers: headers);
 
     return true;
+  }
+
+  Future<Goals> updateGoals(Goals goals) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'goals', {
+      'discoverDaily': goals.discoverDaily.toString(),
+      'discoverWeekly': goals.discoverWeekly.toString(),
+      'discoverMonthly': goals.discoverMonthly.toString()
+    });
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    final response = await _kotobatenClient.post(url, headers: headers);
+    final body = utf8.decode(response.bodyBytes);
+    return Goals.fromJson(jsonDecode(body));
   }
 
   Future<List<CardInitialized>> getCards(int page, int pageSize) async {

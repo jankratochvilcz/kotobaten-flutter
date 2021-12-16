@@ -180,7 +180,7 @@ Iterable<Impression> getImpressions(int count,
   }
 }
 
-Statistics getStatistics() => Statistics(0, 0, 0, 0, 0, DateTime(2020));
+Statistics getStatistics() => Statistics(0, 0, 0, 0, 0, DateTime(2020), 0, 0);
 
 setupStatisticsUpdates(PractiveViewModelTestDependencies dependencies) {
   when(dependencies.apiService.postImpression(any, any))

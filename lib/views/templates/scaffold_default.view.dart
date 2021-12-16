@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
+import 'package:kotobaten/views/organisms/profile.view.dart';
 
 class ScaffoldDefault extends HookConsumerWidget {
   final Widget child;
@@ -18,9 +18,9 @@ class ScaffoldDefault extends HookConsumerWidget {
           backgroundColor: Theme.of(context).colorScheme.primaryVariant,
           actions: [
             IconButton(
-                onPressed: () => Navigator.of(context).pushNamed(profileRoute),
+                onPressed: () => showProfileBottomSheet(context),
                 tooltip: 'Your profile',
-                icon: const GoalRings())
+                icon: GoalRings(Theme.of(context).colorScheme.primaryVariant))
           ],
           title: SizedBox(
             height: kToolbarHeight,

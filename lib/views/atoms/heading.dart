@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 
 enum HeadingStyle { h1, h2, h3 }
@@ -20,8 +20,19 @@ FontWeight _getFontWeight(HeadingStyle style) {
       return FontWeight.bold;
     case HeadingStyle.h2:
       return FontWeight.w500;
+    case HeadingStyle.h3:
+      return FontWeight.w500;
     default:
       return FontWeight.normal;
+  }
+}
+
+Color? _getColor(HeadingStyle style) {
+  switch (style) {
+    case HeadingStyle.h3:
+      return Colors.black45;
+    default:
+      return null;
   }
 }
 
@@ -41,14 +52,18 @@ class Heading extends StatelessWidget {
   final HeadingStyle style;
   final TextAlign? textAlign;
 
-  const Heading(this.data, this.style, {Key? key, this.textAlign}) : super(key: key);
+  const Heading(this.data, this.style, {Key? key, this.textAlign})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => Padding(
       child: Text(
         data,
         textAlign: textAlign,
-        style: TextStyle(fontSize: _getFontSize(style), fontWeight: _getFontWeight(style)),
+        style: TextStyle(
+            color: _getColor(style),
+            fontSize: _getFontSize(style),
+            fontWeight: _getFontWeight(style)),
       ),
       padding: _getBottomPadding(style));
 }

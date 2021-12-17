@@ -11,3 +11,5 @@ Color dailyProgressColor(BuildContext context) =>
 Color successColor = Colors.amber.shade500;
 
 Color placeholderBackroundColor(Color color) => color.darken(0.03);
+
+Color descriptionColor = Colors.black54;

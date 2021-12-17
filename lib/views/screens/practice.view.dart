@@ -2,7 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
@@ -10,18 +9,13 @@ import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 
-final _viewModelProvider =
-    StateNotifierProvider<PracticeViewModel, PracticeModel>((ref) =>
-        PracticeViewModel(ref.watch(kotobatenApiServiceProvider),
-            ref.watch(userRepositoryProvider.notifier)));
-
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModel = ref.watch(_viewModelProvider.notifier);
-    final model = ref.watch(_viewModelProvider);
+    final viewModel = ref.watch(practiceViewModelProvider.notifier);
+    final model = ref.watch(practiceViewModelProvider);
 
     if (model is Initial) {
       Future.microtask(() => viewModel.initialize());

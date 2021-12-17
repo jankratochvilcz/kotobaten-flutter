@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'goals.dart';
+part of 'user_goals.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GoalsInitialized _$$GoalsInitializedFromJson(Map<String, dynamic> json) =>
-    _$GoalsInitialized(
+_$UserGoalsInitialized _$$UserGoalsInitializedFromJson(
+        Map<String, dynamic> json) =>
+    _$UserGoalsInitialized(
       json['discoverWeekly'] as int,
       json['discoverMonthly'] as int,
       json['discoverDaily'] as int,
     );
 
-Map<String, dynamic> _$$GoalsInitializedToJson(_$GoalsInitialized instance) =>
+Map<String, dynamic> _$$UserGoalsInitializedToJson(
+        _$UserGoalsInitialized instance) =>
     <String, dynamic>{
       'discoverWeekly': instance.discoverWeekly,
       'discoverMonthly': instance.discoverMonthly,

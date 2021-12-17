@@ -1,12 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'statistics.dart';
+part of 'user_statistics.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Statistics _$StatisticsFromJson(Map<String, dynamic> json) => Statistics(
+_$UserStatisticsInitialized _$$UserStatisticsInitializedFromJson(
+        Map<String, dynamic> json) =>
+    _$UserStatisticsInitialized(
       json['leftToPractice'] as int,
       json['discoveredToday'] as int,
       json['discoveredWeek'] as int,
@@ -17,9 +19,11 @@ Statistics _$StatisticsFromJson(Map<String, dynamic> json) => Statistics(
           : DateTime.parse(json['nextToDiscoverCreated'] as String),
       (json['currentBackstop'] as num?)?.toDouble(),
       (json['retentionThreshold'] as num).toDouble(),
+      json['backstopThresholdExpiryFormatted'] as String?,
     );
 
-Map<String, dynamic> _$StatisticsToJson(Statistics instance) =>
+Map<String, dynamic> _$$UserStatisticsInitializedToJson(
+        _$UserStatisticsInitialized instance) =>
     <String, dynamic>{
       'leftToPractice': instance.leftToPractice,
       'discoveredToday': instance.discoveredToday,
@@ -30,4 +34,6 @@ Map<String, dynamic> _$StatisticsToJson(Statistics instance) =>
           instance.nextToDiscoverCreated?.toIso8601String(),
       'currentBackstop': instance.currentBackstop,
       'retentionThreshold': instance.retentionThreshold,
+      'backstopThresholdExpiryFormatted':
+          instance.backstopThresholdExpiryFormatted,
     };

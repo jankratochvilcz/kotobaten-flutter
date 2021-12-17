@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 
 enum HeadingStyle { h1, h2, h3 }
@@ -30,7 +31,7 @@ FontWeight _getFontWeight(HeadingStyle style) {
 Color? _getColor(HeadingStyle style) {
   switch (style) {
     case HeadingStyle.h3:
-      return Colors.black45;
+      return descriptionColor;
     default:
       return null;
   }

@@ -200,7 +200,7 @@ class _$Initialized implements Initialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Initialized &&
-            const DeepCollectionEquality().equals(other.card, card) &&
+            (identical(other.card, card) || other.card == card) &&
             (identical(other.impressionType, impressionType) ||
                 other.impressionType == impressionType) &&
             (identical(other.speechPath, speechPath) ||
@@ -208,8 +208,8 @@ class _$Initialized implements Initialized {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(card), impressionType, speechPath);
+  int get hashCode =>
+      Object.hash(runtimeType, card, impressionType, speechPath);
 
   @JsonKey(ignore: true)
   @override

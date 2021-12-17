@@ -2,16 +2,17 @@
 // in kotobaten/services/kotobaten_api.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i8;
+import 'dart:async' as _i9;
 
-import 'package:kotobaten/models/card.dart' as _i5;
-import 'package:kotobaten/models/impression.dart' as _i9;
-import 'package:kotobaten/models/user/goals.dart' as _i6;
-import 'package:kotobaten/models/user/statistics.dart' as _i4;
-import 'package:kotobaten/models/user/user.dart' as _i3;
-import 'package:kotobaten/services/kotobaten_api.dart' as _i7;
+import 'package:kotobaten/models/impression.dart' as _i10;
+import 'package:kotobaten/models/slices/auth/auth_repository.dart' as _i2;
+import 'package:kotobaten/models/slices/cards/card.dart' as _i6;
+import 'package:kotobaten/models/slices/user/user.dart' as _i4;
+import 'package:kotobaten/models/slices/user/user_goals.dart' as _i7;
+import 'package:kotobaten/models/slices/user/user_statistics.dart' as _i5;
+import 'package:kotobaten/services/kotobaten_api.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:tuple/tuple.dart' as _i2;
+import 'package:tuple/tuple.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -22,70 +23,81 @@ import 'package:tuple/tuple.dart' as _i2;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakeTuple2_0<T1, T2> extends _i1.Fake implements _i2.Tuple2<T1, T2> {}
+class _FakeAuthRepository_0 extends _i1.Fake implements _i2.AuthRepository {}
 
-class _FakeUser_1 extends _i1.Fake implements _i3.User {}
+class _FakeTuple2_1<T1, T2> extends _i1.Fake implements _i3.Tuple2<T1, T2> {}
 
-class _FakeStatistics_2 extends _i1.Fake implements _i4.Statistics {}
+class _FakeUserInitialized_2 extends _i1.Fake implements _i4.UserInitialized {}
 
-class _FakeCardInitialized_3 extends _i1.Fake implements _i5.CardInitialized {}
+class _FakeUserStatistics_3 extends _i1.Fake implements _i5.UserStatistics {}
 
-class _FakeGoals_4 extends _i1.Fake implements _i6.Goals {}
+class _FakeCardInitialized_4 extends _i1.Fake implements _i6.CardInitialized {}
+
+class _FakeUserGoals_5 extends _i1.Fake implements _i7.UserGoals {}
 
 /// A class which mocks [KotobatenApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockKotobatenApiService extends _i1.Mock
-    implements _i7.KotobatenApiService {
+    implements _i8.KotobatenApiService {
   MockKotobatenApiService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i8.Future<_i2.Tuple2<bool, String>> login(
+  _i2.AuthRepository get authRepository =>
+      (super.noSuchMethod(Invocation.getter(#authRepository),
+          returnValue: _FakeAuthRepository_0()) as _i2.AuthRepository);
+  @override
+  _i9.Future<_i3.Tuple2<bool, String>> login(
           String? username, String? password) =>
       (super.noSuchMethod(Invocation.method(#login, [username, password]),
-              returnValue: Future<_i2.Tuple2<bool, String>>.value(
-                  _FakeTuple2_0<bool, String>()))
-          as _i8.Future<_i2.Tuple2<bool, String>>);
+              returnValue: Future<_i3.Tuple2<bool, String>>.value(
+                  _FakeTuple2_1<bool, String>()))
+          as _i9.Future<_i3.Tuple2<bool, String>>);
   @override
-  _i8.Future<_i3.User> getUser() =>
-      (super.noSuchMethod(Invocation.method(#getUser, []),
-              returnValue: Future<_i3.User>.value(_FakeUser_1()))
-          as _i8.Future<_i3.User>);
+  _i9.Future<_i4.UserInitialized> getUser(
+          {bool? updateRetentionBackstop = false}) =>
+      (super.noSuchMethod(
+              Invocation.method(#getUser, [],
+                  {#updateRetentionBackstop: updateRetentionBackstop}),
+              returnValue:
+                  Future<_i4.UserInitialized>.value(_FakeUserInitialized_2()))
+          as _i9.Future<_i4.UserInitialized>);
   @override
-  _i8.Future<List<_i9.Impression>> getImpressions() => (super.noSuchMethod(
+  _i9.Future<List<_i10.Impression>> getImpressions() => (super.noSuchMethod(
           Invocation.method(#getImpressions, []),
-          returnValue: Future<List<_i9.Impression>>.value(<_i9.Impression>[]))
-      as _i8.Future<List<_i9.Impression>>);
+          returnValue: Future<List<_i10.Impression>>.value(<_i10.Impression>[]))
+      as _i9.Future<List<_i10.Impression>>);
   @override
-  _i8.Future<_i4.Statistics> postImpression(
-          _i9.Impression? impression, bool? success) =>
+  _i9.Future<_i5.UserStatistics> postImpression(
+          _i10.Impression? impression, bool? success) =>
       (super.noSuchMethod(
               Invocation.method(#postImpression, [impression, success]),
-              returnValue: Future<_i4.Statistics>.value(_FakeStatistics_2()))
-          as _i8.Future<_i4.Statistics>);
+              returnValue:
+                  Future<_i5.UserStatistics>.value(_FakeUserStatistics_3()))
+          as _i9.Future<_i5.UserStatistics>);
   @override
-  _i8.Future<_i5.CardInitialized> postCard(_i5.Card? card) =>
+  _i9.Future<_i6.CardInitialized> postCard(_i6.Card? card) =>
       (super.noSuchMethod(Invocation.method(#postCard, [card]),
               returnValue:
-                  Future<_i5.CardInitialized>.value(_FakeCardInitialized_3()))
-          as _i8.Future<_i5.CardInitialized>);
+                  Future<_i6.CardInitialized>.value(_FakeCardInitialized_4()))
+          as _i9.Future<_i6.CardInitialized>);
   @override
-  _i8.Future<bool> deleteCard(int? cardId) =>
+  _i9.Future<bool> deleteCard(int? cardId) =>
       (super.noSuchMethod(Invocation.method(#deleteCard, [cardId]),
-          returnValue: Future<bool>.value(false)) as _i8.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i9.Future<bool>);
   @override
-  _i8.Future<_i6.Goals> updateGoals(_i6.Goals? goals) =>
+  _i9.Future<_i7.UserGoals> updateGoals(_i7.UserGoals? goals) =>
       (super.noSuchMethod(Invocation.method(#updateGoals, [goals]),
-              returnValue: Future<_i6.Goals>.value(_FakeGoals_4()))
-          as _i8.Future<_i6.Goals>);
+              returnValue: Future<_i7.UserGoals>.value(_FakeUserGoals_5()))
+          as _i9.Future<_i7.UserGoals>);
   @override
-  _i8.Future<List<_i5.CardInitialized>> getCards(int? page, int? pageSize) =>
+  _i9.Future<List<_i6.CardInitialized>> getCards(int? page, int? pageSize) =>
       (super.noSuchMethod(Invocation.method(#getCards, [page, pageSize]),
-              returnValue: Future<List<_i5.CardInitialized>>.value(
-                  <_i5.CardInitialized>[]))
-          as _i8.Future<List<_i5.CardInitialized>>);
+              returnValue: Future<List<_i6.CardInitialized>>.value(
+                  <_i6.CardInitialized>[]))
+          as _i9.Future<List<_i6.CardInitialized>>);
   @override
   String toString() => super.toString();
 }

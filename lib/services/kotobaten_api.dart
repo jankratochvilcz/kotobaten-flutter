@@ -1,28 +1,37 @@
 import 'dart:convert';
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:kotobaten/consts/http.dart';
 import 'package:kotobaten/models/app_configuration.dart';
-import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/models/impression.dart';
-import 'package:kotobaten/models/user/goals.dart';
-import 'package:kotobaten/models/user/statistics.dart';
-import 'package:kotobaten/models/user/user.dart';
-import 'package:kotobaten/services/authentication.dart';
+import 'package:kotobaten/models/slices/auth/auth_model.dart';
+import 'package:kotobaten/models/slices/auth/auth_repository.dart';
+import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/user/user.dart';
+import 'package:kotobaten/models/slices/user/user_goals.dart';
+import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/services/kotobaten_client.dart';
+import 'package:kotobaten/services/providers.dart';
 import 'package:kotobaten/services/serialization/requests/impressions_request.dart';
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:tuple/tuple.dart';
 import 'package:mockito/annotations.dart';
 
+final kotobatenApiServiceProvider = Provider((ref) => KotobatenApiService(
+    ref.watch(authRepositoryProvider.notifier),
+    ref.watch(appConfigurationProvider),
+    ref.watch(kotobatenClientProvider)));
+
 class KotobatenApiService {
-  final AuthenticationService _authenticationService;
+  // Not using AuthService as it'd cause a cyclical dependency.
+  final AuthRepository authRepository;
   final AppConfiguration _appConfiguration;
   final KotobatenClient _kotobatenClient;
 
-  KotobatenApiService(this._authenticationService, this._appConfiguration,
-      this._kotobatenClient);
+  KotobatenApiService(
+      this.authRepository, this._appConfiguration, this._kotobatenClient);
 
   Future<Tuple2<bool, String>> login(String username, String password) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'auth/login');
@@ -52,14 +61,17 @@ class KotobatenApiService {
     }
   }
 
-  Future<User> getUser() async =>
-      InitializedUser.fromJson(await _getAuthenticated('user'));
+  Future<UserInitialized> getUser(
+          {bool updateRetentionBackstop = false}) async =>
+      UserInitialized.fromJson(await _getAuthenticated('user',
+          params: {'overrideBackstop': updateRetentionBackstop.toString()}));
 
   Future<List<Impression>> getImpressions() async => PracticeResponse.fromJson(
           await _getAuthenticated('practice', params: {'count': '15'}))
       .impressions;
 
-  Future<Statistics> postImpression(Impression impression, bool success) async {
+  Future<UserStatistics> postImpression(
+      Impression impression, bool success) async {
     final requestBody = ImpressionsRequest.initialized(
         impression.impressionType, impression.card.id, success, DateTime.now());
 
@@ -86,7 +98,7 @@ class KotobatenApiService {
     return true;
   }
 
-  Future<Goals> updateGoals(Goals goals) async {
+  Future<UserGoals> updateGoals(UserGoals goals) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'goals', {
       'discoverDaily': goals.discoverDaily.toString(),
       'discoverWeekly': goals.discoverWeekly.toString(),
@@ -98,7 +110,7 @@ class KotobatenApiService {
 
     final response = await _kotobatenClient.post(url, headers: headers);
     final body = utf8.decode(response.bodyBytes);
-    return Goals.fromJson(jsonDecode(body));
+    return UserGoals.fromJson(jsonDecode(body));
   }
 
   Future<List<CardInitialized>> getCards(int page, int pageSize) async {
@@ -122,7 +134,8 @@ class KotobatenApiService {
   }
 
   Future<Map<String, String>> _getTokenHeadersOrThrow() async {
-    final token = await _authenticationService.getToken();
+    final authModel = authRepository.current;
+    final token = authModel is AuthModelAuthenticated ? authModel.token : null;
 
     if (token == null) {
       throw Exception('User not authenticated, cannot call getUser');

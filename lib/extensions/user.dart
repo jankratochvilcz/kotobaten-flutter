@@ -1,4 +1,4 @@
-import 'package:kotobaten/models/user/user.dart';
+import 'package:kotobaten/models/slices/user/user.dart';
 
 class UserGoalsProgress {
   final double dailyProgress;
@@ -11,7 +11,7 @@ class UserGoalsProgress {
   factory UserGoalsProgress.empty() => UserGoalsProgress(0, 0, 0);
 }
 
-extension InitializedUserExtensions on InitializedUser {
+extension InitializedUserExtensions on UserInitialized {
   UserGoalsProgress getGoalsProgress() {
     final double dailyProgress = stats.discoveredToday / goals.discoverDaily;
     final double weeklyProgress = stats.discoveredWeek / goals.discoverWeekly;

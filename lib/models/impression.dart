@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/models/impression_type.dart';
+import 'package:kotobaten/models/slices/cards/card.dart';
 
 part 'impression.freezed.dart';
 part 'impression.g.dart';

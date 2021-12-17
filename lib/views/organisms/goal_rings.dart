@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
-import 'package:kotobaten/models/user/user.dart';
-import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/models/slices/user/user_model.dart';
+import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/views/molecules/goal_rings_painter.dart';
 import 'package:kotobaten/extensions/user.dart';
 import 'package:tuple/tuple.dart';
@@ -17,8 +17,8 @@ class GoalRings extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userRepositoryProvider);
-    final progress = user is InitializedUser
-        ? user.getGoalsProgress()
+    final progress = user is UserModelInitialized
+        ? user.user.getGoalsProgress()
         : UserGoalsProgress.empty();
 
     return CustomPaint(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/models/user/goals.dart';
+import 'package:kotobaten/models/slices/user/user_goals.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 
-showGoalsEditDialog(BuildContext context,
-        Future<Goals> Function(Goals goals) onSubmit, Goals currentGoals) =>
+showGoalsEditDialog(
+        BuildContext context,
+        Future<UserGoals> Function(UserGoals goals) onSubmit,
+        UserGoals currentGoals) =>
     showModalBottomSheet(
         context: context,
         builder: (x) => Padding(
@@ -21,8 +23,8 @@ showGoalsEditDialog(BuildContext context,
             )));
 
 class GoalsEditDialog extends StatefulWidget {
-  final void Function(Goals goals) _onSubmit;
-  final Goals currentGoals;
+  final void Function(UserGoals goals) _onSubmit;
+  final UserGoals currentGoals;
 
   const GoalsEditDialog(this._onSubmit, this.currentGoals, {Key? key})
       : super(key: key);
@@ -59,7 +61,7 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
   Widget build(BuildContext context) {
     onEditComplete() {
       if (_formKey.currentState!.validate()) {
-        widget._onSubmit(Goals(
+        widget._onSubmit(UserGoals(
             int.parse(_goalWeekController.text),
             int.parse(_goalMonthController.text),
             int.parse(_goalDayController.text)));

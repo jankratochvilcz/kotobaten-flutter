@@ -21,7 +21,7 @@ ImpressionsResponse _$ImpressionsResponseFromJson(Map<String, dynamic> json) {
 class _$ImpressionsResponseTearOff {
   const _$ImpressionsResponseTearOff();
 
-  Initialized initialized(Statistics userStats) {
+  Initialized initialized(UserStatistics userStats) {
     return Initialized(
       userStats,
     );
@@ -37,21 +37,21 @@ const $ImpressionsResponse = _$ImpressionsResponseTearOff();
 
 /// @nodoc
 mixin _$ImpressionsResponse {
-  Statistics get userStats => throw _privateConstructorUsedError;
+  UserStatistics get userStats => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Statistics userStats) initialized,
+    required TResult Function(UserStatistics userStats) initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(UserStatistics userStats)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(UserStatistics userStats)? initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,7 +82,9 @@ abstract class $ImpressionsResponseCopyWith<$Res> {
   factory $ImpressionsResponseCopyWith(
           ImpressionsResponse value, $Res Function(ImpressionsResponse) then) =
       _$ImpressionsResponseCopyWithImpl<$Res>;
-  $Res call({Statistics userStats});
+  $Res call({UserStatistics userStats});
+
+  $UserStatisticsCopyWith<$Res> get userStats;
 }
 
 /// @nodoc
@@ -102,8 +104,15 @@ class _$ImpressionsResponseCopyWithImpl<$Res>
       userStats: userStats == freezed
           ? _value.userStats
           : userStats // ignore: cast_nullable_to_non_nullable
-              as Statistics,
+              as UserStatistics,
     ));
+  }
+
+  @override
+  $UserStatisticsCopyWith<$Res> get userStats {
+    return $UserStatisticsCopyWith<$Res>(_value.userStats, (value) {
+      return _then(_value.copyWith(userStats: value));
+    });
   }
 }
 
@@ -114,7 +123,10 @@ abstract class $InitializedCopyWith<$Res>
           Initialized value, $Res Function(Initialized) then) =
       _$InitializedCopyWithImpl<$Res>;
   @override
-  $Res call({Statistics userStats});
+  $Res call({UserStatistics userStats});
+
+  @override
+  $UserStatisticsCopyWith<$Res> get userStats;
 }
 
 /// @nodoc
@@ -136,7 +148,7 @@ class _$InitializedCopyWithImpl<$Res>
       userStats == freezed
           ? _value.userStats
           : userStats // ignore: cast_nullable_to_non_nullable
-              as Statistics,
+              as UserStatistics,
     ));
   }
 }
@@ -150,7 +162,7 @@ class _$Initialized implements Initialized {
       _$$InitializedFromJson(json);
 
   @override
-  final Statistics userStats;
+  final UserStatistics userStats;
 
   @override
   String toString() {
@@ -177,7 +189,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Statistics userStats) initialized,
+    required TResult Function(UserStatistics userStats) initialized,
   }) {
     return initialized(userStats);
   }
@@ -185,7 +197,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(UserStatistics userStats)? initialized,
   }) {
     return initialized?.call(userStats);
   }
@@ -193,7 +205,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Statistics userStats)? initialized,
+    TResult Function(UserStatistics userStats)? initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -237,13 +249,13 @@ class _$Initialized implements Initialized {
 }
 
 abstract class Initialized implements ImpressionsResponse {
-  factory Initialized(Statistics userStats) = _$Initialized;
+  factory Initialized(UserStatistics userStats) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
 
   @override
-  Statistics get userStats;
+  UserStatistics get userStats;
   @override
   @JsonKey(ignore: true)
   $InitializedCopyWith<Initialized> get copyWith =>

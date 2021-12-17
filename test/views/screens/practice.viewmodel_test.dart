@@ -1,11 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kotobaten/models/card.dart';
 import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/impression_type.dart';
-import 'package:kotobaten/models/user/statistics.dart';
-import 'package:kotobaten/models/user/user.dart';
+import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/user/user_statistics.dart';
+import 'package:kotobaten/models/slices/user/user_service.mocks.dart';
 import 'package:kotobaten/services/kotobaten_api.mocks.dart';
-import 'package:kotobaten/services/repositories/user_repository.mocks.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 import 'package:mockito/mockito.dart';
 
@@ -154,21 +153,19 @@ void main() {
 
 class PractiveViewModelTestDependencies {
   MockKotobatenApiService apiService;
-  MockUserRepository userRepisitory;
+  MockUserService userService;
   PracticeViewModel target;
 
   PractiveViewModelTestDependencies(
-      this.target, this.apiService, this.userRepisitory);
+      this.target, this.apiService, this.userService);
 }
 
 PractiveViewModelTestDependencies getDependencies() {
   final apiService = MockKotobatenApiService();
-  final userRepository = MockUserRepository();
+  final userService = MockUserService();
 
   return PractiveViewModelTestDependencies(
-      PracticeViewModel(apiService, userRepository),
-      apiService,
-      userRepository);
+      PracticeViewModel(apiService, userService), apiService, userService);
 }
 
 Iterable<Impression> getImpressions(int count,
@@ -180,11 +177,13 @@ Iterable<Impression> getImpressions(int count,
   }
 }
 
-Statistics getStatistics() => Statistics(0, 0, 0, 0, 0, DateTime(2020), 0, 0);
+UserStatistics getStatistics() =>
+    UserStatistics(0, 0, 0, 0, 0, DateTime(2020), 0, 0, '');
 
 setupStatisticsUpdates(PractiveViewModelTestDependencies dependencies) {
   when(dependencies.apiService.postImpression(any, any))
       .thenAnswer((_) async => getStatistics());
 
-  when(dependencies.userRepisitory.get()).thenReturn(User.initial());
+  when(dependencies.userService.updateStatistics(any))
+      .thenReturn(getStatistics());
 }

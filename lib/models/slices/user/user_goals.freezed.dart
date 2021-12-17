@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'goals.dart';
+part of 'user_goals.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,56 +13,57 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Goals _$GoalsFromJson(Map<String, dynamic> json) {
-  return GoalsInitialized.fromJson(json);
+UserGoals _$UserGoalsFromJson(Map<String, dynamic> json) {
+  return UserGoalsInitialized.fromJson(json);
 }
 
 /// @nodoc
-class _$GoalsTearOff {
-  const _$GoalsTearOff();
+class _$UserGoalsTearOff {
+  const _$UserGoalsTearOff();
 
-  GoalsInitialized call(
+  UserGoalsInitialized call(
       int discoverWeekly, int discoverMonthly, int discoverDaily) {
-    return GoalsInitialized(
+    return UserGoalsInitialized(
       discoverWeekly,
       discoverMonthly,
       discoverDaily,
     );
   }
 
-  Goals fromJson(Map<String, Object?> json) {
-    return Goals.fromJson(json);
+  UserGoals fromJson(Map<String, Object?> json) {
+    return UserGoals.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Goals = _$GoalsTearOff();
+const $UserGoals = _$UserGoalsTearOff();
 
 /// @nodoc
-mixin _$Goals {
+mixin _$UserGoals {
   int get discoverWeekly => throw _privateConstructorUsedError;
   int get discoverMonthly => throw _privateConstructorUsedError;
   int get discoverDaily => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GoalsCopyWith<Goals> get copyWith => throw _privateConstructorUsedError;
+  $UserGoalsCopyWith<UserGoals> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GoalsCopyWith<$Res> {
-  factory $GoalsCopyWith(Goals value, $Res Function(Goals) then) =
-      _$GoalsCopyWithImpl<$Res>;
+abstract class $UserGoalsCopyWith<$Res> {
+  factory $UserGoalsCopyWith(UserGoals value, $Res Function(UserGoals) then) =
+      _$UserGoalsCopyWithImpl<$Res>;
   $Res call({int discoverWeekly, int discoverMonthly, int discoverDaily});
 }
 
 /// @nodoc
-class _$GoalsCopyWithImpl<$Res> implements $GoalsCopyWith<$Res> {
-  _$GoalsCopyWithImpl(this._value, this._then);
+class _$UserGoalsCopyWithImpl<$Res> implements $UserGoalsCopyWith<$Res> {
+  _$UserGoalsCopyWithImpl(this._value, this._then);
 
-  final Goals _value;
+  final UserGoals _value;
   // ignore: unused_field
-  final $Res Function(Goals) _then;
+  final $Res Function(UserGoals) _then;
 
   @override
   $Res call({
@@ -88,23 +89,25 @@ class _$GoalsCopyWithImpl<$Res> implements $GoalsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $GoalsInitializedCopyWith<$Res> implements $GoalsCopyWith<$Res> {
-  factory $GoalsInitializedCopyWith(
-          GoalsInitialized value, $Res Function(GoalsInitialized) then) =
-      _$GoalsInitializedCopyWithImpl<$Res>;
+abstract class $UserGoalsInitializedCopyWith<$Res>
+    implements $UserGoalsCopyWith<$Res> {
+  factory $UserGoalsInitializedCopyWith(UserGoalsInitialized value,
+          $Res Function(UserGoalsInitialized) then) =
+      _$UserGoalsInitializedCopyWithImpl<$Res>;
   @override
   $Res call({int discoverWeekly, int discoverMonthly, int discoverDaily});
 }
 
 /// @nodoc
-class _$GoalsInitializedCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res>
-    implements $GoalsInitializedCopyWith<$Res> {
-  _$GoalsInitializedCopyWithImpl(
-      GoalsInitialized _value, $Res Function(GoalsInitialized) _then)
-      : super(_value, (v) => _then(v as GoalsInitialized));
+class _$UserGoalsInitializedCopyWithImpl<$Res>
+    extends _$UserGoalsCopyWithImpl<$Res>
+    implements $UserGoalsInitializedCopyWith<$Res> {
+  _$UserGoalsInitializedCopyWithImpl(
+      UserGoalsInitialized _value, $Res Function(UserGoalsInitialized) _then)
+      : super(_value, (v) => _then(v as UserGoalsInitialized));
 
   @override
-  GoalsInitialized get _value => super._value as GoalsInitialized;
+  UserGoalsInitialized get _value => super._value as UserGoalsInitialized;
 
   @override
   $Res call({
@@ -112,7 +115,7 @@ class _$GoalsInitializedCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res>
     Object? discoverMonthly = freezed,
     Object? discoverDaily = freezed,
   }) {
-    return _then(GoalsInitialized(
+    return _then(UserGoalsInitialized(
       discoverWeekly == freezed
           ? _value.discoverWeekly
           : discoverWeekly // ignore: cast_nullable_to_non_nullable
@@ -131,12 +134,12 @@ class _$GoalsInitializedCopyWithImpl<$Res> extends _$GoalsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$GoalsInitialized implements GoalsInitialized {
-  _$GoalsInitialized(
+class _$UserGoalsInitialized implements UserGoalsInitialized {
+  _$UserGoalsInitialized(
       this.discoverWeekly, this.discoverMonthly, this.discoverDaily);
 
-  factory _$GoalsInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$GoalsInitializedFromJson(json);
+  factory _$UserGoalsInitialized.fromJson(Map<String, dynamic> json) =>
+      _$$UserGoalsInitializedFromJson(json);
 
   @override
   final int discoverWeekly;
@@ -147,14 +150,14 @@ class _$GoalsInitialized implements GoalsInitialized {
 
   @override
   String toString() {
-    return 'Goals(discoverWeekly: $discoverWeekly, discoverMonthly: $discoverMonthly, discoverDaily: $discoverDaily)';
+    return 'UserGoals(discoverWeekly: $discoverWeekly, discoverMonthly: $discoverMonthly, discoverDaily: $discoverDaily)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is GoalsInitialized &&
+            other is UserGoalsInitialized &&
             (identical(other.discoverWeekly, discoverWeekly) ||
                 other.discoverWeekly == discoverWeekly) &&
             (identical(other.discoverMonthly, discoverMonthly) ||
@@ -169,22 +172,23 @@ class _$GoalsInitialized implements GoalsInitialized {
 
   @JsonKey(ignore: true)
   @override
-  $GoalsInitializedCopyWith<GoalsInitialized> get copyWith =>
-      _$GoalsInitializedCopyWithImpl<GoalsInitialized>(this, _$identity);
+  $UserGoalsInitializedCopyWith<UserGoalsInitialized> get copyWith =>
+      _$UserGoalsInitializedCopyWithImpl<UserGoalsInitialized>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GoalsInitializedToJson(this);
+    return _$$UserGoalsInitializedToJson(this);
   }
 }
 
-abstract class GoalsInitialized implements Goals {
-  factory GoalsInitialized(
+abstract class UserGoalsInitialized implements UserGoals {
+  factory UserGoalsInitialized(
           int discoverWeekly, int discoverMonthly, int discoverDaily) =
-      _$GoalsInitialized;
+      _$UserGoalsInitialized;
 
-  factory GoalsInitialized.fromJson(Map<String, dynamic> json) =
-      _$GoalsInitialized.fromJson;
+  factory UserGoalsInitialized.fromJson(Map<String, dynamic> json) =
+      _$UserGoalsInitialized.fromJson;
 
   @override
   int get discoverWeekly;
@@ -194,6 +198,6 @@ abstract class GoalsInitialized implements Goals {
   int get discoverDaily;
   @override
   @JsonKey(ignore: true)
-  $GoalsInitializedCopyWith<GoalsInitialized> get copyWith =>
+  $UserGoalsInitializedCopyWith<UserGoalsInitialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

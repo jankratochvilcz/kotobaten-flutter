@@ -5,19 +5,22 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/impression_type.dart';
-import 'package:kotobaten/models/user/statistics.dart';
-import 'package:kotobaten/models/user/user.dart';
+import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
-import 'package:kotobaten/services/repositories/user_repository.dart';
 import 'package:kotobaten/views/screens/practice.model.dart';
 
 enum ImpressionViewType { hidden, revealed, discover, none }
 
+final practiceViewModelProvider =
+    StateNotifierProvider<PracticeViewModel, PracticeModel>((ref) =>
+        PracticeViewModel(ref.watch(kotobatenApiServiceProvider),
+            ref.watch(userServiceProvider)));
+
 class PracticeViewModel extends StateNotifier<PracticeModel> {
   final KotobatenApiService _apiService;
-  final UserRepository _userRepository;
+  final UserService _userService;
 
-  PracticeViewModel(this._apiService, this._userRepository)
+  PracticeViewModel(this._apiService, this._userService)
       : super(const PracticeModel.initial()) {
     addListener((state) {
       if (state is InProgress) {
@@ -71,8 +74,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         remainingImpressions: currentState.remainingImpressions.sublist(1),
         currentImpression: currentState.remainingImpressions.first);
 
-    unawaited(saveStatistics(await _apiService.postImpression(
-        currentState.currentImpression, true)));
+    _userService.updateStatistics(
+        await _apiService.postImpression(currentState.currentImpression, true));
   }
 
   Future evaluateWrong() async {
@@ -99,18 +102,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
         remainingImpressions: nextRemainingImpressions,
         currentImpression: nextCurrentImpression);
 
-    unawaited(saveStatistics(await _apiService.postImpression(
-        currentState.currentImpression, false)));
-  }
-
-  Future saveStatistics(Statistics stats) async {
-    final user = _userRepository.get();
-
-    if (user is! InitializedUser) {
-      return;
-    }
-
-    await _userRepository.set(user.copyWith(stats: stats));
+    _userService.updateStatistics(await _apiService.postImpression(
+        currentState.currentImpression, false));
   }
 
   String? getSpeechToPlay() {

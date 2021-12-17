@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
-import 'package:kotobaten/models/card.dart' as card_model;
+import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -10,10 +10,11 @@ import 'package:kotobaten/views/organisms/word_add.dart';
 const minimumCardHeight = 80.0;
 
 class WordCard extends StatelessWidget {
-  final card_model.CardInitialized card;
-  final Future<bool> Function(card_model.CardInitialized card) onDelete;
-  final Future<card_model.CardInitialized> Function(
-      card_model.CardInitialized card) onEdit;
+  final card_entity.CardInitialized card;
+  final Future<card_entity.CardInitialized> Function(
+      card_entity.CardInitialized card) onDelete;
+  final Future<card_entity.CardInitialized> Function(
+      card_entity.CardInitialized card) onEdit;
 
   const WordCard(this.card, this.onDelete, this.onEdit, {Key? key})
       : super(key: key);
@@ -86,10 +87,12 @@ class WordCard extends StatelessWidget {
                                         title: const Text('Edit word'),
                                         onTap: () => showWordAddBottomSheet(
                                             context, (word) async {
-                                          await onEdit(word
-                                              as card_model.CardInitialized);
+                                          final result = await onEdit(word
+                                              as card_entity.CardInitialized);
                                           Navigator.of(context).pop();
                                           Navigator.of(context).pop();
+
+                                          return result;
                                         }, existingWord: card),
                                       ),
                                       ListTile(

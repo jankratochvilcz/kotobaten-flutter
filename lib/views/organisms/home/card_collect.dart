@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/extensions/datetime.dart';
-import 'package:kotobaten/models/card.dart' as card_model;
-import 'package:kotobaten/models/user/user.dart';
+import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
+import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/models/slices/user/user_model.dart';
+import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
+import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
 
-class CardCollect extends StatelessWidget {
-  final InitializedUser user;
-
-  final Future<card_model.Card?> Function(card_model.Card data) _onWordSubmit;
-
-  const CardCollect(this.user, this._onWordSubmit, {Key? key})
-      : super(key: key);
+class CardCollect extends ConsumerWidget {
+  const CardCollect({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userModel = ref.watch(userRepositoryProvider);
+    final cardsService = ref.watch(cardsServiceProvider);
+
+    if (userModel is! UserModelInitialized) {
+      return const Empty();
+    }
+
     return Headed(
         Column(children: [
           DescriptionRichText(
@@ -27,17 +33,17 @@ class CardCollect extends StatelessWidget {
               const TextSpan(text: 'You added '),
               TextSpan(
                   text:
-                      '${user.stats.addedWeek > 0 ? user.stats.addedWeek.toString() : 'no'} words',
+                      '${userModel.user.stats.addedWeek > 0 ? userModel.user.stats.addedWeek.toString() : 'no'} words',
                   style: const TextStyle(fontWeight: FontWeight.bold)),
               const TextSpan(text: ' this week.')
             ],
           ),
-          if (user.stats.nextToDiscoverCreated != null)
+          if (userModel.user.stats.nextToDiscoverCreated != null)
             DescriptionRichText(
               [
                 const TextSpan(text: 'You\'re learning words from '),
                 TextSpan(
-                    text: user.stats.nextToDiscoverCreated
+                    text: userModel.user.stats.nextToDiscoverCreated
                         ?.getRelativeToNowString(DateTime.now()),
                     style: const TextStyle(fontWeight: FontWeight.bold)),
                 const TextSpan(text: '.')
@@ -53,8 +59,20 @@ class CardCollect extends StatelessWidget {
                   icon: Icons.inbox_outlined,
                   type: ButtonType.secondary,
                 ),
-                Button('Add word',
-                    () => showWordAddBottomSheet(context, _onWordSubmit),
+                Button(
+                    'Add word',
+                    () => showWordAddBottomSheet(context, (card) async {
+                          if (card is card_entity.CardNew) {
+                            return await cardsService.createCard(card);
+                          }
+
+                          if (card is card_entity.CardInitialized) {
+                            return await cardsService.editCard(card);
+                          }
+
+                          throw UnsupportedError(
+                              'Action only supported for new and initialized cards');
+                        }),
                     icon: Icons.move_to_inbox_outlined,
                     type: ButtonType.standard)
               ]))

@@ -7,7 +7,13 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/extensions/user.dart';
-import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/models/slices/auth/auth_model.dart';
+import 'package:kotobaten/models/slices/auth/auth_repository.dart';
+import 'package:kotobaten/models/slices/auth/auth_service.dart';
+import 'package:kotobaten/models/slices/user/user_model.dart';
+import 'package:kotobaten/models/slices/user/user_repository.dart';
+import 'package:kotobaten/models/slices/user/user_service.dart';
+import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/progress_infobox.dart';
@@ -15,16 +21,6 @@ import 'package:kotobaten/views/organisms/consistency_bar.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
 import 'package:kotobaten/views/organisms/goals_edit.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
-import 'package:kotobaten/views/organisms/profile.model.dart';
-import 'package:kotobaten/views/organisms/profile.viewmodel.dart';
-
-final _viewModelProvider =
-    StateNotifierProvider<ProfileViewModel, ProfileModel>((ref) =>
-        ProfileViewModel(
-            const ProfileModel.initial(),
-            ref.watch(authenticationServiceProvider),
-            ref.watch(userRepositoryProvider.notifier),
-            ref.watch(kotobatenApiServiceProvider)));
 
 showProfileBottomSheet(BuildContext context) => showModalBottomSheet(
     context: context,
@@ -36,23 +32,25 @@ class ProfileView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModel = ref.watch(_viewModelProvider.notifier);
-    final model = ref.watch(_viewModelProvider);
+    final authService = ref.read(authServiceProvider);
+    final userService = ref.read(userServiceProvider);
+    final authModel = ref.watch(authRepositoryProvider);
+    final userModel = ref.watch(userRepositoryProvider);
 
-    if (model is Initial) {
-      unawaited(Future.microtask(() => viewModel.initialize()));
+    if (authModel is AuthModelInitial) {
+      unawaited(Future.microtask(() => authService.initialize()));
     }
 
-    if (model is NotLoggedIn) {
+    if (authModel is AuthModelUnauthenticated) {
       Future.microtask(() async {
         await Navigator.pushNamedAndRemoveUntil(
             context, loginRoute, (route) => false);
-        viewModel.reset();
       });
     }
 
-    if (model is Initialized) {
-      final normalizedConsistency = model.user.getNormalizedConsistency();
+    if (authModel is AuthModelAuthenticated &&
+        userModel is UserModelInitialized) {
+      final normalizedConsistency = userModel.user.getNormalizedConsistency();
 
       return Padding(
           padding: horizontalPadding(PaddingType.standard),
@@ -62,10 +60,11 @@ class ProfileView extends HookConsumerWidget {
               Row(
                 children: [
                   Expanded(
-                      child: Heading(model.user.user.email, HeadingStyle.h3)),
+                      child:
+                          Heading(userModel.user.user.email, HeadingStyle.h3)),
                   Button(
                     'Log out',
-                    viewModel.logOut,
+                    authService.logout,
                     icon: Icons.logout,
                   )
                 ],
@@ -85,8 +84,10 @@ class ProfileView extends HookConsumerWidget {
                       Align(
                           alignment: Alignment.centerRight,
                           child: IconButton(
-                              onPressed: () => showGoalsEditDialog(context,
-                                  viewModel.updateGoals, model.user.goals),
+                              onPressed: () => showGoalsEditDialog(
+                                  context,
+                                  userService.updateGoals,
+                                  userModel.user.goals),
                               color: Colors.black26,
                               icon: const Icon(Icons.edit_outlined)))
                     ],
@@ -105,18 +106,18 @@ class ProfileView extends HookConsumerWidget {
                   ProgressInfobox(
                       'Today',
                       dailyProgressColor(context),
-                      model.user.goals.discoverDaily,
-                      model.user.stats.discoveredToday),
+                      userModel.user.goals.discoverDaily,
+                      userModel.user.stats.discoveredToday),
                   ProgressInfobox(
                       'Week',
                       weeklyProgressColor(context),
-                      model.user.goals.discoverWeekly,
-                      model.user.stats.discoveredWeek),
+                      userModel.user.goals.discoverWeekly,
+                      userModel.user.stats.discoveredWeek),
                   ProgressInfobox(
                       'Month',
                       monthlyProgressColor(context),
-                      model.user.goals.discoverMonthly,
-                      model.user.stats.discoveredMonth),
+                      userModel.user.goals.discoverMonthly,
+                      userModel.user.stats.discoveredMonth),
                 ],
               ),
               Padding(
@@ -128,9 +129,8 @@ class ProfileView extends HookConsumerWidget {
                   )),
               Padding(
                   padding: allPadding(PaddingType.large),
-                  child: const Heading(
+                  child: const Description(
                     'Practice every day to keep your active recollection optimal.',
-                    HeadingStyle.h3,
                     textAlign: TextAlign.center,
                   )),
               Padding(

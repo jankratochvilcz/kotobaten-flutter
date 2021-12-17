@@ -14,15 +14,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserCore _$UserCoreFromJson(Map<String, dynamic> json) {
-  return InitializedUser.fromJson(json);
+  return UserCoreInitialized.fromJson(json);
 }
 
 /// @nodoc
 class _$UserCoreTearOff {
   const _$UserCoreTearOff();
 
-  InitializedUser initialized(int id, String email) {
-    return InitializedUser(
+  UserCoreInitialized initialized(int id, String email) {
+    return UserCoreInitialized(
       id,
       email,
     );
@@ -59,17 +59,17 @@ mixin _$UserCore {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitializedUser value) initialized,
+    required TResult Function(UserCoreInitialized value) initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitializedUser value)? initialized,
+    TResult Function(UserCoreInitialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitializedUser value)? initialized,
+    TResult Function(UserCoreInitialized value)? initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,31 +113,32 @@ class _$UserCoreCopyWithImpl<$Res> implements $UserCoreCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $InitializedUserCopyWith<$Res>
+abstract class $UserCoreInitializedCopyWith<$Res>
     implements $UserCoreCopyWith<$Res> {
-  factory $InitializedUserCopyWith(
-          InitializedUser value, $Res Function(InitializedUser) then) =
-      _$InitializedUserCopyWithImpl<$Res>;
+  factory $UserCoreInitializedCopyWith(
+          UserCoreInitialized value, $Res Function(UserCoreInitialized) then) =
+      _$UserCoreInitializedCopyWithImpl<$Res>;
   @override
   $Res call({int id, String email});
 }
 
 /// @nodoc
-class _$InitializedUserCopyWithImpl<$Res> extends _$UserCoreCopyWithImpl<$Res>
-    implements $InitializedUserCopyWith<$Res> {
-  _$InitializedUserCopyWithImpl(
-      InitializedUser _value, $Res Function(InitializedUser) _then)
-      : super(_value, (v) => _then(v as InitializedUser));
+class _$UserCoreInitializedCopyWithImpl<$Res>
+    extends _$UserCoreCopyWithImpl<$Res>
+    implements $UserCoreInitializedCopyWith<$Res> {
+  _$UserCoreInitializedCopyWithImpl(
+      UserCoreInitialized _value, $Res Function(UserCoreInitialized) _then)
+      : super(_value, (v) => _then(v as UserCoreInitialized));
 
   @override
-  InitializedUser get _value => super._value as InitializedUser;
+  UserCoreInitialized get _value => super._value as UserCoreInitialized;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? email = freezed,
   }) {
-    return _then(InitializedUser(
+    return _then(UserCoreInitialized(
       id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -152,11 +153,11 @@ class _$InitializedUserCopyWithImpl<$Res> extends _$UserCoreCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$InitializedUser implements InitializedUser {
-  _$InitializedUser(this.id, this.email);
+class _$UserCoreInitialized implements UserCoreInitialized {
+  _$UserCoreInitialized(this.id, this.email);
 
-  factory _$InitializedUser.fromJson(Map<String, dynamic> json) =>
-      _$$InitializedUserFromJson(json);
+  factory _$UserCoreInitialized.fromJson(Map<String, dynamic> json) =>
+      _$$UserCoreInitializedFromJson(json);
 
   @override
   final int id;
@@ -172,7 +173,7 @@ class _$InitializedUser implements InitializedUser {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InitializedUser &&
+            other is UserCoreInitialized &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email));
   }
@@ -182,8 +183,8 @@ class _$InitializedUser implements InitializedUser {
 
   @JsonKey(ignore: true)
   @override
-  $InitializedUserCopyWith<InitializedUser> get copyWith =>
-      _$InitializedUserCopyWithImpl<InitializedUser>(this, _$identity);
+  $UserCoreInitializedCopyWith<UserCoreInitialized> get copyWith =>
+      _$UserCoreInitializedCopyWithImpl<UserCoreInitialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -216,7 +217,7 @@ class _$InitializedUser implements InitializedUser {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitializedUser value) initialized,
+    required TResult Function(UserCoreInitialized value) initialized,
   }) {
     return initialized(this);
   }
@@ -224,7 +225,7 @@ class _$InitializedUser implements InitializedUser {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitializedUser value)? initialized,
+    TResult Function(UserCoreInitialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -232,7 +233,7 @@ class _$InitializedUser implements InitializedUser {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitializedUser value)? initialized,
+    TResult Function(UserCoreInitialized value)? initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
@@ -243,15 +244,15 @@ class _$InitializedUser implements InitializedUser {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedUserToJson(this);
+    return _$$UserCoreInitializedToJson(this);
   }
 }
 
-abstract class InitializedUser implements UserCore {
-  factory InitializedUser(int id, String email) = _$InitializedUser;
+abstract class UserCoreInitialized implements UserCore {
+  factory UserCoreInitialized(int id, String email) = _$UserCoreInitialized;
 
-  factory InitializedUser.fromJson(Map<String, dynamic> json) =
-      _$InitializedUser.fromJson;
+  factory UserCoreInitialized.fromJson(Map<String, dynamic> json) =
+      _$UserCoreInitialized.fromJson;
 
   @override
   int get id;
@@ -259,6 +260,6 @@ abstract class InitializedUser implements UserCore {
   String get email;
   @override
   @JsonKey(ignore: true)
-  $InitializedUserCopyWith<InitializedUser> get copyWith =>
+  $UserCoreInitializedCopyWith<UserCoreInitialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

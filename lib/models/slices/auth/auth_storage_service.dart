@@ -1,6 +1,10 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthenticationService {
+final authStorageServiceProvider =
+    Provider<AuthStorageService>((ref) => AuthStorageService());
+
+class AuthStorageService {
   static const _tokenKey = 'AuthenticationToken';
 
   Future<String?> getToken() async {

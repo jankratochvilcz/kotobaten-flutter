@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
-import 'package:kotobaten/models/card.dart' as card_model;
+import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/views/molecules/button.dart';
 
 const _hintTextStyle = TextStyle(color: Colors.black12);
 
-showWordAddBottomSheet(BuildContext context,
-        Future<card_model.Card?> Function(card_model.Card card) onSubmit,
-        {card_model.CardInitialized? existingWord}) =>
+showWordAddBottomSheet(
+        BuildContext context,
+        Future<card_entity.CardInitialized> Function(card_entity.Card card)
+            onSubmit,
+        {card_entity.CardInitialized? existingWord}) =>
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -19,10 +21,6 @@ showWordAddBottomSheet(BuildContext context,
               (card) async {
                 final createdCard = await onSubmit(card);
 
-                if (createdCard == null) {
-                  return;
-                }
-
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Card for ${createdCard.sense} created.')));
@@ -31,8 +29,8 @@ showWordAddBottomSheet(BuildContext context,
             )));
 
 class WordAddForm extends StatefulWidget {
-  final void Function(card_model.Card card) _onSubmit;
-  final card_model.CardInitialized? existingWord;
+  final void Function(card_entity.Card card) _onSubmit;
+  final card_entity.CardInitialized? existingWord;
 
   const WordAddForm(this._onSubmit, {Key? key, this.existingWord})
       : super(key: key);
@@ -65,14 +63,14 @@ class _WordAddFormState extends State<WordAddForm> {
     onEditComplete() {
       if (_formKey.currentState!.validate()) {
         if (widget.existingWord?.id != null) {
-          widget._onSubmit(card_model.Card(
+          widget._onSubmit(card_entity.Card(
               widget.existingWord!.id,
               _senseController.text,
               _kanaController.text,
               _kanjiController.text,
               _noteController.text));
         } else {
-          widget._onSubmit(card_model.Card.newCard(
+          widget._onSubmit(card_entity.Card.newCard(
               _senseController.text,
               _kanaController.text,
               _kanjiController.text,

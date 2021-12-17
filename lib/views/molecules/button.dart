@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/app_configuration.dart';
-import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/services/app_configuration.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
 const smallButtonSize = 16.0;

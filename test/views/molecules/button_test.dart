@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/app_configuration.dart';
-import 'package:kotobaten/services/providers.dart';
+import 'package:kotobaten/services/app_configuration.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 
 void main() {

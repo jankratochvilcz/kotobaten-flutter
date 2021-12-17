@@ -1,5 +1,10 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:kotobaten/models/app_configuration.dart';
+import 'package:kotobaten/services/app_configuration.dart';
+
+final kotobatenClientProvider =
+    Provider((ref) => KotobatenClient(ref.watch(appConfigurationProvider)));
 
 class KotobatenClient extends BaseClient {
   final _httpClient = Client();

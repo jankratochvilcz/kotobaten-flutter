@@ -7,6 +7,7 @@ import 'package:kotobaten/models/slices/user/user_service.mocks.dart';
 import 'package:kotobaten/services/kotobaten_api.mocks.dart';
 import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 import 'package:mockito/mockito.dart';
+import 'package:tuple/tuple.dart';
 
 void main() {
   group("getProgress", () {
@@ -148,6 +149,51 @@ void main() {
 
       expect(actual, null);
     });
+  });
+
+  group('new impressions displayed correctly', () {
+    final List<Tuple4<Impression, String, String?, String?>> impressions = [
+      Tuple4(
+          Impression.initialized(
+              Card(0, 'sense', 'kana', 'kanji', null) as CardInitialized,
+              ImpressionType.discover,
+              null),
+          'sense',
+          'kana',
+          'kanji'),
+      Tuple4(
+          Impression.initialized(
+              Card(0, 'sense', 'kana', null, null) as CardInitialized,
+              ImpressionType.discover,
+              null),
+          'sense',
+          null,
+          'kana'),
+      Tuple4(
+          Impression.initialized(
+              Card(0, 'sense', null, 'kanji', null) as CardInitialized,
+              ImpressionType.discover,
+              null),
+          'sense',
+          null,
+          'kanji')
+    ];
+
+    for (var impression in impressions) {
+      test(
+          'sense: ${impression.item1.card.sense}, kana: ${impression.item1.card.kana}, kanji: ${impression.item1.card.kanji}',
+          () async {
+        final dependencies = getDependencies();
+        when(dependencies.apiService.getImpressions())
+            .thenAnswer((_) async => [impression.item1]);
+
+        await dependencies.target.initialize();
+
+        expect(dependencies.target.getPrimaryText(), impression.item4);
+        expect(dependencies.target.getFurigana(), impression.item3);
+        expect(dependencies.target.getSecondaryText(), impression.item2);
+      });
+    }
   });
 }
 

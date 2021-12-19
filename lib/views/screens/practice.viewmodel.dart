@@ -150,6 +150,13 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
           : currentState.currentImpression.card.kana ?? '';
     }
 
+    if (currentState.currentImpression.impressionType ==
+        ImpressionType.discover) {
+      return currentState.currentImpression.card.kanji ??
+          currentState.currentImpression.card.kana ??
+          '';
+    }
+
     return currentState.currentImpression.impressionType == ImpressionType.sense
         ? currentState.currentImpression.card.kana ??
             currentState.currentImpression.card.kanji ??
@@ -160,7 +167,10 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
   String? getFurigana() {
     final currentState = state;
-    if (currentState is! InProgress || !currentState.revealed) {
+    if ((currentState is! InProgress ||
+        (!currentState.revealed &&
+            currentState.currentImpression.impressionType !=
+                ImpressionType.discover))) {
       return null;
     }
 
@@ -171,7 +181,10 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
 
   String? getSecondaryText() {
     final currentState = state;
-    if (currentState is! InProgress || !currentState.revealed) {
+    if (currentState is! InProgress ||
+        (!currentState.revealed &&
+            currentState.currentImpression.impressionType !=
+                ImpressionType.discover)) {
       return null;
     }
 

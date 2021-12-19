@@ -2,62 +2,63 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/models/slices/practice/impression_view.dart';
+import 'package:kotobaten/models/slices/practice/practice_model.dart';
+import 'package:kotobaten/models/slices/practice/practice_repository.dart';
+import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
-import 'package:kotobaten/views/screens/practice.model.dart';
-import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModel = ref.watch(practiceViewModelProvider.notifier);
-    final model = ref.watch(practiceViewModelProvider);
+    final practiceService = ref.watch(practiceServiceProvider);
+    final model = ref.watch(practiceRepositoryProvider);
 
-    if (model is Initial) {
-      Future.microtask(() => viewModel.initialize());
+    if (model is PracticeModelInitial) {
+      Future.microtask(() => practiceService.initialize());
     }
 
-    if (model is Finished) {
+    if (model is PracticeModelFinished) {
       Future.microtask(() {
-        viewModel.reset();
         Navigator.pop(context);
       });
     }
 
     Widget? impressionView;
-    switch (viewModel.getImpressionViewType()) {
+    switch (practiceService.getImpressionViewType()) {
       case ImpressionViewType.hidden:
-        impressionView = ImpressionHidden(viewModel.getPrimaryText(),
-            viewModel.getHintText(), viewModel.reveal);
+        impressionView = ImpressionHidden(practiceService.getPrimaryText(),
+            practiceService.getHintText(), practiceService.reveal);
         break;
       case ImpressionViewType.revealed:
         impressionView = ImpressionRevealed(
-            viewModel.getPrimaryText(),
-            viewModel.getSecondaryText(),
-            viewModel.getFurigana(),
+            practiceService.getPrimaryText(),
+            practiceService.getSecondaryText(),
+            practiceService.getFurigana(),
             (correct) => correct
-                ? viewModel.evaluateCorrect()
-                : viewModel.evaluateWrong());
+                ? practiceService.evaluateCorrect()
+                : practiceService.evaluateWrong());
         break;
       case ImpressionViewType.discover:
         impressionView = ImpressionNew(
-            viewModel.getPrimaryText(),
-            viewModel.getSecondaryText(),
-            viewModel.getFurigana(),
-            viewModel.evaluateCorrect);
+            practiceService.getPrimaryText(),
+            practiceService.getSecondaryText(),
+            practiceService.getFurigana(),
+            practiceService.evaluateCorrect);
         break;
       default:
     }
 
-    if (model is InProgress) {
-      final speechPath = viewModel.getSpeechToPlay();
+    if (model is PracticeModelInProgress) {
+      final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null) {
         AudioPlayer().play(speechPath);
-        Future.microtask(viewModel.markSpeechAsPlayed);
+        Future.microtask(practiceService.markSpeechAsPlayed);
       }
 
       return Scaffold(
@@ -69,7 +70,7 @@ class PracticeView extends HookConsumerWidget {
               child: CircularProgressIndicator(
                 backgroundColor: Colors.black12,
                 strokeWidth: 2,
-                value: viewModel.getProgress(),
+                value: practiceService.getProgress(),
               )),
           if (impressionView != null) impressionView
         ],

@@ -1,22 +1,21 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kotobaten/models/impression.dart';
 
-part 'practice.model.freezed.dart';
+part 'practice_model.freezed.dart';
 
 @freezed
 class PracticeModel with _$PracticeModel {
   const PracticeModel._();
 
-  const factory PracticeModel.initial() = Initial;
-  const factory PracticeModel.loading() = Loading;
-  const factory PracticeModel.error(String error) = Error;
-  const factory PracticeModel.finished() = Finished;
+  const factory PracticeModel.initial() = PracticeModelInitial;
+  const factory PracticeModel.loading() = PracticeModelLoading;
+  const factory PracticeModel.error(String error) = PracticeModelError;
+  const factory PracticeModel.finished() = PracticeModelFinished;
 
   const factory PracticeModel.inProgress(
       List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
       bool revealed,
-      bool speechPlayed) = InProgress;
+      bool speechPlayed) = PracticeModelInProgress;
 }

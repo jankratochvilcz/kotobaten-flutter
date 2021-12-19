@@ -2,10 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/impression_type.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/practice/practice_repository.dart';
+import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/models/slices/user/user_service.mocks.dart';
 import 'package:kotobaten/services/kotobaten_api.mocks.dart';
-import 'package:kotobaten/views/screens/practice.viewmodel.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tuple/tuple.dart';
 
@@ -200,18 +201,23 @@ void main() {
 class PractiveViewModelTestDependencies {
   MockKotobatenApiService apiService;
   MockUserService userService;
-  PracticeViewModel target;
+  PracticeRepository practiceRepository;
+  PracticeService target;
 
   PractiveViewModelTestDependencies(
-      this.target, this.apiService, this.userService);
+      this.target, this.apiService, this.userService, this.practiceRepository);
 }
 
 PractiveViewModelTestDependencies getDependencies() {
   final apiService = MockKotobatenApiService();
   final userService = MockUserService();
+  final practiceRepository = PracticeRepository();
 
   return PractiveViewModelTestDependencies(
-      PracticeViewModel(apiService, userService), apiService, userService);
+      PracticeService(practiceRepository, apiService, userService),
+      apiService,
+      userService,
+      practiceRepository);
 }
 
 Iterable<Impression> getImpressions(int count,

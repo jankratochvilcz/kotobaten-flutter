@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'practice.model.dart';
+part of 'practice_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,31 +17,31 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PracticeModelTearOff {
   const _$PracticeModelTearOff();
 
-  Initial initial() {
-    return const Initial();
+  PracticeModelInitial initial() {
+    return const PracticeModelInitial();
   }
 
-  Loading loading() {
-    return const Loading();
+  PracticeModelLoading loading() {
+    return const PracticeModelLoading();
   }
 
-  Error error(String error) {
-    return Error(
+  PracticeModelError error(String error) {
+    return PracticeModelError(
       error,
     );
   }
 
-  Finished finished() {
-    return const Finished();
+  PracticeModelFinished finished() {
+    return const PracticeModelFinished();
   }
 
-  InProgress inProgress(
+  PracticeModelInProgress inProgress(
       List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
       bool revealed,
       bool speechPlayed) {
-    return InProgress(
+    return PracticeModelInProgress(
       allImpressions,
       remainingImpressions,
       currentImpression,
@@ -104,29 +104,29 @@ mixin _$PracticeModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,41 +150,38 @@ class _$PracticeModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $InitialCopyWith<$Res> {
-  factory $InitialCopyWith(Initial value, $Res Function(Initial) then) =
-      _$InitialCopyWithImpl<$Res>;
+abstract class $PracticeModelInitialCopyWith<$Res> {
+  factory $PracticeModelInitialCopyWith(PracticeModelInitial value,
+          $Res Function(PracticeModelInitial) then) =
+      _$PracticeModelInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
-    implements $InitialCopyWith<$Res> {
-  _$InitialCopyWithImpl(Initial _value, $Res Function(Initial) _then)
-      : super(_value, (v) => _then(v as Initial));
+class _$PracticeModelInitialCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res>
+    implements $PracticeModelInitialCopyWith<$Res> {
+  _$PracticeModelInitialCopyWithImpl(
+      PracticeModelInitial _value, $Res Function(PracticeModelInitial) _then)
+      : super(_value, (v) => _then(v as PracticeModelInitial));
 
   @override
-  Initial get _value => super._value as Initial;
+  PracticeModelInitial get _value => super._value as PracticeModelInitial;
 }
 
 /// @nodoc
 
-class _$Initial extends Initial with DiagnosticableTreeMixin {
-  const _$Initial() : super._();
+class _$PracticeModelInitial extends PracticeModelInitial {
+  const _$PracticeModelInitial() : super._();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PracticeModel.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'PracticeModel.initial'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Initial);
+        (other.runtimeType == runtimeType && other is PracticeModelInitial);
   }
 
   @override
@@ -251,11 +248,11 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) {
     return initial(this);
   }
@@ -263,11 +260,11 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) {
     return initial?.call(this);
   }
@@ -275,11 +272,11 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -289,47 +286,44 @@ class _$Initial extends Initial with DiagnosticableTreeMixin {
   }
 }
 
-abstract class Initial extends PracticeModel {
-  const factory Initial() = _$Initial;
-  const Initial._() : super._();
+abstract class PracticeModelInitial extends PracticeModel {
+  const factory PracticeModelInitial() = _$PracticeModelInitial;
+  const PracticeModelInitial._() : super._();
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<$Res> {
-  factory $LoadingCopyWith(Loading value, $Res Function(Loading) then) =
-      _$LoadingCopyWithImpl<$Res>;
+abstract class $PracticeModelLoadingCopyWith<$Res> {
+  factory $PracticeModelLoadingCopyWith(PracticeModelLoading value,
+          $Res Function(PracticeModelLoading) then) =
+      _$PracticeModelLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
-    implements $LoadingCopyWith<$Res> {
-  _$LoadingCopyWithImpl(Loading _value, $Res Function(Loading) _then)
-      : super(_value, (v) => _then(v as Loading));
+class _$PracticeModelLoadingCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res>
+    implements $PracticeModelLoadingCopyWith<$Res> {
+  _$PracticeModelLoadingCopyWithImpl(
+      PracticeModelLoading _value, $Res Function(PracticeModelLoading) _then)
+      : super(_value, (v) => _then(v as PracticeModelLoading));
 
   @override
-  Loading get _value => super._value as Loading;
+  PracticeModelLoading get _value => super._value as PracticeModelLoading;
 }
 
 /// @nodoc
 
-class _$Loading extends Loading with DiagnosticableTreeMixin {
-  const _$Loading() : super._();
+class _$PracticeModelLoading extends PracticeModelLoading {
+  const _$PracticeModelLoading() : super._();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PracticeModel.loading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'PracticeModel.loading'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Loading);
+        (other.runtimeType == runtimeType && other is PracticeModelLoading);
   }
 
   @override
@@ -396,11 +390,11 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) {
     return loading(this);
   }
@@ -408,11 +402,11 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) {
     return loading?.call(this);
   }
@@ -420,11 +414,11 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -434,32 +428,35 @@ class _$Loading extends Loading with DiagnosticableTreeMixin {
   }
 }
 
-abstract class Loading extends PracticeModel {
-  const factory Loading() = _$Loading;
-  const Loading._() : super._();
+abstract class PracticeModelLoading extends PracticeModel {
+  const factory PracticeModelLoading() = _$PracticeModelLoading;
+  const PracticeModelLoading._() : super._();
 }
 
 /// @nodoc
-abstract class $ErrorCopyWith<$Res> {
-  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
-      _$ErrorCopyWithImpl<$Res>;
+abstract class $PracticeModelErrorCopyWith<$Res> {
+  factory $PracticeModelErrorCopyWith(
+          PracticeModelError value, $Res Function(PracticeModelError) then) =
+      _$PracticeModelErrorCopyWithImpl<$Res>;
   $Res call({String error});
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
-    implements $ErrorCopyWith<$Res> {
-  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
-      : super(_value, (v) => _then(v as Error));
+class _$PracticeModelErrorCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res>
+    implements $PracticeModelErrorCopyWith<$Res> {
+  _$PracticeModelErrorCopyWithImpl(
+      PracticeModelError _value, $Res Function(PracticeModelError) _then)
+      : super(_value, (v) => _then(v as PracticeModelError));
 
   @override
-  Error get _value => super._value as Error;
+  PracticeModelError get _value => super._value as PracticeModelError;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(Error(
+    return _then(PracticeModelError(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -470,30 +467,22 @@ class _$ErrorCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error extends Error with DiagnosticableTreeMixin {
-  const _$Error(this.error) : super._();
+class _$PracticeModelError extends PracticeModelError {
+  const _$PracticeModelError(this.error) : super._();
 
   @override
   final String error;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PracticeModel.error(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'PracticeModel.error'))
-      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Error &&
+            other is PracticeModelError &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -502,8 +491,8 @@ class _$Error extends Error with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  $ErrorCopyWith<Error> get copyWith =>
-      _$ErrorCopyWithImpl<Error>(this, _$identity);
+  $PracticeModelErrorCopyWith<PracticeModelError> get copyWith =>
+      _$PracticeModelErrorCopyWithImpl<PracticeModelError>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -566,11 +555,11 @@ class _$Error extends Error with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) {
     return error(this);
   }
@@ -578,11 +567,11 @@ class _$Error extends Error with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) {
     return error?.call(this);
   }
@@ -590,11 +579,11 @@ class _$Error extends Error with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -604,51 +593,49 @@ class _$Error extends Error with DiagnosticableTreeMixin {
   }
 }
 
-abstract class Error extends PracticeModel {
-  const factory Error(String error) = _$Error;
-  const Error._() : super._();
+abstract class PracticeModelError extends PracticeModel {
+  const factory PracticeModelError(String error) = _$PracticeModelError;
+  const PracticeModelError._() : super._();
 
   String get error;
   @JsonKey(ignore: true)
-  $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
+  $PracticeModelErrorCopyWith<PracticeModelError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FinishedCopyWith<$Res> {
-  factory $FinishedCopyWith(Finished value, $Res Function(Finished) then) =
-      _$FinishedCopyWithImpl<$Res>;
+abstract class $PracticeModelFinishedCopyWith<$Res> {
+  factory $PracticeModelFinishedCopyWith(PracticeModelFinished value,
+          $Res Function(PracticeModelFinished) then) =
+      _$PracticeModelFinishedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$FinishedCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
-    implements $FinishedCopyWith<$Res> {
-  _$FinishedCopyWithImpl(Finished _value, $Res Function(Finished) _then)
-      : super(_value, (v) => _then(v as Finished));
+class _$PracticeModelFinishedCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res>
+    implements $PracticeModelFinishedCopyWith<$Res> {
+  _$PracticeModelFinishedCopyWithImpl(
+      PracticeModelFinished _value, $Res Function(PracticeModelFinished) _then)
+      : super(_value, (v) => _then(v as PracticeModelFinished));
 
   @override
-  Finished get _value => super._value as Finished;
+  PracticeModelFinished get _value => super._value as PracticeModelFinished;
 }
 
 /// @nodoc
 
-class _$Finished extends Finished with DiagnosticableTreeMixin {
-  const _$Finished() : super._();
+class _$PracticeModelFinished extends PracticeModelFinished {
+  const _$PracticeModelFinished() : super._();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PracticeModel.finished()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'PracticeModel.finished'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Finished);
+        (other.runtimeType == runtimeType && other is PracticeModelFinished);
   }
 
   @override
@@ -715,11 +702,11 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) {
     return finished(this);
   }
@@ -727,11 +714,11 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) {
     return finished?.call(this);
   }
@@ -739,11 +726,11 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) {
     if (finished != null) {
@@ -753,16 +740,16 @@ class _$Finished extends Finished with DiagnosticableTreeMixin {
   }
 }
 
-abstract class Finished extends PracticeModel {
-  const factory Finished() = _$Finished;
-  const Finished._() : super._();
+abstract class PracticeModelFinished extends PracticeModel {
+  const factory PracticeModelFinished() = _$PracticeModelFinished;
+  const PracticeModelFinished._() : super._();
 }
 
 /// @nodoc
-abstract class $InProgressCopyWith<$Res> {
-  factory $InProgressCopyWith(
-          InProgress value, $Res Function(InProgress) then) =
-      _$InProgressCopyWithImpl<$Res>;
+abstract class $PracticeModelInProgressCopyWith<$Res> {
+  factory $PracticeModelInProgressCopyWith(PracticeModelInProgress value,
+          $Res Function(PracticeModelInProgress) then) =
+      _$PracticeModelInProgressCopyWithImpl<$Res>;
   $Res call(
       {List<Impression> allImpressions,
       List<Impression> remainingImpressions,
@@ -774,13 +761,15 @@ abstract class $InProgressCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
-    implements $InProgressCopyWith<$Res> {
-  _$InProgressCopyWithImpl(InProgress _value, $Res Function(InProgress) _then)
-      : super(_value, (v) => _then(v as InProgress));
+class _$PracticeModelInProgressCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res>
+    implements $PracticeModelInProgressCopyWith<$Res> {
+  _$PracticeModelInProgressCopyWithImpl(PracticeModelInProgress _value,
+      $Res Function(PracticeModelInProgress) _then)
+      : super(_value, (v) => _then(v as PracticeModelInProgress));
 
   @override
-  InProgress get _value => super._value as InProgress;
+  PracticeModelInProgress get _value => super._value as PracticeModelInProgress;
 
   @override
   $Res call({
@@ -790,7 +779,7 @@ class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
     Object? revealed = freezed,
     Object? speechPlayed = freezed,
   }) {
-    return _then(InProgress(
+    return _then(PracticeModelInProgress(
       allImpressions == freezed
           ? _value.allImpressions
           : allImpressions // ignore: cast_nullable_to_non_nullable
@@ -824,9 +813,13 @@ class _$InProgressCopyWithImpl<$Res> extends _$PracticeModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InProgress extends InProgress with DiagnosticableTreeMixin {
-  const _$InProgress(this.allImpressions, this.remainingImpressions,
-      this.currentImpression, this.revealed, this.speechPlayed)
+class _$PracticeModelInProgress extends PracticeModelInProgress {
+  const _$PracticeModelInProgress(
+      this.allImpressions,
+      this.remainingImpressions,
+      this.currentImpression,
+      this.revealed,
+      this.speechPlayed)
       : super._();
 
   @override
@@ -841,27 +834,15 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   final bool speechPlayed;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PracticeModel.inProgress(allImpressions: $allImpressions, remainingImpressions: $remainingImpressions, currentImpression: $currentImpression, revealed: $revealed, speechPlayed: $speechPlayed)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'PracticeModel.inProgress'))
-      ..add(DiagnosticsProperty('allImpressions', allImpressions))
-      ..add(DiagnosticsProperty('remainingImpressions', remainingImpressions))
-      ..add(DiagnosticsProperty('currentImpression', currentImpression))
-      ..add(DiagnosticsProperty('revealed', revealed))
-      ..add(DiagnosticsProperty('speechPlayed', speechPlayed));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InProgress &&
+            other is PracticeModelInProgress &&
             const DeepCollectionEquality()
                 .equals(other.allImpressions, allImpressions) &&
             const DeepCollectionEquality()
@@ -885,8 +866,9 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  $InProgressCopyWith<InProgress> get copyWith =>
-      _$InProgressCopyWithImpl<InProgress>(this, _$identity);
+  $PracticeModelInProgressCopyWith<PracticeModelInProgress> get copyWith =>
+      _$PracticeModelInProgressCopyWithImpl<PracticeModelInProgress>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -952,11 +934,11 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Initial value) initial,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
-    required TResult Function(Finished value) finished,
-    required TResult Function(InProgress value) inProgress,
+    required TResult Function(PracticeModelInitial value) initial,
+    required TResult Function(PracticeModelLoading value) loading,
+    required TResult Function(PracticeModelError value) error,
+    required TResult Function(PracticeModelFinished value) finished,
+    required TResult Function(PracticeModelInProgress value) inProgress,
   }) {
     return inProgress(this);
   }
@@ -964,11 +946,11 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
   }) {
     return inProgress?.call(this);
   }
@@ -976,11 +958,11 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Initial value)? initial,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
-    TResult Function(Finished value)? finished,
-    TResult Function(InProgress value)? inProgress,
+    TResult Function(PracticeModelInitial value)? initial,
+    TResult Function(PracticeModelLoading value)? loading,
+    TResult Function(PracticeModelError value)? error,
+    TResult Function(PracticeModelFinished value)? finished,
+    TResult Function(PracticeModelInProgress value)? inProgress,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
@@ -990,14 +972,14 @@ class _$InProgress extends InProgress with DiagnosticableTreeMixin {
   }
 }
 
-abstract class InProgress extends PracticeModel {
-  const factory InProgress(
+abstract class PracticeModelInProgress extends PracticeModel {
+  const factory PracticeModelInProgress(
       List<Impression> allImpressions,
       List<Impression> remainingImpressions,
       Impression currentImpression,
       bool revealed,
-      bool speechPlayed) = _$InProgress;
-  const InProgress._() : super._();
+      bool speechPlayed) = _$PracticeModelInProgress;
+  const PracticeModelInProgress._() : super._();
 
   List<Impression> get allImpressions;
   List<Impression> get remainingImpressions;
@@ -1005,6 +987,6 @@ abstract class InProgress extends PracticeModel {
   bool get revealed;
   bool get speechPlayed;
   @JsonKey(ignore: true)
-  $InProgressCopyWith<InProgress> get copyWith =>
+  $PracticeModelInProgressCopyWith<PracticeModelInProgress> get copyWith =>
       throw _privateConstructorUsedError;
 }

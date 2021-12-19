@@ -6,6 +6,7 @@ import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_service.dart';
+import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
@@ -24,10 +25,14 @@ class HomeView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authModel = ref.watch(authRepositoryProvider);
     final userModel = ref.watch(userRepositoryProvider);
-    final authService = ref.watch(authServiceProvider);
-    final userService = ref.watch(userServiceProvider);
+    final authService = ref.read(authServiceProvider);
+    final userService = ref.read(userServiceProvider);
+    final practiceService = ref.read(practiceServiceProvider);
 
-    goToPractice() => Navigator.pushNamed(context, practiceRoute);
+    goToPractice() async {
+      await practiceService.initialize();
+      await Navigator.pushNamed(context, practiceRoute);
+    }
 
     if (authModel is AuthModelInitial) {
       Future.microtask(() async {

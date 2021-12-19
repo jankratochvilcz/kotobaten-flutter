@@ -1,91 +1,80 @@
-import 'dart:async';
-import 'dart:developer' as developer;
-
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/impression.dart';
 import 'package:kotobaten/models/impression_type.dart';
+import 'package:kotobaten/models/slices/practice/impression_view.dart';
+import 'package:kotobaten/models/slices/practice/practice_model.dart';
+import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
-import 'package:kotobaten/views/screens/practice.model.dart';
 
-enum ImpressionViewType { hidden, revealed, discover, none }
+final practiceServiceProvider = Provider<PracticeService>((ref) =>
+    PracticeService(
+        ref.watch(practiceRepositoryProvider.notifier),
+        ref.watch(kotobatenApiServiceProvider),
+        ref.watch(userServiceProvider)));
 
-final practiceViewModelProvider =
-    StateNotifierProvider<PracticeViewModel, PracticeModel>((ref) =>
-        PracticeViewModel(ref.watch(kotobatenApiServiceProvider),
-            ref.watch(userServiceProvider)));
+class PracticeService {
+  final PracticeRepository repository;
+  final KotobatenApiService apiService;
+  final UserService userService;
 
-class PracticeViewModel extends StateNotifier<PracticeModel> {
-  final KotobatenApiService _apiService;
-  final UserService _userService;
-
-  PracticeViewModel(this._apiService, this._userService)
-      : super(const PracticeModel.initial()) {
-    addListener((state) {
-      if (state is InProgress) {
-        developer.log(
-            state.remainingImpressions.isNotEmpty
-                ? state.remainingImpressions
-                    .map((x) =>
-                        '${x.impressionType.toString().substring(15, 16)}-${x.card.sense}')
-                    .reduce((a, b) => '$a,$b')
-                : 'empty',
-            name: 'practicemodel-changed');
-      }
-    });
-  }
-
-  void reset() {
-    state = const PracticeModel.initial();
-  }
+  PracticeService(this.repository, this.apiService, this.userService);
 
   Future initialize() async {
-    state = const PracticeModel.loading();
+    final currentState = repository.current;
 
-    final impressions = await _apiService.getImpressions();
-    state = PracticeModel.inProgress(
-        impressions, impressions.sublist(1), impressions.first, false, false);
-  }
-
-  void reveal() {
-    final currentState = state;
-    if (currentState is! InProgress) {
-      throw const Error('Cannot reveal when not in in-progress state');
-    }
-
-    state = currentState.copyWith(revealed: true);
-  }
-
-  Future evaluateCorrect() async {
-    final currentState = state;
-    if (currentState is! InProgress) {
-      throw const Error('Cannot evaluate while not in-progress');
-    }
-
-    if (currentState.remainingImpressions.isEmpty) {
-      state = const PracticeModel.finished();
+    if (currentState is PracticeModelInProgress) {
       return;
     }
 
-    state = currentState.copyWith(
-        revealed: false,
-        speechPlayed: false,
-        remainingImpressions: currentState.remainingImpressions.sublist(1),
-        currentImpression: currentState.remainingImpressions.first);
+    repository.update(const PracticeModel.loading());
 
-    _userService.updateStatistics(
-        await _apiService.postImpression(currentState.currentImpression, true));
+    final impressions = await apiService.getImpressions();
+
+    repository.update(PracticeModel.inProgress(
+        impressions, impressions.sublist(1), impressions.first, false, false));
   }
 
-  Future evaluateWrong() async {
-    final currentState = state;
-    if (currentState is! InProgress) {
-      throw const Error('Cannot evaluate while not in-progress');
+  void reveal() {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress) {
+      throw ErrorDescription('Cannot reveal when not in in-progress state');
+    }
+
+    repository.update(currentState.copyWith(revealed: true));
+  }
+
+  Future evaluateCorrect() async {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress) {
+      throw ErrorDescription('Cannot evaluate while not in-progress');
     }
 
     if (currentState.remainingImpressions.isEmpty) {
-      state = currentState.copyWith(revealed: false);
+      repository.update(const PracticeModel.finished());
+      return;
+    }
+
+    repository.update(currentState.copyWith(
+        revealed: false,
+        speechPlayed: false,
+        remainingImpressions: currentState.remainingImpressions.sublist(1),
+        currentImpression: currentState.remainingImpressions.first));
+
+    userService.updateStatistics(
+        await apiService.postImpression(currentState.currentImpression, true));
+  }
+
+  Future evaluateWrong() async {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress) {
+      throw ErrorDescription('Cannot evaluate while not in-progress');
+    }
+
+    if (currentState.remainingImpressions.isEmpty) {
+      repository.update(currentState.copyWith(revealed: false));
       return;
     }
 
@@ -96,19 +85,19 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
     final nextCurrentImpression = nextImpressions.first;
     final nextRemainingImpressions = nextImpressions.sublist(1);
 
-    state = currentState.copyWith(
+    repository.update(currentState.copyWith(
         revealed: false,
         speechPlayed: false,
         remainingImpressions: nextRemainingImpressions,
-        currentImpression: nextCurrentImpression);
+        currentImpression: nextCurrentImpression));
 
-    _userService.updateStatistics(await _apiService.postImpression(
-        currentState.currentImpression, false));
+    userService.updateStatistics(
+        await apiService.postImpression(currentState.currentImpression, false));
   }
 
   String? getSpeechToPlay() {
-    final currentState = state;
-    return currentState is InProgress &&
+    final currentState = repository.current;
+    return currentState is PracticeModelInProgress &&
             !currentState.speechPlayed &&
             currentState.currentImpression.speechPath != null &&
             currentState.currentImpression.impressionType != ImpressionType.kana
@@ -117,16 +106,16 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   markSpeechAsPlayed() {
-    final currentState = state;
-    if (currentState is InProgress) {
-      state = currentState.copyWith(speechPlayed: true);
+    final currentState = repository.current;
+    if (currentState is PracticeModelInProgress) {
+      repository.update(currentState.copyWith(speechPlayed: true));
     }
   }
 
   ImpressionViewType getImpressionViewType() {
-    final currentState = state;
+    final currentState = repository.current;
 
-    if (currentState is! InProgress) {
+    if (currentState is! PracticeModelInProgress) {
       return ImpressionViewType.none;
     }
 
@@ -139,8 +128,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   String getPrimaryText() {
-    final currentState = state;
-    if (currentState is! InProgress) {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress) {
       return '';
     }
 
@@ -166,8 +155,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   String? getFurigana() {
-    final currentState = state;
-    if ((currentState is! InProgress ||
+    final currentState = repository.current;
+    if ((currentState is! PracticeModelInProgress ||
         (!currentState.revealed &&
             currentState.currentImpression.impressionType !=
                 ImpressionType.discover))) {
@@ -180,8 +169,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   String? getSecondaryText() {
-    final currentState = state;
-    if (currentState is! InProgress ||
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress ||
         (!currentState.revealed &&
             currentState.currentImpression.impressionType !=
                 ImpressionType.discover)) {
@@ -192,8 +181,8 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   String getHintText() {
-    final currentState = state;
-    if (currentState is! InProgress) {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress) {
       return '';
     }
 
@@ -203,9 +192,9 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   double getProgress() {
-    final currentState = state;
+    final currentState = repository.current;
 
-    if (currentState is! InProgress) {
+    if (currentState is! PracticeModelInProgress) {
       return 0;
     }
 
@@ -218,8 +207,9 @@ class PracticeViewModel extends StateNotifier<PracticeModel> {
   }
 
   List<Impression> getCurrentAndRemainingImpressions() {
-    final currentState = state;
-    return currentState is InProgress
+    final currentState = repository.current;
+
+    return currentState is PracticeModelInProgress
         ? [currentState.currentImpression, ...currentState.remainingImpressions]
         : <Impression>[];
   }

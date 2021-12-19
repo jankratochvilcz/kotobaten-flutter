@@ -40,6 +40,8 @@ dependencies:
   json_annotation: ^4.3.0
   pull_to_refresh: ^2.0.0
   audioplayers: ^0.20.1
+  url_launcher: ^6.0.17
+  collection: ^1.15.0
 
   http: ^0.13.4
 
@@ -78,6 +80,7 @@ flutter:
   assets:
     - assets/logos/square_gray.png
     - assets/logos/logo_wide_white.png
+    - assets/logos/logo_wide_color.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

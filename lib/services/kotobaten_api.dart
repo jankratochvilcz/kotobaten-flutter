@@ -61,6 +61,32 @@ class KotobatenApiService {
     }
   }
 
+  Future<Tuple2<bool, String>> signupAndLogin(
+      String username, String password) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'auth/signup');
+
+    try {
+      final loginResponse = await _kotobatenClient.post(url,
+          body: json.encode({'email': username, 'password': password}),
+          headers: Map.fromEntries([contentTypeJsonHeader]));
+
+      final body = utf8.decode(loginResponse.bodyBytes);
+
+      if (loginResponse.statusCode >= 400) {
+        return Tuple2(
+            false,
+            body.isNotEmpty
+                ? body
+                : loginResponse.reasonPhrase ??
+                    loginResponse.statusCode.toString());
+      }
+
+      return login(username, password);
+    } on ClientException catch (e) {
+      return Tuple2(false, e.message);
+    }
+  }
+
   Future<UserInitialized> getUser(
           {bool updateRetentionBackstop = false}) async =>
       UserInitialized.fromJson(await _getAuthenticated('user',

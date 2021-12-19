@@ -32,10 +32,13 @@ class AuthService {
     return result;
   }
 
-  Future<AuthModel> login(String email, String password) async {
+  Future<AuthModel> login(String email, String password,
+      {bool createAccount = false}) async {
     authRepository.update(AuthModel.authenticating());
 
-    final result = await apiService.login(email, password);
+    final result = await (createAccount
+        ? apiService.signupAndLogin(email, password)
+        : apiService.login(email, password));
 
     if (!result.item1) {
       final error = AuthModel.authenticationError(result.item2);
@@ -52,11 +55,12 @@ class AuthService {
     return authRepository.current;
   }
 
-  void logout() {
+  Future logout() async {
     if (authRepository.current is AuthModelUnauthenticated) {
       return;
     }
 
+    await authStorageService.deleteToken();
     authRepository.update(AuthModel.unauthenticated());
   }
 

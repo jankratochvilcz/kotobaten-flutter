@@ -3,6 +3,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/button_async.dart';
 
 const _hintTextStyle = TextStyle(color: Colors.black12);
 
@@ -29,7 +30,7 @@ showWordAddBottomSheet(
             )));
 
 class WordAddForm extends StatefulWidget {
-  final void Function(card_entity.Card card) _onSubmit;
+  final Future Function(card_entity.Card card) _onSubmit;
   final card_entity.CardInitialized? existingWord;
 
   const WordAddForm(this._onSubmit, {Key? key, this.existingWord})
@@ -60,17 +61,17 @@ class _WordAddFormState extends State<WordAddForm> {
 
   @override
   Widget build(BuildContext context) {
-    onEditComplete() {
+    onEditComplete() async {
       if (_formKey.currentState!.validate()) {
         if (widget.existingWord?.id != null) {
-          widget._onSubmit(card_entity.Card(
+          return widget._onSubmit(card_entity.Card(
               widget.existingWord!.id,
               _senseController.text,
               _kanaController.text,
               _kanjiController.text,
               _noteController.text));
         } else {
-          widget._onSubmit(card_entity.Card.newCard(
+          return widget._onSubmit(card_entity.Card.newCard(
               _senseController.text,
               _kanaController.text,
               _kanjiController.text,
@@ -156,7 +157,7 @@ class _WordAddFormState extends State<WordAddForm> {
                 SizedBox(height: getPadding(PaddingType.large)),
                 Align(
                     alignment: Alignment.centerRight,
-                    child: Button(
+                    child: ButtonAsync(
                       widget.existingWord != null ? 'Edit word' : 'Add word',
                       onEditComplete,
                       icon: widget.existingWord != null

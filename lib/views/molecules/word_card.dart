@@ -5,6 +5,7 @@ import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
 
 const minimumCardHeight = 80.0;
@@ -109,7 +110,7 @@ class WordCard extends StatelessWidget {
                                                   content: Text(
                                                       'Are you sure you want to delete "${card.sense}" from your collection?'),
                                                   actions: [
-                                                    Button(
+                                                    ButtonAsync(
                                                       'Yes',
                                                       () async {
                                                         await onDelete(card);

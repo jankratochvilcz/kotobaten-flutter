@@ -6,11 +6,12 @@ import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 
 class CardLearn extends StatelessWidget {
   final UserInitialized user;
-  final VoidCallback goToPractice;
+  final Future Function() goToPractice;
   final Future Function() updateBackstop;
 
   const CardLearn(this.user, this.goToPractice, this.updateBackstop, {Key? key})
@@ -44,7 +45,7 @@ class CardLearn extends StatelessWidget {
         ),
         Padding(
             padding: topPadding(PaddingType.large),
-            child: Button(
+            child: ButtonAsync(
               'Learn',
               () => user.stats.leftToPractice > 0 &&
                       user.stats.discoveredToday >= user.goals.discoverDaily
@@ -65,11 +66,11 @@ class CardLearn extends StatelessWidget {
                                         'Your next batch of practice words is scheduled for ${user.stats.backstopThresholdExpiryFormatted}. \n\nYou seem eager tho\'. We\'ll fast forward that for you. 💪',
                                         textAlign: TextAlign.center,
                                       )),
-                                  Button(
+                                  ButtonAsync(
                                     'Learn',
                                     () async {
                                       await updateBackstop();
-                                      goToPractice();
+                                      await goToPractice();
                                     },
                                     icon: Icons.bolt_outlined,
                                     size: ButtonSize.big,

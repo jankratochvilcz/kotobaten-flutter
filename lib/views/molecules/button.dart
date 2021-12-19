@@ -20,13 +20,14 @@ enum ButtonSize { small, standard, big }
 
 enum ButtonType { standard, primary, secondary }
 
-class Button extends HookConsumerWidget {
+class Button extends ConsumerWidget {
   final String label;
   final IconData? icon;
+  final Widget? iconWidget;
   final ButtonSize size;
   final ButtonType type;
   final Color? color;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String? shortcut;
 
   const Button(this.label, this.onPressed,
@@ -34,6 +35,7 @@ class Button extends HookConsumerWidget {
       this.icon,
       this.size = ButtonSize.standard,
       this.type = ButtonType.standard,
+      this.iconWidget,
       this.color,
       this.shortcut})
       : super(key: key);
@@ -61,11 +63,13 @@ class Button extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-                child: Icon(
-                  icon,
-                  size: size == ButtonSize.small ? smallButtonSize : null,
-                  color: type == ButtonType.secondary ? Colors.black54 : null,
-                ),
+                child: iconWidget ??
+                    Icon(
+                      icon,
+                      size: size == ButtonSize.small ? smallButtonSize : null,
+                      color:
+                          type == ButtonType.secondary ? Colors.black54 : null,
+                    ),
                 padding: label.isNotEmpty
                     ? rightPadding(PaddingType.small)
                     : EdgeInsets.zero),

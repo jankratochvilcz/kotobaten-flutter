@@ -15,7 +15,7 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
-import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/molecules/progress_infobox.dart';
 import 'package:kotobaten/views/organisms/consistency_bar.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
@@ -62,7 +62,7 @@ class ProfileView extends HookConsumerWidget {
                   Expanded(
                       child:
                           Heading(userModel.user.user.email, HeadingStyle.h3)),
-                  Button(
+                  ButtonAsync(
                     'Log out',
                     authService.logout,
                     icon: Icons.logout,

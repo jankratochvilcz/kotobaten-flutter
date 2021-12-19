@@ -4,9 +4,9 @@
 
 import 'dart:async' as _i9;
 
-import 'package:kotobaten/models/impression.dart' as _i10;
 import 'package:kotobaten/models/slices/auth/auth_repository.dart' as _i2;
 import 'package:kotobaten/models/slices/cards/card.dart' as _i6;
+import 'package:kotobaten/models/slices/practice/impression.dart' as _i10;
 import 'package:kotobaten/models/slices/user/user.dart' as _i4;
 import 'package:kotobaten/models/slices/user/user_goals.dart' as _i7;
 import 'package:kotobaten/models/slices/user/user_statistics.dart' as _i5;

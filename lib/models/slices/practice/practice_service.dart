@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
-import 'package:kotobaten/models/impression.dart';
-import 'package:kotobaten/models/impression_type.dart';
+import 'package:kotobaten/models/slices/practice/impression.dart';
+import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';

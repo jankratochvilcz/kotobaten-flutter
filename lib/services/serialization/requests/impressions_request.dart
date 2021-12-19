@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kotobaten/models/impression_type.dart';
+import 'package:kotobaten/models/slices/practice/impression_type.dart';
 
 part 'impressions_request.freezed.dart';
 part 'impressions_request.g.dart';

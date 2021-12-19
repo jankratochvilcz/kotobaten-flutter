@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kotobaten/models/impression.dart';
-import 'package:kotobaten/models/impression_type.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/practice/impression.dart';
+import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';

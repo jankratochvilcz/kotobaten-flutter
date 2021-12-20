@@ -47,8 +47,8 @@ class CardLearn extends StatelessWidget {
             padding: topPadding(PaddingType.large),
             child: ButtonAsync(
               'Learn',
-              () => user.stats.leftToPractice > 0 &&
-                      user.stats.discoveredToday >= user.goals.discoverDaily
+              () => user.stats.leftToPractice > 0 ||
+                      user.stats.discoveredToday < user.goals.discoverDaily
                   ? goToPractice()
                   : showModalBottomSheet(
                       shape: defaultBottomSheetShape,

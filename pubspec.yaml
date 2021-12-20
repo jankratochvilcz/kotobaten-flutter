@@ -42,6 +42,8 @@ dependencies:
   audioplayers: ^0.20.1
   url_launcher: ^6.0.17
   collection: ^1.15.0
+  rxdart: ^0.27.3
+  visibility_detector: ^0.2.2
 
   http: ^0.13.4
 

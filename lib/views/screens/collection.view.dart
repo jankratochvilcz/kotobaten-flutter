@@ -40,8 +40,7 @@ class CollectionView extends HookConsumerWidget {
                 );
               }
 
-              return WordCard(cardsModel.cards[index], cardsService.deleteCard,
-                  cardsService.editCard);
+              return WordCard(cardsModel.cards[index]);
             }),
         floatingActionButton: FloatingActionButton(
             tooltip: 'Add word',

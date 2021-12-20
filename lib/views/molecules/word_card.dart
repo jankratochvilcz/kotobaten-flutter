@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
+import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -10,18 +12,15 @@ import 'package:kotobaten/views/organisms/word_add.dart';
 
 const minimumCardHeight = 80.0;
 
-class WordCard extends StatelessWidget {
+class WordCard extends ConsumerWidget {
   final card_entity.CardInitialized card;
-  final Future<card_entity.CardInitialized> Function(
-      card_entity.CardInitialized card) onDelete;
-  final Future<card_entity.CardInitialized> Function(
-      card_entity.CardInitialized card) onEdit;
 
-  const WordCard(this.card, this.onDelete, this.onEdit, {Key? key})
-      : super(key: key);
+  const WordCard(this.card, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cardService = ref.read(cardsServiceProvider);
+
     final furigana =
         (card.kanji?.isNotEmpty ?? false) && (card.kana?.isNotEmpty ?? false)
             ? card.kana
@@ -88,8 +87,9 @@ class WordCard extends StatelessWidget {
                                         title: const Text('Edit word'),
                                         onTap: () => showWordAddBottomSheet(
                                             context, (word) async {
-                                          final result = await onEdit(word
-                                              as card_entity.CardInitialized);
+                                          final result = await cardService
+                                              .editCard(word as card_entity
+                                                  .CardInitialized);
                                           Navigator.of(context).pop();
                                           Navigator.of(context).pop();
 
@@ -113,7 +113,8 @@ class WordCard extends StatelessWidget {
                                                     ButtonAsync(
                                                       'Yes',
                                                       () async {
-                                                        await onDelete(card);
+                                                        await cardService
+                                                            .deleteCard(card);
                                                         Navigator.of(context)
                                                             .pop();
                                                         Navigator.of(context)

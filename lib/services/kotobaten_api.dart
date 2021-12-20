@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:kotobaten/consts/http.dart';
 import 'package:kotobaten/models/app_configuration.dart';
+import 'package:kotobaten/models/search_result.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
@@ -91,6 +92,9 @@ class KotobatenApiService {
           {bool updateRetentionBackstop = false}) async =>
       UserInitialized.fromJson(await _getAuthenticated('user',
           params: {'overrideBackstop': updateRetentionBackstop.toString()}));
+
+  Future<SearchResult> search(String term) async => SearchResult.fromJson(
+      await _getAuthenticated('search', params: {'term': term}));
 
   Future<List<Impression>> getImpressions() async => PracticeResponse.fromJson(
           await _getAuthenticated('practice', params: {'count': '15'}))

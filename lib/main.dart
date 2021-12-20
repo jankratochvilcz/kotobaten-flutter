@@ -6,6 +6,7 @@ import 'package:kotobaten/views/screens/collection.view.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
 import 'package:kotobaten/views/screens/practice.view.dart';
+import 'package:kotobaten/views/screens/search.view.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         homeRoute: (_) => HomeView(),
         loginRoute: (_) => const LoginView(),
         practiceRoute: (_) => const PracticeView(),
-        collectionRoute: (_) => const CollectionView()
+        collectionRoute: (_) => const CollectionView(),
+        searchRoute: (_) => const SearchView()
       },
     ));
   }

@@ -70688,7 +70688,7 @@ else s=B.BR
 return new A.xo(A.d2(A.b([s,new A.hb(A.b([B.LU,A.e0(r,r,B.eb,(q.gqI()>0?B.e.j(q.gqI()):"no")+" words"),B.wv],t.Ne),B.at,r),new A.aN(new A.ag(0,A.ap(B.Y),0,0),A.Gi("Learn",new A.XI(this,b),B.nG,"\u23ce",B.bB,B.bm),r)],t.p),B.P,B.L,B.H),"Learn",B.hq,r)}}
 A.XI.prototype={
 $0(){var s=this.a,r=s.c,q=r.a
-return q.grg()>0&&q.gvH()>=r.c.gqH()?s.d.$0():A.VL(new A.XH(s),this.b,!1,B.fl,t.z)},
+return q.grg()>0||q.gvH()<r.c.gqH()?s.d.$0():A.VL(new A.XH(s),this.b,!1,B.fl,t.z)},
 $S:22}
 A.XH.prototype={
 $1(a){var s=null,r=this.a

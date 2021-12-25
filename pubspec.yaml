@@ -44,6 +44,7 @@ dependencies:
   collection: ^1.15.0
   rxdart: ^0.27.3
   visibility_detector: ^0.2.2
+  mixpanel_flutter: ^1.4.1
 
   http: ^0.13.4
 

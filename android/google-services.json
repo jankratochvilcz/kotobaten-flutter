@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "773187746561",
+    "project_id": "kotobaten",
+    "storage_bucket": "kotobaten.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773187746561:android:034becae79a2251e2cb900",
+        "android_client_info": {
+          "package_name": "janjanxyz.kotobaten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773187746561-evauo42hdvk2m8p748g6ihkhj7ieqqjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJzKiIFEESL4G_xLZ74qLUGoplL673HmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773187746561-evauo42hdvk2m8p748g6ihkhj7ieqqjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

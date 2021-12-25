@@ -18,12 +18,13 @@ class _$AppConfigurationTearOff {
   const _$AppConfigurationTearOff();
 
   AppConfigurationInitialized initialized(String apiRoot, bool isApiHttps,
-      DeviceType deviceType, String apiVersion) {
+      DeviceType deviceType, String apiVersion, String cookieDomain) {
     return AppConfigurationInitialized(
       apiRoot,
       isApiHttps,
       deviceType,
       apiVersion,
+      cookieDomain,
     );
   }
 }
@@ -37,25 +38,26 @@ mixin _$AppConfiguration {
   bool get isApiHttps => throw _privateConstructorUsedError;
   DeviceType get deviceType => throw _privateConstructorUsedError;
   String get apiVersion => throw _privateConstructorUsedError;
+  String get cookieDomain => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String apiRoot, bool isApiHttps,
-            DeviceType deviceType, String apiVersion)
+            DeviceType deviceType, String apiVersion, String cookieDomain)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion)?
+            String apiVersion, String cookieDomain)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion)?
+            String apiVersion, String cookieDomain)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -91,7 +93,8 @@ abstract class $AppConfigurationCopyWith<$Res> {
       {String apiRoot,
       bool isApiHttps,
       DeviceType deviceType,
-      String apiVersion});
+      String apiVersion,
+      String cookieDomain});
 }
 
 /// @nodoc
@@ -109,6 +112,7 @@ class _$AppConfigurationCopyWithImpl<$Res>
     Object? isApiHttps = freezed,
     Object? deviceType = freezed,
     Object? apiVersion = freezed,
+    Object? cookieDomain = freezed,
   }) {
     return _then(_value.copyWith(
       apiRoot: apiRoot == freezed
@@ -127,6 +131,10 @@ class _$AppConfigurationCopyWithImpl<$Res>
           ? _value.apiVersion
           : apiVersion // ignore: cast_nullable_to_non_nullable
               as String,
+      cookieDomain: cookieDomain == freezed
+          ? _value.cookieDomain
+          : cookieDomain // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -143,7 +151,8 @@ abstract class $AppConfigurationInitializedCopyWith<$Res>
       {String apiRoot,
       bool isApiHttps,
       DeviceType deviceType,
-      String apiVersion});
+      String apiVersion,
+      String cookieDomain});
 }
 
 /// @nodoc
@@ -164,6 +173,7 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
     Object? isApiHttps = freezed,
     Object? deviceType = freezed,
     Object? apiVersion = freezed,
+    Object? cookieDomain = freezed,
   }) {
     return _then(AppConfigurationInitialized(
       apiRoot == freezed
@@ -182,6 +192,10 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
           ? _value.apiVersion
           : apiVersion // ignore: cast_nullable_to_non_nullable
               as String,
+      cookieDomain == freezed
+          ? _value.cookieDomain
+          : cookieDomain // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -189,8 +203,8 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppConfigurationInitialized implements AppConfigurationInitialized {
-  _$AppConfigurationInitialized(
-      this.apiRoot, this.isApiHttps, this.deviceType, this.apiVersion);
+  _$AppConfigurationInitialized(this.apiRoot, this.isApiHttps, this.deviceType,
+      this.apiVersion, this.cookieDomain);
 
   @override
   final String apiRoot;
@@ -200,10 +214,12 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   final DeviceType deviceType;
   @override
   final String apiVersion;
+  @override
+  final String cookieDomain;
 
   @override
   String toString() {
-    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps, deviceType: $deviceType, apiVersion: $apiVersion)';
+    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps, deviceType: $deviceType, apiVersion: $apiVersion, cookieDomain: $cookieDomain)';
   }
 
   @override
@@ -217,12 +233,14 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
             (identical(other.deviceType, deviceType) ||
                 other.deviceType == deviceType) &&
             (identical(other.apiVersion, apiVersion) ||
-                other.apiVersion == apiVersion));
+                other.apiVersion == apiVersion) &&
+            (identical(other.cookieDomain, cookieDomain) ||
+                other.cookieDomain == cookieDomain));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, apiRoot, isApiHttps, deviceType, apiVersion);
+  int get hashCode => Object.hash(
+      runtimeType, apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
 
   @JsonKey(ignore: true)
   @override
@@ -234,32 +252,35 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String apiRoot, bool isApiHttps,
-            DeviceType deviceType, String apiVersion)
+            DeviceType deviceType, String apiVersion, String cookieDomain)
         initialized,
   }) {
-    return initialized(apiRoot, isApiHttps, deviceType, apiVersion);
+    return initialized(
+        apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion)?
+            String apiVersion, String cookieDomain)?
         initialized,
   }) {
-    return initialized?.call(apiRoot, isApiHttps, deviceType, apiVersion);
+    return initialized?.call(
+        apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion)?
+            String apiVersion, String cookieDomain)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(apiRoot, isApiHttps, deviceType, apiVersion);
+      return initialized(
+          apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
     }
     return orElse();
   }
@@ -294,8 +315,12 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
 }
 
 abstract class AppConfigurationInitialized implements AppConfiguration {
-  factory AppConfigurationInitialized(String apiRoot, bool isApiHttps,
-      DeviceType deviceType, String apiVersion) = _$AppConfigurationInitialized;
+  factory AppConfigurationInitialized(
+      String apiRoot,
+      bool isApiHttps,
+      DeviceType deviceType,
+      String apiVersion,
+      String cookieDomain) = _$AppConfigurationInitialized;
 
   @override
   String get apiRoot;
@@ -305,6 +330,8 @@ abstract class AppConfigurationInitialized implements AppConfiguration {
   DeviceType get deviceType;
   @override
   String get apiVersion;
+  @override
+  String get cookieDomain;
   @override
   @JsonKey(ignore: true)
   $AppConfigurationInitializedCopyWith<AppConfigurationInitialized>

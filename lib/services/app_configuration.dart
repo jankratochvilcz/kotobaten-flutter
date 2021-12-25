@@ -16,8 +16,9 @@ class AppConfigurationService {
 
     const isDevEndpoint = isWeb && !isProduction;
     const apiRoot = isDevEndpoint ? apiRootDev : apiRootProduction;
+    const cookieDomain = isDevEndpoint ? 'localhost' : '.kotobaten.app';
 
     return AppConfiguration.initialized(apiRoot, !isDevEndpoint,
-        isWeb ? DeviceType.web : DeviceType.mobile, apiVersion);
+        isWeb ? DeviceType.web : DeviceType.mobile, apiVersion, cookieDomain);
   }
 }

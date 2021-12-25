@@ -13,6 +13,8 @@ import 'package:kotobaten/models/slices/user/user.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/services/app_configuration.dart';
+import 'package:kotobaten/services/cookies_service.dart';
+import 'package:kotobaten/services/cookies_service_base.dart';
 import 'package:kotobaten/services/kotobaten_client.dart';
 import 'package:kotobaten/services/serialization/requests/impressions_request.dart';
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
@@ -23,16 +25,18 @@ import 'package:mockito/annotations.dart';
 final kotobatenApiServiceProvider = Provider((ref) => KotobatenApiService(
     ref.watch(authRepositoryProvider.notifier),
     ref.watch(appConfigurationProvider),
-    ref.watch(kotobatenClientProvider)));
+    ref.watch(kotobatenClientProvider),
+    ref.read(cookiesServiceProvider)));
 
 class KotobatenApiService {
   // Not using AuthService as it'd cause a cyclical dependency.
   final AuthRepository authRepository;
   final AppConfiguration _appConfiguration;
   final KotobatenClient _kotobatenClient;
+  final CookiesServiceBase _cookiesService;
 
-  KotobatenApiService(
-      this.authRepository, this._appConfiguration, this._kotobatenClient);
+  KotobatenApiService(this.authRepository, this._appConfiguration,
+      this._kotobatenClient, this._cookiesService);
 
   Future<Tuple2<bool, String>> login(String username, String password) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'auth/login');
@@ -54,6 +58,9 @@ class KotobatenApiService {
                 : loginResponse.reasonPhrase ??
                     loginResponse.statusCode.toString());
       }
+
+      await _cookiesService.setCookie(
+          'authToken', true.toString(), _appConfiguration.cookieDomain);
 
       final token = jsonDecode(body)['access_token'] as String;
       return Tuple2(true, token);

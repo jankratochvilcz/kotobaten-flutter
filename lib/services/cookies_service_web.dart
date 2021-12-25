@@ -7,8 +7,7 @@ import 'package:kotobaten/services/cookies_service_base.dart';
 class CookiesService implements CookiesServiceBase {
   @override
   Future<bool> setCookie(String key, String value, String domain) async {
-    await window.cookieStore
-        ?.set("authToken", true.toString(), {'domain': domain});
+    await window.cookieStore?.set("authToken", true.toString());
     return true;
   }
 }

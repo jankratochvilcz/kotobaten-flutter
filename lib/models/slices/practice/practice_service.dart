@@ -7,20 +7,25 @@ import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
+import 'package:kotobaten/services/analytics_events.dart';
+import 'package:kotobaten/services/analytics_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 
 final practiceServiceProvider = Provider<PracticeService>((ref) =>
     PracticeService(
         ref.watch(practiceRepositoryProvider.notifier),
         ref.watch(kotobatenApiServiceProvider),
-        ref.watch(userServiceProvider)));
+        ref.watch(userServiceProvider),
+        ref.watch(analyticsServiceProvider)));
 
 class PracticeService {
   final PracticeRepository repository;
   final KotobatenApiService apiService;
   final UserService userService;
+  final AnalyticsService analyticsService;
 
-  PracticeService(this.repository, this.apiService, this.userService);
+  PracticeService(this.repository, this.apiService, this.userService,
+      this.analyticsService);
 
   Future initialize() async {
     final currentState = repository.current;
@@ -35,6 +40,8 @@ class PracticeService {
 
     repository.update(PracticeModel.inProgress(
         impressions, impressions.sublist(1), impressions.first, false, false));
+
+    analyticsService.track(AnalyticsEvents.learnStart);
   }
 
   void reveal() {

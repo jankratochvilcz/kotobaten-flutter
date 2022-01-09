@@ -1,0 +1,1 @@
+enum AnalyticsEvents { learnStart, collectAdd }

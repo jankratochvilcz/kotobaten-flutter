@@ -18,13 +18,15 @@ class _$AppConfigurationTearOff {
   const _$AppConfigurationTearOff();
 
   AppConfigurationInitialized initialized(String apiRoot, bool isApiHttps,
-      DeviceType deviceType, String apiVersion, String cookieDomain) {
+      DeviceType deviceType, String apiVersion, String cookieDomain,
+      [String? mixpanelToken]) {
     return AppConfigurationInitialized(
       apiRoot,
       isApiHttps,
       deviceType,
       apiVersion,
       cookieDomain,
+      mixpanelToken,
     );
   }
 }
@@ -39,25 +41,31 @@ mixin _$AppConfiguration {
   DeviceType get deviceType => throw _privateConstructorUsedError;
   String get apiVersion => throw _privateConstructorUsedError;
   String get cookieDomain => throw _privateConstructorUsedError;
+  String? get mixpanelToken => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String apiRoot, bool isApiHttps,
-            DeviceType deviceType, String apiVersion, String cookieDomain)
+    required TResult Function(
+            String apiRoot,
+            bool isApiHttps,
+            DeviceType deviceType,
+            String apiVersion,
+            String cookieDomain,
+            String? mixpanelToken)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion, String cookieDomain)?
+            String apiVersion, String cookieDomain, String? mixpanelToken)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion, String cookieDomain)?
+            String apiVersion, String cookieDomain, String? mixpanelToken)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -94,7 +102,8 @@ abstract class $AppConfigurationCopyWith<$Res> {
       bool isApiHttps,
       DeviceType deviceType,
       String apiVersion,
-      String cookieDomain});
+      String cookieDomain,
+      String? mixpanelToken});
 }
 
 /// @nodoc
@@ -113,6 +122,7 @@ class _$AppConfigurationCopyWithImpl<$Res>
     Object? deviceType = freezed,
     Object? apiVersion = freezed,
     Object? cookieDomain = freezed,
+    Object? mixpanelToken = freezed,
   }) {
     return _then(_value.copyWith(
       apiRoot: apiRoot == freezed
@@ -135,6 +145,10 @@ class _$AppConfigurationCopyWithImpl<$Res>
           ? _value.cookieDomain
           : cookieDomain // ignore: cast_nullable_to_non_nullable
               as String,
+      mixpanelToken: mixpanelToken == freezed
+          ? _value.mixpanelToken
+          : mixpanelToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -152,7 +166,8 @@ abstract class $AppConfigurationInitializedCopyWith<$Res>
       bool isApiHttps,
       DeviceType deviceType,
       String apiVersion,
-      String cookieDomain});
+      String cookieDomain,
+      String? mixpanelToken});
 }
 
 /// @nodoc
@@ -174,6 +189,7 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
     Object? deviceType = freezed,
     Object? apiVersion = freezed,
     Object? cookieDomain = freezed,
+    Object? mixpanelToken = freezed,
   }) {
     return _then(AppConfigurationInitialized(
       apiRoot == freezed
@@ -196,6 +212,10 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
           ? _value.cookieDomain
           : cookieDomain // ignore: cast_nullable_to_non_nullable
               as String,
+      mixpanelToken == freezed
+          ? _value.mixpanelToken
+          : mixpanelToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -204,7 +224,8 @@ class _$AppConfigurationInitializedCopyWithImpl<$Res>
 
 class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   _$AppConfigurationInitialized(this.apiRoot, this.isApiHttps, this.deviceType,
-      this.apiVersion, this.cookieDomain);
+      this.apiVersion, this.cookieDomain,
+      [this.mixpanelToken]);
 
   @override
   final String apiRoot;
@@ -216,10 +237,12 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   final String apiVersion;
   @override
   final String cookieDomain;
+  @override
+  final String? mixpanelToken;
 
   @override
   String toString() {
-    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps, deviceType: $deviceType, apiVersion: $apiVersion, cookieDomain: $cookieDomain)';
+    return 'AppConfiguration.initialized(apiRoot: $apiRoot, isApiHttps: $isApiHttps, deviceType: $deviceType, apiVersion: $apiVersion, cookieDomain: $cookieDomain, mixpanelToken: $mixpanelToken)';
   }
 
   @override
@@ -235,12 +258,14 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
             (identical(other.apiVersion, apiVersion) ||
                 other.apiVersion == apiVersion) &&
             (identical(other.cookieDomain, cookieDomain) ||
-                other.cookieDomain == cookieDomain));
+                other.cookieDomain == cookieDomain) &&
+            (identical(other.mixpanelToken, mixpanelToken) ||
+                other.mixpanelToken == mixpanelToken));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
+  int get hashCode => Object.hash(runtimeType, apiRoot, isApiHttps, deviceType,
+      apiVersion, cookieDomain, mixpanelToken);
 
   @JsonKey(ignore: true)
   @override
@@ -251,36 +276,41 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String apiRoot, bool isApiHttps,
-            DeviceType deviceType, String apiVersion, String cookieDomain)
+    required TResult Function(
+            String apiRoot,
+            bool isApiHttps,
+            DeviceType deviceType,
+            String apiVersion,
+            String cookieDomain,
+            String? mixpanelToken)
         initialized,
   }) {
-    return initialized(
-        apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
+    return initialized(apiRoot, isApiHttps, deviceType, apiVersion,
+        cookieDomain, mixpanelToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion, String cookieDomain)?
+            String apiVersion, String cookieDomain, String? mixpanelToken)?
         initialized,
   }) {
-    return initialized?.call(
-        apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
+    return initialized?.call(apiRoot, isApiHttps, deviceType, apiVersion,
+        cookieDomain, mixpanelToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String apiRoot, bool isApiHttps, DeviceType deviceType,
-            String apiVersion, String cookieDomain)?
+            String apiVersion, String cookieDomain, String? mixpanelToken)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(
-          apiRoot, isApiHttps, deviceType, apiVersion, cookieDomain);
+      return initialized(apiRoot, isApiHttps, deviceType, apiVersion,
+          cookieDomain, mixpanelToken);
     }
     return orElse();
   }
@@ -315,12 +345,9 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
 }
 
 abstract class AppConfigurationInitialized implements AppConfiguration {
-  factory AppConfigurationInitialized(
-      String apiRoot,
-      bool isApiHttps,
-      DeviceType deviceType,
-      String apiVersion,
-      String cookieDomain) = _$AppConfigurationInitialized;
+  factory AppConfigurationInitialized(String apiRoot, bool isApiHttps,
+      DeviceType deviceType, String apiVersion, String cookieDomain,
+      [String? mixpanelToken]) = _$AppConfigurationInitialized;
 
   @override
   String get apiRoot;
@@ -332,6 +359,8 @@ abstract class AppConfigurationInitialized implements AppConfiguration {
   String get apiVersion;
   @override
   String get cookieDomain;
+  @override
+  String? get mixpanelToken;
   @override
   @JsonKey(ignore: true)
   $AppConfigurationInitializedCopyWith<AppConfigurationInitialized>

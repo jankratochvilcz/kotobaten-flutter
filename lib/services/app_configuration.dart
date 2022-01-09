@@ -18,7 +18,15 @@ class AppConfigurationService {
     const apiRoot = isDevEndpoint ? apiRootDev : apiRootProduction;
     const cookieDomain = isDevEndpoint ? 'localhost' : '.kotobaten.app';
 
-    return AppConfiguration.initialized(apiRoot, !isDevEndpoint,
-        isWeb ? DeviceType.web : DeviceType.mobile, apiVersion, cookieDomain);
+    const mixpanelToken =
+        isProduction ? "78354231f937435ced022a399aadd2d4" : null;
+
+    return AppConfiguration.initialized(
+        apiRoot,
+        !isDevEndpoint,
+        isWeb ? DeviceType.web : DeviceType.mobile,
+        apiVersion,
+        cookieDomain,
+        mixpanelToken);
   }
 }

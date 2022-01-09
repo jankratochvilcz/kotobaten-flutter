@@ -21,11 +21,13 @@ User _$UserFromJson(Map<String, dynamic> json) {
 class _$UserTearOff {
   const _$UserTearOff();
 
-  UserInitialized call(UserStatistics stats, UserCore user, UserGoals goals) {
+  UserInitialized call(UserStatistics stats, UserCore user, UserGoals goals,
+      UserOnboarding onboarding) {
     return UserInitialized(
       stats,
       user,
       goals,
+      onboarding,
     );
   }
 
@@ -42,6 +44,7 @@ mixin _$User {
   UserStatistics get stats => throw _privateConstructorUsedError;
   UserCore get user => throw _privateConstructorUsedError;
   UserGoals get goals => throw _privateConstructorUsedError;
+  UserOnboarding get onboarding => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,11 +55,16 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({UserStatistics stats, UserCore user, UserGoals goals});
+  $Res call(
+      {UserStatistics stats,
+      UserCore user,
+      UserGoals goals,
+      UserOnboarding onboarding});
 
   $UserStatisticsCopyWith<$Res> get stats;
   $UserCoreCopyWith<$Res> get user;
   $UserGoalsCopyWith<$Res> get goals;
+  $UserOnboardingCopyWith<$Res> get onboarding;
 }
 
 /// @nodoc
@@ -72,6 +80,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? stats = freezed,
     Object? user = freezed,
     Object? goals = freezed,
+    Object? onboarding = freezed,
   }) {
     return _then(_value.copyWith(
       stats: stats == freezed
@@ -86,6 +95,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as UserGoals,
+      onboarding: onboarding == freezed
+          ? _value.onboarding
+          : onboarding // ignore: cast_nullable_to_non_nullable
+              as UserOnboarding,
     ));
   }
 
@@ -109,6 +122,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       return _then(_value.copyWith(goals: value));
     });
   }
+
+  @override
+  $UserOnboardingCopyWith<$Res> get onboarding {
+    return $UserOnboardingCopyWith<$Res>(_value.onboarding, (value) {
+      return _then(_value.copyWith(onboarding: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -117,7 +137,11 @@ abstract class $UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
           UserInitialized value, $Res Function(UserInitialized) then) =
       _$UserInitializedCopyWithImpl<$Res>;
   @override
-  $Res call({UserStatistics stats, UserCore user, UserGoals goals});
+  $Res call(
+      {UserStatistics stats,
+      UserCore user,
+      UserGoals goals,
+      UserOnboarding onboarding});
 
   @override
   $UserStatisticsCopyWith<$Res> get stats;
@@ -125,6 +149,8 @@ abstract class $UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
   $UserCoreCopyWith<$Res> get user;
   @override
   $UserGoalsCopyWith<$Res> get goals;
+  @override
+  $UserOnboardingCopyWith<$Res> get onboarding;
 }
 
 /// @nodoc
@@ -142,6 +168,7 @@ class _$UserInitializedCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? stats = freezed,
     Object? user = freezed,
     Object? goals = freezed,
+    Object? onboarding = freezed,
   }) {
     return _then(UserInitialized(
       stats == freezed
@@ -156,6 +183,10 @@ class _$UserInitializedCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as UserGoals,
+      onboarding == freezed
+          ? _value.onboarding
+          : onboarding // ignore: cast_nullable_to_non_nullable
+              as UserOnboarding,
     ));
   }
 }
@@ -163,7 +194,7 @@ class _$UserInitializedCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserInitialized implements UserInitialized {
-  _$UserInitialized(this.stats, this.user, this.goals);
+  _$UserInitialized(this.stats, this.user, this.goals, this.onboarding);
 
   factory _$UserInitialized.fromJson(Map<String, dynamic> json) =>
       _$$UserInitializedFromJson(json);
@@ -174,10 +205,12 @@ class _$UserInitialized implements UserInitialized {
   final UserCore user;
   @override
   final UserGoals goals;
+  @override
+  final UserOnboarding onboarding;
 
   @override
   String toString() {
-    return 'User(stats: $stats, user: $user, goals: $goals)';
+    return 'User(stats: $stats, user: $user, goals: $goals, onboarding: $onboarding)';
   }
 
   @override
@@ -187,11 +220,13 @@ class _$UserInitialized implements UserInitialized {
             other is UserInitialized &&
             (identical(other.stats, stats) || other.stats == stats) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.goals, goals) || other.goals == goals));
+            (identical(other.goals, goals) || other.goals == goals) &&
+            (identical(other.onboarding, onboarding) ||
+                other.onboarding == onboarding));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stats, user, goals);
+  int get hashCode => Object.hash(runtimeType, stats, user, goals, onboarding);
 
   @JsonKey(ignore: true)
   @override
@@ -205,8 +240,8 @@ class _$UserInitialized implements UserInitialized {
 }
 
 abstract class UserInitialized implements User {
-  factory UserInitialized(
-      UserStatistics stats, UserCore user, UserGoals goals) = _$UserInitialized;
+  factory UserInitialized(UserStatistics stats, UserCore user, UserGoals goals,
+      UserOnboarding onboarding) = _$UserInitialized;
 
   factory UserInitialized.fromJson(Map<String, dynamic> json) =
       _$UserInitialized.fromJson;
@@ -217,6 +252,8 @@ abstract class UserInitialized implements User {
   UserCore get user;
   @override
   UserGoals get goals;
+  @override
+  UserOnboarding get onboarding;
   @override
   @JsonKey(ignore: true)
   $UserInitializedCopyWith<UserInitialized> get copyWith =>

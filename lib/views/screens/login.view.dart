@@ -9,6 +9,7 @@ import 'package:kotobaten/models/slices/auth/auth_validation_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
+import 'package:kotobaten/views/atoms/logo.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/screens/login.viewmodel.dart';
 import 'package:kotobaten/views/atoms/text_span_factory.dart';
@@ -41,14 +42,7 @@ class LoginView extends HookConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Padding(
-              padding: allPadding(PaddingType.xxLarge),
-              child: Container(
-                  constraints:
-                      const BoxConstraints(maxHeight: 200, maxWidth: 260),
-                  child: const Image(
-                    image: AssetImage('assets/logos/logo_wide_color.png'),
-                  )))
+          Padding(padding: allPadding(PaddingType.xxLarge), child: const Logo())
         ]),
         Padding(
             padding: horizontalPadding(PaddingType.xLarge),

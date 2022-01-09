@@ -384,14 +384,13 @@ class _$UserModelInitialized extends UserModelInitialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UserModelInitialized &&
-            const DeepCollectionEquality().equals(other.user, user) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.refreshing, refreshing) ||
                 other.refreshing == refreshing));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(user), refreshing);
+  int get hashCode => Object.hash(runtimeType, user, refreshing);
 
   @JsonKey(ignore: true)
   @override

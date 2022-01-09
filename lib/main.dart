@@ -5,6 +5,7 @@ import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/screens/collection.view.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
+import 'package:kotobaten/views/screens/onboarding.view.dart';
 import 'package:kotobaten/views/screens/practice.view.dart';
 import 'package:kotobaten/views/screens/search.view.dart';
 import 'package:kotobaten/views/screens/settings.view.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         collectionRoute: (_) => const CollectionView(),
         searchRoute: (_) => const SearchView(),
         settingsRoute: (_) => const SettingsView()
+        onboardingRoute: (_) => const OnboardingView()
       },
     ));
   }

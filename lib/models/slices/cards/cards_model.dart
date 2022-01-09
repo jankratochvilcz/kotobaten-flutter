@@ -9,7 +9,6 @@ class CardsModel with _$CardsModel {
 
   factory CardsModel.initial() = CardsModelInitial;
   factory CardsModel.loadingInitial() = CardsModelLoadingInitial;
-  factory CardsModel.initialized(
-          List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage) =
-      CardsModelInitialized;
+  factory CardsModel.initialized(List<CardInitialized> cards, int pagesLoaded,
+      bool loadingNextPage, bool hasMoreCards) = CardsModelInitialized;
 }

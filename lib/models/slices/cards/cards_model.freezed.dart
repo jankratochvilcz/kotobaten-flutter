@@ -25,12 +25,13 @@ class _$CardsModelTearOff {
     return CardsModelLoadingInitial();
   }
 
-  CardsModelInitialized initialized(
-      List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage) {
+  CardsModelInitialized initialized(List<CardInitialized> cards,
+      int pagesLoaded, bool loadingNextPage, bool hasMoreCards) {
     return CardsModelInitialized(
       cards,
       pagesLoaded,
       loadingNextPage,
+      hasMoreCards,
     );
   }
 }
@@ -44,8 +45,8 @@ mixin _$CardsModel {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingInitial,
-    required TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)
+    required TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,8 +54,8 @@ mixin _$CardsModel {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,8 +63,8 @@ mixin _$CardsModel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -151,8 +152,8 @@ class _$CardsModelInitial extends CardsModelInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingInitial,
-    required TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)
+    required TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)
         initialized,
   }) {
     return initial();
@@ -163,8 +164,8 @@ class _$CardsModelInitial extends CardsModelInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
     return initial?.call();
@@ -175,8 +176,8 @@ class _$CardsModelInitial extends CardsModelInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
     required TResult orElse(),
   }) {
@@ -270,8 +271,8 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingInitial,
-    required TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)
+    required TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)
         initialized,
   }) {
     return loadingInitial();
@@ -282,8 +283,8 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
     return loadingInitial?.call();
@@ -294,8 +295,8 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
     required TResult orElse(),
   }) {
@@ -351,7 +352,10 @@ abstract class $CardsModelInitializedCopyWith<$Res> {
           $Res Function(CardsModelInitialized) then) =
       _$CardsModelInitializedCopyWithImpl<$Res>;
   $Res call(
-      {List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage});
+      {List<CardInitialized> cards,
+      int pagesLoaded,
+      bool loadingNextPage,
+      bool hasMoreCards});
 }
 
 /// @nodoc
@@ -370,6 +374,7 @@ class _$CardsModelInitializedCopyWithImpl<$Res>
     Object? cards = freezed,
     Object? pagesLoaded = freezed,
     Object? loadingNextPage = freezed,
+    Object? hasMoreCards = freezed,
   }) {
     return _then(CardsModelInitialized(
       cards == freezed
@@ -384,6 +389,10 @@ class _$CardsModelInitializedCopyWithImpl<$Res>
           ? _value.loadingNextPage
           : loadingNextPage // ignore: cast_nullable_to_non_nullable
               as bool,
+      hasMoreCards == freezed
+          ? _value.hasMoreCards
+          : hasMoreCards // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -391,7 +400,8 @@ class _$CardsModelInitializedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CardsModelInitialized extends CardsModelInitialized {
-  _$CardsModelInitialized(this.cards, this.pagesLoaded, this.loadingNextPage)
+  _$CardsModelInitialized(
+      this.cards, this.pagesLoaded, this.loadingNextPage, this.hasMoreCards)
       : super._();
 
   @override
@@ -400,10 +410,12 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   final int pagesLoaded;
   @override
   final bool loadingNextPage;
+  @override
+  final bool hasMoreCards;
 
   @override
   String toString() {
-    return 'CardsModel.initialized(cards: $cards, pagesLoaded: $pagesLoaded, loadingNextPage: $loadingNextPage)';
+    return 'CardsModel.initialized(cards: $cards, pagesLoaded: $pagesLoaded, loadingNextPage: $loadingNextPage, hasMoreCards: $hasMoreCards)';
   }
 
   @override
@@ -415,12 +427,18 @@ class _$CardsModelInitialized extends CardsModelInitialized {
             (identical(other.pagesLoaded, pagesLoaded) ||
                 other.pagesLoaded == pagesLoaded) &&
             (identical(other.loadingNextPage, loadingNextPage) ||
-                other.loadingNextPage == loadingNextPage));
+                other.loadingNextPage == loadingNextPage) &&
+            (identical(other.hasMoreCards, hasMoreCards) ||
+                other.hasMoreCards == hasMoreCards));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(cards), pagesLoaded, loadingNextPage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(cards),
+      pagesLoaded,
+      loadingNextPage,
+      hasMoreCards);
 
   @JsonKey(ignore: true)
   @override
@@ -433,11 +451,11 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingInitial,
-    required TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)
+    required TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)
         initialized,
   }) {
-    return initialized(cards, pagesLoaded, loadingNextPage);
+    return initialized(cards, pagesLoaded, loadingNextPage, hasMoreCards);
   }
 
   @override
@@ -445,11 +463,11 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
-    return initialized?.call(cards, pagesLoaded, loadingNextPage);
+    return initialized?.call(cards, pagesLoaded, loadingNextPage, hasMoreCards);
   }
 
   @override
@@ -457,13 +475,13 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingInitial,
-    TResult Function(
-            List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage)?
+    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+            bool loadingNextPage, bool hasMoreCards)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(cards, pagesLoaded, loadingNextPage);
+      return initialized(cards, pagesLoaded, loadingNextPage, hasMoreCards);
     }
     return orElse();
   }
@@ -504,14 +522,14 @@ class _$CardsModelInitialized extends CardsModelInitialized {
 }
 
 abstract class CardsModelInitialized extends CardsModel {
-  factory CardsModelInitialized(
-          List<CardInitialized> cards, int pagesLoaded, bool loadingNextPage) =
-      _$CardsModelInitialized;
+  factory CardsModelInitialized(List<CardInitialized> cards, int pagesLoaded,
+      bool loadingNextPage, bool hasMoreCards) = _$CardsModelInitialized;
   CardsModelInitialized._() : super._();
 
   List<CardInitialized> get cards;
   int get pagesLoaded;
   bool get loadingNextPage;
+  bool get hasMoreCards;
   @JsonKey(ignore: true)
   $CardsModelInitializedCopyWith<CardsModelInitialized> get copyWith =>
       throw _privateConstructorUsedError;

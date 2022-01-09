@@ -7,6 +7,7 @@ import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
 import 'package:kotobaten/models/slices/cards/cards_repository.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/molecules/word_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
@@ -30,14 +31,18 @@ class CollectionView extends HookConsumerWidget {
             itemCount: cardsModel.cards.length + 1,
             itemBuilder: (context, index) {
               if (index == cardsModel.cards.length) {
-                if (!cardsModel.loadingNextPage) {
+                if (!cardsModel.loadingNextPage && cardsModel.hasMoreCards) {
                   Future.microtask(() => cardsService.loadMoreCards());
                 }
-                return Center(
-                  child: Padding(
-                      padding: allPadding(PaddingType.standard),
-                      child: const CircularProgressIndicator()),
-                );
+
+                if (cardsModel.loadingNextPage) {
+                  return Center(
+                    child: Padding(
+                        padding: allPadding(PaddingType.standard),
+                        child: const CircularProgressIndicator()),
+                  );
+                }
+                return const Empty();
               }
 
               return WordCard(cardsModel.cards[index]);

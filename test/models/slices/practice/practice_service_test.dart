@@ -6,6 +6,7 @@ import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/models/slices/user/user_service.mocks.dart';
+import 'package:kotobaten/services/analytics_service.mocks.dart';
 import 'package:kotobaten/services/kotobaten_api.mocks.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tuple/tuple.dart';
@@ -212,9 +213,11 @@ PractiveViewModelTestDependencies getDependencies() {
   final apiService = MockKotobatenApiService();
   final userService = MockUserService();
   final practiceRepository = PracticeRepository();
+  final analyticsService = MockAnalyticsService();
 
   return PractiveViewModelTestDependencies(
-      PracticeService(practiceRepository, apiService, userService),
+      PracticeService(
+          practiceRepository, apiService, userService, analyticsService),
       apiService,
       userService,
       practiceRepository);

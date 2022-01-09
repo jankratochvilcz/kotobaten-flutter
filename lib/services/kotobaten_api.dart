@@ -17,6 +17,7 @@ import 'package:kotobaten/services/cookies_service.dart';
 import 'package:kotobaten/services/cookies_service_base.dart';
 import 'package:kotobaten/services/kotobaten_client.dart';
 import 'package:kotobaten/services/serialization/requests/impressions_request.dart';
+import 'package:kotobaten/services/serialization/responses/cards_response.dart';
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:tuple/tuple.dart';
@@ -150,11 +151,11 @@ class KotobatenApiService {
     return UserGoals.fromJson(jsonDecode(body));
   }
 
-  Future<List<CardInitialized>> getCards(int page, int pageSize) async {
+  Future<CardsResponse> getCards(int page, int pageSize) async {
     final responseJson = await _getAuthenticated('cards',
         params: {'pageSize': pageSize.toString(), 'page': page.toString()});
-    final result = List<CardInitialized>.from(
-        responseJson.map((model) => CardInitialized.fromJson(model)));
+
+    final result = CardsResponse.fromJson(responseJson);
 
     return result;
   }

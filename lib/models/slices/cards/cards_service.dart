@@ -28,7 +28,8 @@ class CardsService {
     cardsRepository.update(CardsModel.loadingInitial());
 
     final firstBatch = await apiService.getCards(0, pageSize * initialPages);
-    final result = CardsModel.initialized(firstBatch, initialPages, false);
+    final result = CardsModel.initialized(
+        firstBatch.cards, initialPages, false, firstBatch.hasMoreCards);
     cardsRepository.update(result);
   }
 
@@ -44,10 +45,13 @@ class CardsService {
     final nextPage = currentModel.pagesLoaded + 1;
 
     final nextBatch = await apiService.getCards(nextPage, pageSize);
-    final updatedCards = [...currentModel.cards, ...nextBatch];
+    final updatedCards = [...currentModel.cards, ...nextBatch.cards];
 
     final nextModel = currentModel.copyWith(
-        cards: updatedCards, loadingNextPage: false, pagesLoaded: nextPage);
+        cards: updatedCards,
+        loadingNextPage: false,
+        pagesLoaded: nextPage,
+        hasMoreCards: nextBatch.hasMoreCards);
 
     cardsRepository.update(nextModel);
   }

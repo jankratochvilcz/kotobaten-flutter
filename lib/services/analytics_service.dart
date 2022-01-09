@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:mockito/annotations.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/app_configuration.dart';
@@ -35,3 +36,6 @@ class AnalyticsService {
     log('Event: ${event.name}');
   }
 }
+
+@GenerateMocks([AnalyticsService])
+void main() {}

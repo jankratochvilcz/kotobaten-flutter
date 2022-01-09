@@ -6,10 +6,7 @@ enum DeviceType { web, mobile }
 
 @freezed
 class AppConfiguration with _$AppConfiguration {
-  factory AppConfiguration.initialized(
-      String apiRoot,
-      bool isApiHttps,
-      DeviceType deviceType,
-      String apiVersion,
-      String cookieDomain) = AppConfigurationInitialized;
+  factory AppConfiguration.initialized(String apiRoot, bool isApiHttps,
+      DeviceType deviceType, String apiVersion, String cookieDomain,
+      [String? mixpanelToken]) = AppConfigurationInitialized;
 }

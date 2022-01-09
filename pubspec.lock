@@ -366,6 +366,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  mixpanel_flutter:
+    dependency: "direct main"
+    description:
+      name: mixpanel_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.2"
   mockito:
     dependency: "direct dev"
     description:

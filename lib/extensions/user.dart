@@ -13,10 +13,20 @@ class UserGoalsProgress {
 
 extension InitializedUserExtensions on UserInitialized {
   UserGoalsProgress getGoalsProgress() {
-    final double dailyProgress = stats.discoveredToday / goals.discoverDaily;
-    final double weeklyProgress = stats.discoveredWeek / goals.discoverWeekly;
+    double getProgress(int discovered, int goal) {
+      if (goal < 1) {
+        return 0;
+      }
+
+      return discovered / goal;
+    }
+
+    final double dailyProgress =
+        getProgress(stats.discoveredToday, goals.discoverDaily);
+    final double weeklyProgress =
+        getProgress(stats.discoveredWeek, goals.discoverWeekly);
     final double monthlyProgress =
-        stats.discoveredMonth / goals.discoverMonthly;
+        getProgress(stats.discoveredMonth, goals.discoverMonthly);
 
     return UserGoalsProgress(dailyProgress, weeklyProgress, monthlyProgress);
   }

@@ -37,16 +37,12 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
   final _formKey = GlobalKey<FormState>();
 
   final _goalDayController = TextEditingController();
-  final _goalWeekController = TextEditingController();
-  final _goalMonthController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
     _goalDayController.text = widget.currentGoals.discoverDaily.toString();
-    _goalWeekController.text = widget.currentGoals.discoverWeekly.toString();
-    _goalMonthController.text = widget.currentGoals.discoverMonthly.toString();
   }
 
   String? validateGoal(String? value) {
@@ -61,10 +57,10 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
   Widget build(BuildContext context) {
     onEditComplete() {
       if (_formKey.currentState!.validate()) {
-        widget._onSubmit(UserGoals(
-            int.parse(_goalWeekController.text),
-            int.parse(_goalMonthController.text),
-            int.parse(_goalDayController.text)));
+        final dailyGoal = int.parse(_goalDayController.text);
+        final weeklyGoal = dailyGoal * 7;
+        final monthlyGoal = weeklyGoal * 4;
+        widget._onSubmit(UserGoals(weeklyGoal, monthlyGoal, dailyGoal));
       }
     }
 
@@ -84,34 +80,7 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        labelText: 'Daily goal',
-                      ),
-                    ),
-                    SizedBox(
-                      height: getPadding(PaddingType.small),
-                    ),
-                    TextFormField(
-                      controller: _goalWeekController,
-                      validator: validateGoal,
-                      autofocus: true,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Weekly goal',
-                      ),
-                    ),
-                    SizedBox(
-                      height: getPadding(PaddingType.small),
-                    ),
-                    TextFormField(
-                      controller: _goalMonthController,
-                      validator: validateGoal,
-                      autofocus: true,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Monthly goal',
-                      ),
+                          labelText: 'Daily goal', suffixText: 'new words'),
                     ),
                     SizedBox(
                       height: getPadding(PaddingType.small),

@@ -17,5 +17,7 @@ class PracticeModel with _$PracticeModel {
       List<Impression> remainingImpressions,
       Impression currentImpression,
       bool revealed,
-      bool speechPlayed) = PracticeModelInProgress;
+      bool speechPlayed,
+      {DateTime? nextStepTime,
+      DateTime? currentStepStart}) = PracticeModelInProgress;
 }

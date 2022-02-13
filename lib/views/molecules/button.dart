@@ -16,9 +16,43 @@ LinearGradient _getPrimaryGradient(BuildContext context) => LinearGradient(
         end: Alignment.bottomRight,
         tileMode: TileMode.clamp);
 
+LinearGradient _getPrimaryProgressGradient(
+        BuildContext context, double percentage) =>
+    LinearGradient(colors: [
+      Theme.of(context).colorScheme.primary,
+      Theme.of(context).colorScheme.primary,
+      Theme.of(context).colorScheme.secondary,
+      Theme.of(context).colorScheme.secondary
+    ], stops: [
+      0,
+      percentage,
+      percentage + 0.15,
+      1
+    ], tileMode: TileMode.clamp, transform: const GradientRotation(0.5));
+
+LinearGradient _getStandardProgressGradient(
+        BuildContext context, double percentage) =>
+    LinearGradient(colors: const [
+      Colors.black12,
+      Colors.black12,
+      Colors.transparent,
+      Colors.transparent
+    ], stops: [
+      0,
+      percentage,
+      percentage + 0.15,
+      1
+    ], tileMode: TileMode.clamp, transform: const GradientRotation(0.5));
+
 enum ButtonSize { small, standard, big }
 
-enum ButtonType { standard, primary, secondary }
+enum ButtonType {
+  standard,
+  primary,
+  secondary,
+  primaryProgress,
+  standardProgress
+}
 
 class Button extends ConsumerWidget {
   final String label;
@@ -29,6 +63,7 @@ class Button extends ConsumerWidget {
   final Color? color;
   final VoidCallback? onPressed;
   final String? shortcut;
+  final double? progressPercentage;
 
   const Button(this.label, this.onPressed,
       {Key? key,
@@ -37,7 +72,8 @@ class Button extends ConsumerWidget {
       this.type = ButtonType.standard,
       this.iconWidget,
       this.color,
-      this.shortcut})
+      this.shortcut,
+      this.progressPercentage})
       : super(key: key);
 
   _getButtonStyle() {
@@ -104,6 +140,30 @@ class Button extends ConsumerWidget {
           child: Ink(
               decoration: BoxDecoration(
                   gradient: _getPrimaryGradient(context),
+                  borderRadius: _borderRadius),
+              child: buttonContents));
+    }
+
+    if (type == ButtonType.primaryProgress && progressPercentage != null) {
+      return ElevatedButton(
+          onPressed: onPressed,
+          style: _getButtonStyle(),
+          child: Ink(
+              decoration: BoxDecoration(
+                  gradient:
+                      _getPrimaryProgressGradient(context, progressPercentage!),
+                  borderRadius: _borderRadius),
+              child: buttonContents));
+    }
+
+    if (type == ButtonType.standardProgress && progressPercentage != null) {
+      return TextButton(
+          onPressed: onPressed,
+          style: _getButtonStyle(),
+          child: Ink(
+              decoration: BoxDecoration(
+                  gradient: _getStandardProgressGradient(
+                      context, progressPercentage!),
                   borderRadius: _borderRadius),
               child: buttonContents));
     }

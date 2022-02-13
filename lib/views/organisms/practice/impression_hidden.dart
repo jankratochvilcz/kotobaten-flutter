@@ -9,8 +9,10 @@ class ImpressionHidden extends StatelessWidget {
   final String text;
   final String hintText;
   final VoidCallback revealAnswer;
+  final double timeElapsedPercentage;
 
-  const ImpressionHidden(this.text, this.hintText, this.revealAnswer,
+  const ImpressionHidden(
+      this.text, this.hintText, this.revealAnswer, this.timeElapsedPercentage,
       {Key? key})
       : super(key: key);
 
@@ -26,7 +28,8 @@ class ImpressionHidden extends StatelessWidget {
                 Button(
                   'Reveal answer',
                   revealAnswer,
-                  type: ButtonType.primary,
+                  type: ButtonType.primaryProgress,
+                  progressPercentage: timeElapsedPercentage,
                   icon: Icons.remove_red_eye_outlined,
                   size: ButtonSize.big,
                   shortcut: '⏎',

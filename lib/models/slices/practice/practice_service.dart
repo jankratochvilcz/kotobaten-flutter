@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
@@ -24,8 +26,14 @@ class PracticeService {
   final UserService userService;
   final AnalyticsService analyticsService;
 
+  final _hiddenStateMaxDuration = const Duration(seconds: 10);
+  final _revealedStateMaxDuration = const Duration(seconds: 5);
+
   PracticeService(this.repository, this.apiService, this.userService,
       this.analyticsService);
+
+  _getHiddenStateExpiry() => DateTime.now().add(_hiddenStateMaxDuration);
+  _getRevealedStateExpiry() => DateTime.now().add(_revealedStateMaxDuration);
 
   Future initialize() async {
     final currentState = repository.current;
@@ -39,7 +47,9 @@ class PracticeService {
     final impressions = await apiService.getImpressions();
 
     repository.update(PracticeModel.inProgress(
-        impressions, impressions.sublist(1), impressions.first, false, false));
+        impressions, impressions.sublist(1), impressions.first, false, false,
+        nextStepTime: _getHiddenStateExpiry(),
+        currentStepStart: DateTime.now()));
 
     analyticsService.track(AnalyticsEvents.learnStart);
   }
@@ -50,7 +60,14 @@ class PracticeService {
       throw ErrorDescription('Cannot reveal when not in in-progress state');
     }
 
-    repository.update(currentState.copyWith(revealed: true));
+    repository.update(currentState.copyWith(
+        revealed: true,
+        nextStepTime: _getRevealedStateExpiry(),
+        currentStepStart: DateTime.now()));
+  }
+
+  void reset() {
+    repository.update(const PracticeModel.initial());
   }
 
   Future evaluateCorrect() async {
@@ -68,7 +85,9 @@ class PracticeService {
         revealed: false,
         speechPlayed: false,
         remainingImpressions: currentState.remainingImpressions.sublist(1),
-        currentImpression: currentState.remainingImpressions.first));
+        currentImpression: currentState.remainingImpressions.first,
+        nextStepTime: _getHiddenStateExpiry(),
+        currentStepStart: DateTime.now()));
 
     userService.updateStatistics(
         await apiService.postImpression(currentState.currentImpression, true));
@@ -81,7 +100,10 @@ class PracticeService {
     }
 
     if (currentState.remainingImpressions.isEmpty) {
-      repository.update(currentState.copyWith(revealed: false));
+      repository.update(currentState.copyWith(
+          revealed: false,
+          nextStepTime: _getHiddenStateExpiry(),
+          currentStepStart: DateTime.now()));
       return;
     }
 
@@ -96,7 +118,9 @@ class PracticeService {
         revealed: false,
         speechPlayed: false,
         remainingImpressions: nextRemainingImpressions,
-        currentImpression: nextCurrentImpression));
+        currentImpression: nextCurrentImpression,
+        nextStepTime: _getHiddenStateExpiry(),
+        currentStepStart: DateTime.now()));
 
     userService.updateStatistics(
         await apiService.postImpression(currentState.currentImpression, false));
@@ -219,5 +243,23 @@ class PracticeService {
     return currentState is PracticeModelInProgress
         ? [currentState.currentImpression, ...currentState.remainingImpressions]
         : <Impression>[];
+  }
+
+  double getElapsedPercentage() {
+    final model = repository.current;
+    if (model is! PracticeModelInProgress ||
+        model.nextStepTime == null ||
+        model.currentStepStart == null) {
+      return 0;
+    }
+
+    final maxOffset = model.nextStepTime!.millisecondsSinceEpoch -
+        model.currentStepStart!.millisecondsSinceEpoch;
+
+    final elapsed = DateTime.now().millisecondsSinceEpoch -
+        model.currentStepStart!.millisecondsSinceEpoch;
+
+    final percentage = min(elapsed / maxOffset, 1.0);
+    return percentage;
   }
 }

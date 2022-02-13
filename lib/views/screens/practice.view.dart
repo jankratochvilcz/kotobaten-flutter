@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
@@ -18,6 +21,29 @@ class PracticeView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final practiceService = ref.watch(practiceServiceProvider);
     final model = ref.watch(practiceRepositoryProvider);
+    final currentStateProgress = useState(0.0);
+
+    final progressTimer = Timer(const Duration(milliseconds: 25), () {
+      final currentPercentage = practiceService.getElapsedPercentage();
+
+      if (currentStateProgress.value == currentPercentage) {
+        return;
+      }
+
+      currentStateProgress.value = currentPercentage;
+
+      if (currentPercentage >= 1) {
+        switch (practiceService.getImpressionViewType()) {
+          case ImpressionViewType.hidden:
+            practiceService.reveal();
+            break;
+          case ImpressionViewType.revealed:
+            practiceService.evaluateWrong();
+            break;
+          default:
+        }
+      }
+    });
 
     if (model is PracticeModelInitial) {
       Future.microtask(() => practiceService.initialize());
@@ -25,15 +51,22 @@ class PracticeView extends HookConsumerWidget {
 
     if (model is PracticeModelFinished) {
       Future.microtask(() {
-        Navigator.pop(context);
+        progressTimer.cancel();
+
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+        }
       });
     }
 
     Widget? impressionView;
     switch (practiceService.getImpressionViewType()) {
       case ImpressionViewType.hidden:
-        impressionView = ImpressionHidden(practiceService.getPrimaryText(),
-            practiceService.getHintText(), practiceService.reveal);
+        impressionView = ImpressionHidden(
+            practiceService.getPrimaryText(),
+            practiceService.getHintText(),
+            practiceService.reveal,
+            currentStateProgress.value);
         break;
       case ImpressionViewType.revealed:
         impressionView = ImpressionRevealed(
@@ -42,7 +75,8 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getFurigana(),
             (correct) => correct
                 ? practiceService.evaluateCorrect()
-                : practiceService.evaluateWrong());
+                : practiceService.evaluateWrong(),
+            currentStateProgress.value);
         break;
       case ImpressionViewType.discover:
         impressionView = ImpressionNew(
@@ -61,20 +95,26 @@ class PracticeView extends HookConsumerWidget {
         Future.microtask(practiceService.markSpeechAsPlayed);
       }
 
-      return Scaffold(
-          body: SafeArea(
-              child: Column(
-        children: [
-          Padding(
-              padding: topPadding(PaddingType.xxLarge),
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.black12,
-                strokeWidth: 2,
-                value: practiceService.getProgress(),
-              )),
-          if (impressionView != null) impressionView
-        ],
-      )));
+      return WillPopScope(
+        child: Scaffold(
+            body: SafeArea(
+                child: Column(
+          children: [
+            Padding(
+                padding: topPadding(PaddingType.xxLarge),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.black12,
+                  strokeWidth: 2,
+                  value: practiceService.getProgress(),
+                )),
+            if (impressionView != null) impressionView
+          ],
+        ))),
+        onWillPop: () {
+          practiceService.reset();
+          return Future.value(true);
+        },
+      );
     }
 
     return const loading.Loading();

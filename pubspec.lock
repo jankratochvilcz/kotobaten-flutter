@@ -372,7 +372,7 @@ packages:
       name: mixpanel_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.2"
+    version: "1.4.5"
   mockito:
     dependency: "direct dev"
     description:

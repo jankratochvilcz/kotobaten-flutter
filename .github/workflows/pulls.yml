@@ -1,0 +1,20 @@
+name: Web - Integrity Checks
+on:
+  pull_request
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2.3.1
+        - uses: subosito/flutter-action@v2
+          with:
+            flutter-version: '2.8.1'
+            channel: 'stable'
+        - run: flutter pub get
+        - run: flutter build web
+        - run: flutter test
+        - uses: JamesIves/github-pages-deploy-action@4.1.5
+          with:
+            branch: gh-pages # The branch the action should deploy to.
+            folder: build/web # The folder the action should deploy.

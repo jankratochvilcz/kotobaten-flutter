@@ -62,9 +62,15 @@ class ProfileView extends HookConsumerWidget {
                   Expanded(
                       child:
                           Heading(userModel.user.user.email, HeadingStyle.h3)),
+                  IconButton(
+                      color: Colors.black26,
+                      onPressed: () async =>
+                          await Navigator.pushNamed(context, settingsRoute),
+                      icon: const Icon(Icons.settings_outlined)),
                   ButtonAsync(
                     'Log out',
                     authService.logout,
+                    color: Colors.black26,
                     icon: Icons.logout,
                   )
                 ],

@@ -3,3 +3,4 @@ const loginRoute = '/login';
 const practiceRoute = '/practice';
 const collectionRoute = '/collection';
 const searchRoute = '/search';
+const settingsRoute = '/settings';

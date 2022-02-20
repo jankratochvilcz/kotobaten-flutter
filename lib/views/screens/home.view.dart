@@ -10,6 +10,7 @@ import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
+import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
@@ -28,6 +29,7 @@ class HomeView extends HookConsumerWidget {
     final authService = ref.read(authServiceProvider);
     final userService = ref.read(userServiceProvider);
     final practiceService = ref.read(practiceServiceProvider);
+    final dailyReminderService = ref.read(dailyReminderServiceProvider);
 
     goToPractice() async {
       await practiceService.initialize();
@@ -46,6 +48,9 @@ class HomeView extends HookConsumerWidget {
 
     if (authModel is AuthModelAuthenticated && userModel is UserModelInitial) {
       Future.microtask(() => userService.refreshUser());
+      Future.microtask(() async {
+        await dailyReminderService.ensureInitialized();
+      });
     }
 
     if (userModel is UserModelInitialized) {

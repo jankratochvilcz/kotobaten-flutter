@@ -6,6 +6,7 @@ import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_validation_service.dart';
+import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -22,12 +23,15 @@ class LoginView extends HookConsumerWidget {
     final viewModel = ref.watch(loginViewModelProvider);
     final authModel = ref.watch(authRepositoryProvider);
     final authValidationService = ref.read(authValidationServiceProvider);
+    final dailyReminderService = ref.read(dailyReminderServiceProvider);
 
     final loginKind = useState(LoginKind.login);
 
     if (authModel is AuthModelAuthenticated) {
-      Future.microtask(() {
-        Navigator.pushNamedAndRemoveUntil(context, homeRoute, (route) => false);
+      Future.microtask(() async {
+        await dailyReminderService.initializeDefaults();
+        await Navigator.pushNamedAndRemoveUntil(
+            context, homeRoute, (route) => false);
       });
     }
 

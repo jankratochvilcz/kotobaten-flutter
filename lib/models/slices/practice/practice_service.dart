@@ -9,28 +9,23 @@ import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
-import 'package:kotobaten/services/analytics_events.dart';
-import 'package:kotobaten/services/analytics_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 
 final practiceServiceProvider = Provider<PracticeService>((ref) =>
     PracticeService(
         ref.watch(practiceRepositoryProvider.notifier),
         ref.watch(kotobatenApiServiceProvider),
-        ref.watch(userServiceProvider),
-        ref.watch(analyticsServiceProvider)));
+        ref.watch(userServiceProvider)));
 
 class PracticeService {
   final PracticeRepository repository;
   final KotobatenApiService apiService;
   final UserService userService;
-  final AnalyticsService analyticsService;
 
   final _hiddenStateMaxDuration = const Duration(seconds: 10);
   final _revealedStateMaxDuration = const Duration(seconds: 5);
 
-  PracticeService(this.repository, this.apiService, this.userService,
-      this.analyticsService);
+  PracticeService(this.repository, this.apiService, this.userService);
 
   _getHiddenStateExpiry() => DateTime.now().add(_hiddenStateMaxDuration);
   _getRevealedStateExpiry() => DateTime.now().add(_revealedStateMaxDuration);
@@ -50,8 +45,6 @@ class PracticeService {
         impressions, impressions.sublist(1), impressions.first, false, false,
         nextStepTime: _getHiddenStateExpiry(),
         currentStepStart: DateTime.now()));
-
-    analyticsService.track(AnalyticsEvents.learnStart);
   }
 
   void reveal() {

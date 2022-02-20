@@ -3,25 +3,22 @@ import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_storage_service.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
-import 'package:kotobaten/services/analytics_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) => AuthService(
     ref.watch(authRepositoryProvider.notifier),
     ref.watch(authStorageServiceProvider),
     ref.watch(kotobatenApiServiceProvider),
-    ref.watch(userServiceProvider),
-    ref.watch(analyticsServiceProvider)));
+    ref.watch(userServiceProvider)));
 
 class AuthService {
   final AuthRepository authRepository;
   final AuthStorageService authStorageService;
   final KotobatenApiService apiService;
   final UserService userService;
-  final AnalyticsService analyticsService;
 
   AuthService(this.authRepository, this.authStorageService, this.apiService,
-      this.userService, this.analyticsService);
+      this.userService);
 
   Future<AuthModel> initialize() async {
     final currentToken = await authStorageService.getToken();
@@ -31,8 +28,6 @@ class AuthService {
         : AuthModel.unauthenticated();
 
     authRepository.update(result);
-
-    await analyticsService.initialize();
 
     return result;
   }

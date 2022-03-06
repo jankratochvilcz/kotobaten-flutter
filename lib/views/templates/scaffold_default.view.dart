@@ -16,7 +16,7 @@ class ScaffoldDefault extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
       floatingActionButton: floatingActionButton,
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           actions: [
             IconButton(
                 onPressed: () => Navigator.of(context).pushNamed(searchRoute),
@@ -24,7 +24,7 @@ class ScaffoldDefault extends HookConsumerWidget {
             IconButton(
                 onPressed: () => showProfileBottomSheet(context),
                 tooltip: 'Your profile',
-                icon: GoalRings(Theme.of(context).colorScheme.primaryVariant))
+                icon: GoalRings(Theme.of(context).colorScheme.primaryContainer))
           ],
           title: SizedBox(
             height: kToolbarHeight,

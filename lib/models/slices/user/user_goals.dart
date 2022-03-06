@@ -11,4 +11,7 @@ class UserGoals with _$UserGoals {
 
   factory UserGoals.fromJson(Map<String, dynamic> json) =>
       _$UserGoalsFromJson(json);
+
+  factory UserGoals.fromDailyGoal(int dailyGoal) =>
+      UserGoals(dailyGoal * 7, dailyGoal * 7 * 4, dailyGoal);
 }

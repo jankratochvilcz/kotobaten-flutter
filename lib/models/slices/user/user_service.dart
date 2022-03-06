@@ -28,6 +28,11 @@ class UserService {
     userRepository.update(UserModel.initialized(refreshedUser));
   }
 
+  Future completeOnboarding() async {
+    await apiService.hideOnboarding();
+    await refreshUser();
+  }
+
   UserInitialized setUser(UserInitialized user) {
     userRepository.update(UserModel.initialized(user));
     return user;

@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 extension TextSpanFactory on TextSpan {
   static TextSpan link(String text, Uri uri, BuildContext context) => TextSpan(
-        text: 'Cookie Policy',
+        text: text,
         style: TextStyle(
             decoration: TextDecoration.underline,
             color: Theme.of(context).colorScheme.secondary),

@@ -55,8 +55,8 @@ class HomeView extends HookConsumerWidget {
 
     if (userModel is UserModelInitialized &&
         !userModel.user.onboarding.onboardingHidden) {
-      Future.microtask(
-          () async => await Navigator.pushNamed(context, onboardingRoute));
+      Future.microtask(() async => await Navigator.pushNamedAndRemoveUntil(
+          context, onboardingRoute, (route) => false));
     }
 
     if (userModel is UserModelInitialized) {

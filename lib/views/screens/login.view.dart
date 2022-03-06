@@ -40,6 +40,7 @@ class LoginView extends HookConsumerWidget {
         body: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Padding(padding: allPadding(PaddingType.xxLarge), child: const Logo())

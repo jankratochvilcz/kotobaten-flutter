@@ -50,7 +50,8 @@ class NotificationService {
 
   String? selectedNotificationPayload;
 
-  bool platformSupportsPeriodicNotifications() => !kIsWeb && !Platform.isLinux;
+  bool platformSupportsPeriodicNotifications() =>
+      !kIsWeb && !Platform.isLinux && !Platform.isWindows;
 
   Future _initialize() async {
     await _configureLocalTimeZone();

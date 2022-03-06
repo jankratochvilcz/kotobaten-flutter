@@ -70,7 +70,7 @@ class HomeView extends HookConsumerWidget {
           onRefresh: () => userService.refreshUser(),
           header: WaterDropMaterialHeader(
             color: Colors.white,
-            backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           ),
           child: Center(
               child: CallbackShortcuts(

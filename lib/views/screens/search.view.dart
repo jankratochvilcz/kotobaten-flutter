@@ -24,7 +24,7 @@ class SearchView extends HookConsumerWidget {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.primaryVariant,
+            backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             foregroundColor: Colors.white,
             title: model.searchFocused
                 ? TextField(

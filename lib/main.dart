@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
               onError: Color(0xff6C0000),
               onPrimary: Color(0xffffffff),
               onSecondary: Color(0xffffffff),
-              primaryVariant: Color(0xff9E0022),
-              secondaryVariant: Color(0xff352B3D),
+              primaryContainer: Color(0xff9E0022),
+              secondaryContainer: Color(0xff352B3D),
               surface: Color(0xffffffff))),
       initialRoute: homeRoute,
       routes: {

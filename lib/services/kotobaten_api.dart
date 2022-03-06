@@ -160,6 +160,10 @@ class KotobatenApiService {
     return result;
   }
 
+  Future hideOnboarding() async {
+    await _postJson('hideOnboarding', {});
+  }
+
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
     final url = _getUrl(_appConfiguration.apiRoot, relativePath, params);

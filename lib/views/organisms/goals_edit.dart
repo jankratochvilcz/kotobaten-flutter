@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
+import 'package:kotobaten/services/input_validation/goals_validator.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 
 showGoalsEditDialog(
@@ -45,22 +46,13 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
     _goalDayController.text = widget.currentGoals.discoverDaily.toString();
   }
 
-  String? validateGoal(String? value) {
-    if (value == null || value.isEmpty || int.tryParse(value) == null) {
-      return 'Enter a valid goal.';
-    }
-
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     onEditComplete() {
       if (_formKey.currentState!.validate()) {
         final dailyGoal = int.parse(_goalDayController.text);
-        final weeklyGoal = dailyGoal * 7;
-        final monthlyGoal = weeklyGoal * 4;
-        widget._onSubmit(UserGoals(weeklyGoal, monthlyGoal, dailyGoal));
+        final goals = UserGoals.fromDailyGoal(dailyGoal);
+        widget._onSubmit(goals);
       }
     }
 

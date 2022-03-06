@@ -11,6 +11,7 @@ _$UserInitialized _$$UserInitializedFromJson(Map<String, dynamic> json) =>
       UserStatistics.fromJson(json['stats'] as Map<String, dynamic>),
       UserCore.fromJson(json['user'] as Map<String, dynamic>),
       UserGoals.fromJson(json['goals'] as Map<String, dynamic>),
+      UserOnboarding.fromJson(json['onboarding'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserInitializedToJson(_$UserInitialized instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$UserInitializedToJson(_$UserInitialized instance) =>
       'stats': instance.stats,
       'user': instance.user,
       'goals': instance.goals,
+      'onboarding': instance.onboarding,
     };

@@ -13,6 +13,7 @@ jobs:
           with:
             flutter-version: '2.10.3'
             channel: 'stable'
+        - run: flutter --version
         - run: flutter pub get
         - run: flutter build web
         - uses: JamesIves/github-pages-deploy-action@4.1.5

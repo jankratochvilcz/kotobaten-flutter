@@ -36,90 +36,91 @@ class LoginView extends HookConsumerWidget {
       });
     }
 
+    const inputConstraints = BoxConstraints(maxWidth: 400);
     return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Padding(padding: allPadding(PaddingType.xxLarge), child: const Logo())
-        ]),
-        Padding(
-            padding: horizontalPadding(PaddingType.xLarge),
-            child: Form(
-                key: viewModel.form,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+      body: Padding(
+          padding: horizontalPadding(PaddingType.xLarge),
+          child: Form(
+              key: viewModel.form,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: bottomPadding(PaddingType.xxLarge),
+                      child: const Logo()),
+                  Padding(
+                      padding: bottomPadding(PaddingType.xLarge),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Description(viewModel
+                              .getSwitchKindDescription(loginKind.value)),
+                          TextButton(
+                            child: Text(viewModel
+                                .getSwitchKindButtonLabel(loginKind.value)),
+                            onPressed: () => loginKind.value =
+                                loginKind.value == LoginKind.login
+                                    ? LoginKind.signup
+                                    : LoginKind.login,
+                          )
+                        ],
+                      )),
+                  ConstrainedBox(
+                      constraints: inputConstraints,
+                      child: TextFormField(
+                        controller: viewModel.email,
+                        validator: authValidationService.validateEmail,
+                        autofocus: true,
+                        textInputAction: TextInputAction.next,
+                        autofillHints: const [AutofillHints.email],
+                        decoration: const InputDecoration(labelText: 'Email'),
+                      )),
+                  ConstrainedBox(
+                      constraints: inputConstraints,
+                      child: TextFormField(
+                        controller: viewModel.password,
+                        obscureText: true,
+                        autofillHints: const [AutofillHints.password],
+                        validator: authValidationService.validatePassword,
+                        decoration:
+                            const InputDecoration(labelText: 'Password'),
+                      )),
+                  Padding(
+                      padding: topPadding(PaddingType.xxLarge),
+                      child: Button(
+                        viewModel.getPrimaryButtonDescription(
+                            loginKind.value, authModel),
+                        () async {
+                          final result =
+                              await viewModel.authenticate(loginKind.value);
+                          if (result is AuthModelAuthenticationError) {
+                            onLoginError(context)(result.message);
+                          }
+                        },
+                        type: ButtonType.primary,
+                        size: ButtonSize.big,
+                        icon: Icons.login,
+                      )),
+                  if (loginKind.value == LoginKind.signup)
                     Padding(
-                        padding: bottomPadding(PaddingType.xLarge),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Description(viewModel
-                                .getSwitchKindDescription(loginKind.value)),
-                            TextButton(
-                              child: Text(viewModel
-                                  .getSwitchKindButtonLabel(loginKind.value)),
-                              onPressed: () => loginKind.value =
-                                  loginKind.value == LoginKind.login
-                                      ? LoginKind.signup
-                                      : LoginKind.login,
-                            )
-                          ],
-                        )),
-                    TextFormField(
-                      controller: viewModel.email,
-                      validator: authValidationService.validateEmail,
-                      autofocus: true,
-                      textInputAction: TextInputAction.next,
-                      autofillHints: const [AutofillHints.email],
-                      decoration: const InputDecoration(labelText: 'Email'),
-                    ),
-                    TextFormField(
-                      controller: viewModel.password,
-                      obscureText: true,
-                      autofillHints: const [AutofillHints.password],
-                      validator: authValidationService.validatePassword,
-                      decoration: const InputDecoration(labelText: 'Password'),
-                    ),
-                    Padding(
-                        padding: topPadding(PaddingType.xxLarge),
-                        child: Button(
-                          viewModel.getPrimaryButtonDescription(
-                              loginKind.value, authModel),
-                          () async {
-                            final result =
-                                await viewModel.authenticate(loginKind.value);
-                            if (result is AuthModelAuthenticationError) {
-                              onLoginError(context)(result.message);
-                            }
-                          },
-                          type: ButtonType.primary,
-                          size: ButtonSize.big,
-                          icon: Icons.login,
-                        )),
-                    if (loginKind.value == LoginKind.signup)
-                      Padding(
-                          padding: topPadding(PaddingType.large),
-                          child: DescriptionRichText([
-                            const TextSpan(
-                                text:
-                                    'By clicking Sign up, you\'re agreeing to the '),
-                            TextSpanFactory.link('Terms of Service',
-                                Uri.https('kotobaten.app', 'terms'), context),
-                            const TextSpan(text: ', '),
-                            TextSpanFactory.link('Privacy Policy',
-                                Uri.https('kotobaten.app', 'privacy'), context),
-                            const TextSpan(text: ', and '),
-                            TextSpanFactory.link('Cookie Policy',
-                                Uri.https('kotobaten.app', 'cookies'), context)
-                          ], textAlign: TextAlign.center))
-                  ],
-                )))
-      ],
-    ));
+                        padding: topPadding(PaddingType.large),
+                        child: DescriptionRichText([
+                          const TextSpan(
+                              text:
+                                  'By clicking Sign up, you\'re agreeing to the '),
+                          TextSpanFactory.link('Terms of Service',
+                              Uri.https('kotobaten.app', 'terms'), context),
+                          const TextSpan(text: ', '),
+                          TextSpanFactory.link('Privacy Policy',
+                              Uri.https('kotobaten.app', 'privacy'), context),
+                          const TextSpan(text: ', and '),
+                          TextSpanFactory.link('Cookie Policy',
+                              Uri.https('kotobaten.app', 'cookies'), context)
+                        ], textAlign: TextAlign.center))
+                ],
+              ))),
+    );
   }
 
   onLoginError(BuildContext context) =>

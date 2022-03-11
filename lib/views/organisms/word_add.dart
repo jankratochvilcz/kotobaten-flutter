@@ -12,22 +12,41 @@ showWordAddBottomSheet(
         Future<card_entity.CardInitialized> Function(card_entity.Card card)
             onSubmit,
         {card_entity.CardInitialized? existingWord}) =>
-    showModalBottomSheet(
-        context: context,
-        isScrollControlled: true,
-        shape: defaultBottomSheetShape,
-        builder: (context) => Padding(
-            padding: MediaQuery.of(context).viewInsets,
-            child: WordAddForm(
-              (card) async {
-                final createdCard = await onSubmit(card);
+    MediaQuery.of(context).size.width < 600
+        ? showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            shape: defaultBottomSheetShape,
+            builder: (context) =>
+                WordAddDialogContents(onSubmit, existingWord: existingWord))
+        : showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                content: WordAddDialogContents(onSubmit,
+                    existingWord: existingWord)));
 
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Card for ${createdCard.sense} created.')));
-              },
-              existingWord: existingWord,
-            )));
+class WordAddDialogContents extends StatelessWidget {
+  final Future<card_entity.CardInitialized> Function(card_entity.Card card)
+      onSubmit;
+  final card_entity.CardInitialized? existingWord;
+
+  const WordAddDialogContents(this.onSubmit, {Key? key, this.existingWord})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: WordAddForm(
+        (card) async {
+          final createdCard = await onSubmit(card);
+
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Card for ${createdCard.sense} created.')));
+        },
+        existingWord: existingWord,
+      ));
+}
 
 class WordAddForm extends StatefulWidget {
   final Future Function(card_entity.Card card) _onSubmit;

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
-import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -47,37 +45,7 @@ class CardLearn extends StatelessWidget {
             padding: topPadding(PaddingType.large),
             child: ButtonAsync(
               'Learn',
-              () => user.stats.leftToPractice > 0 ||
-                      user.stats.discoveredToday < user.goals.discoverDaily
-                  ? goToPractice()
-                  : showModalBottomSheet(
-                      shape: defaultBottomSheetShape,
-                      context: context,
-                      builder: (context) => Padding(
-                          padding: allPadding(PaddingType.standard),
-                          child: SizedBox(
-                              height: 180,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                      padding:
-                                          bottomPadding(PaddingType.xLarge),
-                                      child: Description(
-                                        'Your next batch of practice words is scheduled for ${user.stats.backstopThresholdExpiryFormatted}. \n\nYou seem eager tho\'. We\'ll fast forward that for you. 💪',
-                                        textAlign: TextAlign.center,
-                                      )),
-                                  ButtonAsync(
-                                    'Learn',
-                                    () async {
-                                      await updateBackstop();
-                                      await goToPractice();
-                                    },
-                                    icon: Icons.bolt_outlined,
-                                    size: ButtonSize.big,
-                                    type: ButtonType.primary,
-                                  )
-                                ],
-                              )))),
+              () => goToPractice(),
               icon: Icons.bolt_outlined,
               size: ButtonSize.big,
               type: ButtonType.primary,

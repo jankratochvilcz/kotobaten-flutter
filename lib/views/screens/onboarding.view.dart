@@ -80,22 +80,27 @@ class OnboardingView extends HookConsumerWidget {
                               Padding(
                                   padding: bottomPadding(PaddingType.standard),
                                   child: const Text(
-                                      'Using Kotobaten boils down to two things.')),
+                                      'Kotobaten gives you a simple but powerful system to learn Japanese vocabulary and retain it. The system boils down to two things:')),
+                              Padding(
+                                  padding:
+                                      verticalPadding(PaddingType.standard),
+                                  child: const Text(
+                                      '1) When you see an interesting word in the wild, add it to Kotobaten.')),
                               Padding(
                                   padding: bottomPadding(PaddingType.standard),
                                   child: const Text(
-                                      '1) When you see an interesting work in the wild, add it to Kotobaten.')),
+                                      '2) Return daily to refesh words you learned before and pick up new ones.')),
                               Padding(
-                                  padding: bottomPadding(PaddingType.standard),
+                                  padding:
+                                      verticalPadding(PaddingType.standard),
                                   child: const Text(
-                                      '2) come back daily to refesh words you learned before and pick up new ones.')),
+                                      'If you can keep it up, you will level up your Japanese in no time! ⚡')),
                               Padding(
-                                  padding: bottomPadding(PaddingType.standard),
-                                  child: const Text(
-                                      'Kotobaten will figure out the rest. ⚡')),
-                              Button('Got it!', () => currentStep.value++,
-                                  type: ButtonType.primary,
-                                  icon: Icons.check_outlined)
+                                  padding: topPadding(PaddingType.standard),
+                                  child: Button(
+                                      'Got it!', () => currentStep.value++,
+                                      type: ButtonType.primary,
+                                      icon: Icons.check_outlined))
                             ]))),
                 Step(
                     title: const Heading('Set a goal 🎯', HeadingStyle.h2),
@@ -107,7 +112,11 @@ class OnboardingView extends HookConsumerWidget {
                             Padding(
                                 padding: bottomPadding(PaddingType.standard),
                                 child: const Text(
-                                    'Pick your daily goal. Five words per day will give you a solid balance, but make it your own!')),
+                                    'Pick how many new words you want to learn daily. Five words per day gives you a solid balance, but make it your own! You can refine your goals any time.')),
+                            Padding(
+                                padding: bottomPadding(PaddingType.standard),
+                                child: const Description(
+                                    'You can refine your goals at any time.')),
                             TextFormField(
                               controller: _goalDayController,
                               autofocus: true,
@@ -118,7 +127,7 @@ class OnboardingView extends HookConsumerWidget {
                                   suffixText: 'new words'),
                             ),
                             Padding(
-                                padding: topPadding(PaddingType.standard),
+                                padding: topPadding(PaddingType.xLarge),
                                 child: ButtonAsync('Save', () async {
                                   await userService.updateGoals(
                                       UserGoals.fromDailyGoal(
@@ -138,11 +147,11 @@ class OnboardingView extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                  'You set your goal for ${userModelInitialized.user.goals.discoverDaily} words. Set it to motion by adding words for today.'),
+                                  'You set your goal to ${userModelInitialized.user.goals.discoverDaily} new words per day. Time to put words to action and add the words you want to learn today. 💪'),
                               Padding(
-                                  padding: topPadding(PaddingType.standard),
+                                  padding: topPadding(PaddingType.xLarge),
                                   child: Button(
-                                      'Add $cardsLeftToAdd more words',
+                                      'Add word ($cardsLeftToAdd left)',
                                       () => showWordAddBottomSheet(context,
                                               (card) async {
                                             if (card is card_entity.CardNew) {
@@ -170,7 +179,7 @@ class OnboardingView extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                  'We with you luck on your learning journey! Keep in mind that everyone has a setback once in a while; that\'s ok!'),
+                                  'Good luck on your learning journey! Keep in mind that everyone has a setback once in a while; that\'s ok!'),
                               Padding(
                                   padding: topPadding(PaddingType.xLarge),
                                   child: const Text(
@@ -182,7 +191,8 @@ class OnboardingView extends HookConsumerWidget {
                                   'ー Even monkeys fall from tree sometimes.'),
                               Padding(
                                   padding: topPadding(PaddingType.xLarge),
-                                  child: ButtonAsync('Go to app', () async {
+                                  child: ButtonAsync('Start learning',
+                                      () async {
                                     await userService.completeOnboarding();
                                     await Navigator.pushNamedAndRemoveUntil(
                                         context, homeRoute, (route) => false);

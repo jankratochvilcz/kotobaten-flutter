@@ -39,16 +39,18 @@ class CardCollect extends ConsumerWidget {
             ],
           ),
           if (userModel.user.stats.nextToDiscoverCreated != null)
-            DescriptionRichText(
-              [
-                const TextSpan(text: 'You\'re learning words from '),
-                TextSpan(
-                    text: userModel.user.stats.nextToDiscoverCreated
-                        ?.getRelativeToNowString(DateTime.now()),
-                    style: const TextStyle(fontWeight: FontWeight.w700)),
-                const TextSpan(text: '.')
-              ],
-            ),
+            Padding(
+                padding: topPadding(PaddingType.standard),
+                child: DescriptionRichText(
+                  [
+                    const TextSpan(text: 'You\'re learning words from '),
+                    TextSpan(
+                        text: userModel.user.stats.nextToDiscoverCreated
+                            ?.getRelativeToNowString(DateTime.now()),
+                        style: const TextStyle(fontWeight: FontWeight.w700)),
+                    const TextSpan(text: '.')
+                  ],
+                )),
           Padding(
               padding: topPadding(PaddingType.large),
               child:

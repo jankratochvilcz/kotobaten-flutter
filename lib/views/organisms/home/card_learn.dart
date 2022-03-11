@@ -27,7 +27,7 @@ class CardLearn extends StatelessWidget {
                   TextSpan(
                       text:
                           '${user.stats.leftToPractice > 0 ? user.stats.leftToPractice.toString() : 'no'} words',
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontWeight: FontWeight.w700)),
                   const TextSpan(text: ' to refresh.')
                 ],
               )
@@ -39,7 +39,7 @@ class CardLearn extends StatelessWidget {
             TextSpan(
                 text:
                     '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
-                style: const TextStyle(fontWeight: FontWeight.bold)),
+                style: const TextStyle(fontWeight: FontWeight.w700)),
             const TextSpan(text: ' this week.')
           ],
         ),

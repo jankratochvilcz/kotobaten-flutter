@@ -34,7 +34,7 @@ class CardCollect extends ConsumerWidget {
               TextSpan(
                   text:
                       '${userModel.user.stats.addedWeek > 0 ? userModel.user.stats.addedWeek.toString() : 'no'} words',
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontWeight: FontWeight.w700)),
               const TextSpan(text: ' this week.')
             ],
           ),
@@ -45,7 +45,7 @@ class CardCollect extends ConsumerWidget {
                 TextSpan(
                     text: userModel.user.stats.nextToDiscoverCreated
                         ?.getRelativeToNowString(DateTime.now()),
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                    style: const TextStyle(fontWeight: FontWeight.w700)),
                 const TextSpan(text: '.')
               ],
             ),

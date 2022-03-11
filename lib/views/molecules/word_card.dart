@@ -60,7 +60,7 @@ class WordCard extends ConsumerWidget {
                                       primaryJapanese ?? '',
                                       style: const TextStyle(
                                           fontSize: 24,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeight.w400),
                                     )),
                               ],
                             ))),

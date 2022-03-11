@@ -176,7 +176,7 @@ class OnboardingView extends HookConsumerWidget {
                                   child: const Text(
                                     '猿も木から落ちる',
                                     style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                        TextStyle(fontWeight: FontWeight.w700),
                                   )),
                               const Description(
                                   'ー Even monkeys fall from tree sometimes.'),

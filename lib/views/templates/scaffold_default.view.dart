@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
@@ -24,7 +28,16 @@ class ScaffoldDefault extends HookConsumerWidget {
             IconButton(
                 onPressed: () => showProfileBottomSheet(context),
                 tooltip: 'Your profile',
-                icon: GoalRings(Theme.of(context).colorScheme.primaryContainer))
+                icon:
+                    GoalRings(Theme.of(context).colorScheme.primaryContainer)),
+            if (Platform.isWindows)
+              Padding(
+                  padding: leftPadding(PaddingType.xxLarge),
+                  child: MinimizeWindowButton(colors: windowButtonColors)),
+            if (Platform.isWindows)
+              MaximizeWindowButton(colors: windowButtonColors),
+            if (Platform.isWindows)
+              CloseWindowButton(colors: closeWindowButtonColors)
           ],
           title: SizedBox(
             height: kToolbarHeight,

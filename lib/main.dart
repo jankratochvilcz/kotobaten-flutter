@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:kotobaten/consts/fonts.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/screens/collection.view.dart';
 import 'package:kotobaten/views/screens/home.view.dart';
 import 'package:kotobaten/views/screens/login.view.dart';
@@ -10,7 +12,20 @@ import 'package:kotobaten/views/screens/practice.view.dart';
 import 'package:kotobaten/views/screens/search.view.dart';
 import 'package:kotobaten/views/screens/settings.view.dart';
 
-void main() => runApp(const ProviderScope(child: MyApp()));
+void main() {
+  runApp(const ProviderScope(child: MyApp()));
+
+  doWhenWindowReady(() {
+    final window = appWindow;
+
+    const initialSize = Size(1200, 700);
+    window.minSize = const Size(400, 500);
+    window.size = initialSize;
+    window.alignment = Alignment.center;
+
+    window.show();
+  });
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -46,6 +61,9 @@ class MyApp extends StatelessWidget {
         settingsRoute: (_) => const SettingsView(),
         onboardingRoute: (_) => const OnboardingView()
       },
+      builder: (context, widget) => widget != null
+          ? WindowBorder(child: widget, color: const Color(0xff9E0022))
+          : const Empty(),
     ));
   }
 }

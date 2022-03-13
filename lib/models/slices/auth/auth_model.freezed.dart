@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_model.dart';
@@ -543,11 +544,12 @@ class _$AuthModelAuthenticated implements AuthModelAuthenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AuthModelAuthenticated &&
-            (identical(other.token, token) || other.token == token));
+            const DeepCollectionEquality().equals(other.token, token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
 
   @JsonKey(ignore: true)
   @override
@@ -699,11 +701,12 @@ class _$AuthModelAuthenticationError implements AuthModelAuthenticationError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AuthModelAuthenticationError &&
-            (identical(other.message, message) || other.message == message));
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override

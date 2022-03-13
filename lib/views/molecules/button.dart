@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/services/app_configuration.dart';
+
+import '../../extensions/platform.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
 const smallButtonSize = 16.0;
@@ -85,8 +86,8 @@ class Button extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deviceType =
-        ref.watch(appConfigurationProvider.select((value) => value.deviceType));
+    final platform =
+        ref.watch(appConfigurationProvider.select((value) => value.platform));
 
     final buttonContents = Container(
         width: size == ButtonSize.big ? 220 : null,
@@ -116,7 +117,8 @@ class Button extends ConsumerWidget {
                   fontSize: size == ButtonSize.small ? smallButtonSize : null,
                   color: type == ButtonType.secondary ? Colors.black54 : null),
             ),
-            if (shortcut != null && deviceType == DeviceType.web)
+            if (shortcut != null &&
+                platform.toDeviceType() == DeviceType.desktop)
               Padding(
                 child: Text(
                   '[$shortcut]',

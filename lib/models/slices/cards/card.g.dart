@@ -13,6 +13,7 @@ _$CardInitialized _$$CardInitializedFromJson(Map<String, dynamic> json) =>
       toNonEmptyString(json['kana']),
       toNonEmptyString(json['kanji']),
       json['note'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CardInitializedToJson(_$CardInitialized instance) =>
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$CardInitializedToJson(_$CardInitialized instance) =>
       'kana': instance.kana,
       'kanji': instance.kanji,
       'note': instance.note,
+      'runtimeType': instance.$type,
     };
 
 _$CardNew _$$CardNewFromJson(Map<String, dynamic> json) => _$CardNew(
@@ -29,6 +31,7 @@ _$CardNew _$$CardNewFromJson(Map<String, dynamic> json) => _$CardNew(
       json['kana'] as String?,
       json['kanji'] as String?,
       json['note'] as String?,
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CardNewToJson(_$CardNew instance) => <String, dynamic>{
@@ -36,4 +39,5 @@ Map<String, dynamic> _$$CardNewToJson(_$CardNew instance) => <String, dynamic>{
       'kana': instance.kana,
       'kanji': instance.kanji,
       'note': instance.note,
+      'runtimeType': instance.$type,
     };

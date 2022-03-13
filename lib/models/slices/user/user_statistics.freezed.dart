@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_statistics.dart';
@@ -281,40 +282,38 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UserStatisticsInitialized &&
-            (identical(other.leftToPractice, leftToPractice) ||
-                other.leftToPractice == leftToPractice) &&
-            (identical(other.discoveredToday, discoveredToday) ||
-                other.discoveredToday == discoveredToday) &&
-            (identical(other.discoveredWeek, discoveredWeek) ||
-                other.discoveredWeek == discoveredWeek) &&
-            (identical(other.discoveredMonth, discoveredMonth) ||
-                other.discoveredMonth == discoveredMonth) &&
-            (identical(other.addedWeek, addedWeek) ||
-                other.addedWeek == addedWeek) &&
-            (identical(other.nextToDiscoverCreated, nextToDiscoverCreated) ||
-                other.nextToDiscoverCreated == nextToDiscoverCreated) &&
-            (identical(other.currentBackstop, currentBackstop) ||
-                other.currentBackstop == currentBackstop) &&
-            (identical(other.retentionThreshold, retentionThreshold) ||
-                other.retentionThreshold == retentionThreshold) &&
-            (identical(other.backstopThresholdExpiryFormatted,
-                    backstopThresholdExpiryFormatted) ||
-                other.backstopThresholdExpiryFormatted ==
-                    backstopThresholdExpiryFormatted));
+            const DeepCollectionEquality()
+                .equals(other.leftToPractice, leftToPractice) &&
+            const DeepCollectionEquality()
+                .equals(other.discoveredToday, discoveredToday) &&
+            const DeepCollectionEquality()
+                .equals(other.discoveredWeek, discoveredWeek) &&
+            const DeepCollectionEquality()
+                .equals(other.discoveredMonth, discoveredMonth) &&
+            const DeepCollectionEquality().equals(other.addedWeek, addedWeek) &&
+            const DeepCollectionEquality()
+                .equals(other.nextToDiscoverCreated, nextToDiscoverCreated) &&
+            const DeepCollectionEquality()
+                .equals(other.currentBackstop, currentBackstop) &&
+            const DeepCollectionEquality()
+                .equals(other.retentionThreshold, retentionThreshold) &&
+            const DeepCollectionEquality().equals(
+                other.backstopThresholdExpiryFormatted,
+                backstopThresholdExpiryFormatted));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      leftToPractice,
-      discoveredToday,
-      discoveredWeek,
-      discoveredMonth,
-      addedWeek,
-      nextToDiscoverCreated,
-      currentBackstop,
-      retentionThreshold,
-      backstopThresholdExpiryFormatted);
+      const DeepCollectionEquality().hash(leftToPractice),
+      const DeepCollectionEquality().hash(discoveredToday),
+      const DeepCollectionEquality().hash(discoveredWeek),
+      const DeepCollectionEquality().hash(discoveredMonth),
+      const DeepCollectionEquality().hash(addedWeek),
+      const DeepCollectionEquality().hash(nextToDiscoverCreated),
+      const DeepCollectionEquality().hash(currentBackstop),
+      const DeepCollectionEquality().hash(retentionThreshold),
+      const DeepCollectionEquality().hash(backstopThresholdExpiryFormatted));
 
   @JsonKey(ignore: true)
   @override

@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
@@ -97,19 +100,44 @@ class PracticeView extends HookConsumerWidget {
 
       return WillPopScope(
         child: Scaffold(
+            appBar: AppBar(
+              iconTheme: const IconThemeData(color: Colors.black26),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              elevation: 0,
+              actions: [
+                if (Platform.isWindows)
+                  MinimizeWindowButton(colors: windowButtonColorsPractice),
+                if (Platform.isWindows)
+                  MaximizeWindowButton(colors: windowButtonColorsPractice),
+                if (Platform.isWindows)
+                  CloseWindowButton(colors: closeWindowButtonPractice)
+              ],
+              title: Table(columnWidths: const <int, TableColumnWidth>{
+                0: FlexColumnWidth()
+              }, children: [
+                TableRow(children: [
+                  if (Platform.isWindows)
+                    SizedBox(
+                        height: kToolbarHeight,
+                        child: WindowTitleBarBox(child: MoveWindow()))
+                ])
+              ]),
+            ),
             body: SafeArea(
                 child: Column(
-          children: [
-            Padding(
-                padding: topPadding(PaddingType.xxLarge),
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.black12,
-                  strokeWidth: 2,
-                  value: practiceService.getProgress(),
-                )),
-            if (impressionView != null) impressionView
-          ],
-        ))),
+              children: [
+                Padding(
+                    padding: topPadding(!Platform.isWindows
+                        ? PaddingType.xxLarge
+                        : PaddingType.standard),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.black12,
+                      strokeWidth: 2,
+                      value: practiceService.getProgress(),
+                    )),
+                if (impressionView != null) impressionView
+              ],
+            ))),
         onWillPop: () {
           practiceService.reset();
           return Future.value(true);

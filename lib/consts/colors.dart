@@ -10,6 +10,7 @@ Color dailyProgressColor(BuildContext context) =>
     Theme.of(context).colorScheme.secondary.lighten(0.3);
 
 Color successColor = Colors.amber.shade500;
+Color backgroundColor = const Color(0xFFFAFAFA);
 
 Color placeholderBackroundColor(Color color) => color.darken(0.03);
 
@@ -27,3 +28,17 @@ final closeWindowButtonColors = WindowButtonColors(
     mouseDown: const Color(0xFFB71C1C),
     iconNormal: Colors.white,
     iconMouseOver: Colors.white);
+
+final windowButtonColorsPractice = WindowButtonColors(
+    iconNormal: Colors.black26,
+    iconMouseOver: Colors.black,
+    iconMouseDown: Colors.black,
+    mouseDown: Colors.white,
+    mouseOver: Colors.white);
+
+final closeWindowButtonPractice = WindowButtonColors(
+    iconMouseDown: const Color(0xFFB71C1C),
+    iconMouseOver: const Color(0xFFD32F2F),
+    iconNormal: Colors.black26,
+    mouseDown: Colors.white,
+    mouseOver: Colors.white);

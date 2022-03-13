@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
@@ -26,7 +27,7 @@ class LoginView extends HookConsumerWidget {
     final authValidationService = ref.read(authValidationServiceProvider);
     final dailyReminderService = ref.read(dailyReminderServiceProvider);
 
-    final loginKind = useState(LoginKind.login);
+    final loginKind = useState(LoginKind.signup);
 
     if (authModel is AuthModelAuthenticated) {
       Future.microtask(() async {
@@ -35,6 +36,8 @@ class LoginView extends HookConsumerWidget {
             context, homeRoute, (route) => false);
       });
     }
+
+    final descriptionStyle = TextStyle(color: descriptionColor);
 
     const inputConstraints = BoxConstraints(maxWidth: 400);
     return Scaffold(
@@ -106,17 +109,21 @@ class LoginView extends HookConsumerWidget {
                     Padding(
                         padding: topPadding(PaddingType.large),
                         child: DescriptionRichText([
-                          const TextSpan(
+                          TextSpan(
                               text:
-                                  'By clicking Sign up, you\'re agreeing to the '),
+                                  'By clicking Sign up, you\'re agreeing to the ',
+                              style: descriptionStyle),
                           TextSpanFactory.link('Terms of Service',
-                              Uri.https('kotobaten.app', 'terms'), context),
-                          const TextSpan(text: ', '),
+                              Uri.https('kotobaten.app', 'terms'), context,
+                              color: descriptionColor),
+                          TextSpan(text: ', ', style: descriptionStyle),
                           TextSpanFactory.link('Privacy Policy',
-                              Uri.https('kotobaten.app', 'privacy'), context),
-                          const TextSpan(text: ', and '),
+                              Uri.https('kotobaten.app', 'privacy'), context,
+                              color: descriptionColor),
+                          TextSpan(text: ', and ', style: descriptionStyle),
                           TextSpanFactory.link('Cookie Policy',
-                              Uri.https('kotobaten.app', 'cookies'), context)
+                              Uri.https('kotobaten.app', 'cookies'), context,
+                              color: descriptionColor)
                         ], textAlign: TextAlign.center))
                 ],
               ))),

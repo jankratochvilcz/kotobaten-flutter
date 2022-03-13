@@ -18,13 +18,13 @@ double _getFontSize(HeadingStyle style) {
 FontWeight _getFontWeight(HeadingStyle style) {
   switch (style) {
     case HeadingStyle.h1:
-      return FontWeight.bold;
+      return FontWeight.w700;
     case HeadingStyle.h2:
-      return FontWeight.w500;
+      return FontWeight.w700;
     case HeadingStyle.h3:
-      return FontWeight.w500;
+      return FontWeight.w700;
     default:
-      return FontWeight.normal;
+      return FontWeight.w400;
   }
 }
 

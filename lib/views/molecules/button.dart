@@ -123,7 +123,7 @@ class Button extends ConsumerWidget {
                   style: TextStyle(
                       fontSize:
                           size == ButtonSize.small ? smallButtonSize : null,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w400,
                       color: type == ButtonType.primary
                           ? Colors.white24
                           : Colors.black26),

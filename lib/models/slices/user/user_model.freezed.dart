@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_model.dart';
@@ -370,7 +371,7 @@ class _$UserModelInitialized extends UserModelInitialized {
 
   @override
   final UserInitialized user;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool refreshing;
 
@@ -385,13 +386,15 @@ class _$UserModelInitialized extends UserModelInitialized {
         (other.runtimeType == runtimeType &&
             other is UserModelInitialized &&
             const DeepCollectionEquality().equals(other.user, user) &&
-            (identical(other.refreshing, refreshing) ||
-                other.refreshing == refreshing));
+            const DeepCollectionEquality()
+                .equals(other.refreshing, refreshing));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(user), refreshing);
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(refreshing));
 
   @JsonKey(ignore: true)
   @override

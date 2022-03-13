@@ -2,14 +2,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_configuration.freezed.dart';
 
-enum DeviceType { web, mobile }
+enum Platform { web, android, ios, windows, unknown }
 
 @freezed
 class AppConfiguration with _$AppConfiguration {
   factory AppConfiguration.initialized(
       String apiRoot,
       bool isApiHttps,
-      DeviceType deviceType,
+      Platform platform,
       String apiVersion,
       String cookieDomain) = AppConfigurationInitialized;
 }

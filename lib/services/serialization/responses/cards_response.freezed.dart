@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'cards_response.dart';
@@ -179,13 +180,15 @@ class _$Initialized implements Initialized {
         (other.runtimeType == runtimeType &&
             other is Initialized &&
             const DeepCollectionEquality().equals(other.cards, cards) &&
-            (identical(other.hasMoreCards, hasMoreCards) ||
-                other.hasMoreCards == hasMoreCards));
+            const DeepCollectionEquality()
+                .equals(other.hasMoreCards, hasMoreCards));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(cards), hasMoreCards);
+      runtimeType,
+      const DeepCollectionEquality().hash(cards),
+      const DeepCollectionEquality().hash(hasMoreCards));
 
   @JsonKey(ignore: true)
   @override

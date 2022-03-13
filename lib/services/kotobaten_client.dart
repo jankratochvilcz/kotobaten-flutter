@@ -15,7 +15,8 @@ class KotobatenClient extends BaseClient {
   @override
   Future<StreamedResponse> send(BaseRequest request) {
     final defaultHeaders = <String, String>{
-      'x-api-version': _configuration.apiVersion
+      'x-api-version': _configuration.apiVersion,
+      'x-platform': _configuration.platform.toString()
     };
 
     request.headers.addAll(defaultHeaders);

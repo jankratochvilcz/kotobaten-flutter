@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'card.dart';
@@ -14,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Card _$CardFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String?) {
+  switch (json['runtimeType']) {
     case 'default':
       return CardInitialized.fromJson(json);
     case 'newCard':
@@ -249,7 +250,9 @@ class _$CardInitialized implements CardInitialized {
       this.sense,
       @JsonKey(fromJson: toNonEmptyString) this.kana,
       @JsonKey(fromJson: toNonEmptyString) this.kanji,
-      this.note);
+      this.note,
+      {String? $type})
+      : $type = $type ?? 'default';
 
   factory _$CardInitialized.fromJson(Map<String, dynamic> json) =>
       _$$CardInitializedFromJson(json);
@@ -267,6 +270,9 @@ class _$CardInitialized implements CardInitialized {
   @override
   final String? note;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Card(id: $id, sense: $sense, kana: $kana, kanji: $kanji, note: $note)';
@@ -277,15 +283,21 @@ class _$CardInitialized implements CardInitialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CardInitialized &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.sense, sense) || other.sense == sense) &&
-            (identical(other.kana, kana) || other.kana == kana) &&
-            (identical(other.kanji, kanji) || other.kanji == kanji) &&
-            (identical(other.note, note) || other.note == note));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.sense, sense) &&
+            const DeepCollectionEquality().equals(other.kana, kana) &&
+            const DeepCollectionEquality().equals(other.kanji, kanji) &&
+            const DeepCollectionEquality().equals(other.note, note));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, sense, kana, kanji, note);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(sense),
+      const DeepCollectionEquality().hash(kana),
+      const DeepCollectionEquality().hash(kanji),
+      const DeepCollectionEquality().hash(note));
 
   @JsonKey(ignore: true)
   @override
@@ -378,7 +390,7 @@ class _$CardInitialized implements CardInitialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CardInitializedToJson(this)..['runtimeType'] = 'default';
+    return _$$CardInitializedToJson(this);
   }
 }
 
@@ -458,7 +470,8 @@ class _$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CardNew implements CardNew {
-  _$CardNew(this.sense, this.kana, this.kanji, this.note);
+  _$CardNew(this.sense, this.kana, this.kanji, this.note, {String? $type})
+      : $type = $type ?? 'newCard';
 
   factory _$CardNew.fromJson(Map<String, dynamic> json) =>
       _$$CardNewFromJson(json);
@@ -472,6 +485,9 @@ class _$CardNew implements CardNew {
   @override
   final String? note;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
     return 'Card.newCard(sense: $sense, kana: $kana, kanji: $kanji, note: $note)';
@@ -482,14 +498,19 @@ class _$CardNew implements CardNew {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is CardNew &&
-            (identical(other.sense, sense) || other.sense == sense) &&
-            (identical(other.kana, kana) || other.kana == kana) &&
-            (identical(other.kanji, kanji) || other.kanji == kanji) &&
-            (identical(other.note, note) || other.note == note));
+            const DeepCollectionEquality().equals(other.sense, sense) &&
+            const DeepCollectionEquality().equals(other.kana, kana) &&
+            const DeepCollectionEquality().equals(other.kanji, kanji) &&
+            const DeepCollectionEquality().equals(other.note, note));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sense, kana, kanji, note);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(sense),
+      const DeepCollectionEquality().hash(kana),
+      const DeepCollectionEquality().hash(kanji),
+      const DeepCollectionEquality().hash(note));
 
   @JsonKey(ignore: true)
   @override
@@ -582,7 +603,7 @@ class _$CardNew implements CardNew {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CardNewToJson(this)..['runtimeType'] = 'newCard';
+    return _$$CardNewToJson(this);
   }
 }
 

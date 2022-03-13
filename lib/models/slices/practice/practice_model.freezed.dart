@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'practice_model.dart';
@@ -505,11 +506,12 @@ class _$PracticeModelError extends PracticeModelError {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PracticeModelError &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -899,16 +901,15 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
                 .equals(other.allImpressions, allImpressions) &&
             const DeepCollectionEquality()
                 .equals(other.remainingImpressions, remainingImpressions) &&
-            (identical(other.currentImpression, currentImpression) ||
-                other.currentImpression == currentImpression) &&
-            (identical(other.revealed, revealed) ||
-                other.revealed == revealed) &&
-            (identical(other.speechPlayed, speechPlayed) ||
-                other.speechPlayed == speechPlayed) &&
-            (identical(other.nextStepTime, nextStepTime) ||
-                other.nextStepTime == nextStepTime) &&
-            (identical(other.currentStepStart, currentStepStart) ||
-                other.currentStepStart == currentStepStart));
+            const DeepCollectionEquality()
+                .equals(other.currentImpression, currentImpression) &&
+            const DeepCollectionEquality().equals(other.revealed, revealed) &&
+            const DeepCollectionEquality()
+                .equals(other.speechPlayed, speechPlayed) &&
+            const DeepCollectionEquality()
+                .equals(other.nextStepTime, nextStepTime) &&
+            const DeepCollectionEquality()
+                .equals(other.currentStepStart, currentStepStart));
   }
 
   @override
@@ -916,11 +917,11 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
       runtimeType,
       const DeepCollectionEquality().hash(allImpressions),
       const DeepCollectionEquality().hash(remainingImpressions),
-      currentImpression,
-      revealed,
-      speechPlayed,
-      nextStepTime,
-      currentStepStart);
+      const DeepCollectionEquality().hash(currentImpression),
+      const DeepCollectionEquality().hash(revealed),
+      const DeepCollectionEquality().hash(speechPlayed),
+      const DeepCollectionEquality().hash(nextStepTime),
+      const DeepCollectionEquality().hash(currentStepStart));
 
   @JsonKey(ignore: true)
   @override

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'user_goals.dart';
@@ -158,17 +159,20 @@ class _$UserGoalsInitialized implements UserGoalsInitialized {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UserGoalsInitialized &&
-            (identical(other.discoverWeekly, discoverWeekly) ||
-                other.discoverWeekly == discoverWeekly) &&
-            (identical(other.discoverMonthly, discoverMonthly) ||
-                other.discoverMonthly == discoverMonthly) &&
-            (identical(other.discoverDaily, discoverDaily) ||
-                other.discoverDaily == discoverDaily));
+            const DeepCollectionEquality()
+                .equals(other.discoverWeekly, discoverWeekly) &&
+            const DeepCollectionEquality()
+                .equals(other.discoverMonthly, discoverMonthly) &&
+            const DeepCollectionEquality()
+                .equals(other.discoverDaily, discoverDaily));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, discoverWeekly, discoverMonthly, discoverDaily);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(discoverWeekly),
+      const DeepCollectionEquality().hash(discoverMonthly),
+      const DeepCollectionEquality().hash(discoverDaily));
 
   @JsonKey(ignore: true)
   @override

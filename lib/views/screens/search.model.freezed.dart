@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'search.model.dart';
@@ -183,12 +184,13 @@ class _$SearchModelInitial implements SearchModelInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SearchModelInitial &&
-            (identical(other.searchFocused, searchFocused) ||
-                other.searchFocused == searchFocused));
+            const DeepCollectionEquality()
+                .equals(other.searchFocused, searchFocused));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchFocused);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(searchFocused));
 
   @JsonKey(ignore: true)
   @override
@@ -333,12 +335,13 @@ class _$SearchModelLoading implements SearchModelLoading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SearchModelLoading &&
-            (identical(other.searchFocused, searchFocused) ||
-                other.searchFocused == searchFocused));
+            const DeepCollectionEquality()
+                .equals(other.searchFocused, searchFocused));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchFocused);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(searchFocused));
 
   @JsonKey(ignore: true)
   @override
@@ -498,15 +501,18 @@ class _$SearchModelLoaded implements SearchModelLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SearchModelLoaded &&
-            (identical(other.searchFocused, searchFocused) ||
-                other.searchFocused == searchFocused) &&
-            (identical(other.resultsQuery, resultsQuery) ||
-                other.resultsQuery == resultsQuery) &&
+            const DeepCollectionEquality()
+                .equals(other.searchFocused, searchFocused) &&
+            const DeepCollectionEquality()
+                .equals(other.resultsQuery, resultsQuery) &&
             const DeepCollectionEquality().equals(other.cards, cards));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchFocused, resultsQuery,
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(searchFocused),
+      const DeepCollectionEquality().hash(resultsQuery),
       const DeepCollectionEquality().hash(cards));
 
   @JsonKey(ignore: true)

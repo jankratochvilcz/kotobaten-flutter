@@ -70,6 +70,7 @@ dev_dependencies:
   json_serializable: ^6.0.1
   mockito: ^5.0.16
   lints: ^1.0.1
+  msix: ^3.3.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -109,6 +110,13 @@ flutter:
         - asset: assets/fonts/NotoSerifJP-Black.otf
           weight: 900
 
+msix_config:
+  display_name: Kotobaten
+  publisher_display_name: Jan Kratochvil
+  identity_name: janjanxyz.kotobaten
+  msix_version: 2.0.1.2
+  logo_path: assets/logos/square_gray.png
+  capabilities: internetClient
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

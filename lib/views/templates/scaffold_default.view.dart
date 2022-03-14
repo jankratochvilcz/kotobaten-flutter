@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
@@ -29,13 +30,13 @@ class ScaffoldDefault extends HookConsumerWidget {
               onPressed: () => showProfileBottomSheet(context),
               tooltip: 'Your profile',
               icon: GoalRings(Theme.of(context).colorScheme.primaryContainer)),
-          if (Platform.isWindows)
+          if (!kIsWeb && Platform.isWindows)
             Padding(
                 padding: leftPadding(PaddingType.xxLarge),
                 child: MinimizeWindowButton(colors: windowButtonColors)),
-          if (Platform.isWindows)
+          if (!kIsWeb && Platform.isWindows)
             MaximizeWindowButton(colors: windowButtonColors),
-          if (Platform.isWindows)
+          if (!kIsWeb && Platform.isWindows)
             CloseWindowButton(colors: closeWindowButtonColors)
         ],
         title: Table(columnWidths: const <int, TableColumnWidth>{
@@ -49,7 +50,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                 child: Image(
                   image: AssetImage('assets/logos/logo_wide_white.png'),
                 )),
-            if (Platform.isWindows)
+            if (!kIsWeb && Platform.isWindows)
               SizedBox(
                   height: kToolbarHeight,
                   child: WindowTitleBarBox(child: MoveWindow()))

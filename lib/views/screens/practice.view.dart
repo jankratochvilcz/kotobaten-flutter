@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -105,18 +106,18 @@ class PracticeView extends HookConsumerWidget {
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
               actions: [
-                if (Platform.isWindows)
+                if (!kIsWeb && Platform.isWindows)
                   MinimizeWindowButton(colors: windowButtonColorsPractice),
-                if (Platform.isWindows)
+                if (!kIsWeb && Platform.isWindows)
                   MaximizeWindowButton(colors: windowButtonColorsPractice),
-                if (Platform.isWindows)
+                if (!kIsWeb && Platform.isWindows)
                   CloseWindowButton(colors: closeWindowButtonPractice)
               ],
               title: Table(columnWidths: const <int, TableColumnWidth>{
                 0: FlexColumnWidth()
               }, children: [
                 TableRow(children: [
-                  if (Platform.isWindows)
+                  if (!kIsWeb && Platform.isWindows)
                     SizedBox(
                         height: kToolbarHeight,
                         child: WindowTitleBarBox(child: MoveWindow()))
@@ -127,7 +128,7 @@ class PracticeView extends HookConsumerWidget {
                 child: Column(
               children: [
                 Padding(
-                    padding: topPadding(!Platform.isWindows
+                    padding: topPadding(kIsWeb || !Platform.isWindows
                         ? PaddingType.xxLarge
                         : PaddingType.standard),
                     child: CircularProgressIndicator(

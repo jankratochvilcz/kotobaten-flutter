@@ -2,17 +2,16 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
+import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
@@ -101,29 +100,7 @@ class PracticeView extends HookConsumerWidget {
 
       return WillPopScope(
         child: Scaffold(
-            appBar: AppBar(
-              iconTheme: const IconThemeData(color: Colors.black26),
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              elevation: 0,
-              actions: [
-                if (!kIsWeb && Platform.isWindows)
-                  MinimizeWindowButton(colors: windowButtonColorsPractice),
-                if (!kIsWeb && Platform.isWindows)
-                  MaximizeWindowButton(colors: windowButtonColorsPractice),
-                if (!kIsWeb && Platform.isWindows)
-                  CloseWindowButton(colors: closeWindowButtonPractice)
-              ],
-              title: Table(columnWidths: const <int, TableColumnWidth>{
-                0: FlexColumnWidth()
-              }, children: [
-                TableRow(children: [
-                  if (!kIsWeb && Platform.isWindows)
-                    SizedBox(
-                        height: kToolbarHeight,
-                        child: WindowTitleBarBox(child: MoveWindow()))
-                ])
-              ]),
-            ),
+            appBar: const WindowingAppBar(),
             body: SafeArea(
                 child: Column(
               children: [

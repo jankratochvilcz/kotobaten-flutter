@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "janjanxyz" "\0"
+            VALUE "CompanyName", "Jan Kratochvil" "\0"
             VALUE "FileDescription", "kotobaten_client" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "kotobaten_client" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 janjanxyz. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 Jan Kratochvil. All rights reserved." "\0"
             VALUE "OriginalFilename", "kotobaten_client.exe" "\0"
-            VALUE "ProductName", "kotobaten_client" "\0"
+            VALUE "ProductName", "Kotobaten" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

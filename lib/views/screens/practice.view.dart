@@ -16,6 +16,7 @@ import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
+import 'package:kotobaten/views/organisms/progress_bar.dart';
 
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
@@ -110,11 +111,7 @@ class PracticeView extends HookConsumerWidget {
                     padding: topPadding(kIsWeb || !Platform.isWindows
                         ? PaddingType.xxLarge
                         : PaddingType.standard),
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.black12,
-                      strokeWidth: 2,
-                      value: practiceService.getProgress(),
-                    )),
+                    child: ProgressBar(practiceService.getProgress())),
                 if (impressionView != null) impressionView
               ],
             ))),

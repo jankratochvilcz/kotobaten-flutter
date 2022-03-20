@@ -12,6 +12,7 @@ import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/logo.dart';
 import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/screens/login.viewmodel.dart';
 import 'package:kotobaten/views/atoms/text_span_factory.dart';
 
@@ -41,6 +42,7 @@ class LoginView extends HookConsumerWidget {
 
     const inputConstraints = BoxConstraints(maxWidth: 400);
     return Scaffold(
+      appBar: const WindowingAppBar(),
       body: Padding(
           padding: horizontalPadding(PaddingType.xLarge),
           child: Form(

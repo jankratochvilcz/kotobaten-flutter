@@ -80,14 +80,16 @@ class PracticeView extends HookConsumerWidget {
             (correct) => correct
                 ? practiceService.evaluateCorrect()
                 : practiceService.evaluateWrong(),
-            currentStateProgress.value);
+            currentStateProgress.value,
+            practiceService.getNote());
         break;
       case ImpressionViewType.discover:
         impressionView = ImpressionNew(
             practiceService.getPrimaryText(),
             practiceService.getSecondaryText(),
             practiceService.getFurigana(),
-            practiceService.evaluateCorrect);
+            practiceService.evaluateCorrect,
+            practiceService.getNote());
         break;
       default:
     }

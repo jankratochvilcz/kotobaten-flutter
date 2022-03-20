@@ -248,8 +248,6 @@ class PracticeService {
   }
 
   double getElapsedPercentage() {
-    return 0;
-
     final model = repository.current;
     if (model is! PracticeModelInProgress ||
         model.nextStepTime == null ||

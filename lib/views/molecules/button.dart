@@ -6,7 +6,7 @@ import 'package:kotobaten/services/app_configuration.dart';
 import '../../extensions/platform.dart';
 
 BorderRadius _borderRadius = BorderRadius.circular(16);
-const smallButtonSize = 16.0;
+const smallButtonSize = 12.0;
 
 LinearGradient _getPrimaryGradient(BuildContext context) => LinearGradient(
         colors: [

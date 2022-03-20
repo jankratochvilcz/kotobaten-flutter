@@ -204,6 +204,15 @@ class PracticeService {
     return currentState.currentImpression.card.sense;
   }
 
+  String? getNote() {
+    final currentState = repository.current;
+    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
+      return null;
+    }
+
+    return currentState.currentImpression.card.note;
+  }
+
   String getHintText() {
     final currentState = repository.current;
     if (currentState is! PracticeModelInProgress) {

@@ -25,7 +25,18 @@ class UserService {
 
     final refreshedUser = await apiService.getUser(
         updateRetentionBackstop: updateRetentionBackstop);
+
     userRepository.update(UserModel.initialized(refreshedUser));
+
+    // Mock data for screenshots
+    // userRepository.update(UserModel.initialized(refreshedUser.copyWith(
+    //     stats: refreshedUser.stats.copyWith(
+    //         discoveredToday: 4,
+    //         discoveredWeek: 15,
+    //         discoveredMonth: 34,
+    //         currentBackstop: 0.36),
+    //     goals: refreshedUser.goals.copyWith(
+    //         discoverDaily: 5, discoverMonthly: 100, discoverWeekly: 25))));
   }
 
   Future completeOnboarding() async {

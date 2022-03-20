@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 
@@ -7,10 +8,15 @@ class ImpressionCard extends StatelessWidget {
   final String text;
   final String? secondaryText;
   final String? furigana;
+  final String? note;
   final bool accented;
 
   const ImpressionCard(this.text,
-      {Key? key, this.secondaryText, this.furigana, this.accented = false})
+      {Key? key,
+      this.secondaryText,
+      this.furigana,
+      this.note,
+      this.accented = false})
       : super(key: key);
 
   @override
@@ -43,7 +49,11 @@ class ImpressionCard extends StatelessWidget {
                                     textAlign: TextAlign.center),
                                 if (secondaryText != null)
                                   Heading(secondaryText ?? '', HeadingStyle.h2,
-                                      textAlign: TextAlign.center)
+                                      textAlign: TextAlign.center),
+                                if (note != null)
+                                  Padding(
+                                      padding: topPadding(PaddingType.xLarge),
+                                      child: Description(note!))
                               ],
                             ))))))));
   }

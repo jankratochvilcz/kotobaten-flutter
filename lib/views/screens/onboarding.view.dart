@@ -80,7 +80,7 @@ class OnboardingView extends HookConsumerWidget {
                               Padding(
                                   padding: bottomPadding(PaddingType.standard),
                                   child: const Text(
-                                      'Kotobaten gives you a simple but powerful system to learn Japanese vocabulary and retain it. The system boils down to two things:')),
+                                      'Kotobaten is a simple but powerful way to learn Japanese vocabulary. The system boils down to two things:')),
                               Padding(
                                   padding:
                                       verticalPadding(PaddingType.standard),
@@ -168,8 +168,16 @@ class OnboardingView extends HookConsumerWidget {
                                             throw UnsupportedError(
                                                 'Action only supported for new and initialized cards');
                                           }),
-                                      icon: Icons.add_outlined,
-                                      type: ButtonType.primary))
+                                      icon: Icons.add_rounded,
+                                      type: ButtonType.primary)),
+                              Padding(
+                                  padding: topPadding(PaddingType.xLarge),
+                                  child: ButtonAsync(
+                                      '..or add a few demo words to continue.',
+                                      () async {
+                                    await cardsService.createDemoCards();
+                                    currentStep.value++;
+                                  }, type: ButtonType.secondary))
                             ]))),
                 Step(
                     title: const Heading('Start learning ⚡', HeadingStyle.h2),

@@ -70,6 +70,11 @@ class CardsService {
     return newCard;
   }
 
+  Future createDemoCards() async {
+    await apiService.generateDemoCards();
+    await userService.refreshUser();
+  }
+
   Future<CardInitialized> deleteCard(CardInitialized card) async {
     final deleteCardResult = await apiService.deleteCard(card.id);
 

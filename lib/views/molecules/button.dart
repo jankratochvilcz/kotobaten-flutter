@@ -101,12 +101,17 @@ class Button extends ConsumerWidget {
           children: [
             Padding(
                 child: iconWidget ??
-                    Icon(
-                      icon,
-                      size: size == ButtonSize.small ? smallButtonSize : null,
-                      color:
-                          type == ButtonType.secondary ? Colors.black54 : null,
-                    ),
+                    (icon != null
+                        ? Icon(
+                            icon,
+                            size: size == ButtonSize.small
+                                ? smallButtonSize
+                                : null,
+                            color: type == ButtonType.secondary
+                                ? Colors.black54
+                                : null,
+                          )
+                        : null),
                 padding: label.isNotEmpty
                     ? rightPadding(PaddingType.small)
                     : EdgeInsets.zero),

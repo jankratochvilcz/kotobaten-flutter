@@ -125,6 +125,10 @@ class KotobatenApiService {
     return createdCard;
   }
 
+  Future generateDemoCards() async {
+    await _postJson('demoCards', {});
+  }
+
   Future<bool> deleteCard(int cardId) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'cards/$cardId');
 

@@ -114,7 +114,7 @@ msix_config:
   display_name: "Kotobaten: Expand your Japanese"
   publisher_display_name: Jan Kratochvil
   identity_name: 	7003JanKratochvil.KotobatenExpandyourvocabularyund
-  msix_version: 2.0.2.0
+  msix_version: 2.0.4.0
   logo_path: assets/logos/logo_windows.png
   capabilities: internetClient
   publisher: CN=6DEA31B6-2495-4821-93B5-2876078C935E

@@ -14,8 +14,6 @@ jobs:
           id: get_version
           run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -c 2-)
 
-        - name: Find and Replace
-
         - uses: jacobtomlinson/gha-find-replace@v2
           with:
             find: "0.0.0+0"

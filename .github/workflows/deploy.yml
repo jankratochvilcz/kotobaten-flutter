@@ -94,7 +94,7 @@ jobs:
         - name: Embeds version into pubspec.yaml
           shell: pwsh
           run: |
-            ((Get-Content -path pubspec.yaml -Raw).replace("0.0.0+0","${{ steps.get_version.outputs.VERSION }}")) | Set-Content -Path pubspec.yaml
+            (Get-Content -path pubspec.yaml -Raw).replace("0.0.0+0","${{ steps.get_version.outputs.VERSION }}").replace("0.0.0.0",[regex]::Match("${{ steps.get_version.outputs.VERSION }}", "^(?<version>[^\+]*)\+").groups["version"].value) | Set-Content -Path pubspec.yaml
 
         - name: Builds Windows
           run: flutter pub run msix:create

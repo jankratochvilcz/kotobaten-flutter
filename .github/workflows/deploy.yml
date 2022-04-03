@@ -8,6 +8,8 @@ jobs:
     web-android:
         runs-on: ubuntu-latest
         steps:
+        - name: Checkout from git
+          uses: actions/checkout@v2.3.1
 
         - name: Common environment setup
           uses: ./.github/workflows/common-setup.yml
@@ -68,6 +70,8 @@ jobs:
     windows:
         runs-on: windows-latest
         steps:
+        - name: Checkout from git
+          uses: actions/checkout@v2.3.1
 
         - name: Common environment setup
           uses: ./.github/workflows/common-setup.yml

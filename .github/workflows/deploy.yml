@@ -32,10 +32,10 @@ jobs:
             channel: 'stable'
 
         - name: Creates key.properties from secrets
-          run: cd android/app && echo "${{ secrets.PLAY_KEY_PROPERTIES }}" > key.properties && cd ../..
+          run: cd android && echo "${{ secrets.PLAY_KEY_PROPERTIES }}" > key.properties && cd ..
         
         - name: Creates upload-keystore.jks from secrets
-          run: echo "${{ secrets.PLAY_UPLOAD_KEYSTORE }}" | base64 --decode > upload-keystore.jks
+          run: cd android/app && echo "${{ secrets.PLAY_UPLOAD_KEYSTORE }}" | base64 --decode > upload-keystore.jks && cd ../..
 
         - name: Print file tree (Actions debugging)
           run: |

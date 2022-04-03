@@ -70,6 +70,7 @@ jobs:
             releaseFile: "build/app/outputs/bundle/release/app-release.aab"
             track: production
             inAppUpdatePriority: 2
+            status: completed # https://github.com/r0adkll/upload-google-play/issues/85
 
     windows:
         runs-on: windows-latest
@@ -99,3 +100,12 @@ jobs:
 
         - name: Builds Windows
           run: flutter pub run msix:create
+
+        - name: Publish to Dev Center
+          uses: isaacrlevin/windows-store-action
+          with:
+            tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+            client-id: ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }}
+            client-secret: ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
+            app-id: ${{ secrets.STORE_APP_ID }}
+            package-path: "build/windows/runner/Release/kotobaten.msix"

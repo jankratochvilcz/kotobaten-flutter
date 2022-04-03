@@ -32,16 +32,10 @@ jobs:
             channel: 'stable'
 
         - name: Creates key.properties from secrets
-          uses: "finnp/create-file-action@1.0.0"
-          env:
-            FILE_NAME: "android/key.properties"
-            FILE_DATA: ${{ secrets.PLAY_KEY_PROPERTIES }}
+          run: cd android && echo "${{ secrets.PLAY_KEY_PROPERTIES }}" > key.properties && cd ..
         
         - name: Creates upload-keystore.jks from secrets
-          uses: "finnp/create-file-action@1.0.0"
-          env:
-            FILE_NAME: "upload-keystore.jks"
-            FILE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE }}
+          run: echo "${{ secrets.PLAY_UPLOAD_KEYSTORE }}" | base64 --decode > upload-keystore.jks
 
         - name: Print file tree (Actions debugging)
           run: |

@@ -9,8 +9,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
 
-        - name: Checkout from git
-          uses: actions/checkout@v2.3.1
+        - name: Common environment setup
+          users: ./.github/workflows/common-setup.yml
+          with:
+            runs-on: ubuntu-latest
 
         # Version tags will be e.g., "refs/tags/v1.1.1+3" before processing
         - name: Gets version from tag
@@ -25,24 +27,15 @@ jobs:
             regex: false
             include: "pubspec.yaml"
 
-        - name: Gets Flutter
-          uses: subosito/flutter-action@v2
-          with:
-            flutter-version: '2.10.3'
-            channel: 'stable'
-
         - name: Creates key.properties from secrets
           run: cd android && echo "${{ secrets.PLAY_KEY_PROPERTIES }}" > key.properties && cd ..
         
         - name: Creates upload-keystore.jks from secrets
           run: cd android/app && echo "${{ secrets.PLAY_UPLOAD_KEYSTORE }}" | base64 --decode > upload-keystore.jks && cd ../..
 
-        - name: Print file tree (Actions debugging)
-          run: |
-            find . -not -path '*/\.*' | python -c "import sys as s;s.a=[];[setattr(s,'a',list(filter(lambda p: c.startswith(p+'/'),s.a)))or (s.stdout.write('  '*len(s.a)+c[len(s.a[-1])+1 if s.a else 0:])or True) and s.a.append(c[:-1]) for c in s.stdin]"
-
-        - name: Downloads packages
-          run: flutter pub get
+        # - name: Print file tree (Actions debugging)
+        #   run: |
+        #     find . -not -path '*/\.*' | python -c "import sys as s;s.a=[];[setattr(s,'a',list(filter(lambda p: c.startswith(p+'/'),s.a)))or (s.stdout.write('  '*len(s.a)+c[len(s.a[-1])+1 if s.a else 0:])or True) and s.a.append(c[:-1]) for c in s.stdin]"
 
         # - name: Builds web
         #   run: flutter build web
@@ -76,8 +69,10 @@ jobs:
         runs-on: windows-latest
         steps:
 
-        - name: Checkout from git
-          uses: actions/checkout@v2.3.1
+        - name: Common environment setup
+          users: ./.github/workflows/common-setup.yml
+          with:
+            runs-on: windows-latest
 
         # Version tags will be e.g., "refs/tags/v1.1.1+3" before processing
         - name: Gets version from tag
@@ -89,15 +84,6 @@ jobs:
           run: |
             ((Get-Content -path pubspec.yaml -Raw).replace("0.0.0+0","${{ steps.get_version.outputs.VERSION }}")) | Set-Content -Path pubspec.yaml
 
-        - name: Gets Flutter
-          uses: subosito/flutter-action@v2
-          with:
-            flutter-version: '2.10.3'
-            channel: 'stable'
-
-        - name: Downloads packages
-          run: flutter pub get
-
         - name: Builds Windows
           run: flutter pub run msix:create
 
@@ -108,4 +94,4 @@ jobs:
             client-id: ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }}
             client-secret: ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
             app-id: ${{ secrets.STORE_APP_ID }}
-            package-path: "${{ github.workspace }}/build/windows/runner/Release/kotobaten.msix"
+            package-path: "${{ github.workspace }}\\build\\windows\\runner\\Release\\kotobaten.msix"

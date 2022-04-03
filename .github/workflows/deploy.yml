@@ -102,7 +102,7 @@ jobs:
           run: flutter pub run msix:create
 
         - name: Publish to Dev Center
-          uses: isaacrlevin/windows-store-action
+          uses: isaacrlevin/windows-store-action@1.0
           with:
             tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
             client-id: ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }}

@@ -31,6 +31,8 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+println keystorePropertiesFile // Useful for CI to see the path.
+
 android {
     compileSdkVersion 31
 

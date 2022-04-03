@@ -31,17 +31,21 @@ jobs:
             flutter-version: '2.10.3'
             channel: 'stable'
 
+        - name: Print file tree (Actions debugging)
+          run: |
+            find . -not -path '*/\.*' | python -c "import sys as s;s.a=[];[setattr(s,'a',list(filter(lambda p: c.startswith(p+'/'),s.a)))or (s.stdout.write('  '*len(s.a)+c[len(s.a[-1])+1 if s.a else 0:])or True) and s.a.append(c[:-1]) for c in s.stdin]"
+
         - name: Downloads packages
           run: flutter pub get
 
-        - name: Builds web
-          run: flutter build web
+        # - name: Builds web
+        #   run: flutter build web
 
-        - name: Pushes web to GitHub Pages
-          uses: JamesIves/github-pages-deploy-action@4.1.5
-          with:
-            branch: gh-pages # The branch the action should deploy to.
-            folder: build/web # The folder the action should deploy. 
+        # - name: Pushes web to GitHub Pages
+        #   uses: JamesIves/github-pages-deploy-action@4.1.5
+        #   with:
+        #     branch: gh-pages # The branch the action should deploy to.
+        #     folder: build/web # The folder the action should deploy. 
 
         - name: Gets Java
           uses: actions/setup-java@v2

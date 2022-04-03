@@ -31,6 +31,18 @@ jobs:
             flutter-version: '2.10.3'
             channel: 'stable'
 
+                - name: Creates key.properties from secrets
+          uses: "finnp/create-file-action@1.0.0"
+          env:
+            FILE_NAME: "android/key.properties"
+            FILE_DATA: ${{ secrets.PLAY_KEY_PROPERTIES }}
+        
+        - name: Creates upload-keystore.jks from secrets
+          uses: "finnp/create-file-action@1.0.0"
+          env:
+            FILE_NAME: "upload-keystore.jks"
+            FILE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE }}
+
         - name: Print file tree (Actions debugging)
           run: |
             find . -not -path '*/\.*' | python -c "import sys as s;s.a=[];[setattr(s,'a',list(filter(lambda p: c.startswith(p+'/'),s.a)))or (s.stdout.write('  '*len(s.a)+c[len(s.a[-1])+1 if s.a else 0:])or True) and s.a.append(c[:-1]) for c in s.stdin]"
@@ -52,18 +64,6 @@ jobs:
           with:
             distribution: 'zulu'
             java-version: '11'
-        
-        - name: Creates key.properties from secrets
-          uses: "finnp/create-file-action@1.0.0"
-          env:
-            FILE_NAME: "android/key.properties"
-            FILE_DATA: ${{ secrets.PLAY_KEY_PROPERTIES }}
-        
-        - name: Creates upload-keystore.jks from secrets
-          uses: "finnp/create-file-action@1.0.0"
-          env:
-            FILE_NAME: "upload-keystore.jks"
-            FILE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE }}
 
         - name: Builds Android
           run: flutter build appbundle

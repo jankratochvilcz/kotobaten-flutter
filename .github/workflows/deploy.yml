@@ -40,11 +40,11 @@ jobs:
         # - name: Builds web
         #   run: flutter build web
 
-        # - name: Pushes web to GitHub Pages
-        #   uses: JamesIves/github-pages-deploy-action@4.1.5
-        #   with:
-        #     branch: gh-pages # The branch the action should deploy to.
-        #     folder: build/web # The folder the action should deploy. 
+        - name: Pushes web to GitHub Pages
+          uses: JamesIves/github-pages-deploy-action@4.1.5
+          with:
+            branch: gh-pages # The branch the action should deploy to.
+            folder: build/web # The folder the action should deploy. 
 
         - name: Gets Java
           uses: actions/setup-java@v2

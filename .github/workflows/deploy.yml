@@ -11,10 +11,14 @@ jobs:
         - name: Checkout from git
           uses: actions/checkout@v2.3.1
 
-        - name: Common environment setup
-          uses: ./.github/workflows/common-setup.yml
+        - name: Gets Flutter
+          uses: subosito/flutter-action@v2
           with:
-            runs-on: ubuntu-latest
+            flutter-version: '2.10.3'
+            channel: 'stable'
+
+        - name: Downloads packages
+          run: flutter pub get
 
         # Version tags will be e.g., "refs/tags/v1.1.1+3" before processing
         - name: Gets version from tag
@@ -73,10 +77,14 @@ jobs:
         - name: Checkout from git
           uses: actions/checkout@v2.3.1
 
-        - name: Common environment setup
-          uses: ./.github/workflows/common-setup.yml
+        - name: Gets Flutter
+          uses: subosito/flutter-action@v2
           with:
-            runs-on: windows-latest
+            flutter-version: '2.10.3'
+            channel: 'stable'
+
+        - name: Downloads packages
+          run: flutter pub get
 
         # Version tags will be e.g., "refs/tags/v1.1.1+3" before processing
         - name: Gets version from tag

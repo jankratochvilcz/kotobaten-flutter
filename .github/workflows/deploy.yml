@@ -70,4 +70,4 @@ jobs:
             releaseFile: "build/app/outputs/bundle/release/app-release.aab"
             track: production
             inAppUpdatePriority: 2
-            userFraction: 1
+            userFraction: 1.0

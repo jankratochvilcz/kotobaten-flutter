@@ -31,7 +31,7 @@ jobs:
             flutter-version: '2.10.3'
             channel: 'stable'
 
-                - name: Creates key.properties from secrets
+        - name: Creates key.properties from secrets
           uses: "finnp/create-file-action@1.0.0"
           env:
             FILE_NAME: "android/key.properties"

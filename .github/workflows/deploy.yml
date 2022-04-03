@@ -44,15 +44,15 @@ jobs:
         - uses: "finnp/create-file-action@1.0.0"
           env:
             FILE_NAME: "android/key.properties"
-            FILE_DATA: ${{ PLAY_KEY_PROPERTIES }}
+            FILE_DATA: ${{ secrets.PLAY_KEY_PROPERTIES }}
         - uses: "finnp/create-file-action@1.0.0"
           env:
             FILE_NAME: "upload-keystore.jks"
-            FILE_BASE64: ${{ PLAY_UPLOAD_KEYSTORE }}
+            FILE_BASE64: ${{ secrets.PLAY_UPLOAD_KEYSTORE }}
         - run: flutter build appbundle
         - uses: r0adkll/upload-google-play@v1
           with:
-            serviceAccountJsonPlainText: ${{ PLAY_SERVICE_ACCOUNT_JSON }}
+            serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
             packageName: janjanxyz.kotobaten
             releaseFile: "build/app/outputs/bundle/release/app-release.aab"
             track: production

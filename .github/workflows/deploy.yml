@@ -19,17 +19,17 @@ jobs:
 
         - name: Embeds version into pubspec.yaml
           uses: jacobtomlinson/gha-find-replace@v2
-            with:
-              find: "0.0.0+0"
-              replace: ${{ steps.get_version.outputs.VERSION }}
-              regex: false
-              include: "pubspec.yaml"
+          with:
+            find: "0.0.0+0"
+            replace: ${{ steps.get_version.outputs.VERSION }}
+            regex: false
+            include: "pubspec.yaml"
 
         - name: Gets Flutter
           uses: subosito/flutter-action@v2
-            with:
-              flutter-version: '2.10.3'
-              channel: 'stable'
+          with:
+            flutter-version: '2.10.3'
+            channel: 'stable'
 
         - name: Downloads packages
           run: flutter pub get
@@ -39,15 +39,15 @@ jobs:
 
         - name: Pushes web to GitHub Pages
           uses: JamesIves/github-pages-deploy-action@4.1.5
-            with:
-              branch: gh-pages # The branch the action should deploy to.
-              folder: build/web # The folder the action should deploy. 
+          with:
+            branch: gh-pages # The branch the action should deploy to.
+            folder: build/web # The folder the action should deploy. 
 
         - name: Gets Java
           uses: actions/setup-java@v2
-            with:
-              distribution: 'zulu'
-              java-version: '11'
+          with:
+            distribution: 'zulu'
+            java-version: '11'
         
         - name: Creates key.properties from secrets
           uses: "finnp/create-file-action@1.0.0"
@@ -66,10 +66,10 @@ jobs:
 
         - name: Publishes Android to Google Play
           uses: r0adkll/upload-google-play@v1
-            with:
-              serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
-              packageName: janjanxyz.kotobaten
-              releaseFile: "build/app/outputs/bundle/release/app-release.aab"
-              track: production
-              inAppUpdatePriority: 2
-              userFraction: 1
+          with:
+            serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+            packageName: janjanxyz.kotobaten
+            releaseFile: "build/app/outputs/bundle/release/app-release.aab"
+            track: production
+            inAppUpdatePriority: 2
+            userFraction: 1

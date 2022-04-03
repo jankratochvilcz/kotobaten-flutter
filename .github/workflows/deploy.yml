@@ -10,7 +10,7 @@ jobs:
         steps:
 
         - name: Common environment setup
-          users: ./.github/workflows/common-setup.yml
+          uses: ./.github/workflows/common-setup.yml
           with:
             runs-on: ubuntu-latest
 
@@ -70,7 +70,7 @@ jobs:
         steps:
 
         - name: Common environment setup
-          users: ./.github/workflows/common-setup.yml
+          uses: ./.github/workflows/common-setup.yml
           with:
             runs-on: windows-latest
 

@@ -43,14 +43,15 @@ class ImpressionCard extends StatelessWidget {
                                     TextSpan(
                                         text: furigana,
                                         style: const TextStyle(
+                                            fontSize: 18,
                                             color: Colors.black54))
                                   ]),
                                 Heading(text, HeadingStyle.h1,
                                     textAlign: TextAlign.center),
-                                if (secondaryText != null)
+                                if (secondaryText?.isNotEmpty ?? false)
                                   Heading(secondaryText ?? '', HeadingStyle.h2,
                                       textAlign: TextAlign.center),
-                                if (note != null)
+                                if (note?.isNotEmpty ?? false)
                                   Padding(
                                       padding: topPadding(PaddingType.xLarge),
                                       child: Description(note!))

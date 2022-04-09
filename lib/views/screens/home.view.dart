@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_service.dart';
@@ -11,11 +12,25 @@ import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
+import 'package:kotobaten/views/molecules/goals_card.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+class _DesktopCard extends StatelessWidget {
+  final Widget child;
+
+  const _DesktopCard(this.child, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 400,
+        height: 200,
+        child: child,
+      );
+}
 
 class HomeView extends HookConsumerWidget {
   HomeView({Key? key}) : super(key: key);
@@ -79,19 +94,45 @@ class HomeView extends HookConsumerWidget {
               },
                   child: Focus(
                       autofocus: true,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                              padding: bottomPadding(PaddingType.xxLarge),
-                              child: CardLearn(
-                                  userModel.user,
-                                  goToPractice,
-                                  () => userService.refreshUser(
-                                      updateRetentionBackstop: true))),
-                          const CardCollect()
-                        ],
-                      ))))));
+                      child: SingleChildScrollView(
+                          child: Padding(
+                              padding: verticalPadding(PaddingType.xLarge),
+                              child: MediaQuery.of(context).size.width >=
+                                      minimumDesktopSize
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const _DesktopCard(GoalsCard()),
+                                        _DesktopCard(CardLearn(
+                                            userModel.user,
+                                            goToPractice,
+                                            () => userService.refreshUser(
+                                                updateRetentionBackstop:
+                                                    true))),
+                                        const _DesktopCard(CardCollect()),
+                                      ],
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                            padding: bottomPadding(
+                                                PaddingType.xxLarge),
+                                            child: CardLearn(
+                                                userModel.user,
+                                                goToPractice,
+                                                () => userService.refreshUser(
+                                                    updateRetentionBackstop:
+                                                        true))),
+                                        const Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 0, 0, 48),
+                                            child: CardCollect()),
+                                        const GoalsCard()
+                                      ],
+                                    ))))))));
     }
 
     return const Loading();

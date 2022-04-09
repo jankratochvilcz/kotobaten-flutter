@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
-import 'package:kotobaten/views/organisms/goal_rings.dart';
 import 'package:kotobaten/views/organisms/profile.view.dart';
 
 class ScaffoldDefault extends HookConsumerWidget {
@@ -29,7 +28,7 @@ class ScaffoldDefault extends HookConsumerWidget {
           IconButton(
               onPressed: () => showProfileBottomSheet(context),
               tooltip: 'Your profile',
-              icon: GoalRings(Theme.of(context).colorScheme.primaryContainer)),
+              icon: const Icon(Icons.more_horiz_rounded)),
           if (!kIsWeb && Platform.isWindows)
             Padding(
                 padding: leftPadding(PaddingType.xxLarge),

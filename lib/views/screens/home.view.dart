@@ -18,6 +18,19 @@ import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+class _DesktopCard extends StatelessWidget {
+  final Widget child;
+
+  const _DesktopCard(this.child, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 400,
+        height: 250,
+        child: child,
+      );
+}
+
 class HomeView extends HookConsumerWidget {
   HomeView({Key? key}) : super(key: key);
 
@@ -83,23 +96,41 @@ class HomeView extends HookConsumerWidget {
                       child: SingleChildScrollView(
                           child: Padding(
                               padding: verticalPadding(PaddingType.xLarge),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                      padding:
-                                          bottomPadding(PaddingType.xxLarge),
-                                      child: CardLearn(
-                                          userModel.user,
-                                          goToPractice,
-                                          () => userService.refreshUser(
-                                              updateRetentionBackstop: true))),
-                                  const Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
-                                      child: CardCollect()),
-                                  const GoalsCard()
-                                ],
-                              ))))))));
+                              child: MediaQuery.of(context).size.width > 1200
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        _DesktopCard(CardLearn(
+                                            userModel.user,
+                                            goToPractice,
+                                            () => userService.refreshUser(
+                                                updateRetentionBackstop:
+                                                    true))),
+                                        const _DesktopCard(CardCollect()),
+                                        const _DesktopCard(GoalsCard())
+                                      ],
+                                    )
+                                  : Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                            padding: bottomPadding(
+                                                PaddingType.xxLarge),
+                                            child: CardLearn(
+                                                userModel.user,
+                                                goToPractice,
+                                                () => userService.refreshUser(
+                                                    updateRetentionBackstop:
+                                                        true))),
+                                        const Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, 0, 0, 48),
+                                            child: CardCollect()),
+                                        const GoalsCard()
+                                      ],
+                                    ))))))));
     }
 
     return const Loading();

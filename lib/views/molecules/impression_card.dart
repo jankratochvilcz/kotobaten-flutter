@@ -43,6 +43,7 @@ class ImpressionCard extends StatelessWidget {
                                     TextSpan(
                                         text: furigana,
                                         style: const TextStyle(
+                                            fontSize: 18,
                                             color: Colors.black54))
                                   ]),
                                 Heading(text, HeadingStyle.h1,

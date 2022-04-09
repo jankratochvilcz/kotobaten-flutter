@@ -71,6 +71,7 @@ dev_dependencies:
   mockito: ^5.0.16
   lints: ^1.0.1
   msix: ^3.3.2
+  flutter_launcher_icons: ^0.9.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -120,6 +121,7 @@ msix_config:
   publisher: CN=6DEA31B6-2495-4821-93B5-2876078C935E
   store: true
 
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  android: false
+  ios: true
+  image_path: "assets/logos/logo_ios.png"

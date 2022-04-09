@@ -8,7 +8,11 @@ Kotobaten is a cross-platform Japanese flashcards app. It is written in Flutter 
 
 After pulling the codebase and [installing Flutter](https://docs.flutter.dev/get-started/install), install the [VS Code extensions](https://docs.flutter.dev/get-started/editor?tab=vscode) for Dart & Flutter. They will automatically make sure that you have packages pulled and provide UI for running the code.
 
+### CLI
+
 The project makes use of [freezed](https://pub.dev/packages/freezed), so you need to run `flutter pub run build_runner build` whenever you make changes to files that take advantage of freezed.
+
+iOS logo generation happens via [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons). Run `flutter pub run flutter_launcher_icons:main` to generate the icons.
 
 ## Releasing
 

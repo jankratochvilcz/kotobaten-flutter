@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kotobaten/models/slices/auth/auth_result.dart';
 
 part 'auth_model.freezed.dart';
 
@@ -7,7 +8,5 @@ class AuthModel with _$AuthModel {
   factory AuthModel.initial() = AuthModelInitial;
   factory AuthModel.unauthenticated() = AuthModelUnauthenticated;
   factory AuthModel.authenticating() = AuthModelAuthenticating;
-  factory AuthModel.authenticated(String token) = AuthModelAuthenticated;
-  factory AuthModel.authenticationError(String message) =
-      AuthModelAuthenticationError;
+  factory AuthModel.authenticated(AuthResult result) = AuthModelAuthenticated;
 }

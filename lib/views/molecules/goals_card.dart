@@ -4,12 +4,10 @@ import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
-import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 import 'package:kotobaten/views/molecules/progress_infobox.dart';
 import 'package:kotobaten/views/organisms/goal_rings.dart';
-import 'package:kotobaten/views/organisms/goals_edit.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 
 class _GoalRingsInCard extends StatelessWidget {
@@ -63,23 +61,6 @@ class _ProgressInfoboxMonth extends StatelessWidget {
       monthlyProgressColor(context),
       userModel.user.goals.discoverMonthly,
       userModel.user.stats.discoveredMonth);
-}
-
-class _GoalsEditButton extends HookConsumerWidget {
-  final UserModelInitialized userModel;
-
-  const _GoalsEditButton(this.userModel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final userService = ref.read(userServiceProvider);
-
-    return IconButton(
-        onPressed: () => showGoalsEditDialog(
-            context, userService.updateGoals, userModel.user.goals),
-        color: Colors.black26,
-        icon: const Icon(Icons.edit_outlined));
-  }
 }
 
 class GoalsCard extends ConsumerWidget {

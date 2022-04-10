@@ -6,6 +6,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
+import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/auth/auth_validation_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
@@ -17,6 +18,25 @@ import 'package:kotobaten/views/screens/login.viewmodel.dart';
 import 'package:kotobaten/views/atoms/text_span_factory.dart';
 
 enum LoginKind { login, signup }
+
+class _SwitchModeButton extends StatelessWidget {
+  final LoginViewModel viewModel;
+  final ValueNotifier<LoginKind> loginKind;
+
+  const _SwitchModeButton(this.viewModel, this.loginKind);
+
+  @override
+  Widget build(BuildContext context) => TextButton(
+        child: Text(viewModel.getSwitchKindButtonLabel(loginKind.value)),
+        onPressed: () async {
+          loginKind.value = loginKind.value == LoginKind.login
+              ? LoginKind.signup
+              : LoginKind.login;
+
+          await viewModel.reset();
+        },
+      );
+}
 
 class LoginView extends HookConsumerWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -30,7 +50,8 @@ class LoginView extends HookConsumerWidget {
 
     final loginKind = useState(LoginKind.signup);
 
-    if (authModel is AuthModelAuthenticated) {
+    if (authModel is AuthModelAuthenticated &&
+        authModel.result is AuthResultSuccess) {
       Future.microtask(() async {
         await dailyReminderService.initializeDefaults();
         await Navigator.pushNamedAndRemoveUntil(
@@ -41,6 +62,13 @@ class LoginView extends HookConsumerWidget {
     final descriptionStyle = TextStyle(color: descriptionColor);
 
     const inputConstraints = BoxConstraints(maxWidth: 400);
+
+    final authResult =
+        authModel is AuthModelAuthenticated ? authModel.result : null;
+    final errorMessage = authResult != null && authResult is! AuthResultSuccess
+        ? _getErrorMessage(authResult)
+        : null;
+
     return Scaffold(
       appBar: const WindowingAppBar(),
       body: Padding(
@@ -61,14 +89,7 @@ class LoginView extends HookConsumerWidget {
                         children: [
                           Description(viewModel
                               .getSwitchKindDescription(loginKind.value)),
-                          TextButton(
-                            child: Text(viewModel
-                                .getSwitchKindButtonLabel(loginKind.value)),
-                            onPressed: () => loginKind.value =
-                                loginKind.value == LoginKind.login
-                                    ? LoginKind.signup
-                                    : LoginKind.login,
-                          )
+                          _SwitchModeButton(viewModel, loginKind)
                         ],
                       )),
                   ConstrainedBox(
@@ -91,18 +112,28 @@ class LoginView extends HookConsumerWidget {
                         decoration:
                             const InputDecoration(labelText: 'Password'),
                       )),
+                  if (errorMessage != null)
+                    Padding(
+                        padding: topPadding(PaddingType.standard),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              errorMessage,
+                              style: TextStyle(color: errorColor),
+                            ),
+                            if (authResult is AuthResultError &&
+                                authResult.errorCode == 409)
+                              _SwitchModeButton(viewModel, loginKind)
+                          ],
+                        )),
                   Padding(
                       padding: topPadding(PaddingType.xxLarge),
                       child: Button(
                         viewModel.getPrimaryButtonDescription(
                             loginKind.value, authModel),
-                        () async {
-                          final result =
-                              await viewModel.authenticate(loginKind.value);
-                          if (result is AuthModelAuthenticationError) {
-                            onLoginError(context)(result.message);
-                          }
-                        },
+                        () async =>
+                            await viewModel.authenticate(loginKind.value),
                         type: ButtonType.primary,
                         size: ButtonSize.big,
                         icon: Icons.login,
@@ -132,7 +163,20 @@ class LoginView extends HookConsumerWidget {
     );
   }
 
-  onLoginError(BuildContext context) =>
-      (String error) => ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(error)));
+  String? _getErrorMessage(AuthResult result) {
+    if (result is AuthResultError) {
+      switch (result.errorCode) {
+        case 409:
+          return "Account already exists.";
+        case 401:
+          return "Invalid user email or password.";
+        default:
+          return "Unknown error.";
+      }
+    } else if (result is AuthResultException) {
+      return result.exception.message;
+    } else {
+      return null;
+    }
+  }
 }

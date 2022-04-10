@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
+import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/auth/auth_storage_service.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
@@ -21,10 +22,10 @@ class AuthService {
       this.userService);
 
   Future<AuthModel> initialize() async {
-    final currentToken = await authStorageService.getToken();
+    final token = await authStorageService.getToken();
 
-    var result = currentToken != null
-        ? AuthModel.authenticated(currentToken)
+    var result = token != null
+        ? AuthModel.authenticated(AuthResult.success(token))
         : AuthModel.unauthenticated();
 
     authRepository.update(result);
@@ -32,27 +33,24 @@ class AuthService {
     return result;
   }
 
-  Future<AuthModel> login(String email, String password,
+  Future<AuthModelAuthenticated> login(String email, String password,
       {bool createAccount = false}) async {
     authRepository.update(AuthModel.authenticating());
 
-    final result = await (createAccount
+    final apiResult = await (createAccount
         ? apiService.signupAndLogin(email, password)
         : apiService.login(email, password));
 
-    if (!result.item1) {
-      final error = AuthModel.authenticationError(result.item2);
-      authRepository.update(error);
-      return error;
+    final result = AuthModelAuthenticated(apiResult);
+    authRepository.update(result);
+
+    if (apiResult is AuthResultSuccess) {
+      await authStorageService.setToken(apiResult.token);
+      final user = await apiService.getUser();
+      userService.setUser(user);
     }
 
-    await authStorageService.setToken(result.item2);
-
-    authRepository.update(AuthModel.authenticated(result.item2));
-    final user = await apiService.getUser();
-    userService.setUser(user);
-
-    return authRepository.current;
+    return result;
   }
 
   Future logout() async {
@@ -62,11 +60,5 @@ class AuthService {
 
     await authStorageService.deleteToken();
     authRepository.update(AuthModel.unauthenticated());
-  }
-
-  String? getCurrentToken() {
-    final currentModel = authRepository.current;
-
-    return currentModel is AuthModelAuthenticated ? currentModel.token : null;
   }
 }

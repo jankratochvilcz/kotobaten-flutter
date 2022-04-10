@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:kotobaten/consts/http.dart';
+import 'package:kotobaten/extensions/auth_model.dart';
 import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/models/search_result.dart';
-import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
+import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
@@ -20,7 +21,6 @@ import 'package:kotobaten/services/serialization/requests/impressions_request.da
 import 'package:kotobaten/services/serialization/responses/cards_response.dart';
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
-import 'package:tuple/tuple.dart';
 import 'package:mockito/annotations.dart';
 
 final kotobatenApiServiceProvider = Provider((ref) => KotobatenApiService(
@@ -39,7 +39,7 @@ class KotobatenApiService {
   KotobatenApiService(this.authRepository, this._appConfiguration,
       this._kotobatenClient, this._cookiesService);
 
-  Future<Tuple2<bool, String>> login(String username, String password) async {
+  Future<AuthResult> login(String username, String password) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'auth/login');
 
     try {
@@ -52,26 +52,20 @@ class KotobatenApiService {
       final body = utf8.decode(loginResponse.bodyBytes);
 
       if (loginResponse.statusCode != 200) {
-        return Tuple2(
-            false,
-            body.isNotEmpty
-                ? body
-                : loginResponse.reasonPhrase ??
-                    loginResponse.statusCode.toString());
+        return AuthResult.error(loginResponse.statusCode);
       }
 
       await _cookiesService.setCookie(
           'authToken', true.toString(), _appConfiguration.cookieDomain);
 
       final token = jsonDecode(body)['access_token'] as String;
-      return Tuple2(true, token);
+      return AuthResult.success(token);
     } on ClientException catch (e) {
-      return Tuple2(false, e.message);
+      return AuthResult.exception(e);
     }
   }
 
-  Future<Tuple2<bool, String>> signupAndLogin(
-      String username, String password) async {
+  Future<AuthResult> signupAndLogin(String username, String password) async {
     final url = _getUrl(_appConfiguration.apiRoot, 'auth/signup');
 
     try {
@@ -79,20 +73,13 @@ class KotobatenApiService {
           body: json.encode({'email': username, 'password': password}),
           headers: Map.fromEntries([contentTypeJsonHeader]));
 
-      final body = utf8.decode(loginResponse.bodyBytes);
-
       if (loginResponse.statusCode >= 400) {
-        return Tuple2(
-            false,
-            body.isNotEmpty
-                ? body
-                : loginResponse.reasonPhrase ??
-                    loginResponse.statusCode.toString());
+        return AuthResult.error(loginResponse.statusCode);
       }
 
       return login(username, password);
     } on ClientException catch (e) {
-      return Tuple2(false, e.message);
+      return AuthResult.exception(e);
     }
   }
 
@@ -181,7 +168,7 @@ class KotobatenApiService {
 
   Future<Map<String, String>> _getTokenHeadersOrThrow() async {
     final authModel = authRepository.current;
-    final token = authModel is AuthModelAuthenticated ? authModel.token : null;
+    final token = authModel.getCurrentToken();
 
     if (token == null) {
       throw Exception('User not authenticated, cannot call getUser');

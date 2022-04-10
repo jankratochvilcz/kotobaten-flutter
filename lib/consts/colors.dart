@@ -10,6 +10,7 @@ Color dailyProgressColor(BuildContext context) =>
     Theme.of(context).colorScheme.secondary.lighten(0.3);
 
 Color successColor = Colors.amber.shade500;
+Color errorColor = Colors.red.shade500;
 Color backgroundColor = const Color(0xFFFAFAFA);
 
 Color placeholderBackroundColor(Color color) => color.darken(0.03);

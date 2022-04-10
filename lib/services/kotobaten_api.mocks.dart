@@ -6,6 +6,7 @@ import 'dart:async' as _i11;
 
 import 'package:kotobaten/models/search_result.dart' as _i5;
 import 'package:kotobaten/models/slices/auth/auth_repository.dart' as _i2;
+import 'package:kotobaten/models/slices/auth/auth_result.dart' as _i3;
 import 'package:kotobaten/models/slices/cards/card.dart' as _i7;
 import 'package:kotobaten/models/slices/practice/impression.dart' as _i12;
 import 'package:kotobaten/models/slices/user/user.dart' as _i4;
@@ -15,7 +16,6 @@ import 'package:kotobaten/services/kotobaten_api.dart' as _i10;
 import 'package:kotobaten/services/serialization/responses/cards_response.dart'
     as _i9;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:tuple/tuple.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -29,7 +29,7 @@ import 'package:tuple/tuple.dart' as _i3;
 
 class _FakeAuthRepository_0 extends _i1.Fake implements _i2.AuthRepository {}
 
-class _FakeTuple2_1<T1, T2> extends _i1.Fake implements _i3.Tuple2<T1, T2> {}
+class _FakeAuthResult_1 extends _i1.Fake implements _i3.AuthResult {}
 
 class _FakeUserInitialized_2 extends _i1.Fake implements _i4.UserInitialized {}
 
@@ -57,20 +57,17 @@ class MockKotobatenApiService extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#authRepository),
           returnValue: _FakeAuthRepository_0()) as _i2.AuthRepository);
   @override
-  _i11.Future<_i3.Tuple2<bool, String>> login(
-          String? username, String? password) =>
+  _i11.Future<_i3.AuthResult> login(String? username, String? password) =>
       (super.noSuchMethod(Invocation.method(#login, [username, password]),
-              returnValue: Future<_i3.Tuple2<bool, String>>.value(
-                  _FakeTuple2_1<bool, String>()))
-          as _i11.Future<_i3.Tuple2<bool, String>>);
+              returnValue: Future<_i3.AuthResult>.value(_FakeAuthResult_1()))
+          as _i11.Future<_i3.AuthResult>);
   @override
-  _i11.Future<_i3.Tuple2<bool, String>> signupAndLogin(
+  _i11.Future<_i3.AuthResult> signupAndLogin(
           String? username, String? password) =>
       (super.noSuchMethod(
               Invocation.method(#signupAndLogin, [username, password]),
-              returnValue: Future<_i3.Tuple2<bool, String>>.value(
-                  _FakeTuple2_1<bool, String>()))
-          as _i11.Future<_i3.Tuple2<bool, String>>);
+              returnValue: Future<_i3.AuthResult>.value(_FakeAuthResult_1()))
+          as _i11.Future<_i3.AuthResult>);
   @override
   _i11.Future<_i4.UserInitialized> getUser(
           {bool? updateRetentionBackstop = false}) =>
@@ -104,6 +101,10 @@ class MockKotobatenApiService extends _i1.Mock
               returnValue:
                   Future<_i7.CardInitialized>.value(_FakeCardInitialized_5()))
           as _i11.Future<_i7.CardInitialized>);
+  @override
+  _i11.Future<dynamic> generateDemoCards() =>
+      (super.noSuchMethod(Invocation.method(#generateDemoCards, []),
+          returnValue: Future<dynamic>.value()) as _i11.Future<dynamic>);
   @override
   _i11.Future<bool> deleteCard(int? cardId) =>
       (super.noSuchMethod(Invocation.method(#deleteCard, [cardId]),

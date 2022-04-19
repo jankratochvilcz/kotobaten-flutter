@@ -70,7 +70,8 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getPrimaryText(),
             practiceService.getHintText(),
             practiceService.reveal,
-            currentStateProgress.value);
+            currentStateProgress.value,
+            practiceService.getCurrentAndRemainingImpressions().length);
         break;
       case ImpressionViewType.revealed:
         impressionView = ImpressionRevealed(

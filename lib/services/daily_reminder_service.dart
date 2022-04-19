@@ -37,6 +37,10 @@ class DailyReminderService {
   }
 
   Future ensureInitialized() async {
+    if (!isPlatformSupported()) {
+      return;
+    }
+
     final currentSettings = (await _localSettingsService.initialize())
         as LocalSettingsModelInitialized;
 

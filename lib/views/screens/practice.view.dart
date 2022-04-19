@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -57,9 +58,7 @@ class PracticeView extends HookConsumerWidget {
       Future.microtask(() {
         progressTimer.cancel();
 
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-        }
+        Navigator.pushNamed(context, postPracticeRoute);
       });
     }
 

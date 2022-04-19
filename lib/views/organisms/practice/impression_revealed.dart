@@ -39,7 +39,7 @@ class ImpressionRevealed extends StatelessWidget {
                 secondaryText: secondaryText,
                 furigana: furiganaText,
                 note: note,
-                backgroundCards: cardsRemaining,
+                backgroundCards: cardsRemaining - 1,
               ),
               ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 400),

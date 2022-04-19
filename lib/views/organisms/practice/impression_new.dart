@@ -8,11 +8,12 @@ class ImpressionNew extends StatelessWidget {
   final String? secondaryText;
   final String? furiganaText;
   final String? note;
+  final int cardsRemaining;
 
   final void Function() onDiscovered;
 
   const ImpressionNew(this.primaryText, this.secondaryText, this.furiganaText,
-      this.onDiscovered, this.note,
+      this.onDiscovered, this.note, this.cardsRemaining,
       {Key? key})
       : super(key: key);
 
@@ -29,6 +30,7 @@ class ImpressionNew extends StatelessWidget {
                 furigana: furiganaText,
                 accented: true,
                 note: note,
+                backgroundCards: cardsRemaining,
               ),
               Center(
                   child: Button(

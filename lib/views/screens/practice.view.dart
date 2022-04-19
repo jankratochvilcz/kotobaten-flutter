@@ -63,6 +63,9 @@ class PracticeView extends HookConsumerWidget {
       });
     }
 
+    final cardsRemaining =
+        practiceService.getCurrentAndRemainingImpressions().length;
+
     Widget? impressionView;
     switch (practiceService.getImpressionViewType()) {
       case ImpressionViewType.hidden:
@@ -71,7 +74,7 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getHintText(),
             practiceService.reveal,
             currentStateProgress.value,
-            practiceService.getCurrentAndRemainingImpressions().length);
+            cardsRemaining);
         break;
       case ImpressionViewType.revealed:
         impressionView = ImpressionRevealed(
@@ -82,7 +85,8 @@ class PracticeView extends HookConsumerWidget {
                 ? practiceService.evaluateCorrect()
                 : practiceService.evaluateWrong(),
             currentStateProgress.value,
-            practiceService.getNote());
+            practiceService.getNote(),
+            cardsRemaining);
         break;
       case ImpressionViewType.discover:
         impressionView = ImpressionNew(
@@ -90,7 +94,8 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getSecondaryText(),
             practiceService.getFurigana(),
             practiceService.evaluateCorrect,
-            practiceService.getNote());
+            practiceService.getNote(),
+            cardsRemaining);
         break;
       default:
     }

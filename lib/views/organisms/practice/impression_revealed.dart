@@ -9,11 +9,18 @@ class ImpressionRevealed extends StatelessWidget {
   final String? furiganaText;
   final String? note;
   final double timeElapsedPercentage;
+  final int cardsRemaining;
 
   final void Function(bool) onAnswered;
 
-  const ImpressionRevealed(this.primaryText, this.secondaryText,
-      this.furiganaText, this.onAnswered, this.timeElapsedPercentage, this.note,
+  const ImpressionRevealed(
+      this.primaryText,
+      this.secondaryText,
+      this.furiganaText,
+      this.onAnswered,
+      this.timeElapsedPercentage,
+      this.note,
+      this.cardsRemaining,
       {Key? key})
       : super(key: key);
 
@@ -32,6 +39,7 @@ class ImpressionRevealed extends StatelessWidget {
                 secondaryText: secondaryText,
                 furigana: furiganaText,
                 note: note,
+                backgroundCards: cardsRemaining,
               ),
               ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 400),

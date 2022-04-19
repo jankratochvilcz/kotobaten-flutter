@@ -5,6 +5,7 @@ import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 
 const double pi = 3.141592653589793238;
+const double cardSize = 300;
 
 class ImpressionCard extends StatelessWidget {
   final String text;
@@ -28,22 +29,22 @@ class ImpressionCard extends StatelessWidget {
     final cards = <Widget>[];
 
     for (var i = 0; i < backgroundCards; i++) {
-      final rotation = (backgroundCards - i) * 2;
-
-      cards.add(Transform.rotate(
-          angle: rotation * pi / 180,
-          child: Card(
-            elevation: 2,
-            child: ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 300)),
-          )));
+      cards.add(Transform.scale(
+          scale: 1 - (backgroundCards - i) * 0.05,
+          child: Transform.translate(
+              offset: Offset(0, (backgroundCards - i) * -16),
+              child: Card(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                elevation: 2,
+                child: const SizedBox(height: cardSize, width: cardSize),
+              ))));
     }
 
     cards.add(Card(
-        elevation: accented ? 10 : 2,
+        elevation: accented ? 10 : 5,
         shadowColor: accented ? Colors.orangeAccent : null,
         child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 300),
+            constraints: const BoxConstraints(maxHeight: cardSize),
             child: AspectRatio(
                 aspectRatio: 1,
                 child: Padding(

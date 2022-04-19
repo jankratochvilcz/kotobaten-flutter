@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
+import 'package:kotobaten/models/slices/practice/practice_model.dart';
+import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/models/slices/cards/cards_repository.dart';
@@ -11,14 +13,17 @@ const initialPages = 3;
 final cardsServiceProvider = Provider<CardsService>((ref) => CardsService(
     ref.watch(kotobatenApiServiceProvider),
     ref.watch(cardsRepositoryProvider.notifier),
-    ref.watch(userServiceProvider)));
+    ref.watch(userServiceProvider),
+    ref.watch(practiceRepositoryProvider.notifier)));
 
 class CardsService {
   final KotobatenApiService apiService;
   final CardsRepository cardsRepository;
   final UserService userService;
+  final PracticeRepository practiceRepository;
 
-  CardsService(this.apiService, this.cardsRepository, this.userService);
+  CardsService(this.apiService, this.cardsRepository, this.userService,
+      this.practiceRepository);
 
   Future initialize() async {
     if (cardsRepository.current is CardsModelLoadingInitial) {
@@ -84,6 +89,18 @@ class CardsService {
           cards: currentState.cards.where((x) => x != card).toList()));
     }
 
+    final currentPracticeState = practiceRepository.current;
+
+    if (currentPracticeState is PracticeModelFinished) {
+      final updatedPracticeStateImpressions = currentPracticeState
+          .allImpressions
+          .where((x) => x.card.id != card.id)
+          .toList();
+
+      practiceRepository.update(currentPracticeState.copyWith(
+          allImpressions: updatedPracticeStateImpressions));
+    }
+
     await userService.refreshUser();
 
     return card;
@@ -99,6 +116,18 @@ class CardsService {
       currentState.cards.removeAt(index);
       currentState.cards.insert(index, editedCard);
       cardsRepository.update(currentState.copyWith(cards: currentState.cards));
+    }
+
+    final currentPracticeState = practiceRepository.current;
+
+    if (currentPracticeState is PracticeModelFinished) {
+      final updatedPracticeStateImpressions = currentPracticeState
+          .allImpressions
+          .map((x) => x.card.id == card.id ? x.copyWith(card: card) : x)
+          .toList();
+
+      practiceRepository.update(currentPracticeState.copyWith(
+          allImpressions: updatedPracticeStateImpressions));
     }
 
     return editedCard;

@@ -10,9 +10,10 @@ class ImpressionHidden extends StatelessWidget {
   final String hintText;
   final VoidCallback revealAnswer;
   final double timeElapsedPercentage;
+  final int cardsRemaining;
 
-  const ImpressionHidden(
-      this.text, this.hintText, this.revealAnswer, this.timeElapsedPercentage,
+  const ImpressionHidden(this.text, this.hintText, this.revealAnswer,
+      this.timeElapsedPercentage, this.cardsRemaining,
       {Key? key})
       : super(key: key);
 
@@ -23,7 +24,10 @@ class ImpressionHidden extends StatelessWidget {
         child: Focus(
             autofocus: true,
             child: Column(children: [
-              ImpressionCard(text),
+              ImpressionCard(
+                text,
+                backgroundCards: cardsRemaining,
+              ),
               Column(children: [
                 Button(
                   'Reveal answer',

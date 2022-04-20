@@ -10,7 +10,8 @@ class PracticeModel with _$PracticeModel {
   const factory PracticeModel.initial() = PracticeModelInitial;
   const factory PracticeModel.loading() = PracticeModelLoading;
   const factory PracticeModel.error(String error) = PracticeModelError;
-  const factory PracticeModel.finished() = PracticeModelFinished;
+  const factory PracticeModel.finished(List<Impression> allImpressions) =
+      PracticeModelFinished;
 
   const factory PracticeModel.inProgress(
       List<Impression> allImpressions,

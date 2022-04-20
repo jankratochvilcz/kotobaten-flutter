@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -57,11 +58,12 @@ class PracticeView extends HookConsumerWidget {
       Future.microtask(() {
         progressTimer.cancel();
 
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-        }
+        Navigator.pushNamed(context, postPracticeRoute);
       });
     }
+
+    final cardsRemaining =
+        practiceService.getCurrentAndRemainingImpressions().length;
 
     Widget? impressionView;
     switch (practiceService.getImpressionViewType()) {
@@ -70,7 +72,8 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getPrimaryText(),
             practiceService.getHintText(),
             practiceService.reveal,
-            currentStateProgress.value);
+            currentStateProgress.value,
+            cardsRemaining);
         break;
       case ImpressionViewType.revealed:
         impressionView = ImpressionRevealed(
@@ -81,7 +84,8 @@ class PracticeView extends HookConsumerWidget {
                 ? practiceService.evaluateCorrect()
                 : practiceService.evaluateWrong(),
             currentStateProgress.value,
-            practiceService.getNote());
+            practiceService.getNote(),
+            cardsRemaining);
         break;
       case ImpressionViewType.discover:
         impressionView = ImpressionNew(
@@ -89,7 +93,8 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getSecondaryText(),
             practiceService.getFurigana(),
             practiceService.evaluateCorrect,
-            practiceService.getNote());
+            practiceService.getNote(),
+            cardsRemaining);
         break;
       default:
     }

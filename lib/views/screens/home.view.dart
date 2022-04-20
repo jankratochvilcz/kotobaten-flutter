@@ -105,11 +105,7 @@ class HomeView extends HookConsumerWidget {
                                       children: [
                                         const _DesktopCard(GoalsCard()),
                                         _DesktopCard(CardLearn(
-                                            userModel.user,
-                                            goToPractice,
-                                            () => userService.refreshUser(
-                                                updateRetentionBackstop:
-                                                    true))),
+                                            userModel.user, goToPractice)),
                                         const _DesktopCard(CardCollect()),
                                       ],
                                     )
@@ -121,11 +117,7 @@ class HomeView extends HookConsumerWidget {
                                             padding: bottomPadding(
                                                 PaddingType.xxLarge),
                                             child: CardLearn(
-                                                userModel.user,
-                                                goToPractice,
-                                                () => userService.refreshUser(
-                                                    updateRetentionBackstop:
-                                                        true))),
+                                                userModel.user, goToPractice)),
                                         const Padding(
                                             padding: EdgeInsets.fromLTRB(
                                                 0, 0, 0, 48),

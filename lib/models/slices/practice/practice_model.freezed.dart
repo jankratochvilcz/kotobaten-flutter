@@ -32,8 +32,10 @@ class _$PracticeModelTearOff {
     );
   }
 
-  PracticeModelFinished finished() {
-    return const PracticeModelFinished();
+  PracticeModelFinished finished(List<Impression> allImpressions) {
+    return PracticeModelFinished(
+      allImpressions,
+    );
   }
 
   PracticeModelInProgress inProgress(
@@ -66,7 +68,7 @@ mixin _$PracticeModel {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -83,7 +85,7 @@ mixin _$PracticeModel {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -100,7 +102,7 @@ mixin _$PracticeModel {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -204,7 +206,7 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -224,7 +226,7 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -244,7 +246,7 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -352,7 +354,7 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -372,7 +374,7 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -392,7 +394,7 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -524,7 +526,7 @@ class _$PracticeModelError extends PracticeModelError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -544,7 +546,7 @@ class _$PracticeModelError extends PracticeModelError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -564,7 +566,7 @@ class _$PracticeModelError extends PracticeModelError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -638,6 +640,7 @@ abstract class $PracticeModelFinishedCopyWith<$Res> {
   factory $PracticeModelFinishedCopyWith(PracticeModelFinished value,
           $Res Function(PracticeModelFinished) then) =
       _$PracticeModelFinishedCopyWithImpl<$Res>;
+  $Res call({List<Impression> allImpressions});
 }
 
 /// @nodoc
@@ -650,26 +653,51 @@ class _$PracticeModelFinishedCopyWithImpl<$Res>
 
   @override
   PracticeModelFinished get _value => super._value as PracticeModelFinished;
+
+  @override
+  $Res call({
+    Object? allImpressions = freezed,
+  }) {
+    return _then(PracticeModelFinished(
+      allImpressions == freezed
+          ? _value.allImpressions
+          : allImpressions // ignore: cast_nullable_to_non_nullable
+              as List<Impression>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$PracticeModelFinished extends PracticeModelFinished {
-  const _$PracticeModelFinished() : super._();
+  const _$PracticeModelFinished(this.allImpressions) : super._();
+
+  @override
+  final List<Impression> allImpressions;
 
   @override
   String toString() {
-    return 'PracticeModel.finished()';
+    return 'PracticeModel.finished(allImpressions: $allImpressions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is PracticeModelFinished);
+        (other.runtimeType == runtimeType &&
+            other is PracticeModelFinished &&
+            const DeepCollectionEquality()
+                .equals(other.allImpressions, allImpressions));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(allImpressions));
+
+  @JsonKey(ignore: true)
+  @override
+  $PracticeModelFinishedCopyWith<PracticeModelFinished> get copyWith =>
+      _$PracticeModelFinishedCopyWithImpl<PracticeModelFinished>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -677,7 +705,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -688,7 +716,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
             DateTime? currentStepStart)
         inProgress,
   }) {
-    return finished();
+    return finished(allImpressions);
   }
 
   @override
@@ -697,7 +725,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -708,7 +736,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
             DateTime? currentStepStart)?
         inProgress,
   }) {
-    return finished?.call();
+    return finished?.call(allImpressions);
   }
 
   @override
@@ -717,7 +745,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -730,7 +758,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     required TResult orElse(),
   }) {
     if (finished != null) {
-      return finished();
+      return finished(allImpressions);
     }
     return orElse();
   }
@@ -777,8 +805,14 @@ class _$PracticeModelFinished extends PracticeModelFinished {
 }
 
 abstract class PracticeModelFinished extends PracticeModel {
-  const factory PracticeModelFinished() = _$PracticeModelFinished;
+  const factory PracticeModelFinished(List<Impression> allImpressions) =
+      _$PracticeModelFinished;
   const PracticeModelFinished._() : super._();
+
+  List<Impression> get allImpressions;
+  @JsonKey(ignore: true)
+  $PracticeModelFinishedCopyWith<PracticeModelFinished> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -935,7 +969,7 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function() finished,
+    required TResult Function(List<Impression> allImpressions) finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -956,7 +990,7 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -983,7 +1017,7 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function()? finished,
+    TResult Function(List<Impression> allImpressions)? finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,

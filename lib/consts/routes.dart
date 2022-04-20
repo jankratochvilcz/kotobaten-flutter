@@ -5,3 +5,4 @@ const collectionRoute = '/collection';
 const searchRoute = '/search';
 const settingsRoute = '/settings';
 const onboardingRoute = '/onboarding';
+const postPracticeRoute = '/post-practice';

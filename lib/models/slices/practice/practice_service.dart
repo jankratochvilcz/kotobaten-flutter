@@ -70,7 +70,7 @@ class PracticeService {
     }
 
     if (currentState.remainingImpressions.isEmpty) {
-      repository.update(const PracticeModel.finished());
+      repository.update(PracticeModel.finished(currentState.allImpressions));
       return;
     }
 

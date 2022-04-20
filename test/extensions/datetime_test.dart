@@ -22,5 +22,11 @@ void main() {
           DateTime(2000, 10, 10).getRelativeToNowString(_currentDateTime);
       expect(actual, 'today');
     });
+
+    test('Returns for yesterday', () {
+      final actual = DateTime(2000, 10, 09, 20, 0, 0)
+          .getRelativeToNowString(_currentDateTime);
+      expect(actual, 'yesterday');
+    });
   });
 }

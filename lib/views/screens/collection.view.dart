@@ -1,13 +1,17 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/extensions/datetime.dart';
+import 'package:kotobaten/extensions/string.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
 import 'package:kotobaten/models/slices/cards/cards_repository.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
+import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/word_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
@@ -26,11 +30,19 @@ class CollectionView extends HookConsumerWidget {
     }
 
     if (cardsModel is CardsModelInitialized) {
+      final groups = groupBy<CardInitialized, DateTime>(cardsModel.cards,
+          (x) => DateTime(x.created.year, x.created.month, x.created.day));
+
+      final cardsWithHeadings = groups.entries.fold<List<dynamic>>(
+        <dynamic>[],
+        (previous, current) => [...previous, current.key, ...current.value],
+      );
+
       return ScaffoldDefault(
         ListView.builder(
-            itemCount: cardsModel.cards.length + 1,
+            itemCount: cardsWithHeadings.length + 1,
             itemBuilder: (context, index) {
-              if (index == cardsModel.cards.length) {
+              if (index == cardsWithHeadings.length) {
                 if (!cardsModel.loadingNextPage && cardsModel.hasMoreCards) {
                   Future.microtask(() => cardsService.loadMoreCards());
                 }
@@ -45,7 +57,24 @@ class CollectionView extends HookConsumerWidget {
                 return const Empty();
               }
 
-              return WordCard(cardsModel.cards[index]);
+              final current = cardsWithHeadings[index];
+
+              if (current is CardInitialized) {
+                return WordCard(current);
+              }
+
+              if (current is DateTime) {
+                return Center(
+                    child: Padding(
+                        padding: allPadding(PaddingType.xLarge),
+                        child: Heading(
+                            current
+                                .getRelativeToNowString(DateTime.now())
+                                .capitalize(),
+                            HeadingStyle.h2)));
+              }
+
+              throw ErrorDescription("Invalid object type in collection list");
             }),
         floatingActionButton: FloatingActionButton(
             tooltip: 'Add word',

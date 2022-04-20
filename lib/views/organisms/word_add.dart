@@ -88,13 +88,16 @@ class _WordAddFormState extends State<WordAddForm> {
               _senseController.text,
               _kanaController.text,
               _kanjiController.text,
+              DateTime.now(),
               _noteController.text));
         } else {
           return widget._onSubmit(card_entity.Card.newCard(
-              _senseController.text,
-              _kanaController.text,
-              _kanjiController.text,
-              _noteController.text));
+            _senseController.text,
+            _kanaController.text,
+            _kanjiController.text,
+            _noteController.text,
+            DateTime.now(),
+          ));
         }
       }
     }

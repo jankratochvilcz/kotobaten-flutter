@@ -156,7 +156,8 @@ void main() {
     final List<Tuple4<Impression, String, String?, String?>> impressions = [
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', 'kana', 'kanji', null) as CardInitialized,
+              Card(0, 'sense', 'kana', 'kanji', DateTime.now(), null)
+                  as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -164,7 +165,8 @@ void main() {
           'kanji'),
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', 'kana', null, null) as CardInitialized,
+              Card(0, 'sense', 'kana', null, DateTime.now(), null)
+                  as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -172,7 +174,8 @@ void main() {
           'kana'),
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', null, 'kanji', null) as CardInitialized,
+              Card(0, 'sense', null, 'kanji', DateTime.now(), null)
+                  as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -224,8 +227,10 @@ Iterable<Impression> getImpressions(int count,
     {String? speechPath,
     ImpressionType impressionType = ImpressionType.kana}) sync* {
   for (var i = 0; i < count; i++) {
-    yield Impression.initialized(Card(i, 'a', 'b', 'c', 'd') as CardInitialized,
-        impressionType, speechPath);
+    yield Impression.initialized(
+        Card(i, 'a', 'b', 'c', DateTime.now(), 'd') as CardInitialized,
+        impressionType,
+        speechPath);
   }
 }
 

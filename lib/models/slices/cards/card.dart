@@ -23,10 +23,11 @@ class Card with _$Card {
       String sense,
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
+      DateTime created,
       String? note) = CardInitialized;
 
-  factory Card.newCard(
-      String sense, String? kana, String? kanji, String? note) = CardNew;
+  factory Card.newCard(String sense, String? kana, String? kanji, String? note,
+      DateTime created) = CardNew;
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }

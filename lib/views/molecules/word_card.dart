@@ -4,6 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -20,6 +21,7 @@ class WordCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cardService = ref.read(cardsServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
 
     final furigana =
         (card.kanji?.isNotEmpty ?? false) && (card.kana?.isNotEmpty ?? false)
@@ -90,8 +92,8 @@ class WordCard extends ConsumerWidget {
                                           final result = await cardService
                                               .editCard(word as card_entity
                                                   .CardInitialized);
-                                          Navigator.of(context).pop();
-                                          Navigator.of(context).pop();
+                                          navigationService.goBack(context);
+                                          navigationService.goBack(context);
 
                                           return result;
                                         }, existingWord: card),
@@ -115,18 +117,17 @@ class WordCard extends ConsumerWidget {
                                                       () async {
                                                         await cardService
                                                             .deleteCard(card);
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        Navigator.of(context)
-                                                            .pop();
+                                                        navigationService
+                                                            .goBack(context);
+                                                        navigationService
+                                                            .goBack(context);
                                                       },
                                                       icon: Icons.check,
                                                     ),
                                                     Button(
                                                       'No',
-                                                      () =>
-                                                          Navigator.of(context)
-                                                              .pop(),
+                                                      () => navigationService
+                                                          .goBack(context),
                                                       icon:
                                                           Icons.cancel_outlined,
                                                       type:

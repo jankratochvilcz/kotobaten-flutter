@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
@@ -21,6 +21,7 @@ class CardCollect extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userModel = ref.watch(userRepositoryProvider);
     final cardsService = ref.watch(cardsServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
 
     if (userModel is! UserModelInitialized) {
       return const Empty();
@@ -57,7 +58,7 @@ class CardCollect extends ConsumerWidget {
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Button(
                   'View all',
-                  () => Navigator.pushNamed(context, collectionRoute),
+                  () => navigationService.goCollection(context),
                   icon: Icons.inbox_outlined,
                   type: ButtonType.secondary,
                 ),

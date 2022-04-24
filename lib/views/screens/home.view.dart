@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
@@ -12,6 +11,7 @@ import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/goals_card.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
@@ -45,18 +45,18 @@ class HomeView extends HookConsumerWidget {
     final userService = ref.read(userServiceProvider);
     final practiceService = ref.read(practiceServiceProvider);
     final dailyReminderService = ref.read(dailyReminderServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
 
     goToPractice() async {
       await practiceService.initialize();
-      await Navigator.pushNamed(context, practiceRoute);
+      await navigationService.goPractice(context);
     }
 
     if (authModel is AuthModelInitial) {
       Future.microtask(() async {
         final result = await authService.initialize();
         if (result is AuthModelUnauthenticated) {
-          await Navigator.pushNamedAndRemoveUntil(
-              context, loginRoute, (route) => false);
+          await navigationService.goLogin(context);
         }
       });
     }
@@ -70,8 +70,8 @@ class HomeView extends HookConsumerWidget {
 
     if (userModel is UserModelInitialized &&
         !userModel.user.onboarding.onboardingHidden) {
-      Future.microtask(() async => await Navigator.pushNamedAndRemoveUntil(
-          context, onboardingRoute, (route) => false));
+      Future.microtask(
+          () async => await navigationService.goOnboarding(context));
     }
 
     if (userModel is UserModelInitialized) {

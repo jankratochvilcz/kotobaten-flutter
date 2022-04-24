@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
@@ -25,7 +25,9 @@ class PracticeView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final practiceService = ref.watch(practiceServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
     final model = ref.watch(practiceRepositoryProvider);
+
     final currentStateProgress = useState(0.0);
 
     final progressTimer = Timer(const Duration(milliseconds: 25), () {
@@ -55,10 +57,9 @@ class PracticeView extends HookConsumerWidget {
     }
 
     if (model is PracticeModelFinished) {
-      Future.microtask(() {
+      Future.microtask(() async {
         progressTimer.cancel();
-
-        Navigator.pushNamed(context, postPracticeRoute);
+        await navigationService.goPostPractice(context);
       });
     }
 

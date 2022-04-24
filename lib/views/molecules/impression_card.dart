@@ -34,10 +34,11 @@ class ImpressionCard extends StatelessWidget {
           child: Transform.translate(
               offset: Offset(0, (backgroundCards - i) * -16),
               child: Card(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                elevation: 2,
-                child: const SizedBox(height: cardSize, width: cardSize),
-              ))));
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  elevation: 2,
+                  child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: cardSize),
+                      child: const AspectRatio(aspectRatio: 1))))));
     }
 
     cards.add(Card(

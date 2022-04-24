@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/extensions/user.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
@@ -13,6 +12,7 @@ import 'package:kotobaten/models/slices/auth/auth_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
@@ -36,6 +36,7 @@ class ProfileView extends HookConsumerWidget {
     final userService = ref.read(userServiceProvider);
     final authModel = ref.watch(authRepositoryProvider);
     final userModel = ref.watch(userRepositoryProvider);
+    final navigationSerice = ref.read(navigationServiceProvider);
 
     if (authModel is AuthModelInitial) {
       unawaited(Future.microtask(() => authService.initialize()));
@@ -43,8 +44,7 @@ class ProfileView extends HookConsumerWidget {
 
     if (authModel is AuthModelUnauthenticated) {
       Future.microtask(() async {
-        await Navigator.pushNamedAndRemoveUntil(
-            context, loginRoute, (route) => false);
+        await navigationSerice.goLogin(context);
       });
     }
 
@@ -65,7 +65,7 @@ class ProfileView extends HookConsumerWidget {
                   IconButton(
                       color: Colors.black26,
                       onPressed: () async =>
-                          await Navigator.pushNamed(context, settingsRoute),
+                          await navigationSerice.goSettings(context),
                       icon: const Icon(Icons.settings_outlined)),
                   ButtonAsync(
                     'Log out',
@@ -93,7 +93,8 @@ class ProfileView extends HookConsumerWidget {
                               onPressed: () => showGoalsEditDialog(
                                   context,
                                   userService.updateGoals,
-                                  userModel.user.goals),
+                                  userModel.user.goals,
+                                  navigationSerice.goBack(context)),
                               color: Colors.black26,
                               icon: const Icon(Icons.edit_outlined)))
                     ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
 
@@ -25,7 +27,7 @@ showWordAddBottomSheet(
                 content: WordAddDialogContents(onSubmit,
                     existingWord: existingWord)));
 
-class WordAddDialogContents extends StatelessWidget {
+class WordAddDialogContents extends HookConsumerWidget {
   final Future<card_entity.CardInitialized> Function(card_entity.Card card)
       onSubmit;
   final card_entity.CardInitialized? existingWord;
@@ -34,18 +36,21 @@ class WordAddDialogContents extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: WordAddForm(
-        (card) async {
-          final createdCard = await onSubmit(card);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navigationService = ref.read(navigationServiceProvider);
 
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Card for ${createdCard.sense} created.')));
-        },
-        existingWord: existingWord,
-      ));
+    return Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: WordAddForm(
+          (card) async {
+            final createdCard = await onSubmit(card);
+            navigationService.goBack(context);
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Card for "${createdCard.sense}" created.')));
+          },
+          existingWord: existingWord,
+        ));
+  }
 }
 
 class WordAddForm extends StatefulWidget {

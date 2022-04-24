@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/extensions/iterable.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/molecules/word_card.dart';
@@ -20,12 +20,13 @@ class PostPracticeView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final practiceService = ref.read(practiceServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
     final userModel = ref.watch(userRepositoryProvider);
     final practiceModel = ref.watch(practiceRepositoryProvider);
 
     goToPractice() async {
       await practiceService.initialize();
-      await Navigator.pushReplacementNamed(context, practiceRoute);
+      await navigationService.goPractice(context, replaceCurrent: true);
     }
 
     if (userModel is UserModelInitialized &&

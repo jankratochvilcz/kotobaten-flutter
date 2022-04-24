@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_service.dart';
@@ -13,6 +12,7 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/services/input_validation/goals_validator.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/atoms/logo.dart';
@@ -33,6 +33,7 @@ class OnboardingView extends HookConsumerWidget {
     final userService = ref.watch(userServiceProvider);
     final authService = ref.read(authServiceProvider);
     final cardsService = ref.watch(cardsServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
 
     final _goalDayController = useTextEditingController(text: '5');
 
@@ -202,8 +203,7 @@ class OnboardingView extends HookConsumerWidget {
                                   child: ButtonAsync('Start learning',
                                       () async {
                                     await userService.completeOnboarding();
-                                    await Navigator.pushNamedAndRemoveUntil(
-                                        context, homeRoute, (route) => false);
+                                    await navigationService.goBack(context);
                                   },
                                       icon: Icons.bolt_outlined,
                                       type: ButtonType.primary))

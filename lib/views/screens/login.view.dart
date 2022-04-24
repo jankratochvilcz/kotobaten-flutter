@@ -3,12 +3,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/auth/auth_validation_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
+import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/logo.dart';
@@ -47,6 +47,7 @@ class LoginView extends HookConsumerWidget {
     final authModel = ref.watch(authRepositoryProvider);
     final authValidationService = ref.read(authValidationServiceProvider);
     final dailyReminderService = ref.read(dailyReminderServiceProvider);
+    final navigationService = ref.read(navigationServiceProvider);
 
     final loginKind = useState(LoginKind.signup);
 
@@ -54,8 +55,7 @@ class LoginView extends HookConsumerWidget {
         authModel.result is AuthResultSuccess) {
       Future.microtask(() async {
         await dailyReminderService.initializeDefaults();
-        await Navigator.pushNamedAndRemoveUntil(
-            context, homeRoute, (route) => false);
+        await navigationService.goHome(context);
       });
     }
 

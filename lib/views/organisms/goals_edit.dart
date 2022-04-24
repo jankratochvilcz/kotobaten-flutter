@@ -7,7 +7,8 @@ import 'package:kotobaten/views/molecules/button.dart';
 showGoalsEditDialog(
         BuildContext context,
         Future<UserGoals> Function(UserGoals goals) onSubmit,
-        UserGoals currentGoals) =>
+        UserGoals currentGoals,
+        void Function() goBack) =>
     showModalBottomSheet(
         context: context,
         builder: (x) => Padding(
@@ -16,7 +17,7 @@ showGoalsEditDialog(
               (card) async {
                 await onSubmit(card);
 
-                Navigator.pop(x);
+                goBack();
                 ScaffoldMessenger.of(x).showSnackBar(
                     const SnackBar(content: Text('Goals edited.')));
               },

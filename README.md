@@ -16,7 +16,7 @@ iOS logo generation happens via [flutter_launcher_icons](https://pub.dev/package
 
 ## Releasing
 
-Releases are fully automated to all supported platforms via GitHub actions and Git tag-based releases. Pushing a new tag in the format `vX.X.X+X` wil kick off GitHub actions that build and push packages to individual platforms' stores.
+Releases are fully automated for Web, Android, and Windows via GitHub actions and Git tag-based releases. Pushing a new tag in the format `vX.X.X+X` wil kick off GitHub actions that build and push packages to individual platforms' stores.
 
 ```bash
 git tag v2.0.5+5
@@ -29,3 +29,7 @@ For quick reference, you can delete tags using the below commands.
 git tag -d v2.0.5+5
 git push --delete origin v2.0.5+5
 ```
+
+### iOS
+
+iOS releases are a manual affair for now. See steps [here](https://docs.flutter.dev/deployment/ios#create-a-build-archive-with-xcode).

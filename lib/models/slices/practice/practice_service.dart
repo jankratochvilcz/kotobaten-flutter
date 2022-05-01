@@ -63,6 +63,15 @@ class PracticeService {
     repository.update(const PracticeModel.initial());
   }
 
+  /// We need to capture navigation in the state to aboud double-navigation during component refreshes.
+  void endSession() {
+    final currentState = repository.current;
+    if (currentState is PracticeModelFinished &&
+        currentState.navigatedAway != true) {
+      repository.update(currentState.copyWith(navigatedAway: true));
+    }
+  }
+
   Future evaluateCorrect() async {
     final currentState = repository.current;
     if (currentState is! PracticeModelInProgress) {

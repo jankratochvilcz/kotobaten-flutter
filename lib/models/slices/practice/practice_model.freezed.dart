@@ -32,9 +32,11 @@ class _$PracticeModelTearOff {
     );
   }
 
-  PracticeModelFinished finished(List<Impression> allImpressions) {
+  PracticeModelFinished finished(List<Impression> allImpressions,
+      {bool? navigatedAway}) {
     return PracticeModelFinished(
       allImpressions,
+      navigatedAway: navigatedAway,
     );
   }
 
@@ -68,7 +70,9 @@ mixin _$PracticeModel {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -85,7 +89,8 @@ mixin _$PracticeModel {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -102,7 +107,8 @@ mixin _$PracticeModel {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -206,7 +212,9 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -226,7 +234,8 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -246,7 +255,8 @@ class _$PracticeModelInitial extends PracticeModelInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -354,7 +364,9 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -374,7 +386,8 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -394,7 +407,8 @@ class _$PracticeModelLoading extends PracticeModelLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -526,7 +540,9 @@ class _$PracticeModelError extends PracticeModelError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -546,7 +562,8 @@ class _$PracticeModelError extends PracticeModelError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -566,7 +583,8 @@ class _$PracticeModelError extends PracticeModelError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -640,7 +658,7 @@ abstract class $PracticeModelFinishedCopyWith<$Res> {
   factory $PracticeModelFinishedCopyWith(PracticeModelFinished value,
           $Res Function(PracticeModelFinished) then) =
       _$PracticeModelFinishedCopyWithImpl<$Res>;
-  $Res call({List<Impression> allImpressions});
+  $Res call({List<Impression> allImpressions, bool? navigatedAway});
 }
 
 /// @nodoc
@@ -657,12 +675,17 @@ class _$PracticeModelFinishedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? allImpressions = freezed,
+    Object? navigatedAway = freezed,
   }) {
     return _then(PracticeModelFinished(
       allImpressions == freezed
           ? _value.allImpressions
           : allImpressions // ignore: cast_nullable_to_non_nullable
               as List<Impression>,
+      navigatedAway: navigatedAway == freezed
+          ? _value.navigatedAway
+          : navigatedAway // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -670,14 +693,17 @@ class _$PracticeModelFinishedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PracticeModelFinished extends PracticeModelFinished {
-  const _$PracticeModelFinished(this.allImpressions) : super._();
+  const _$PracticeModelFinished(this.allImpressions, {this.navigatedAway})
+      : super._();
 
   @override
   final List<Impression> allImpressions;
+  @override
+  final bool? navigatedAway;
 
   @override
   String toString() {
-    return 'PracticeModel.finished(allImpressions: $allImpressions)';
+    return 'PracticeModel.finished(allImpressions: $allImpressions, navigatedAway: $navigatedAway)';
   }
 
   @override
@@ -686,12 +712,16 @@ class _$PracticeModelFinished extends PracticeModelFinished {
         (other.runtimeType == runtimeType &&
             other is PracticeModelFinished &&
             const DeepCollectionEquality()
-                .equals(other.allImpressions, allImpressions));
+                .equals(other.allImpressions, allImpressions) &&
+            const DeepCollectionEquality()
+                .equals(other.navigatedAway, navigatedAway));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(allImpressions));
+      runtimeType,
+      const DeepCollectionEquality().hash(allImpressions),
+      const DeepCollectionEquality().hash(navigatedAway));
 
   @JsonKey(ignore: true)
   @override
@@ -705,7 +735,9 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -716,7 +748,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
             DateTime? currentStepStart)
         inProgress,
   }) {
-    return finished(allImpressions);
+    return finished(allImpressions, navigatedAway);
   }
 
   @override
@@ -725,7 +757,8 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -736,7 +769,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
             DateTime? currentStepStart)?
         inProgress,
   }) {
-    return finished?.call(allImpressions);
+    return finished?.call(allImpressions, navigatedAway);
   }
 
   @override
@@ -745,7 +778,8 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -758,7 +792,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
     required TResult orElse(),
   }) {
     if (finished != null) {
-      return finished(allImpressions);
+      return finished(allImpressions, navigatedAway);
     }
     return orElse();
   }
@@ -805,11 +839,12 @@ class _$PracticeModelFinished extends PracticeModelFinished {
 }
 
 abstract class PracticeModelFinished extends PracticeModel {
-  const factory PracticeModelFinished(List<Impression> allImpressions) =
-      _$PracticeModelFinished;
+  const factory PracticeModelFinished(List<Impression> allImpressions,
+      {bool? navigatedAway}) = _$PracticeModelFinished;
   const PracticeModelFinished._() : super._();
 
   List<Impression> get allImpressions;
+  bool? get navigatedAway;
   @JsonKey(ignore: true)
   $PracticeModelFinishedCopyWith<PracticeModelFinished> get copyWith =>
       throw _privateConstructorUsedError;
@@ -969,7 +1004,9 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String error) error,
-    required TResult Function(List<Impression> allImpressions) finished,
+    required TResult Function(
+            List<Impression> allImpressions, bool? navigatedAway)
+        finished,
     required TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -990,7 +1027,8 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,
@@ -1017,7 +1055,8 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String error)? error,
-    TResult Function(List<Impression> allImpressions)? finished,
+    TResult Function(List<Impression> allImpressions, bool? navigatedAway)?
+        finished,
     TResult Function(
             List<Impression> allImpressions,
             List<Impression> remainingImpressions,

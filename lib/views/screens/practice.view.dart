@@ -56,9 +56,10 @@ class PracticeView extends HookConsumerWidget {
       Future.microtask(() => practiceService.initialize());
     }
 
-    if (model is PracticeModelFinished) {
+    if (model is PracticeModelFinished && model.navigatedAway != true) {
       Future.microtask(() async {
         progressTimer.cancel();
+        practiceService.endSession();
         await navigationService.goPostPractice(context);
       });
     }

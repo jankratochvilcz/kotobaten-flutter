@@ -28,26 +28,24 @@ class ImpressionHidden extends StatelessWidget {
                 text,
                 backgroundCards: cardsRemaining,
               ),
-              Column(children: [
-                Button(
-                  'Reveal answer',
-                  revealAnswer,
-                  type: ButtonType.primaryProgress,
-                  progressPercentage: timeElapsedPercentage,
-                  icon: Icons.remove_red_eye_outlined,
-                  size: ButtonSize.big,
-                  shortcut: '⏎',
-                ),
-                Padding(
-                    padding: topPadding(PaddingType.xxLarge),
-                    child: DescriptionRichText([
-                      const TextSpan(text: 'Try to remember '),
-                      TextSpan(
-                          text: hintText,
-                          style: const TextStyle(fontWeight: FontWeight.w900)),
-                      const TextSpan(text: ' for this card.')
-                    ]))
-              ])
+              Padding(
+                  padding: bottomPadding(PaddingType.xLarge),
+                  child: DescriptionRichText([
+                    const TextSpan(text: 'Try to remember '),
+                    TextSpan(
+                        text: hintText,
+                        style: const TextStyle(fontWeight: FontWeight.w900)),
+                    const TextSpan(text: ' for this card.')
+                  ])),
+              Button(
+                'Reveal answer',
+                revealAnswer,
+                type: ButtonType.primaryProgress,
+                progressPercentage: timeElapsedPercentage,
+                icon: Icons.remove_red_eye_outlined,
+                size: ButtonSize.big,
+                shortcut: '⏎',
+              )
             ])));
   }
 }

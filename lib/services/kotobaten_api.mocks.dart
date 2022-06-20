@@ -10,6 +10,7 @@ import 'package:kotobaten/models/slices/auth/auth_result.dart' as _i3;
 import 'package:kotobaten/models/slices/cards/card.dart' as _i7;
 import 'package:kotobaten/models/slices/practice/impression.dart' as _i12;
 import 'package:kotobaten/models/slices/user/user.dart' as _i4;
+import 'package:kotobaten/models/slices/user/user_day_streak.dart' as _i13;
 import 'package:kotobaten/models/slices/user/user_goals.dart' as _i8;
 import 'package:kotobaten/models/slices/user/user_statistics.dart' as _i6;
 import 'package:kotobaten/services/kotobaten_api.dart' as _i10;
@@ -114,6 +115,11 @@ class MockKotobatenApiService extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#updateGoals, [goals]),
               returnValue: Future<_i8.UserGoals>.value(_FakeUserGoals_6()))
           as _i11.Future<_i8.UserGoals>);
+  @override
+  _i11.Future<List<_i13.DayStreak>> getStreaks() => (super.noSuchMethod(
+          Invocation.method(#getStreaks, []),
+          returnValue: Future<List<_i13.DayStreak>>.value(<_i13.DayStreak>[]))
+      as _i11.Future<List<_i13.DayStreak>>);
   @override
   _i11.Future<_i9.CardsResponse> getCards(int? page, int? pageSize) =>
       (super.noSuchMethod(Invocation.method(#getCards, [page, pageSize]),

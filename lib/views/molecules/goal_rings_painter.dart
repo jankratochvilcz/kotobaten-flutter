@@ -12,8 +12,10 @@ class GoalRingsPainter extends CustomPainter {
   final Color background;
   final List<Tuple2<Color, double>> progress;
   final double strokeThickness;
+  final bool fillOnFullProgress;
 
-  GoalRingsPainter(this.background, this.progress, this.strokeThickness);
+  GoalRingsPainter(this.background, this.progress, this.strokeThickness,
+      {this.fillOnFullProgress = true});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -52,7 +54,7 @@ class GoalRingsPainter extends CustomPainter {
     canvas.drawArc(
         shapeBounds, degreeToRadian(degreeShift - 90), radian, true, paint);
 
-    if (progress < 1) {
+    if (progress < 1 || !fillOnFullProgress) {
       final innerRectangleSize = rectangleSize - strokeThickness;
       final innerShapeBounds = Rect.fromLTRB(
           strokeThickness + offset,

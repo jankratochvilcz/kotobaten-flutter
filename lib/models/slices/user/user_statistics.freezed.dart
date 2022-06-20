@@ -31,7 +31,8 @@ class _$UserStatisticsTearOff {
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted) {
+      String? backstopThresholdExpiryFormatted,
+      {List<DayStreak>? streaks}) {
     return UserStatisticsInitialized(
       leftToPractice,
       discoveredToday,
@@ -42,6 +43,7 @@ class _$UserStatisticsTearOff {
       currentBackstop,
       retentionThreshold,
       backstopThresholdExpiryFormatted,
+      streaks: streaks,
     );
   }
 
@@ -65,6 +67,7 @@ mixin _$UserStatistics {
   double get retentionThreshold => throw _privateConstructorUsedError;
   String? get backstopThresholdExpiryFormatted =>
       throw _privateConstructorUsedError;
+  List<DayStreak>? get streaks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -86,7 +89,8 @@ abstract class $UserStatisticsCopyWith<$Res> {
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted});
+      String? backstopThresholdExpiryFormatted,
+      List<DayStreak>? streaks});
 }
 
 /// @nodoc
@@ -109,6 +113,7 @@ class _$UserStatisticsCopyWithImpl<$Res>
     Object? currentBackstop = freezed,
     Object? retentionThreshold = freezed,
     Object? backstopThresholdExpiryFormatted = freezed,
+    Object? streaks = freezed,
   }) {
     return _then(_value.copyWith(
       leftToPractice: leftToPractice == freezed
@@ -148,6 +153,10 @@ class _$UserStatisticsCopyWithImpl<$Res>
           ? _value.backstopThresholdExpiryFormatted
           : backstopThresholdExpiryFormatted // ignore: cast_nullable_to_non_nullable
               as String?,
+      streaks: streaks == freezed
+          ? _value.streaks
+          : streaks // ignore: cast_nullable_to_non_nullable
+              as List<DayStreak>?,
     ));
   }
 }
@@ -168,7 +177,8 @@ abstract class $UserStatisticsInitializedCopyWith<$Res>
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted});
+      String? backstopThresholdExpiryFormatted,
+      List<DayStreak>? streaks});
 }
 
 /// @nodoc
@@ -194,6 +204,7 @@ class _$UserStatisticsInitializedCopyWithImpl<$Res>
     Object? currentBackstop = freezed,
     Object? retentionThreshold = freezed,
     Object? backstopThresholdExpiryFormatted = freezed,
+    Object? streaks = freezed,
   }) {
     return _then(UserStatisticsInitialized(
       leftToPractice == freezed
@@ -232,6 +243,10 @@ class _$UserStatisticsInitializedCopyWithImpl<$Res>
           ? _value.backstopThresholdExpiryFormatted
           : backstopThresholdExpiryFormatted // ignore: cast_nullable_to_non_nullable
               as String?,
+      streaks: streaks == freezed
+          ? _value.streaks
+          : streaks // ignore: cast_nullable_to_non_nullable
+              as List<DayStreak>?,
     ));
   }
 }
@@ -248,7 +263,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
       this.nextToDiscoverCreated,
       this.currentBackstop,
       this.retentionThreshold,
-      this.backstopThresholdExpiryFormatted);
+      this.backstopThresholdExpiryFormatted,
+      {this.streaks});
 
   factory _$UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =>
       _$$UserStatisticsInitializedFromJson(json);
@@ -271,10 +287,12 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
   final double retentionThreshold;
   @override
   final String? backstopThresholdExpiryFormatted;
+  @override
+  final List<DayStreak>? streaks;
 
   @override
   String toString() {
-    return 'UserStatistics(leftToPractice: $leftToPractice, discoveredToday: $discoveredToday, discoveredWeek: $discoveredWeek, discoveredMonth: $discoveredMonth, addedWeek: $addedWeek, nextToDiscoverCreated: $nextToDiscoverCreated, currentBackstop: $currentBackstop, retentionThreshold: $retentionThreshold, backstopThresholdExpiryFormatted: $backstopThresholdExpiryFormatted)';
+    return 'UserStatistics(leftToPractice: $leftToPractice, discoveredToday: $discoveredToday, discoveredWeek: $discoveredWeek, discoveredMonth: $discoveredMonth, addedWeek: $addedWeek, nextToDiscoverCreated: $nextToDiscoverCreated, currentBackstop: $currentBackstop, retentionThreshold: $retentionThreshold, backstopThresholdExpiryFormatted: $backstopThresholdExpiryFormatted, streaks: $streaks)';
   }
 
   @override
@@ -299,7 +317,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
                 .equals(other.retentionThreshold, retentionThreshold) &&
             const DeepCollectionEquality().equals(
                 other.backstopThresholdExpiryFormatted,
-                backstopThresholdExpiryFormatted));
+                backstopThresholdExpiryFormatted) &&
+            const DeepCollectionEquality().equals(other.streaks, streaks));
   }
 
   @override
@@ -313,7 +332,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
       const DeepCollectionEquality().hash(nextToDiscoverCreated),
       const DeepCollectionEquality().hash(currentBackstop),
       const DeepCollectionEquality().hash(retentionThreshold),
-      const DeepCollectionEquality().hash(backstopThresholdExpiryFormatted));
+      const DeepCollectionEquality().hash(backstopThresholdExpiryFormatted),
+      const DeepCollectionEquality().hash(streaks));
 
   @JsonKey(ignore: true)
   @override
@@ -337,7 +357,8 @@ abstract class UserStatisticsInitialized implements UserStatistics {
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted) = _$UserStatisticsInitialized;
+      String? backstopThresholdExpiryFormatted,
+      {List<DayStreak>? streaks}) = _$UserStatisticsInitialized;
 
   factory UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =
       _$UserStatisticsInitialized.fromJson;
@@ -360,6 +381,8 @@ abstract class UserStatisticsInitialized implements UserStatistics {
   double get retentionThreshold;
   @override
   String? get backstopThresholdExpiryFormatted;
+  @override
+  List<DayStreak>? get streaks;
   @override
   @JsonKey(ignore: true)
   $UserStatisticsInitializedCopyWith<UserStatisticsInitialized> get copyWith =>

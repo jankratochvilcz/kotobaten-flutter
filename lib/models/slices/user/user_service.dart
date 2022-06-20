@@ -26,7 +26,10 @@ class UserService {
     final refreshedUser = await apiService.getUser(
         updateRetentionBackstop: updateRetentionBackstop);
 
-    userRepository.update(UserModel.initialized(refreshedUser));
+    final streaks = await apiService.getStreaks();
+
+    userRepository.update(UserModel.initialized(refreshedUser.copyWith(
+        stats: refreshedUser.stats.copyWith(streaks: streaks))));
 
     // Mock data for screenshots
     // userRepository.update(UserModel.initialized(refreshedUser.copyWith(

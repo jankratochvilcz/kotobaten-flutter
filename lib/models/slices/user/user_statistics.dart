@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kotobaten/models/slices/user/user_day_streak.dart';
 
 part 'user_statistics.g.dart';
 part 'user_statistics.freezed.dart';
@@ -14,7 +15,8 @@ class UserStatistics with _$UserStatistics {
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted) = UserStatisticsInitialized;
+      String? backstopThresholdExpiryFormatted,
+      {List<DayStreak>? streaks}) = UserStatisticsInitialized;
 
   factory UserStatistics.fromJson(Map<String, dynamic> json) =>
       _$UserStatisticsFromJson(json);

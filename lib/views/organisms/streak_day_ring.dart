@@ -17,12 +17,6 @@ class StreakDayRing extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final double percentageToRender = !isToday
-        ? completionPercentage
-        : completionPercentage >= 1
-            ? 1
-            : 0;
-
     final ring = CustomPaint(
       size: Size.infinite,
       painter: GoalRingsPainter(
@@ -32,17 +26,17 @@ class StreakDayRing extends HookConsumerWidget {
                 !isToday
                     ? Colors.black12
                     : Theme.of(context).colorScheme.primary,
-                percentageToRender),
+                completionPercentage),
           ],
           strokeThickness,
           fillOnFullProgress: false),
     );
 
-    if (isToday) {
+    if (isToday && completionPercentage < 1) {
       return ring;
     }
 
-    final icon = percentageToRender >= 1
+    final icon = completionPercentage >= 1
         ? Icon(
             Icons.check,
             color: successColor,

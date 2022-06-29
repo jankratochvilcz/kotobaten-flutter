@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
@@ -8,63 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
+import 'package:kotobaten/views/atoms/animations/flip.dart';
+import 'package:kotobaten/views/atoms/animations/slide_out.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
+import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
+import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
+import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
-import 'package:kotobaten/views/organisms/practice/impression_new.dart';
-import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 
 enum AnimationType { rotate, slide }
 
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
-  Widget _cardFlipTransition(
-      Widget widget, Animation<double> animation, bool isFrontWidget) {
-    final rotateAnim = Tween(begin: pi, end: 0.0).animate(animation);
-    return AnimatedBuilder(
-      animation: rotateAnim,
-      child: widget,
-      builder: (context, widget) {
-        final isUnder = isFrontWidget;
-        var tilt = ((animation.value - 0.5).abs() - 0.5) * 0.003;
-        tilt *= isUnder ? -1.0 : 1.0;
-        final value =
-            isUnder ? min(rotateAnim.value, pi / 2) : rotateAnim.value;
-        return Transform(
-          transform: (Matrix4.rotationY(value)..setEntry(3, 0, tilt)),
-          child: widget,
-          alignment: Alignment.center,
-        );
-      },
-    );
-  }
-
-  Widget _cardSlideTransition(
-      Widget widget, Animation<double> animation, bool isFrontWidget) {
-    final translateAnim = Tween<double>(begin: 600, end: 0).animate(animation);
-    return AnimatedBuilder(
-      animation: translateAnim,
-      child: widget,
-      builder: (context, widget) {
-        return Transform(
-          transform: Matrix4.translationValues(
-              widget is! ImpressionHidden
-                  ? translateAnim.value * -1
-                  : 0.toDouble(),
-              0,
-              0),
-          child: widget,
-          alignment: Alignment.center,
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -111,39 +73,7 @@ class PracticeView extends HookConsumerWidget {
     final cardsRemaining =
         practiceService.getCurrentAndRemainingImpressions().length;
 
-    Widget? impressionView;
-    switch (practiceService.getImpressionViewType()) {
-      case ImpressionViewType.hidden:
-        impressionView = ImpressionHidden(
-            practiceService.getPrimaryText(),
-            practiceService.getHintText(),
-            practiceService.reveal,
-            currentStateProgress.value,
-            cardsRemaining);
-        break;
-      case ImpressionViewType.revealed:
-        impressionView = ImpressionRevealed(
-            practiceService.getPrimaryText(),
-            practiceService.getSecondaryText(),
-            practiceService.getFurigana(),
-            (correct) => correct
-                ? practiceService.evaluateCorrect()
-                : practiceService.evaluateWrong(),
-            currentStateProgress.value,
-            practiceService.getNote(),
-            cardsRemaining);
-        break;
-      case ImpressionViewType.discover:
-        impressionView = ImpressionNew(
-            practiceService.getPrimaryText(),
-            practiceService.getSecondaryText(),
-            practiceService.getFurigana(),
-            practiceService.evaluateCorrect,
-            practiceService.getNote(),
-            cardsRemaining);
-        break;
-      default:
-    }
+    var impressionViewType = practiceService.getImpressionViewType();
 
     if (model is PracticeModelInProgress) {
       final speechPath = practiceService.getSpeechToPlay();
@@ -153,9 +83,51 @@ class PracticeView extends HookConsumerWidget {
       }
 
       final animationType =
-          practiceService.getImpressionViewType() == ImpressionViewType.revealed
+          practiceService.getImpressionViewType() != ImpressionViewType.revealed
               ? AnimationType.rotate
               : AnimationType.slide;
+
+      final cards = getBackgroundCards(
+          getBackgroundCardsCount(impressionViewType, cardsRemaining),
+          Theme.of(context).scaffoldBackgroundColor);
+
+      var currentImpressionInSwitcher = AnimatedSwitcher(
+        duration: const Duration(milliseconds: 700),
+        transitionBuilder: animationType != AnimationType.rotate
+            ? (widget, animation) => flip(
+                widget,
+                animation,
+                practiceService.getImpressionViewType() ==
+                        ImpressionViewType.revealed
+                    ? widget is! ImpressionHidden
+                    : widget is ImpressionHidden)
+            : (widget, animation) => slideOut(
+                widget,
+                animation,
+                practiceService.getImpressionViewType() ==
+                    ImpressionViewType.revealed,
+                MediaQuery.of(context).size.width >= minimumDesktopSize),
+        switchInCurve: animationType == AnimationType.rotate
+            ? Curves.easeInBack
+            : Curves.easeInCubic,
+        switchOutCurve: animationType == AnimationType.rotate
+            ? Curves.easeInBack.flipped
+            : Curves.easeInCubic.flipped,
+        child: getImpressionForViewType(
+            impressionViewType,
+            practiceService.getPrimaryText(),
+            practiceService.getSecondaryText(),
+            practiceService.getFurigana(),
+            practiceService.getHintText(),
+            practiceService.getNote()),
+        layoutBuilder: animationType == AnimationType.slide
+            ? AnimatedSwitcher.defaultLayoutBuilder
+            : (current, previous) => Stack(
+                  children: current != null ? [current, ...previous] : previous,
+                ),
+      );
+
+      cards.add(currentImpressionInSwitcher);
 
       return WillPopScope(
         child: Scaffold(
@@ -168,25 +140,17 @@ class PracticeView extends HookConsumerWidget {
                         ? PaddingType.xxLarge
                         : PaddingType.standard),
                     child: ProgressBar(practiceService.getProgress())),
-                if (impressionView != null)
-                  AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 800),
-                      transitionBuilder: animationType == AnimationType.rotate
-                          ? (widget, animation) => _cardFlipTransition(
-                              widget,
-                              animation,
-                              practiceService.getImpressionViewType() ==
-                                      ImpressionViewType.revealed
-                                  ? widget is! ImpressionHidden
-                                  : widget is ImpressionHidden)
-                          : (widget, animation) => _cardSlideTransition(
-                              widget,
-                              animation,
-                              practiceService.getImpressionViewType() ==
-                                  ImpressionViewType.revealed),
-                      switchInCurve: Curves.easeIn,
-                      switchOutCurve: Curves.easeIn.flipped,
-                      child: impressionView)
+                Stack(
+                  children: cards,
+                ),
+                ImpressionActionsForViewType(
+                    impressionViewType,
+                    practiceService.getElapsedPercentage(),
+                    practiceService.getHintText(),
+                    (correct) => correct
+                        ? practiceService.evaluateCorrect()
+                        : practiceService.evaluateWrong(),
+                    practiceService.reveal)
               ],
             ))),
         onWillPop: () {

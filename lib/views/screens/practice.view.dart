@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
@@ -19,8 +20,51 @@ import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 
+enum AnimationType { rotate, slide }
+
 class PracticeView extends HookConsumerWidget {
   const PracticeView({Key? key}) : super(key: key);
+  Widget _cardFlipTransition(
+      Widget widget, Animation<double> animation, bool isFrontWidget) {
+    final rotateAnim = Tween(begin: pi, end: 0.0).animate(animation);
+    return AnimatedBuilder(
+      animation: rotateAnim,
+      child: widget,
+      builder: (context, widget) {
+        final isUnder = isFrontWidget;
+        var tilt = ((animation.value - 0.5).abs() - 0.5) * 0.003;
+        tilt *= isUnder ? -1.0 : 1.0;
+        final value =
+            isUnder ? min(rotateAnim.value, pi / 2) : rotateAnim.value;
+        return Transform(
+          transform: (Matrix4.rotationY(value)..setEntry(3, 0, tilt)),
+          child: widget,
+          alignment: Alignment.center,
+        );
+      },
+    );
+  }
+
+  Widget _cardSlideTransition(
+      Widget widget, Animation<double> animation, bool isFrontWidget) {
+    final translateAnim = Tween<double>(begin: 600, end: 0).animate(animation);
+    return AnimatedBuilder(
+      animation: translateAnim,
+      child: widget,
+      builder: (context, widget) {
+        return Transform(
+          transform: Matrix4.translationValues(
+              widget is! ImpressionHidden
+                  ? translateAnim.value * -1
+                  : 0.toDouble(),
+              0,
+              0),
+          child: widget,
+          alignment: Alignment.center,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -108,6 +152,11 @@ class PracticeView extends HookConsumerWidget {
         Future.microtask(practiceService.markSpeechAsPlayed);
       }
 
+      final animationType =
+          practiceService.getImpressionViewType() == ImpressionViewType.revealed
+              ? AnimationType.rotate
+              : AnimationType.slide;
+
       return WillPopScope(
         child: Scaffold(
             appBar: const WindowingAppBar(),
@@ -119,7 +168,25 @@ class PracticeView extends HookConsumerWidget {
                         ? PaddingType.xxLarge
                         : PaddingType.standard),
                     child: ProgressBar(practiceService.getProgress())),
-                if (impressionView != null) impressionView
+                if (impressionView != null)
+                  AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 800),
+                      transitionBuilder: animationType == AnimationType.rotate
+                          ? (widget, animation) => _cardFlipTransition(
+                              widget,
+                              animation,
+                              practiceService.getImpressionViewType() ==
+                                      ImpressionViewType.revealed
+                                  ? widget is! ImpressionHidden
+                                  : widget is ImpressionHidden)
+                          : (widget, animation) => _cardSlideTransition(
+                              widget,
+                              animation,
+                              practiceService.getImpressionViewType() ==
+                                  ImpressionViewType.revealed),
+                      switchInCurve: Curves.easeIn,
+                      switchOutCurve: Curves.easeIn.flipped,
+                      child: impressionView)
               ],
             ))),
         onWillPop: () {

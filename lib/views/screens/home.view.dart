@@ -49,7 +49,7 @@ class HomeView extends HookConsumerWidget {
 
     goToPractice() async {
       await practiceService.initialize();
-      await navigationService.goPractice(context);
+      await navigationService.goPractice(context, showOnboarding: true);
     }
 
     if (authModel is AuthModelInitial) {

@@ -8,12 +8,14 @@ class NavigationService {
   goBack(BuildContext context) => Navigator.of(context).pop();
 
   Future<dynamic> goPractice(BuildContext context,
-      {bool replaceCurrent = false}) {
+      {bool replaceCurrent = false, bool showOnboarding = false}) {
     final navigator = Navigator.of(context);
 
+    final args = PracticeArguments(showOnboarding);
+
     return replaceCurrent
-        ? navigator.pushReplacementNamed(practiceRoute)
-        : navigator.pushNamed(practiceRoute);
+        ? navigator.pushReplacementNamed(practiceRoute, arguments: args)
+        : navigator.pushNamed(practiceRoute, arguments: args);
   }
 
   Future<dynamic> goPostPractice(BuildContext context) =>

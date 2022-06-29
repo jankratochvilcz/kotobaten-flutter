@@ -6,3 +6,9 @@ const searchRoute = '/search';
 const settingsRoute = '/settings';
 const onboardingRoute = '/onboarding';
 const postPracticeRoute = '/post-practice';
+
+class PracticeArguments {
+  final bool showOnboarding;
+
+  PracticeArguments(this.showOnboarding);
+}

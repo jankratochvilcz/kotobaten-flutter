@@ -47,7 +47,7 @@ dependencies:
   flutter_local_notifications: ^9.3.1
   timezone: ^0.8.0
   flutter_native_timezone: ^2.0.0
-  bitsdojo_window: ^0.1.1+1
+  bitsdojo_window: ^0.1.2
   package_info_plus: ^1.4.2
 
   http: ^0.13.4

@@ -14,20 +14,23 @@ import 'package:kotobaten/views/screens/post_practice.view.dart';
 import 'package:kotobaten/views/screens/practice.view.dart';
 import 'package:kotobaten/views/screens/search.view.dart';
 import 'package:kotobaten/views/screens/settings.view.dart';
+import 'dart:io' as io show Platform;
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 
-  doWhenWindowReady(() {
-    final window = appWindow;
+  if (io.Platform.isWindows) {
+    doWhenWindowReady(() {
+      final window = appWindow;
 
-    const initialSize = Size(initialDesktopSize, 760);
-    window.minSize = const Size(400, 500);
-    window.size = initialSize;
-    window.alignment = Alignment.center;
+      const initialSize = Size(initialDesktopSize, 760);
+      window.minSize = const Size(400, 500);
+      window.size = initialSize;
+      window.alignment = Alignment.center;
 
-    window.show();
-  });
+      window.show();
+    });
+  }
 }
 
 class MyApp extends StatelessWidget {

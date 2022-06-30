@@ -23,22 +23,22 @@ class ImpressionHiddenActions extends StatelessWidget {
             child: Column(children: [
               Padding(
                   padding: bottomPadding(PaddingType.xLarge),
-                  child: DescriptionRichText([
-                    const TextSpan(text: 'Try to remember '),
-                    TextSpan(
-                        text: hintText,
-                        style: const TextStyle(fontWeight: FontWeight.w900)),
-                    const TextSpan(text: ' for this card.')
-                  ])),
-              Button(
-                'Reveal answer',
-                revealAnswer,
-                type: ButtonType.primaryProgress,
-                progressPercentage: timeElapsedPercentage,
-                icon: Icons.remove_red_eye_outlined,
-                size: ButtonSize.big,
-                shortcut: '⏎',
-              )
+                  child: Button(
+                    'Reveal answer',
+                    revealAnswer,
+                    type: ButtonType.primaryProgress,
+                    progressPercentage: timeElapsedPercentage,
+                    icon: Icons.remove_red_eye_outlined,
+                    size: ButtonSize.big,
+                    shortcut: '⏎',
+                  )),
+              DescriptionRichText([
+                const TextSpan(text: 'Try to remember '),
+                TextSpan(
+                    text: hintText,
+                    style: const TextStyle(fontWeight: FontWeight.w900)),
+                const TextSpan(text: ' for this card.')
+              ])
             ])));
   }
 }

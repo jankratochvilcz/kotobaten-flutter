@@ -20,5 +20,6 @@ class PracticeModel with _$PracticeModel {
       bool revealed,
       bool speechPlayed,
       {DateTime? nextStepTime,
-      DateTime? currentStepStart}) = PracticeModelInProgress;
+      DateTime? currentStepStart,
+      double? pausedPercentage}) = PracticeModelInProgress;
 }

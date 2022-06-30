@@ -54,6 +54,7 @@ class PracticeService {
     }
 
     repository.update(currentState.copyWith(
+        pausedPercentage: null,
         revealed: true,
         nextStepTime: _getRevealedStateExpiry(),
         currentStepStart: DateTime.now()));
@@ -84,6 +85,7 @@ class PracticeService {
     }
 
     repository.update(currentState.copyWith(
+        pausedPercentage: null,
         revealed: false,
         speechPlayed: false,
         remainingImpressions: currentState.remainingImpressions.sublist(1),
@@ -103,6 +105,7 @@ class PracticeService {
 
     if (currentState.remainingImpressions.isEmpty) {
       repository.update(currentState.copyWith(
+          pausedPercentage: null,
           revealed: false,
           nextStepTime: _getHiddenStateExpiry(),
           currentStepStart: DateTime.now()));
@@ -117,6 +120,7 @@ class PracticeService {
     final nextRemainingImpressions = nextImpressions.sublist(1);
 
     repository.update(currentState.copyWith(
+        pausedPercentage: null,
         revealed: false,
         speechPlayed: false,
         remainingImpressions: nextRemainingImpressions,
@@ -264,6 +268,10 @@ class PracticeService {
       return 0;
     }
 
+    if (model.pausedPercentage != null) {
+      return model.pausedPercentage!;
+    }
+
     final maxOffset = model.nextStepTime!.millisecondsSinceEpoch -
         model.currentStepStart!.millisecondsSinceEpoch;
 
@@ -272,5 +280,43 @@ class PracticeService {
 
     final percentage = min(elapsed / maxOffset, 1.0);
     return percentage;
+  }
+
+  void pauseNextStepTimer() {
+    final currentState = repository.current;
+
+    if (currentState is! PracticeModelInProgress) {
+      return;
+    }
+
+    final currentElapsedPercentage = getElapsedPercentage();
+    repository.update(
+        currentState.copyWith(pausedPercentage: currentElapsedPercentage));
+  }
+
+  void resumeNextStepTimer(bool recalculateStepTimings) {
+    final currentState = repository.current;
+
+    if (currentState is! PracticeModelInProgress ||
+        currentState.pausedPercentage == null) {
+      return;
+    }
+
+    if (!recalculateStepTimings) {
+      repository.update(currentState.copyWith(pausedPercentage: null));
+    }
+
+    final maxDuration = currentState.revealed
+        ? _revealedStateMaxDuration
+        : _hiddenStateMaxDuration;
+
+    final elapsedDuration = maxDuration * (currentState.pausedPercentage!);
+    final currentStepStart = DateTime.now().subtract(elapsedDuration);
+    final nextStepStart = currentStepStart.add(maxDuration);
+
+    repository.update(currentState.copyWith(
+        pausedPercentage: null,
+        currentStepStart: currentStepStart,
+        nextStepTime: nextStepStart));
   }
 }

@@ -143,14 +143,19 @@ class PracticeView extends HookConsumerWidget {
                 Stack(
                   children: cards,
                 ),
-                ImpressionActionsForViewType(
-                    impressionViewType,
-                    practiceService.getElapsedPercentage(),
-                    practiceService.getHintText(),
-                    (correct) => correct
-                        ? practiceService.evaluateCorrect()
-                        : practiceService.evaluateWrong(),
-                    practiceService.reveal)
+                GestureDetector(
+                  onTapDown: (_) => practiceService.pauseNextStepTimer(),
+                  onTapUp: (_) => practiceService.resumeNextStepTimer(false),
+                  onTapCancel: () => practiceService.resumeNextStepTimer(true),
+                  child: ImpressionActionsForViewType(
+                      impressionViewType,
+                      practiceService.getElapsedPercentage(),
+                      practiceService.getHintText(),
+                      (correct) => correct
+                          ? practiceService.evaluateCorrect()
+                          : practiceService.evaluateWrong(),
+                      practiceService.reveal),
+                )
               ],
             ))),
         onWillPop: () {

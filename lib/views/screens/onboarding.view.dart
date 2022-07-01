@@ -203,7 +203,9 @@ class OnboardingView extends HookConsumerWidget {
                                   child: ButtonAsync('Start learning',
                                       () async {
                                     await userService.completeOnboarding();
-                                    await navigationService.goBack(context);
+                                    await navigationService.goPractice(context,
+                                        replaceCurrent: true,
+                                        showOnboarding: true);
                                   },
                                       icon: Icons.bolt_outlined,
                                       type: ButtonType.primary))

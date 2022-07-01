@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
+import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -21,6 +22,7 @@ import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_t
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
 import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
+import 'package:kotobaten/views/organisms/practice_onboarding.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 
 enum AnimationType { rotate, slide }
@@ -30,11 +32,15 @@ class PracticeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as PracticeArguments;
+
     final practiceService = ref.watch(practiceServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
     final model = ref.watch(practiceRepositoryProvider);
 
     final currentStateProgress = useState(0.0);
+    final requiresOnboardingOverlay = useState(args.showOnboarding);
 
     final progressTimer = Timer(const Duration(milliseconds: 25), () {
       final currentPercentage = practiceService.getElapsedPercentage();
@@ -60,6 +66,15 @@ class PracticeView extends HookConsumerWidget {
 
     if (model is PracticeModelInitial) {
       Future.microtask(() => practiceService.initialize());
+    }
+
+    if (model is PracticeModelInProgress && requiresOnboardingOverlay.value) {
+      Future.microtask(() {
+        practiceService.pauseNextStepTimer();
+        showPracticeOnboardingSheet(context,
+            onClose: () => practiceService.resumeNextStepTimer(true));
+        requiresOnboardingOverlay.value = false;
+      });
     }
 
     if (model is PracticeModelFinished && model.navigatedAway != true) {

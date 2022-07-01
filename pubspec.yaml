@@ -90,6 +90,9 @@ flutter:
     - assets/logos/square_gray.png
     - assets/logos/logo_wide_white.png
     - assets/logos/logo_wide_color.png
+    - assets/onboarding/practice_onboarding_0.png
+    - assets/onboarding/practice_onboarding_1.png
+    - assets/onboarding/practice_onboarding_2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

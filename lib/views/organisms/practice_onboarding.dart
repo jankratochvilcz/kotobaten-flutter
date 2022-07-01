@@ -7,10 +7,17 @@ import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 
-showPracticeOnboardingSheet(BuildContext context) => showModalBottomSheet(
-    context: context,
-    shape: defaultBottomSheetShape,
-    builder: (context) => const OnboardingView());
+showPracticeOnboardingSheet(BuildContext context,
+    {VoidCallback? onClose}) async {
+  await showModalBottomSheet(
+      context: context,
+      shape: defaultBottomSheetShape,
+      builder: (context) => const OnboardingView());
+
+  if (onClose != null) {
+    onClose();
+  }
+}
 
 class _OnboardingStep {
   final String text;

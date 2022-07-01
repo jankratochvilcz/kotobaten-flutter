@@ -42,37 +42,37 @@ class PracticeView extends HookConsumerWidget {
     final currentStateProgress = useState(0.0);
     final requiresOnboardingOverlay = useState(args.showOnboarding);
 
-    final progressTimer = !args.showOnboarding
-        ? Timer(const Duration(milliseconds: 25), () {
-            final currentPercentage = practiceService.getElapsedPercentage();
+    final progressTimer = Timer(const Duration(milliseconds: 25), () {
+      final currentPercentage = practiceService.getElapsedPercentage();
 
-            if (currentStateProgress.value == currentPercentage) {
-              return;
-            }
+      if (currentStateProgress.value == currentPercentage) {
+        return;
+      }
 
-            currentStateProgress.value = currentPercentage;
+      currentStateProgress.value = currentPercentage;
 
-            if (currentPercentage >= 1) {
-              switch (practiceService.getImpressionViewType()) {
-                case ImpressionViewType.hidden:
-                  practiceService.reveal();
-                  break;
-                case ImpressionViewType.revealed:
-                  practiceService.evaluateWrong();
-                  break;
-                default:
-              }
-            }
-          })
-        : null;
+      if (currentPercentage >= 1) {
+        switch (practiceService.getImpressionViewType()) {
+          case ImpressionViewType.hidden:
+            practiceService.reveal();
+            break;
+          case ImpressionViewType.revealed:
+            practiceService.evaluateWrong();
+            break;
+          default:
+        }
+      }
+    });
 
-    if (model is PracticeModelInitial) {
+    if (model is PracticeModelInitial && !args.showOnboarding) {
       Future.microtask(() => practiceService.initialize());
     }
 
     Future.microtask(() {
       if (requiresOnboardingOverlay.value) {
-        showPracticeOnboardingSheet(context);
+        practiceService.pauseNextStepTimer();
+        showPracticeOnboardingSheet(context,
+            onClose: () => practiceService.resumeNextStepTimer(true));
         requiresOnboardingOverlay.value = false;
       }
     });

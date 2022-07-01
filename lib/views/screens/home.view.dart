@@ -49,7 +49,7 @@ class HomeView extends HookConsumerWidget {
 
     goToPractice() async {
       await practiceService.initialize();
-      await navigationService.goPractice(context, showOnboarding: true);
+      await navigationService.goPractice(context);
     }
 
     if (authModel is AuthModelInitial) {
@@ -66,12 +66,6 @@ class HomeView extends HookConsumerWidget {
       Future.microtask(() async {
         await dailyReminderService.ensureInitialized();
       });
-    }
-
-    if (userModel is UserModelInitialized &&
-        !userModel.user.onboarding.onboardingHidden) {
-      Future.microtask(
-          () async => await navigationService.goOnboarding(context));
     }
 
     if (userModel is UserModelInitialized) {

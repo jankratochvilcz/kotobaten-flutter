@@ -64,22 +64,22 @@ class PracticeView extends HookConsumerWidget {
       }
     });
 
-    if (model is PracticeModelInitial && !args.showOnboarding) {
+    if (model is PracticeModelInitial) {
       Future.microtask(() => practiceService.initialize());
     }
 
-    Future.microtask(() {
-      if (requiresOnboardingOverlay.value) {
+    if (model is PracticeModelInProgress && requiresOnboardingOverlay.value) {
+      Future.microtask(() {
         practiceService.pauseNextStepTimer();
         showPracticeOnboardingSheet(context,
             onClose: () => practiceService.resumeNextStepTimer(true));
         requiresOnboardingOverlay.value = false;
-      }
-    });
+      });
+    }
 
     if (model is PracticeModelFinished && model.navigatedAway != true) {
       Future.microtask(() async {
-        progressTimer?.cancel();
+        progressTimer.cancel();
         practiceService.endSession();
         await navigationService.goPostPractice(context);
       });

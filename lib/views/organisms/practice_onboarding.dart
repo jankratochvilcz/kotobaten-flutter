@@ -67,7 +67,7 @@ class OnboardingView extends HookConsumerWidget {
                   image: AssetImage(currentStep.imagePath),
                 ),
                 SizedBox(
-                    height: 150,
+                    height: 156,
                     child: Padding(
                         padding: verticalPadding(PaddingType.large),
                         child: Text(currentStep.text))),

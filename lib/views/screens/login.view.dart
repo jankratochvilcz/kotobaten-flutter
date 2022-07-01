@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -55,7 +57,11 @@ class LoginView extends HookConsumerWidget {
         authModel.result is AuthResultSuccess) {
       Future.microtask(() async {
         await dailyReminderService.initializeDefaults();
-        await navigationService.goHome(context);
+        unawaited(navigationService.goHome(context));
+
+        if (loginKind.value == LoginKind.signup) {
+          unawaited(navigationService.goOnboarding(context));
+        }
       });
     }
 

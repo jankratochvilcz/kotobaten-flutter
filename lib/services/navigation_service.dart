@@ -37,5 +37,5 @@ class NavigationService {
       .pushNamedAndRemoveUntil(homeRoute, (route) => false);
 
   Future<dynamic> goOnboarding(BuildContext context) => Navigator.of(context)
-      .pushNamedAndRemoveUntil(onboardingRoute, (route) => false);
+      .pushNamedAndRemoveUntil(onboardingRoute, ModalRoute.withName(homeRoute));
 }

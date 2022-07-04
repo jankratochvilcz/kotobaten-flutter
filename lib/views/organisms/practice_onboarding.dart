@@ -3,6 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
+import 'package:kotobaten/extensions/platform.dart';
+import 'package:kotobaten/services/app_configuration.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -41,6 +43,8 @@ class OnboardingView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final platform =
+        ref.watch(appConfigurationProvider.select((value) => value.platform));
     final step = useState(0);
     final steps = [
       _OnboardingStep(copyStep0, nextStepAction,
@@ -56,16 +60,18 @@ class OnboardingView extends HookConsumerWidget {
     return Padding(
         padding: horizontalPadding(PaddingType.standard),
         child: SizedBox(
-            height: 440,
+            height: platform.toDeviceType() == DeviceType.mobile ? 440 : 500,
             child: Column(
               children: [
                 Padding(
                     padding: topPadding(PaddingType.large),
                     child: const Heading(
                         'The basics of learning', HeadingStyle.h3)),
-                Image(
-                  image: AssetImage(currentStep.imagePath),
-                ),
+                ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 250),
+                    child: Image(
+                      image: AssetImage(currentStep.imagePath),
+                    )),
                 SizedBox(
                     height: 156,
                     child: Padding(

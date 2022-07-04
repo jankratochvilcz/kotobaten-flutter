@@ -1,13 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 
 Widget slideOut(Widget widget, Animation<double> animation, bool isFrontWidget,
     bool addOpacityAnimation) {
   final translateAnim = Tween<double>(begin: 600, end: 0).animate(animation);
   final opacityAnim = Tween<double>(begin: 0, end: 1).animate(animation);
-  final applyAnimation = widget is! ImpressionHidden;
+  final applyAnimation = isFrontWidget;
 
   // An additional fade animation for wider viewports
   final applyOpacityAnimation = applyAnimation && addOpacityAnimation;

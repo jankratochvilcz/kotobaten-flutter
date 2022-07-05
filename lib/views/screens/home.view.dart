@@ -12,25 +12,13 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
+import 'package:kotobaten/views/atoms/desktop_card.dart';
 import 'package:kotobaten/views/molecules/goals_card.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-class _DesktopCard extends StatelessWidget {
-  final Widget child;
-
-  const _DesktopCard(this.child, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 400,
-        height: 200,
-        child: child,
-      );
-}
 
 class HomeView extends HookConsumerWidget {
   HomeView({Key? key}) : super(key: key);
@@ -97,10 +85,10 @@ class HomeView extends HookConsumerWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        const _DesktopCard(GoalsCard()),
-                                        _DesktopCard(CardLearn(
+                                        const DesktopCard(GoalsCard()),
+                                        DesktopCard(CardLearn(
                                             userModel.user, goToPractice)),
-                                        const _DesktopCard(CardCollect()),
+                                        const DesktopCard(CardCollect()),
                                       ],
                                     )
                                   : Column(

@@ -62,30 +62,27 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
             key: _formKey,
             child: Padding(
               padding: allPadding(PaddingType.large),
-              child: Column(
+              child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    TextFormField(
-                      controller: _goalDayController,
-                      validator: validateGoal,
-                      autofocus: true,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                          labelText: 'Daily goal', suffixText: 'new words'),
-                    ),
                     SizedBox(
-                      height: getPadding(PaddingType.small),
-                    ),
+                        width: 120,
+                        child: TextFormField(
+                          controller: _goalDayController,
+                          validator: validateGoal,
+                          autofocus: true,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.number,
+                          decoration:
+                              const InputDecoration(suffixText: 'new words'),
+                        )),
                     Align(
-                        alignment: Alignment.centerRight,
+                        alignment: Alignment.bottomRight,
                         child: Button(
-                          'Save goals',
+                          'Save',
                           onEditComplete,
                           icon: Icons.edit_outlined,
-                          type: ButtonType.primary,
-                          size: ButtonSize.big,
                         ))
                   ]),
             )));

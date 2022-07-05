@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/services/navigation_service.dart';
-import 'package:kotobaten/views/organisms/profile.view.dart';
 
 class ScaffoldDefault extends HookConsumerWidget {
   final Widget child;
@@ -29,8 +28,8 @@ class ScaffoldDefault extends HookConsumerWidget {
                 onPressed: () => navigationService.goSearch(context),
                 icon: const Icon(Icons.search)),
             IconButton(
-                onPressed: () => showProfileBottomSheet(context),
-                tooltip: 'Your profile',
+                onPressed: () => navigationService.goSettings(context),
+                tooltip: 'Settings',
                 icon: const Icon(Icons.more_horiz_rounded)),
             if (!kIsWeb && Platform.isWindows)
               Padding(

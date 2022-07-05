@@ -1,67 +1,14 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/extensions/datetime.dart';
+import 'package:kotobaten/models/slices/user/user_day_streak.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
-import 'package:kotobaten/views/atoms/heading.dart';
-import 'package:kotobaten/views/molecules/headed.dart';
-import 'package:kotobaten/views/molecules/progress_infobox.dart';
-import 'package:kotobaten/views/organisms/goal_rings.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
-
-class _GoalRingsInCard extends StatelessWidget {
-  const _GoalRingsInCard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        width: 80,
-        height: 80,
-        child: GoalRings(
-          Theme.of(context).scaffoldBackgroundColor,
-          strokeThickness: 6,
-        ),
-      );
-}
-
-class _ProgressInfoboxDay extends StatelessWidget {
-  final UserModelInitialized userModel;
-
-  const _ProgressInfoboxDay(this.userModel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => ProgressInfobox(
-      'Today',
-      dailyProgressColor(context),
-      userModel.user.goals.discoverDaily,
-      userModel.user.stats.discoveredToday);
-}
-
-class _ProgressInfoboxWeek extends StatelessWidget {
-  final UserModelInitialized userModel;
-
-  const _ProgressInfoboxWeek(this.userModel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => ProgressInfobox(
-      'Week',
-      weeklyProgressColor(context),
-      userModel.user.goals.discoverWeekly,
-      userModel.user.stats.discoveredWeek);
-}
-
-class _ProgressInfoboxMonth extends StatelessWidget {
-  final UserModelInitialized userModel;
-
-  const _ProgressInfoboxMonth(this.userModel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => ProgressInfobox(
-      'Month',
-      monthlyProgressColor(context),
-      userModel.user.goals.discoverMonthly,
-      userModel.user.stats.discoveredMonth);
-}
+import 'package:kotobaten/views/organisms/streak_day_ring.dart';
 
 class GoalsCard extends ConsumerWidget {
   const GoalsCard({Key? key}) : super(key: key);
@@ -71,46 +18,39 @@ class GoalsCard extends ConsumerWidget {
     final userModel = ref.watch(userRepositoryProvider);
 
     if (userModel is UserModelInitialized) {
-      return Headed(
-          MediaQuery.of(context).size.width > 400
-              ? Padding(
-                  padding: topPadding(PaddingType.standard),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                          padding: rightPadding(PaddingType.large),
-                          child: const _GoalRingsInCard()),
-                      _ProgressInfoboxDay(userModel),
-                      _ProgressInfoboxWeek(userModel),
-                      _ProgressInfoboxMonth(userModel)
-                    ],
-                  ))
-              : Padding(
-                  padding: topPadding(PaddingType.standard),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                          padding: bottomPadding(PaddingType.large),
-                          child: const _GoalRingsInCard()),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _ProgressInfoboxDay(userModel),
-                          _ProgressInfoboxWeek(userModel),
-                          _ProgressInfoboxMonth(userModel)
-                        ],
-                      ),
-                    ],
-                  )),
-          "Progress",
-          HeadingStyle.h1);
+      final stats = userModel.user.stats;
+      final streaks = stats.streaks;
+      final streaksLastWeek = streaks?.take(6) ?? [];
+      final streaksLastWeekWithToday = [
+        DayStreak.initialized(DateTime.now(), false),
+        ...streaksLastWeek,
+      ].reversed;
+
+      final pastDayCircles = streaksLastWeekWithToday.map((x) => Padding(
+          padding: allPadding(PaddingType.small),
+          child: Column(children: [
+            SizedBox(
+                width: 32,
+                height: 32,
+                child: StreakDayRing(
+                    backgroundColor,
+                    x.date.isSameDate(DateTime.now())
+                        ? userModel.user.stats.discoveredToday /
+                            userModel.user.goals.discoverDaily
+                        : x.hasStreak
+                            ? 1
+                            : 0,
+                    x.date.isSameDate(DateTime.now()))),
+            Text(
+              formatDate(x.date, [D]),
+              style: const TextStyle(color: Colors.black26),
+            )
+          ])));
+
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: pastDayCircles.toList(),
+      );
     }
 
     return const Loading();

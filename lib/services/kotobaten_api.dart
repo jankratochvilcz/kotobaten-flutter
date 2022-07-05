@@ -11,6 +11,7 @@ import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
+import 'package:kotobaten/models/slices/user/user_day_streak.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/services/app_configuration.dart';
@@ -21,6 +22,7 @@ import 'package:kotobaten/services/serialization/requests/impressions_request.da
 import 'package:kotobaten/services/serialization/responses/cards_response.dart';
 import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
+import 'package:kotobaten/services/serialization/responses/streaks_response.dart';
 import 'package:mockito/annotations.dart';
 
 final kotobatenApiServiceProvider = Provider((ref) => KotobatenApiService(
@@ -140,6 +142,13 @@ class KotobatenApiService {
     final response = await _kotobatenClient.post(url, headers: headers);
     final body = utf8.decode(response.bodyBytes);
     return UserGoals.fromJson(jsonDecode(body));
+  }
+
+  Future<List<DayStreak>> getStreaks() async {
+    final responseJson = await _getAuthenticated('streaks');
+    final response = StreaksResponse.fromJson(responseJson);
+
+    return response.days;
   }
 
   Future<CardsResponse> getCards(int page, int pageSize) async {

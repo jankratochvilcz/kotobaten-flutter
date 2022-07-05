@@ -18,4 +18,7 @@ extension DateTimeExtensions on DateTime {
 
     return 'today';
   }
+
+  bool isSameDate(DateTime x) =>
+      x.year == year && x.month == month && x.day == day;
 }

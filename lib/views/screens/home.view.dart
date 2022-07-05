@@ -98,13 +98,13 @@ class HomeView extends HookConsumerWidget {
                                         Padding(
                                             padding: bottomPadding(
                                                 PaddingType.xxLarge),
+                                            child: const GoalsCard()),
+                                        Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 0, 0, 48),
                                             child: CardLearn(
                                                 userModel.user, goToPractice)),
-                                        const Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                0, 0, 0, 48),
-                                            child: CardCollect()),
-                                        const GoalsCard()
+                                        const CardCollect(),
                                       ],
                                     ))))))));
     }

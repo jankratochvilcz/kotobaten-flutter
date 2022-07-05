@@ -22,6 +22,8 @@ import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_t
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
 import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
+import 'package:kotobaten/views/organisms/practice/impression_new.dart';
+import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 import 'package:kotobaten/views/organisms/practice_onboarding.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 
@@ -91,6 +93,7 @@ class PracticeView extends HookConsumerWidget {
     var impressionViewType = practiceService.getImpressionViewType();
 
     if (model is PracticeModelInProgress) {
+      final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null) {
         AudioPlayer().play(speechPath);
@@ -98,7 +101,7 @@ class PracticeView extends HookConsumerWidget {
       }
 
       final animationType =
-          practiceService.getImpressionViewType() != ImpressionViewType.revealed
+          currentImpressionViewType != ImpressionViewType.revealed
               ? AnimationType.rotate
               : AnimationType.slide;
 
@@ -112,15 +115,16 @@ class PracticeView extends HookConsumerWidget {
             ? (widget, animation) => flip(
                 widget,
                 animation,
-                practiceService.getImpressionViewType() ==
-                        ImpressionViewType.revealed
+                currentImpressionViewType == ImpressionViewType.revealed
                     ? widget is! ImpressionHidden
                     : widget is ImpressionHidden)
             : (widget, animation) => slideOut(
                 widget,
                 animation,
-                practiceService.getImpressionViewType() ==
-                    ImpressionViewType.revealed,
+                (currentImpressionViewType != ImpressionViewType.revealed &&
+                        widget is ImpressionRevealed) ||
+                    (currentImpressionViewType == ImpressionViewType.hidden &&
+                        widget is ImpressionNew),
                 MediaQuery.of(context).size.width >= minimumDesktopSize),
         switchInCurve: animationType == AnimationType.rotate
             ? Curves.easeInBack

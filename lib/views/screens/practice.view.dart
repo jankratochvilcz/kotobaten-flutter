@@ -110,7 +110,7 @@ class PracticeView extends HookConsumerWidget {
           Theme.of(context).scaffoldBackgroundColor);
 
       var currentImpressionInSwitcher = AnimatedSwitcher(
-        duration: const Duration(milliseconds: 700),
+        duration: const Duration(milliseconds: 500),
         transitionBuilder: animationType != AnimationType.rotate
             ? (widget, animation) => flip(
                 widget,

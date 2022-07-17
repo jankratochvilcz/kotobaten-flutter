@@ -173,7 +173,10 @@ class PracticeView extends HookConsumerWidget {
                       (correct) => correct
                           ? practiceService.evaluateCorrect()
                           : practiceService.evaluateWrong(),
-                      practiceService.reveal),
+                      practiceService.reveal,
+                      () => model.pausedPercentage != null
+                          ? practiceService.resumeNextStepTimer(true)
+                          : practiceService.pauseNextStepTimer()),
                 )
               ],
             ))),

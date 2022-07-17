@@ -12,9 +12,15 @@ class ImpressionActionsForViewType extends StatelessWidget {
 
   final void Function(bool) onAnswered;
   final VoidCallback revealAnswer;
+  final VoidCallback toggleTimer;
 
-  const ImpressionActionsForViewType(this.impressionViewType,
-      this.elapsedPercentage, this.hintText, this.onAnswered, this.revealAnswer,
+  const ImpressionActionsForViewType(
+      this.impressionViewType,
+      this.elapsedPercentage,
+      this.hintText,
+      this.onAnswered,
+      this.revealAnswer,
+      this.toggleTimer,
       {Key? key})
       : super(key: key);
 
@@ -23,9 +29,10 @@ class ImpressionActionsForViewType extends StatelessWidget {
     switch (impressionViewType) {
       case ImpressionViewType.hidden:
         return ImpressionHiddenActions(
-            hintText, revealAnswer, elapsedPercentage);
+            hintText, revealAnswer, elapsedPercentage, toggleTimer);
       case ImpressionViewType.revealed:
-        return ImpressionRevealedActions(onAnswered, elapsedPercentage);
+        return ImpressionRevealedActions(
+            onAnswered, elapsedPercentage, toggleTimer);
       case ImpressionViewType.discover:
         return ImpressionNewActions(() => onAnswered(true));
       default:

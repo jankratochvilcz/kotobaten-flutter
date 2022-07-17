@@ -304,6 +304,7 @@ class PracticeService {
 
     if (!recalculateStepTimings) {
       repository.update(currentState.copyWith(pausedPercentage: null));
+      return;
     }
 
     final maxDuration = currentState.revealed

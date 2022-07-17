@@ -65,6 +65,7 @@ class Button extends ConsumerWidget {
   final VoidCallback? onPressed;
   final String? shortcut;
   final double? progressPercentage;
+  final bool noPadding;
 
   const Button(this.label, this.onPressed,
       {Key? key,
@@ -74,7 +75,8 @@ class Button extends ConsumerWidget {
       this.iconWidget,
       this.color,
       this.shortcut,
-      this.progressPercentage})
+      this.progressPercentage,
+      this.noPadding = false})
       : super(key: key);
 
   _getButtonStyle() {
@@ -91,7 +93,7 @@ class Button extends ConsumerWidget {
 
     final buttonContents = Container(
         width: size == ButtonSize.big ? 220 : null,
-        padding: size != ButtonSize.big
+        padding: size != ButtonSize.big && !noPadding
             ? horizontalPadding(PaddingType.large)
             : null,
         height: 42,

@@ -7,17 +7,21 @@ import 'package:kotobaten/views/molecules/button.dart';
 class ImpressionHiddenActions extends StatelessWidget {
   final String hintText;
   final VoidCallback revealAnswer;
+  final VoidCallback toggleTimer;
   final double timeElapsedPercentage;
 
-  const ImpressionHiddenActions(
-      this.hintText, this.revealAnswer, this.timeElapsedPercentage,
+  const ImpressionHiddenActions(this.hintText, this.revealAnswer,
+      this.timeElapsedPercentage, this.toggleTimer,
       {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CallbackShortcuts(
-        bindings: {LogicalKeySet(LogicalKeyboardKey.enter): revealAnswer},
+        bindings: {
+          LogicalKeySet(LogicalKeyboardKey.enter): revealAnswer,
+          LogicalKeySet(LogicalKeyboardKey.space): toggleTimer
+        },
         child: Focus(
             autofocus: true,
             child: Column(children: [

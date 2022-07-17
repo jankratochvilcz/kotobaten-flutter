@@ -6,8 +6,10 @@ class ImpressionRevealedActions extends StatelessWidget {
   final double timeElapsedPercentage;
 
   final void Function(bool) onAnswered;
+  final VoidCallback toggleTimer;
 
-  const ImpressionRevealedActions(this.onAnswered, this.timeElapsedPercentage,
+  const ImpressionRevealedActions(
+      this.onAnswered, this.timeElapsedPercentage, this.toggleTimer,
       {Key? key})
       : super(key: key);
 
@@ -16,7 +18,8 @@ class ImpressionRevealedActions extends StatelessWidget {
     return CallbackShortcuts(
         bindings: {
           LogicalKeySet(LogicalKeyboardKey.keyN): () => onAnswered(false),
-          LogicalKeySet(LogicalKeyboardKey.enter): () => onAnswered(true)
+          LogicalKeySet(LogicalKeyboardKey.enter): () => onAnswered(true),
+          LogicalKeySet(LogicalKeyboardKey.space): toggleTimer
         },
         child: Focus(
             autofocus: true,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
@@ -70,43 +69,33 @@ class HomeView extends HookConsumerWidget {
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           ),
           child: Center(
-              child: CallbackShortcuts(
-                  bindings: {
-                LogicalKeySet(LogicalKeyboardKey.enter): goToPractice
-              },
-                  child: Focus(
-                      autofocus: true,
-                      child: SingleChildScrollView(
-                          child: Padding(
-                              padding: verticalPadding(PaddingType.xLarge),
-                              child: MediaQuery.of(context).size.width >=
-                                      minimumDesktopSize
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const DesktopCard(GoalsCard()),
-                                        DesktopCard(CardLearn(
-                                            userModel.user, goToPractice)),
-                                        const DesktopCard(CardCollect()),
-                                      ],
-                                    )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                            padding: bottomPadding(
-                                                PaddingType.xxLarge),
-                                            child: CardLearn(
-                                                userModel.user, goToPractice)),
-                                        const Padding(
-                                            padding: EdgeInsets.fromLTRB(
-                                                0, 0, 0, 48),
-                                            child: CardCollect()),
-                                        const GoalsCard()
-                                      ],
-                                    ))))))));
+              child: SingleChildScrollView(
+                  child: Padding(
+                      padding: verticalPadding(PaddingType.xLarge),
+                      child: MediaQuery.of(context).size.width >=
+                              minimumDesktopSize
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const DesktopCard(GoalsCard()),
+                                DesktopCard(
+                                    CardLearn(userModel.user, goToPractice)),
+                                const DesktopCard(CardCollect()),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                    padding: bottomPadding(PaddingType.xxLarge),
+                                    child: CardLearn(
+                                        userModel.user, goToPractice)),
+                                const Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
+                                    child: CardCollect()),
+                                const GoalsCard()
+                              ],
+                            ))))));
     }
 
     return const Loading();

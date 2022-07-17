@@ -11,6 +11,7 @@ class ButtonAsync extends HookWidget {
   final Color? color;
   final Future? Function() onPressed;
   final String? shortcut;
+  final bool overrideIsInProgress;
 
   const ButtonAsync(this.label, this.onPressed,
       {Key? key,
@@ -18,7 +19,8 @@ class ButtonAsync extends HookWidget {
       this.size = ButtonSize.standard,
       this.type = ButtonType.standard,
       this.color,
-      this.shortcut})
+      this.shortcut,
+      this.overrideIsInProgress = false})
       : super(key: key);
 
   @override
@@ -34,8 +36,8 @@ class ButtonAsync extends HookWidget {
     return Button(
       label,
       isActionInProgress.value ? null : onSubmit,
-      icon: isActionInProgress.value ? null : icon,
-      iconWidget: isActionInProgress.value
+      icon: overrideIsInProgress || isActionInProgress.value ? null : icon,
+      iconWidget: overrideIsInProgress || isActionInProgress.value
           ? const Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 2, 0),
               child: SizedBox(

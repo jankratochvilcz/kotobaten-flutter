@@ -15,10 +15,15 @@ List<Widget> getBackgroundCards(int count, Color color) {
   final backgroundCards = count;
 
   for (var i = 0; i < backgroundCards; i++) {
+    // If the absolute offset is bigger than the cardSize,
+    // the card shadows will start appearing below the card.
+    final offset = (backgroundCards - i) * -16.0;
+    if (offset.abs() > cardSize) continue;
+
     cards.add(Transform.scale(
         scale: 1 - (backgroundCards - i) * 0.05,
         child: Transform.translate(
-            offset: Offset(0, (backgroundCards - i) * -16),
+            offset: Offset(0, offset),
             child: Padding(
                 padding: allPadding(PaddingType.xxLarge),
                 child: Center(

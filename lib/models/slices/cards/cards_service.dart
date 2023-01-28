@@ -3,6 +3,8 @@ import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
+import 'package:kotobaten/models/slices/user/user_model.dart';
+import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 import 'package:kotobaten/models/slices/cards/cards_repository.dart';
@@ -14,16 +16,18 @@ final cardsServiceProvider = Provider<CardsService>((ref) => CardsService(
     ref.watch(kotobatenApiServiceProvider),
     ref.watch(cardsRepositoryProvider.notifier),
     ref.watch(userServiceProvider),
-    ref.watch(practiceRepositoryProvider.notifier)));
+    ref.watch(practiceRepositoryProvider.notifier),
+    ref.watch(userRepositoryProvider.notifier)));
 
 class CardsService {
   final KotobatenApiService apiService;
   final CardsRepository cardsRepository;
   final UserService userService;
   final PracticeRepository practiceRepository;
+  final UserRepository userRepository;
 
   CardsService(this.apiService, this.cardsRepository, this.userService,
-      this.practiceRepository);
+      this.practiceRepository, this.userRepository);
 
   Future initialize() async {
     if (cardsRepository.current is CardsModelLoadingInitial) {
@@ -70,7 +74,13 @@ class CardsService {
           currentState.copyWith(cards: [newCard, ...currentState.cards]));
     }
 
-    await userService.refreshUser();
+    final currentUser = userRepository.current;
+
+    if (currentUser is UserModelInitialized) {
+      final statisticsWithNewCardCount = currentUser.user.stats
+          .copyWith(addedWeek: currentUser.user.stats.addedWeek + 1);
+      userService.updateStatistics(statisticsWithNewCardCount);
+    }
 
     return newCard;
   }

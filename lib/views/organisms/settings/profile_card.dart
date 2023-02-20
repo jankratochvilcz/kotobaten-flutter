@@ -17,7 +17,6 @@ class ProfileCard extends HookConsumerWidget {
           authService.logout,
           icon: Icons.logout,
         ),
-        "Profile",
-        HeadingStyle.h2);
+        const Heading('Profile', HeadingStyle.h2));
   }
 }

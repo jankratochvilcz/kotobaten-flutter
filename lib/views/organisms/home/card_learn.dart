@@ -35,55 +35,53 @@ class CardLearn extends HookWidget {
         child: Focus(
             autofocus: true,
             child: Headed(
-              Column(children: [
-                user.stats.leftToPractice > 0
-                    ? DescriptionRichText(
+                Column(children: [
+                  user.stats.leftToPractice > 0
+                      ? DescriptionRichText(
+                          [
+                            const TextSpan(text: 'You have '),
+                            TextSpan(
+                                text:
+                                    '${user.stats.leftToPractice > 0 ? user.stats.leftToPractice.toString() : 'no'} words',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700)),
+                            const TextSpan(text: ' to refresh.')
+                          ],
+                        )
+                      : DescriptionRichText(
+                          [
+                            TextSpan(
+                                text: leftForToday > 0
+                                    ? '$leftForToday more new words to reach your daily goal. 💪'
+                                    : 'Practice ✅ Daily goal ✅. Amazing progress! 🙌')
+                          ],
+                          textAlign: TextAlign.center,
+                        ),
+                  Padding(
+                      padding: topPadding(PaddingType.standard),
+                      child: DescriptionRichText(
                         [
-                          const TextSpan(text: 'You have '),
+                          const TextSpan(text: 'You learned '),
                           TextSpan(
                               text:
-                                  '${user.stats.leftToPractice > 0 ? user.stats.leftToPractice.toString() : 'no'} words',
+                                  '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
                               style:
                                   const TextStyle(fontWeight: FontWeight.w700)),
-                          const TextSpan(text: ' to refresh.')
+                          const TextSpan(text: ' this week.')
                         ],
-                      )
-                    : DescriptionRichText(
-                        [
-                          TextSpan(
-                              text: leftForToday > 0
-                                  ? '$leftForToday more new words to reach your daily goal. 💪'
-                                  : 'Practice ✅ Daily goal ✅. Amazing progress! 🙌')
-                        ],
-                        textAlign: TextAlign.center,
-                      ),
-                Padding(
-                    padding: topPadding(PaddingType.standard),
-                    child: DescriptionRichText(
-                      [
-                        const TextSpan(text: 'You learned '),
-                        TextSpan(
-                            text:
-                                '${user.stats.discoveredWeek > 0 ? user.stats.discoveredWeek.toString() : 'no'} words',
-                            style:
-                                const TextStyle(fontWeight: FontWeight.w700)),
-                        const TextSpan(text: ' this week.')
-                      ],
-                    )),
-                Padding(
-                    padding: topPadding(PaddingType.large),
-                    child: ButtonAsync(
-                      ctaText,
-                      goToPractice,
-                      icon: Icons.bolt_outlined,
-                      size: ButtonSize.big,
-                      type: ButtonType.primary,
-                      shortcut: '⏎',
-                      overrideIsInProgress: goingToPractice.value,
-                    ))
-              ]),
-              heading,
-              HeadingStyle.h1,
-            )));
+                      )),
+                  Padding(
+                      padding: topPadding(PaddingType.large),
+                      child: ButtonAsync(
+                        ctaText,
+                        goToPractice,
+                        icon: Icons.bolt_outlined,
+                        size: ButtonSize.big,
+                        type: ButtonType.primary,
+                        shortcut: '⏎',
+                        overrideIsInProgress: goingToPractice.value,
+                      ))
+                ]),
+                Heading(heading, HeadingStyle.h1))));
   }
 }

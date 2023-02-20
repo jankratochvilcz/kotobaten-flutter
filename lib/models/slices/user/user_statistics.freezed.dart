@@ -30,6 +30,8 @@ mixin _$UserStatistics {
   double get retentionThreshold => throw _privateConstructorUsedError;
   String? get backstopThresholdExpiryFormatted =>
       throw _privateConstructorUsedError;
+  List<UserStatisticsDayInitialized> get dayStats =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +54,8 @@ abstract class $UserStatisticsCopyWith<$Res> {
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted});
+      String? backstopThresholdExpiryFormatted,
+      List<UserStatisticsDayInitialized> dayStats});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$UserStatisticsCopyWithImpl<$Res, $Val extends UserStatistics>
     Object? currentBackstop = freezed,
     Object? retentionThreshold = null,
     Object? backstopThresholdExpiryFormatted = freezed,
+    Object? dayStats = null,
   }) {
     return _then(_value.copyWith(
       leftToPractice: null == leftToPractice
@@ -116,6 +120,10 @@ class _$UserStatisticsCopyWithImpl<$Res, $Val extends UserStatistics>
           ? _value.backstopThresholdExpiryFormatted
           : backstopThresholdExpiryFormatted // ignore: cast_nullable_to_non_nullable
               as String?,
+      dayStats: null == dayStats
+          ? _value.dayStats
+          : dayStats // ignore: cast_nullable_to_non_nullable
+              as List<UserStatisticsDayInitialized>,
     ) as $Val);
   }
 }
@@ -138,7 +146,8 @@ abstract class _$$UserStatisticsInitializedCopyWith<$Res>
       DateTime? nextToDiscoverCreated,
       double? currentBackstop,
       double retentionThreshold,
-      String? backstopThresholdExpiryFormatted});
+      String? backstopThresholdExpiryFormatted,
+      List<UserStatisticsDayInitialized> dayStats});
 }
 
 /// @nodoc
@@ -161,6 +170,7 @@ class __$$UserStatisticsInitializedCopyWithImpl<$Res>
     Object? currentBackstop = freezed,
     Object? retentionThreshold = null,
     Object? backstopThresholdExpiryFormatted = freezed,
+    Object? dayStats = null,
   }) {
     return _then(_$UserStatisticsInitialized(
       null == leftToPractice
@@ -199,6 +209,10 @@ class __$$UserStatisticsInitializedCopyWithImpl<$Res>
           ? _value.backstopThresholdExpiryFormatted
           : backstopThresholdExpiryFormatted // ignore: cast_nullable_to_non_nullable
               as String?,
+      null == dayStats
+          ? _value._dayStats
+          : dayStats // ignore: cast_nullable_to_non_nullable
+              as List<UserStatisticsDayInitialized>,
     ));
   }
 }
@@ -215,7 +229,9 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
       this.nextToDiscoverCreated,
       this.currentBackstop,
       this.retentionThreshold,
-      this.backstopThresholdExpiryFormatted);
+      this.backstopThresholdExpiryFormatted,
+      final List<UserStatisticsDayInitialized> dayStats)
+      : _dayStats = dayStats;
 
   factory _$UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =>
       _$$UserStatisticsInitializedFromJson(json);
@@ -238,10 +254,17 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
   final double retentionThreshold;
   @override
   final String? backstopThresholdExpiryFormatted;
+  final List<UserStatisticsDayInitialized> _dayStats;
+  @override
+  List<UserStatisticsDayInitialized> get dayStats {
+    if (_dayStats is EqualUnmodifiableListView) return _dayStats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dayStats);
+  }
 
   @override
   String toString() {
-    return 'UserStatistics(leftToPractice: $leftToPractice, discoveredToday: $discoveredToday, discoveredWeek: $discoveredWeek, discoveredMonth: $discoveredMonth, addedWeek: $addedWeek, nextToDiscoverCreated: $nextToDiscoverCreated, currentBackstop: $currentBackstop, retentionThreshold: $retentionThreshold, backstopThresholdExpiryFormatted: $backstopThresholdExpiryFormatted)';
+    return 'UserStatistics(leftToPractice: $leftToPractice, discoveredToday: $discoveredToday, discoveredWeek: $discoveredWeek, discoveredMonth: $discoveredMonth, addedWeek: $addedWeek, nextToDiscoverCreated: $nextToDiscoverCreated, currentBackstop: $currentBackstop, retentionThreshold: $retentionThreshold, backstopThresholdExpiryFormatted: $backstopThresholdExpiryFormatted, dayStats: $dayStats)';
   }
 
   @override
@@ -268,7 +291,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
             (identical(other.backstopThresholdExpiryFormatted,
                     backstopThresholdExpiryFormatted) ||
                 other.backstopThresholdExpiryFormatted ==
-                    backstopThresholdExpiryFormatted));
+                    backstopThresholdExpiryFormatted) &&
+            const DeepCollectionEquality().equals(other._dayStats, _dayStats));
   }
 
   @JsonKey(ignore: true)
@@ -283,7 +307,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
       nextToDiscoverCreated,
       currentBackstop,
       retentionThreshold,
-      backstopThresholdExpiryFormatted);
+      backstopThresholdExpiryFormatted,
+      const DeepCollectionEquality().hash(_dayStats));
 
   @JsonKey(ignore: true)
   @override
@@ -310,7 +335,8 @@ abstract class UserStatisticsInitialized implements UserStatistics {
           final DateTime? nextToDiscoverCreated,
           final double? currentBackstop,
           final double retentionThreshold,
-          final String? backstopThresholdExpiryFormatted) =
+          final String? backstopThresholdExpiryFormatted,
+          final List<UserStatisticsDayInitialized> dayStats) =
       _$UserStatisticsInitialized;
 
   factory UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =
@@ -334,6 +360,8 @@ abstract class UserStatisticsInitialized implements UserStatistics {
   double get retentionThreshold;
   @override
   String? get backstopThresholdExpiryFormatted;
+  @override
+  List<UserStatisticsDayInitialized> get dayStats;
   @override
   @JsonKey(ignore: true)
   _$$UserStatisticsInitializedCopyWith<_$UserStatisticsInitialized>

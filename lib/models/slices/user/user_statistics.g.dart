@@ -20,6 +20,10 @@ _$UserStatisticsInitialized _$$UserStatisticsInitializedFromJson(
       (json['currentBackstop'] as num?)?.toDouble(),
       (json['retentionThreshold'] as num).toDouble(),
       json['backstopThresholdExpiryFormatted'] as String?,
+      (json['dayStats'] as List<dynamic>)
+          .map((e) =>
+              UserStatisticsDayInitialized.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$UserStatisticsInitializedToJson(
@@ -36,4 +40,5 @@ Map<String, dynamic> _$$UserStatisticsInitializedToJson(
       'retentionThreshold': instance.retentionThreshold,
       'backstopThresholdExpiryFormatted':
           instance.backstopThresholdExpiryFormatted,
+      'dayStats': instance.dayStats,
     };

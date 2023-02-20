@@ -64,7 +64,6 @@ class RemindersCard extends HookConsumerWidget {
               ])
           ],
         ),
-        "Daily reminder",
-        HeadingStyle.h2);
+        const Heading('Daily reminder', HeadingStyle.h2));
   }
 }

@@ -22,7 +22,6 @@ class GoalsCard extends HookConsumerWidget {
 
     return Headed(
         GoalsEditDialog(userService.updateGoals, userModel.user.goals),
-        "Daily goal",
-        HeadingStyle.h2);
+        const Heading('Daily goal', HeadingStyle.h2));
   }
 }

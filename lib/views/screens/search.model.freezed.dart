@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'search.model.dart';
 
@@ -12,41 +12,11 @@ part of 'search.model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SearchModelTearOff {
-  const _$SearchModelTearOff();
-
-  SearchModelInitial initial(bool searchFocused) {
-    return SearchModelInitial(
-      searchFocused,
-    );
-  }
-
-  SearchModelLoading loading(bool searchFocused) {
-    return SearchModelLoading(
-      searchFocused,
-    );
-  }
-
-  SearchModelLoaded loaded(
-      bool searchFocused, String resultsQuery, List<CardInitialized> cards) {
-    return SearchModelLoaded(
-      searchFocused,
-      resultsQuery,
-      cards,
-    );
-  }
-}
-
-/// @nodoc
-const $SearchModel = _$SearchModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SearchModel {
   bool get searchFocused => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
@@ -58,9 +28,9 @@ mixin _$SearchModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
+    TResult? Function(bool searchFocused)? initial,
+    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, String resultsQuery,
             List<CardInitialized> cards)?
         loaded,
   }) =>
@@ -84,9 +54,9 @@ mixin _$SearchModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchModelInitial value)? initial,
-    TResult Function(SearchModelLoading value)? loading,
-    TResult Function(SearchModelLoaded value)? loaded,
+    TResult? Function(SearchModelInitial value)? initial,
+    TResult? Function(SearchModelLoading value)? loading,
+    TResult? Function(SearchModelLoaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,58 +77,61 @@ mixin _$SearchModel {
 abstract class $SearchModelCopyWith<$Res> {
   factory $SearchModelCopyWith(
           SearchModel value, $Res Function(SearchModel) then) =
-      _$SearchModelCopyWithImpl<$Res>;
+      _$SearchModelCopyWithImpl<$Res, SearchModel>;
+  @useResult
   $Res call({bool searchFocused});
 }
 
 /// @nodoc
-class _$SearchModelCopyWithImpl<$Res> implements $SearchModelCopyWith<$Res> {
+class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
+    implements $SearchModelCopyWith<$Res> {
   _$SearchModelCopyWithImpl(this._value, this._then);
 
-  final SearchModel _value;
   // ignore: unused_field
-  final $Res Function(SearchModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchFocused = freezed,
+    Object? searchFocused = null,
   }) {
     return _then(_value.copyWith(
-      searchFocused: searchFocused == freezed
+      searchFocused: null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $SearchModelInitialCopyWith<$Res>
+abstract class _$$SearchModelInitialCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory $SearchModelInitialCopyWith(
-          SearchModelInitial value, $Res Function(SearchModelInitial) then) =
-      _$SearchModelInitialCopyWithImpl<$Res>;
+  factory _$$SearchModelInitialCopyWith(_$SearchModelInitial value,
+          $Res Function(_$SearchModelInitial) then) =
+      __$$SearchModelInitialCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool searchFocused});
 }
 
 /// @nodoc
-class _$SearchModelInitialCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res>
-    implements $SearchModelInitialCopyWith<$Res> {
-  _$SearchModelInitialCopyWithImpl(
-      SearchModelInitial _value, $Res Function(SearchModelInitial) _then)
-      : super(_value, (v) => _then(v as SearchModelInitial));
+class __$$SearchModelInitialCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelInitial>
+    implements _$$SearchModelInitialCopyWith<$Res> {
+  __$$SearchModelInitialCopyWithImpl(
+      _$SearchModelInitial _value, $Res Function(_$SearchModelInitial) _then)
+      : super(_value, _then);
 
-  @override
-  SearchModelInitial get _value => super._value as SearchModelInitial;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchFocused = freezed,
+    Object? searchFocused = null,
   }) {
-    return _then(SearchModelInitial(
-      searchFocused == freezed
+    return _then(_$SearchModelInitial(
+      null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -183,19 +156,20 @@ class _$SearchModelInitial implements SearchModelInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SearchModelInitial &&
-            const DeepCollectionEquality()
-                .equals(other.searchFocused, searchFocused));
+            other is _$SearchModelInitial &&
+            (identical(other.searchFocused, searchFocused) ||
+                other.searchFocused == searchFocused));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(searchFocused));
+  int get hashCode => Object.hash(runtimeType, searchFocused);
 
   @JsonKey(ignore: true)
   @override
-  $SearchModelInitialCopyWith<SearchModelInitial> get copyWith =>
-      _$SearchModelInitialCopyWithImpl<SearchModelInitial>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SearchModelInitialCopyWith<_$SearchModelInitial> get copyWith =>
+      __$$SearchModelInitialCopyWithImpl<_$SearchModelInitial>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -212,9 +186,9 @@ class _$SearchModelInitial implements SearchModelInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
+    TResult? Function(bool searchFocused)? initial,
+    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, String resultsQuery,
             List<CardInitialized> cards)?
         loaded,
   }) {
@@ -250,9 +224,9 @@ class _$SearchModelInitial implements SearchModelInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchModelInitial value)? initial,
-    TResult Function(SearchModelLoading value)? loading,
-    TResult Function(SearchModelLoaded value)? loaded,
+    TResult? Function(SearchModelInitial value)? initial,
+    TResult? Function(SearchModelLoading value)? loading,
+    TResult? Function(SearchModelLoaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -273,43 +247,42 @@ class _$SearchModelInitial implements SearchModelInitial {
 }
 
 abstract class SearchModelInitial implements SearchModel {
-  factory SearchModelInitial(bool searchFocused) = _$SearchModelInitial;
+  factory SearchModelInitial(final bool searchFocused) = _$SearchModelInitial;
 
   @override
   bool get searchFocused;
   @override
   @JsonKey(ignore: true)
-  $SearchModelInitialCopyWith<SearchModelInitial> get copyWith =>
+  _$$SearchModelInitialCopyWith<_$SearchModelInitial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchModelLoadingCopyWith<$Res>
+abstract class _$$SearchModelLoadingCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory $SearchModelLoadingCopyWith(
-          SearchModelLoading value, $Res Function(SearchModelLoading) then) =
-      _$SearchModelLoadingCopyWithImpl<$Res>;
+  factory _$$SearchModelLoadingCopyWith(_$SearchModelLoading value,
+          $Res Function(_$SearchModelLoading) then) =
+      __$$SearchModelLoadingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool searchFocused});
 }
 
 /// @nodoc
-class _$SearchModelLoadingCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res>
-    implements $SearchModelLoadingCopyWith<$Res> {
-  _$SearchModelLoadingCopyWithImpl(
-      SearchModelLoading _value, $Res Function(SearchModelLoading) _then)
-      : super(_value, (v) => _then(v as SearchModelLoading));
+class __$$SearchModelLoadingCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoading>
+    implements _$$SearchModelLoadingCopyWith<$Res> {
+  __$$SearchModelLoadingCopyWithImpl(
+      _$SearchModelLoading _value, $Res Function(_$SearchModelLoading) _then)
+      : super(_value, _then);
 
-  @override
-  SearchModelLoading get _value => super._value as SearchModelLoading;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchFocused = freezed,
+    Object? searchFocused = null,
   }) {
-    return _then(SearchModelLoading(
-      searchFocused == freezed
+    return _then(_$SearchModelLoading(
+      null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -334,19 +307,20 @@ class _$SearchModelLoading implements SearchModelLoading {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SearchModelLoading &&
-            const DeepCollectionEquality()
-                .equals(other.searchFocused, searchFocused));
+            other is _$SearchModelLoading &&
+            (identical(other.searchFocused, searchFocused) ||
+                other.searchFocused == searchFocused));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(searchFocused));
+  int get hashCode => Object.hash(runtimeType, searchFocused);
 
   @JsonKey(ignore: true)
   @override
-  $SearchModelLoadingCopyWith<SearchModelLoading> get copyWith =>
-      _$SearchModelLoadingCopyWithImpl<SearchModelLoading>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SearchModelLoadingCopyWith<_$SearchModelLoading> get copyWith =>
+      __$$SearchModelLoadingCopyWithImpl<_$SearchModelLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -363,9 +337,9 @@ class _$SearchModelLoading implements SearchModelLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
+    TResult? Function(bool searchFocused)? initial,
+    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, String resultsQuery,
             List<CardInitialized> cards)?
         loaded,
   }) {
@@ -401,9 +375,9 @@ class _$SearchModelLoading implements SearchModelLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchModelInitial value)? initial,
-    TResult Function(SearchModelLoading value)? loading,
-    TResult Function(SearchModelLoaded value)? loaded,
+    TResult? Function(SearchModelInitial value)? initial,
+    TResult? Function(SearchModelLoading value)? loading,
+    TResult? Function(SearchModelLoaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -424,55 +398,54 @@ class _$SearchModelLoading implements SearchModelLoading {
 }
 
 abstract class SearchModelLoading implements SearchModel {
-  factory SearchModelLoading(bool searchFocused) = _$SearchModelLoading;
+  factory SearchModelLoading(final bool searchFocused) = _$SearchModelLoading;
 
   @override
   bool get searchFocused;
   @override
   @JsonKey(ignore: true)
-  $SearchModelLoadingCopyWith<SearchModelLoading> get copyWith =>
+  _$$SearchModelLoadingCopyWith<_$SearchModelLoading> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SearchModelLoadedCopyWith<$Res>
+abstract class _$$SearchModelLoadedCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory $SearchModelLoadedCopyWith(
-          SearchModelLoaded value, $Res Function(SearchModelLoaded) then) =
-      _$SearchModelLoadedCopyWithImpl<$Res>;
+  factory _$$SearchModelLoadedCopyWith(
+          _$SearchModelLoaded value, $Res Function(_$SearchModelLoaded) then) =
+      __$$SearchModelLoadedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool searchFocused, String resultsQuery, List<CardInitialized> cards});
 }
 
 /// @nodoc
-class _$SearchModelLoadedCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res>
-    implements $SearchModelLoadedCopyWith<$Res> {
-  _$SearchModelLoadedCopyWithImpl(
-      SearchModelLoaded _value, $Res Function(SearchModelLoaded) _then)
-      : super(_value, (v) => _then(v as SearchModelLoaded));
+class __$$SearchModelLoadedCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoaded>
+    implements _$$SearchModelLoadedCopyWith<$Res> {
+  __$$SearchModelLoadedCopyWithImpl(
+      _$SearchModelLoaded _value, $Res Function(_$SearchModelLoaded) _then)
+      : super(_value, _then);
 
-  @override
-  SearchModelLoaded get _value => super._value as SearchModelLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchFocused = freezed,
-    Object? resultsQuery = freezed,
-    Object? cards = freezed,
+    Object? searchFocused = null,
+    Object? resultsQuery = null,
+    Object? cards = null,
   }) {
-    return _then(SearchModelLoaded(
-      searchFocused == freezed
+    return _then(_$SearchModelLoaded(
+      null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
               as bool,
-      resultsQuery == freezed
+      null == resultsQuery
           ? _value.resultsQuery
           : resultsQuery // ignore: cast_nullable_to_non_nullable
               as String,
-      cards == freezed
-          ? _value.cards
+      null == cards
+          ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
     ));
@@ -482,14 +455,21 @@ class _$SearchModelLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchModelLoaded implements SearchModelLoaded {
-  _$SearchModelLoaded(this.searchFocused, this.resultsQuery, this.cards);
+  _$SearchModelLoaded(
+      this.searchFocused, this.resultsQuery, final List<CardInitialized> cards)
+      : _cards = cards;
 
   @override
   final bool searchFocused;
   @override
   final String resultsQuery;
+  final List<CardInitialized> _cards;
   @override
-  final List<CardInitialized> cards;
+  List<CardInitialized> get cards {
+    if (_cards is EqualUnmodifiableListView) return _cards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cards);
+  }
 
   @override
   String toString() {
@@ -500,25 +480,23 @@ class _$SearchModelLoaded implements SearchModelLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SearchModelLoaded &&
-            const DeepCollectionEquality()
-                .equals(other.searchFocused, searchFocused) &&
-            const DeepCollectionEquality()
-                .equals(other.resultsQuery, resultsQuery) &&
-            const DeepCollectionEquality().equals(other.cards, cards));
+            other is _$SearchModelLoaded &&
+            (identical(other.searchFocused, searchFocused) ||
+                other.searchFocused == searchFocused) &&
+            (identical(other.resultsQuery, resultsQuery) ||
+                other.resultsQuery == resultsQuery) &&
+            const DeepCollectionEquality().equals(other._cards, _cards));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(searchFocused),
-      const DeepCollectionEquality().hash(resultsQuery),
-      const DeepCollectionEquality().hash(cards));
+  int get hashCode => Object.hash(runtimeType, searchFocused, resultsQuery,
+      const DeepCollectionEquality().hash(_cards));
 
   @JsonKey(ignore: true)
   @override
-  $SearchModelLoadedCopyWith<SearchModelLoaded> get copyWith =>
-      _$SearchModelLoadedCopyWithImpl<SearchModelLoaded>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SearchModelLoadedCopyWith<_$SearchModelLoaded> get copyWith =>
+      __$$SearchModelLoadedCopyWithImpl<_$SearchModelLoaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -535,9 +513,9 @@ class _$SearchModelLoaded implements SearchModelLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
+    TResult? Function(bool searchFocused)? initial,
+    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, String resultsQuery,
             List<CardInitialized> cards)?
         loaded,
   }) {
@@ -573,9 +551,9 @@ class _$SearchModelLoaded implements SearchModelLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SearchModelInitial value)? initial,
-    TResult Function(SearchModelLoading value)? loading,
-    TResult Function(SearchModelLoaded value)? loaded,
+    TResult? Function(SearchModelInitial value)? initial,
+    TResult? Function(SearchModelLoading value)? loading,
+    TResult? Function(SearchModelLoaded value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -596,8 +574,8 @@ class _$SearchModelLoaded implements SearchModelLoaded {
 }
 
 abstract class SearchModelLoaded implements SearchModel {
-  factory SearchModelLoaded(bool searchFocused, String resultsQuery,
-      List<CardInitialized> cards) = _$SearchModelLoaded;
+  factory SearchModelLoaded(final bool searchFocused, final String resultsQuery,
+      final List<CardInitialized> cards) = _$SearchModelLoaded;
 
   @override
   bool get searchFocused;
@@ -605,6 +583,6 @@ abstract class SearchModelLoaded implements SearchModel {
   List<CardInitialized> get cards;
   @override
   @JsonKey(ignore: true)
-  $SearchModelLoadedCopyWith<SearchModelLoaded> get copyWith =>
+  _$$SearchModelLoadedCopyWith<_$SearchModelLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }

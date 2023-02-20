@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'impressions_request.dart';
 
@@ -12,33 +12,11 @@ part of 'impressions_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ImpressionsRequest _$ImpressionsRequestFromJson(Map<String, dynamic> json) {
   return Initialized.fromJson(json);
 }
-
-/// @nodoc
-class _$ImpressionsRequestTearOff {
-  const _$ImpressionsRequestTearOff();
-
-  Initialized initialized(ImpressionType impressionType, int stackCardId,
-      bool success, DateTime timestamp) {
-    return Initialized(
-      impressionType,
-      stackCardId,
-      success,
-      timestamp,
-    );
-  }
-
-  ImpressionsRequest fromJson(Map<String, Object?> json) {
-    return ImpressionsRequest.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ImpressionsRequest = _$ImpressionsRequestTearOff();
 
 /// @nodoc
 mixin _$ImpressionsRequest {
@@ -46,7 +24,6 @@ mixin _$ImpressionsRequest {
   int get stackCardId => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ImpressionType impressionType, int stackCardId,
@@ -56,7 +33,7 @@ mixin _$ImpressionsRequest {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ImpressionType impressionType, int stackCardId,
+    TResult? Function(ImpressionType impressionType, int stackCardId,
             bool success, DateTime timestamp)?
         initialized,
   }) =>
@@ -76,7 +53,7 @@ mixin _$ImpressionsRequest {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,7 +72,8 @@ mixin _$ImpressionsRequest {
 abstract class $ImpressionsRequestCopyWith<$Res> {
   factory $ImpressionsRequestCopyWith(
           ImpressionsRequest value, $Res Function(ImpressionsRequest) then) =
-      _$ImpressionsRequestCopyWithImpl<$Res>;
+      _$ImpressionsRequestCopyWithImpl<$Res, ImpressionsRequest>;
+  @useResult
   $Res call(
       {ImpressionType impressionType,
       int stackCardId,
@@ -104,49 +82,52 @@ abstract class $ImpressionsRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImpressionsRequestCopyWithImpl<$Res>
+class _$ImpressionsRequestCopyWithImpl<$Res, $Val extends ImpressionsRequest>
     implements $ImpressionsRequestCopyWith<$Res> {
   _$ImpressionsRequestCopyWithImpl(this._value, this._then);
 
-  final ImpressionsRequest _value;
   // ignore: unused_field
-  final $Res Function(ImpressionsRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionType = freezed,
-    Object? stackCardId = freezed,
-    Object? success = freezed,
-    Object? timestamp = freezed,
+    Object? impressionType = null,
+    Object? stackCardId = null,
+    Object? success = null,
+    Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
-      impressionType: impressionType == freezed
+      impressionType: null == impressionType
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      stackCardId: stackCardId == freezed
+      stackCardId: null == stackCardId
           ? _value.stackCardId
           : stackCardId // ignore: cast_nullable_to_non_nullable
               as int,
-      success: success == freezed
+      success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      timestamp: timestamp == freezed
+      timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $InitializedCopyWith<$Res>
+abstract class _$$InitializedCopyWith<$Res>
     implements $ImpressionsRequestCopyWith<$Res> {
-  factory $InitializedCopyWith(
-          Initialized value, $Res Function(Initialized) then) =
-      _$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedCopyWith(
+          _$Initialized value, $Res Function(_$Initialized) then) =
+      __$$InitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {ImpressionType impressionType,
       int stackCardId,
@@ -155,37 +136,35 @@ abstract class $InitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionsRequestCopyWithImpl<$Res>
-    implements $InitializedCopyWith<$Res> {
-  _$InitializedCopyWithImpl(
-      Initialized _value, $Res Function(Initialized) _then)
-      : super(_value, (v) => _then(v as Initialized));
+class __$$InitializedCopyWithImpl<$Res>
+    extends _$ImpressionsRequestCopyWithImpl<$Res, _$Initialized>
+    implements _$$InitializedCopyWith<$Res> {
+  __$$InitializedCopyWithImpl(
+      _$Initialized _value, $Res Function(_$Initialized) _then)
+      : super(_value, _then);
 
-  @override
-  Initialized get _value => super._value as Initialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? impressionType = freezed,
-    Object? stackCardId = freezed,
-    Object? success = freezed,
-    Object? timestamp = freezed,
+    Object? impressionType = null,
+    Object? stackCardId = null,
+    Object? success = null,
+    Object? timestamp = null,
   }) {
-    return _then(Initialized(
-      impressionType == freezed
+    return _then(_$Initialized(
+      null == impressionType
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      stackCardId == freezed
+      null == stackCardId
           ? _value.stackCardId
           : stackCardId // ignore: cast_nullable_to_non_nullable
               as int,
-      success == freezed
+      null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      timestamp == freezed
+      null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
@@ -220,27 +199,26 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Initialized &&
-            const DeepCollectionEquality()
-                .equals(other.impressionType, impressionType) &&
-            const DeepCollectionEquality()
-                .equals(other.stackCardId, stackCardId) &&
-            const DeepCollectionEquality().equals(other.success, success) &&
-            const DeepCollectionEquality().equals(other.timestamp, timestamp));
+            other is _$Initialized &&
+            (identical(other.impressionType, impressionType) ||
+                other.impressionType == impressionType) &&
+            (identical(other.stackCardId, stackCardId) ||
+                other.stackCardId == stackCardId) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(impressionType),
-      const DeepCollectionEquality().hash(stackCardId),
-      const DeepCollectionEquality().hash(success),
-      const DeepCollectionEquality().hash(timestamp));
 
   @JsonKey(ignore: true)
   @override
-  $InitializedCopyWith<Initialized> get copyWith =>
-      _$InitializedCopyWithImpl<Initialized>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, impressionType, stackCardId, success, timestamp);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -255,7 +233,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(ImpressionType impressionType, int stackCardId,
+    TResult? Function(ImpressionType impressionType, int stackCardId,
             bool success, DateTime timestamp)?
         initialized,
   }) {
@@ -287,7 +265,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -306,13 +284,18 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(this);
+    return _$$InitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class Initialized implements ImpressionsRequest {
-  factory Initialized(ImpressionType impressionType, int stackCardId,
-      bool success, DateTime timestamp) = _$Initialized;
+  factory Initialized(
+      final ImpressionType impressionType,
+      final int stackCardId,
+      final bool success,
+      final DateTime timestamp) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
@@ -327,6 +310,6 @@ abstract class Initialized implements ImpressionsRequest {
   DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
-  $InitializedCopyWith<Initialized> get copyWith =>
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

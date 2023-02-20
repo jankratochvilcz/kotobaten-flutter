@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_model.dart';
 
@@ -12,31 +12,7 @@ part of 'user_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$UserModelTearOff {
-  const _$UserModelTearOff();
-
-  UserModelInitial initial() {
-    return UserModelInitial();
-  }
-
-  UserModelLoadingInitial loadingInitial() {
-    return UserModelLoadingInitial();
-  }
-
-  UserModelInitialized initialized(UserInitialized user,
-      [bool refreshing = false]) {
-    return UserModelInitialized(
-      user,
-      refreshing,
-    );
-  }
-}
-
-/// @nodoc
-const $UserModel = _$UserModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$UserModel {
@@ -50,9 +26,9 @@ mixin _$UserModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(UserInitialized user, bool refreshing)? initialized,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(UserInitialized user, bool refreshing)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,9 +48,9 @@ mixin _$UserModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserModelInitial value)? initial,
-    TResult Function(UserModelLoadingInitial value)? loadingInitial,
-    TResult Function(UserModelInitialized value)? initialized,
+    TResult? Function(UserModelInitial value)? initial,
+    TResult? Function(UserModelLoadingInitial value)? loadingInitial,
+    TResult? Function(UserModelInitialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,34 +66,34 @@ mixin _$UserModel {
 /// @nodoc
 abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
-      _$UserModelCopyWithImpl<$Res>;
+      _$UserModelCopyWithImpl<$Res, UserModel>;
 }
 
 /// @nodoc
-class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
+class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
+    implements $UserModelCopyWith<$Res> {
   _$UserModelCopyWithImpl(this._value, this._then);
 
-  final UserModel _value;
   // ignore: unused_field
-  final $Res Function(UserModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $UserModelInitialCopyWith<$Res> {
-  factory $UserModelInitialCopyWith(
-          UserModelInitial value, $Res Function(UserModelInitial) then) =
-      _$UserModelInitialCopyWithImpl<$Res>;
+abstract class _$$UserModelInitialCopyWith<$Res> {
+  factory _$$UserModelInitialCopyWith(
+          _$UserModelInitial value, $Res Function(_$UserModelInitial) then) =
+      __$$UserModelInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserModelInitialCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
-    implements $UserModelInitialCopyWith<$Res> {
-  _$UserModelInitialCopyWithImpl(
-      UserModelInitial _value, $Res Function(UserModelInitial) _then)
-      : super(_value, (v) => _then(v as UserModelInitial));
-
-  @override
-  UserModelInitial get _value => super._value as UserModelInitial;
+class __$$UserModelInitialCopyWithImpl<$Res>
+    extends _$UserModelCopyWithImpl<$Res, _$UserModelInitial>
+    implements _$$UserModelInitialCopyWith<$Res> {
+  __$$UserModelInitialCopyWithImpl(
+      _$UserModelInitial _value, $Res Function(_$UserModelInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -133,7 +109,7 @@ class _$UserModelInitial extends UserModelInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserModelInitial);
+        (other.runtimeType == runtimeType && other is _$UserModelInitial);
   }
 
   @override
@@ -153,9 +129,9 @@ class _$UserModelInitial extends UserModelInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(UserInitialized user, bool refreshing)? initialized,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(UserInitialized user, bool refreshing)? initialized,
   }) {
     return initial?.call();
   }
@@ -187,9 +163,9 @@ class _$UserModelInitial extends UserModelInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserModelInitial value)? initial,
-    TResult Function(UserModelLoadingInitial value)? loadingInitial,
-    TResult Function(UserModelInitialized value)? initialized,
+    TResult? Function(UserModelInitial value)? initial,
+    TResult? Function(UserModelLoadingInitial value)? loadingInitial,
+    TResult? Function(UserModelInitialized value)? initialized,
   }) {
     return initial?.call(this);
   }
@@ -215,22 +191,19 @@ abstract class UserModelInitial extends UserModel {
 }
 
 /// @nodoc
-abstract class $UserModelLoadingInitialCopyWith<$Res> {
-  factory $UserModelLoadingInitialCopyWith(UserModelLoadingInitial value,
-          $Res Function(UserModelLoadingInitial) then) =
-      _$UserModelLoadingInitialCopyWithImpl<$Res>;
+abstract class _$$UserModelLoadingInitialCopyWith<$Res> {
+  factory _$$UserModelLoadingInitialCopyWith(_$UserModelLoadingInitial value,
+          $Res Function(_$UserModelLoadingInitial) then) =
+      __$$UserModelLoadingInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserModelLoadingInitialCopyWithImpl<$Res>
-    extends _$UserModelCopyWithImpl<$Res>
-    implements $UserModelLoadingInitialCopyWith<$Res> {
-  _$UserModelLoadingInitialCopyWithImpl(UserModelLoadingInitial _value,
-      $Res Function(UserModelLoadingInitial) _then)
-      : super(_value, (v) => _then(v as UserModelLoadingInitial));
-
-  @override
-  UserModelLoadingInitial get _value => super._value as UserModelLoadingInitial;
+class __$$UserModelLoadingInitialCopyWithImpl<$Res>
+    extends _$UserModelCopyWithImpl<$Res, _$UserModelLoadingInitial>
+    implements _$$UserModelLoadingInitialCopyWith<$Res> {
+  __$$UserModelLoadingInitialCopyWithImpl(_$UserModelLoadingInitial _value,
+      $Res Function(_$UserModelLoadingInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -246,7 +219,8 @@ class _$UserModelLoadingInitial extends UserModelLoadingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UserModelLoadingInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$UserModelLoadingInitial);
   }
 
   @override
@@ -266,9 +240,9 @@ class _$UserModelLoadingInitial extends UserModelLoadingInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(UserInitialized user, bool refreshing)? initialized,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(UserInitialized user, bool refreshing)? initialized,
   }) {
     return loadingInitial?.call();
   }
@@ -300,9 +274,9 @@ class _$UserModelLoadingInitial extends UserModelLoadingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserModelInitial value)? initial,
-    TResult Function(UserModelLoadingInitial value)? loadingInitial,
-    TResult Function(UserModelInitialized value)? initialized,
+    TResult? Function(UserModelInitial value)? initial,
+    TResult? Function(UserModelLoadingInitial value)? loadingInitial,
+    TResult? Function(UserModelInitialized value)? initialized,
   }) {
     return loadingInitial?.call(this);
   }
@@ -328,35 +302,34 @@ abstract class UserModelLoadingInitial extends UserModel {
 }
 
 /// @nodoc
-abstract class $UserModelInitializedCopyWith<$Res> {
-  factory $UserModelInitializedCopyWith(UserModelInitialized value,
-          $Res Function(UserModelInitialized) then) =
-      _$UserModelInitializedCopyWithImpl<$Res>;
+abstract class _$$UserModelInitializedCopyWith<$Res> {
+  factory _$$UserModelInitializedCopyWith(_$UserModelInitialized value,
+          $Res Function(_$UserModelInitialized) then) =
+      __$$UserModelInitializedCopyWithImpl<$Res>;
+  @useResult
   $Res call({UserInitialized user, bool refreshing});
 }
 
 /// @nodoc
-class _$UserModelInitializedCopyWithImpl<$Res>
-    extends _$UserModelCopyWithImpl<$Res>
-    implements $UserModelInitializedCopyWith<$Res> {
-  _$UserModelInitializedCopyWithImpl(
-      UserModelInitialized _value, $Res Function(UserModelInitialized) _then)
-      : super(_value, (v) => _then(v as UserModelInitialized));
+class __$$UserModelInitializedCopyWithImpl<$Res>
+    extends _$UserModelCopyWithImpl<$Res, _$UserModelInitialized>
+    implements _$$UserModelInitializedCopyWith<$Res> {
+  __$$UserModelInitializedCopyWithImpl(_$UserModelInitialized _value,
+      $Res Function(_$UserModelInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  UserModelInitialized get _value => super._value as UserModelInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? user = freezed,
-    Object? refreshing = freezed,
+    Object? refreshing = null,
   }) {
-    return _then(UserModelInitialized(
-      user == freezed
+    return _then(_$UserModelInitialized(
+      freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserInitialized,
-      refreshing == freezed
+      null == refreshing
           ? _value.refreshing
           : refreshing // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -371,8 +344,8 @@ class _$UserModelInitialized extends UserModelInitialized {
 
   @override
   final UserInitialized user;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool refreshing;
 
   @override
@@ -384,22 +357,21 @@ class _$UserModelInitialized extends UserModelInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserModelInitialized &&
+            other is _$UserModelInitialized &&
             const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality()
-                .equals(other.refreshing, refreshing));
+            (identical(other.refreshing, refreshing) ||
+                other.refreshing == refreshing));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(refreshing));
+      runtimeType, const DeepCollectionEquality().hash(user), refreshing);
 
   @JsonKey(ignore: true)
   @override
-  $UserModelInitializedCopyWith<UserModelInitialized> get copyWith =>
-      _$UserModelInitializedCopyWithImpl<UserModelInitialized>(
+  @pragma('vm:prefer-inline')
+  _$$UserModelInitializedCopyWith<_$UserModelInitialized> get copyWith =>
+      __$$UserModelInitializedCopyWithImpl<_$UserModelInitialized>(
           this, _$identity);
 
   @override
@@ -416,9 +388,9 @@ class _$UserModelInitialized extends UserModelInitialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(UserInitialized user, bool refreshing)? initialized,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(UserInitialized user, bool refreshing)? initialized,
   }) {
     return initialized?.call(user, refreshing);
   }
@@ -450,9 +422,9 @@ class _$UserModelInitialized extends UserModelInitialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UserModelInitial value)? initial,
-    TResult Function(UserModelLoadingInitial value)? loadingInitial,
-    TResult Function(UserModelInitialized value)? initialized,
+    TResult? Function(UserModelInitial value)? initial,
+    TResult? Function(UserModelLoadingInitial value)? loadingInitial,
+    TResult? Function(UserModelInitialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -473,13 +445,13 @@ class _$UserModelInitialized extends UserModelInitialized {
 }
 
 abstract class UserModelInitialized extends UserModel {
-  factory UserModelInitialized(UserInitialized user, [bool refreshing]) =
-      _$UserModelInitialized;
+  factory UserModelInitialized(final UserInitialized user,
+      [final bool refreshing]) = _$UserModelInitialized;
   UserModelInitialized._() : super._();
 
   UserInitialized get user;
   bool get refreshing;
   @JsonKey(ignore: true)
-  $UserModelInitializedCopyWith<UserModelInitialized> get copyWith =>
+  _$$UserModelInitializedCopyWith<_$UserModelInitialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_onboarding.dart';
 
@@ -12,29 +12,11 @@ part of 'user_onboarding.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserOnboarding _$UserOnboardingFromJson(Map<String, dynamic> json) {
   return UserOnboardingInitialized.fromJson(json);
 }
-
-/// @nodoc
-class _$UserOnboardingTearOff {
-  const _$UserOnboardingTearOff();
-
-  UserOnboardingInitialized call(bool onboardingHidden) {
-    return UserOnboardingInitialized(
-      onboardingHidden,
-    );
-  }
-
-  UserOnboarding fromJson(Map<String, Object?> json) {
-    return UserOnboarding.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $UserOnboarding = _$UserOnboardingTearOff();
 
 /// @nodoc
 mixin _$UserOnboarding {
@@ -50,60 +32,62 @@ mixin _$UserOnboarding {
 abstract class $UserOnboardingCopyWith<$Res> {
   factory $UserOnboardingCopyWith(
           UserOnboarding value, $Res Function(UserOnboarding) then) =
-      _$UserOnboardingCopyWithImpl<$Res>;
+      _$UserOnboardingCopyWithImpl<$Res, UserOnboarding>;
+  @useResult
   $Res call({bool onboardingHidden});
 }
 
 /// @nodoc
-class _$UserOnboardingCopyWithImpl<$Res>
+class _$UserOnboardingCopyWithImpl<$Res, $Val extends UserOnboarding>
     implements $UserOnboardingCopyWith<$Res> {
   _$UserOnboardingCopyWithImpl(this._value, this._then);
 
-  final UserOnboarding _value;
   // ignore: unused_field
-  final $Res Function(UserOnboarding) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onboardingHidden = freezed,
+    Object? onboardingHidden = null,
   }) {
     return _then(_value.copyWith(
-      onboardingHidden: onboardingHidden == freezed
+      onboardingHidden: null == onboardingHidden
           ? _value.onboardingHidden
           : onboardingHidden // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $UserOnboardingInitializedCopyWith<$Res>
+abstract class _$$UserOnboardingInitializedCopyWith<$Res>
     implements $UserOnboardingCopyWith<$Res> {
-  factory $UserOnboardingInitializedCopyWith(UserOnboardingInitialized value,
-          $Res Function(UserOnboardingInitialized) then) =
-      _$UserOnboardingInitializedCopyWithImpl<$Res>;
+  factory _$$UserOnboardingInitializedCopyWith(
+          _$UserOnboardingInitialized value,
+          $Res Function(_$UserOnboardingInitialized) then) =
+      __$$UserOnboardingInitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({bool onboardingHidden});
 }
 
 /// @nodoc
-class _$UserOnboardingInitializedCopyWithImpl<$Res>
-    extends _$UserOnboardingCopyWithImpl<$Res>
-    implements $UserOnboardingInitializedCopyWith<$Res> {
-  _$UserOnboardingInitializedCopyWithImpl(UserOnboardingInitialized _value,
-      $Res Function(UserOnboardingInitialized) _then)
-      : super(_value, (v) => _then(v as UserOnboardingInitialized));
+class __$$UserOnboardingInitializedCopyWithImpl<$Res>
+    extends _$UserOnboardingCopyWithImpl<$Res, _$UserOnboardingInitialized>
+    implements _$$UserOnboardingInitializedCopyWith<$Res> {
+  __$$UserOnboardingInitializedCopyWithImpl(_$UserOnboardingInitialized _value,
+      $Res Function(_$UserOnboardingInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  UserOnboardingInitialized get _value =>
-      super._value as UserOnboardingInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onboardingHidden = freezed,
+    Object? onboardingHidden = null,
   }) {
-    return _then(UserOnboardingInitialized(
-      onboardingHidden == freezed
+    return _then(_$UserOnboardingInitialized(
+      null == onboardingHidden
           ? _value.onboardingHidden
           : onboardingHidden // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -131,29 +115,32 @@ class _$UserOnboardingInitialized implements UserOnboardingInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserOnboardingInitialized &&
-            const DeepCollectionEquality()
-                .equals(other.onboardingHidden, onboardingHidden));
+            other is _$UserOnboardingInitialized &&
+            (identical(other.onboardingHidden, onboardingHidden) ||
+                other.onboardingHidden == onboardingHidden));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(onboardingHidden));
 
   @JsonKey(ignore: true)
   @override
-  $UserOnboardingInitializedCopyWith<UserOnboardingInitialized> get copyWith =>
-      _$UserOnboardingInitializedCopyWithImpl<UserOnboardingInitialized>(
-          this, _$identity);
+  int get hashCode => Object.hash(runtimeType, onboardingHidden);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserOnboardingInitializedCopyWith<_$UserOnboardingInitialized>
+      get copyWith => __$$UserOnboardingInitializedCopyWithImpl<
+          _$UserOnboardingInitialized>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserOnboardingInitializedToJson(this);
+    return _$$UserOnboardingInitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class UserOnboardingInitialized implements UserOnboarding {
-  factory UserOnboardingInitialized(bool onboardingHidden) =
+  factory UserOnboardingInitialized(final bool onboardingHidden) =
       _$UserOnboardingInitialized;
 
   factory UserOnboardingInitialized.fromJson(Map<String, dynamic> json) =
@@ -163,6 +150,6 @@ abstract class UserOnboardingInitialized implements UserOnboarding {
   bool get onboardingHidden;
   @override
   @JsonKey(ignore: true)
-  $UserOnboardingInitializedCopyWith<UserOnboardingInitialized> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UserOnboardingInitializedCopyWith<_$UserOnboardingInitialized>
+      get copyWith => throw _privateConstructorUsedError;
 }

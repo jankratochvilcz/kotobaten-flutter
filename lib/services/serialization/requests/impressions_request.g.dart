@@ -16,7 +16,7 @@ _$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
     <String, dynamic>{
-      'impressionType': _$ImpressionTypeEnumMap[instance.impressionType],
+      'impressionType': _$ImpressionTypeEnumMap[instance.impressionType]!,
       'stackCardId': instance.stackCardId,
       'success': instance.success,
       'timestamp': instance.timestamp.toIso8601String(),

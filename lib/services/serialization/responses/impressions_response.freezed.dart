@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'impressions_response.dart';
 
@@ -12,34 +12,15 @@ part of 'impressions_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ImpressionsResponse _$ImpressionsResponseFromJson(Map<String, dynamic> json) {
   return Initialized.fromJson(json);
 }
 
 /// @nodoc
-class _$ImpressionsResponseTearOff {
-  const _$ImpressionsResponseTearOff();
-
-  Initialized initialized(UserStatistics userStats) {
-    return Initialized(
-      userStats,
-    );
-  }
-
-  ImpressionsResponse fromJson(Map<String, Object?> json) {
-    return ImpressionsResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $ImpressionsResponse = _$ImpressionsResponseTearOff();
-
-/// @nodoc
 mixin _$ImpressionsResponse {
   UserStatistics get userStats => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(UserStatistics userStats) initialized,
@@ -47,7 +28,7 @@ mixin _$ImpressionsResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserStatistics userStats)? initialized,
+    TResult? Function(UserStatistics userStats)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,7 +44,7 @@ mixin _$ImpressionsResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,48 +63,53 @@ mixin _$ImpressionsResponse {
 abstract class $ImpressionsResponseCopyWith<$Res> {
   factory $ImpressionsResponseCopyWith(
           ImpressionsResponse value, $Res Function(ImpressionsResponse) then) =
-      _$ImpressionsResponseCopyWithImpl<$Res>;
+      _$ImpressionsResponseCopyWithImpl<$Res, ImpressionsResponse>;
+  @useResult
   $Res call({UserStatistics userStats});
 
   $UserStatisticsCopyWith<$Res> get userStats;
 }
 
 /// @nodoc
-class _$ImpressionsResponseCopyWithImpl<$Res>
+class _$ImpressionsResponseCopyWithImpl<$Res, $Val extends ImpressionsResponse>
     implements $ImpressionsResponseCopyWith<$Res> {
   _$ImpressionsResponseCopyWithImpl(this._value, this._then);
 
-  final ImpressionsResponse _value;
   // ignore: unused_field
-  final $Res Function(ImpressionsResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userStats = freezed,
+    Object? userStats = null,
   }) {
     return _then(_value.copyWith(
-      userStats: userStats == freezed
+      userStats: null == userStats
           ? _value.userStats
           : userStats // ignore: cast_nullable_to_non_nullable
               as UserStatistics,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserStatisticsCopyWith<$Res> get userStats {
     return $UserStatisticsCopyWith<$Res>(_value.userStats, (value) {
-      return _then(_value.copyWith(userStats: value));
+      return _then(_value.copyWith(userStats: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class $InitializedCopyWith<$Res>
+abstract class _$$InitializedCopyWith<$Res>
     implements $ImpressionsResponseCopyWith<$Res> {
-  factory $InitializedCopyWith(
-          Initialized value, $Res Function(Initialized) then) =
-      _$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedCopyWith(
+          _$Initialized value, $Res Function(_$Initialized) then) =
+      __$$InitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({UserStatistics userStats});
 
   @override
@@ -131,22 +117,20 @@ abstract class $InitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionsResponseCopyWithImpl<$Res>
-    implements $InitializedCopyWith<$Res> {
-  _$InitializedCopyWithImpl(
-      Initialized _value, $Res Function(Initialized) _then)
-      : super(_value, (v) => _then(v as Initialized));
+class __$$InitializedCopyWithImpl<$Res>
+    extends _$ImpressionsResponseCopyWithImpl<$Res, _$Initialized>
+    implements _$$InitializedCopyWith<$Res> {
+  __$$InitializedCopyWithImpl(
+      _$Initialized _value, $Res Function(_$Initialized) _then)
+      : super(_value, _then);
 
-  @override
-  Initialized get _value => super._value as Initialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userStats = freezed,
+    Object? userStats = null,
   }) {
-    return _then(Initialized(
-      userStats == freezed
+    return _then(_$Initialized(
+      null == userStats
           ? _value.userStats
           : userStats // ignore: cast_nullable_to_non_nullable
               as UserStatistics,
@@ -174,18 +158,20 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Initialized &&
-            const DeepCollectionEquality().equals(other.userStats, userStats));
+            other is _$Initialized &&
+            (identical(other.userStats, userStats) ||
+                other.userStats == userStats));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userStats));
 
   @JsonKey(ignore: true)
   @override
-  $InitializedCopyWith<Initialized> get copyWith =>
-      _$InitializedCopyWithImpl<Initialized>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, userStats);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -198,7 +184,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(UserStatistics userStats)? initialized,
+    TResult? Function(UserStatistics userStats)? initialized,
   }) {
     return initialized?.call(userStats);
   }
@@ -226,7 +212,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -245,12 +231,14 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(this);
+    return _$$InitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class Initialized implements ImpressionsResponse {
-  factory Initialized(UserStatistics userStats) = _$Initialized;
+  factory Initialized(final UserStatistics userStats) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
@@ -259,6 +247,6 @@ abstract class Initialized implements ImpressionsResponse {
   UserStatistics get userStats;
   @override
   @JsonKey(ignore: true)
-  $InitializedCopyWith<Initialized> get copyWith =>
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

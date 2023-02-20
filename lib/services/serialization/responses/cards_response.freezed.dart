@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'cards_response.dart';
 
@@ -12,36 +12,16 @@ part of 'cards_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 CardsResponse _$CardsResponseFromJson(Map<String, dynamic> json) {
   return Initialized.fromJson(json);
 }
 
 /// @nodoc
-class _$CardsResponseTearOff {
-  const _$CardsResponseTearOff();
-
-  Initialized initialized(List<CardInitialized> cards, bool hasMoreCards) {
-    return Initialized(
-      cards,
-      hasMoreCards,
-    );
-  }
-
-  CardsResponse fromJson(Map<String, Object?> json) {
-    return CardsResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $CardsResponse = _$CardsResponseTearOff();
-
-/// @nodoc
 mixin _$CardsResponse {
   List<CardInitialized> get cards => throw _privateConstructorUsedError;
   bool get hasMoreCards => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<CardInitialized> cards, bool hasMoreCards)
@@ -50,7 +30,7 @@ mixin _$CardsResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<CardInitialized> cards, bool hasMoreCards)?
+    TResult? Function(List<CardInitialized> cards, bool hasMoreCards)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +48,7 @@ mixin _$CardsResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,68 +67,71 @@ mixin _$CardsResponse {
 abstract class $CardsResponseCopyWith<$Res> {
   factory $CardsResponseCopyWith(
           CardsResponse value, $Res Function(CardsResponse) then) =
-      _$CardsResponseCopyWithImpl<$Res>;
+      _$CardsResponseCopyWithImpl<$Res, CardsResponse>;
+  @useResult
   $Res call({List<CardInitialized> cards, bool hasMoreCards});
 }
 
 /// @nodoc
-class _$CardsResponseCopyWithImpl<$Res>
+class _$CardsResponseCopyWithImpl<$Res, $Val extends CardsResponse>
     implements $CardsResponseCopyWith<$Res> {
   _$CardsResponseCopyWithImpl(this._value, this._then);
 
-  final CardsResponse _value;
   // ignore: unused_field
-  final $Res Function(CardsResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cards = freezed,
-    Object? hasMoreCards = freezed,
+    Object? cards = null,
+    Object? hasMoreCards = null,
   }) {
     return _then(_value.copyWith(
-      cards: cards == freezed
+      cards: null == cards
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
-      hasMoreCards: hasMoreCards == freezed
+      hasMoreCards: null == hasMoreCards
           ? _value.hasMoreCards
           : hasMoreCards // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $InitializedCopyWith<$Res>
+abstract class _$$InitializedCopyWith<$Res>
     implements $CardsResponseCopyWith<$Res> {
-  factory $InitializedCopyWith(
-          Initialized value, $Res Function(Initialized) then) =
-      _$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedCopyWith(
+          _$Initialized value, $Res Function(_$Initialized) then) =
+      __$$InitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<CardInitialized> cards, bool hasMoreCards});
 }
 
 /// @nodoc
-class _$InitializedCopyWithImpl<$Res> extends _$CardsResponseCopyWithImpl<$Res>
-    implements $InitializedCopyWith<$Res> {
-  _$InitializedCopyWithImpl(
-      Initialized _value, $Res Function(Initialized) _then)
-      : super(_value, (v) => _then(v as Initialized));
+class __$$InitializedCopyWithImpl<$Res>
+    extends _$CardsResponseCopyWithImpl<$Res, _$Initialized>
+    implements _$$InitializedCopyWith<$Res> {
+  __$$InitializedCopyWithImpl(
+      _$Initialized _value, $Res Function(_$Initialized) _then)
+      : super(_value, _then);
 
-  @override
-  Initialized get _value => super._value as Initialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cards = freezed,
-    Object? hasMoreCards = freezed,
+    Object? cards = null,
+    Object? hasMoreCards = null,
   }) {
-    return _then(Initialized(
-      cards == freezed
-          ? _value.cards
+    return _then(_$Initialized(
+      null == cards
+          ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
-      hasMoreCards == freezed
+      null == hasMoreCards
           ? _value.hasMoreCards
           : hasMoreCards // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -159,13 +142,20 @@ class _$InitializedCopyWithImpl<$Res> extends _$CardsResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$Initialized implements Initialized {
-  _$Initialized(this.cards, this.hasMoreCards);
+  _$Initialized(final List<CardInitialized> cards, this.hasMoreCards)
+      : _cards = cards;
 
   factory _$Initialized.fromJson(Map<String, dynamic> json) =>
       _$$InitializedFromJson(json);
 
+  final List<CardInitialized> _cards;
   @override
-  final List<CardInitialized> cards;
+  List<CardInitialized> get cards {
+    if (_cards is EqualUnmodifiableListView) return _cards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cards);
+  }
+
   @override
   final bool hasMoreCards;
 
@@ -178,22 +168,22 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Initialized &&
-            const DeepCollectionEquality().equals(other.cards, cards) &&
-            const DeepCollectionEquality()
-                .equals(other.hasMoreCards, hasMoreCards));
+            other is _$Initialized &&
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            (identical(other.hasMoreCards, hasMoreCards) ||
+                other.hasMoreCards == hasMoreCards));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(cards),
-      const DeepCollectionEquality().hash(hasMoreCards));
 
   @JsonKey(ignore: true)
   @override
-  $InitializedCopyWith<Initialized> get copyWith =>
-      _$InitializedCopyWithImpl<Initialized>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_cards), hasMoreCards);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -207,7 +197,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<CardInitialized> cards, bool hasMoreCards)?
+    TResult? Function(List<CardInitialized> cards, bool hasMoreCards)?
         initialized,
   }) {
     return initialized?.call(cards, hasMoreCards);
@@ -237,7 +227,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -256,12 +246,15 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(this);
+    return _$$InitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class Initialized implements CardsResponse {
-  factory Initialized(List<CardInitialized> cards, bool hasMoreCards) =
+  factory Initialized(
+          final List<CardInitialized> cards, final bool hasMoreCards) =
       _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
@@ -273,6 +266,6 @@ abstract class Initialized implements CardsResponse {
   bool get hasMoreCards;
   @override
   @JsonKey(ignore: true)
-  $InitializedCopyWith<Initialized> get copyWith =>
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

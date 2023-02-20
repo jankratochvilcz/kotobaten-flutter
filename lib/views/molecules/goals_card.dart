@@ -144,7 +144,7 @@ class GoalsCard extends HookConsumerWidget {
                     dropdownColor: Theme.of(context).colorScheme.background,
                     underline: const Empty(),
                     icon: const Icon(Icons.more_horiz_outlined,
-                        color: Colors.black38),
+                        size: 0, color: Colors.black38),
                     value: dropdownMode.value,
                     items: dropdownOptions
                         .map((dropdownOption) => DropdownMenuItem(
@@ -159,7 +159,8 @@ class GoalsCard extends HookConsumerWidget {
                                         color: Colors.black38,
                                       )),
                                   Text(dropdownOption.description,
-                                      style: TextStyle(color: Colors.black38))
+                                      style: const TextStyle(
+                                          color: Colors.black38))
                                 ]))))
                         .toList(),
                     onChanged: (selectedOption) {

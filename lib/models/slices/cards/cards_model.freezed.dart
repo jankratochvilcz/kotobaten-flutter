@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'cards_model.dart';
 
@@ -12,33 +12,7 @@ part of 'cards_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CardsModelTearOff {
-  const _$CardsModelTearOff();
-
-  CardsModelInitial initial() {
-    return CardsModelInitial();
-  }
-
-  CardsModelLoadingInitial loadingInitial() {
-    return CardsModelLoadingInitial();
-  }
-
-  CardsModelInitialized initialized(List<CardInitialized> cards,
-      int pagesLoaded, bool loadingNextPage, bool hasMoreCards) {
-    return CardsModelInitialized(
-      cards,
-      pagesLoaded,
-      loadingNextPage,
-      hasMoreCards,
-    );
-  }
-}
-
-/// @nodoc
-const $CardsModel = _$CardsModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CardsModel {
@@ -53,9 +27,9 @@ mixin _$CardsModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(List<CardInitialized> cards, int pagesLoaded,
             bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) =>
@@ -79,9 +53,9 @@ mixin _$CardsModel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CardsModelInitial value)? initial,
-    TResult Function(CardsModelLoadingInitial value)? loadingInitial,
-    TResult Function(CardsModelInitialized value)? initialized,
+    TResult? Function(CardsModelInitial value)? initial,
+    TResult? Function(CardsModelLoadingInitial value)? loadingInitial,
+    TResult? Function(CardsModelInitialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,35 +72,34 @@ mixin _$CardsModel {
 abstract class $CardsModelCopyWith<$Res> {
   factory $CardsModelCopyWith(
           CardsModel value, $Res Function(CardsModel) then) =
-      _$CardsModelCopyWithImpl<$Res>;
+      _$CardsModelCopyWithImpl<$Res, CardsModel>;
 }
 
 /// @nodoc
-class _$CardsModelCopyWithImpl<$Res> implements $CardsModelCopyWith<$Res> {
+class _$CardsModelCopyWithImpl<$Res, $Val extends CardsModel>
+    implements $CardsModelCopyWith<$Res> {
   _$CardsModelCopyWithImpl(this._value, this._then);
 
-  final CardsModel _value;
   // ignore: unused_field
-  final $Res Function(CardsModel) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $CardsModelInitialCopyWith<$Res> {
-  factory $CardsModelInitialCopyWith(
-          CardsModelInitial value, $Res Function(CardsModelInitial) then) =
-      _$CardsModelInitialCopyWithImpl<$Res>;
+abstract class _$$CardsModelInitialCopyWith<$Res> {
+  factory _$$CardsModelInitialCopyWith(
+          _$CardsModelInitial value, $Res Function(_$CardsModelInitial) then) =
+      __$$CardsModelInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CardsModelInitialCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res>
-    implements $CardsModelInitialCopyWith<$Res> {
-  _$CardsModelInitialCopyWithImpl(
-      CardsModelInitial _value, $Res Function(CardsModelInitial) _then)
-      : super(_value, (v) => _then(v as CardsModelInitial));
-
-  @override
-  CardsModelInitial get _value => super._value as CardsModelInitial;
+class __$$CardsModelInitialCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitial>
+    implements _$$CardsModelInitialCopyWith<$Res> {
+  __$$CardsModelInitialCopyWithImpl(
+      _$CardsModelInitial _value, $Res Function(_$CardsModelInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -142,7 +115,7 @@ class _$CardsModelInitial extends CardsModelInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CardsModelInitial);
+        (other.runtimeType == runtimeType && other is _$CardsModelInitial);
   }
 
   @override
@@ -163,9 +136,9 @@ class _$CardsModelInitial extends CardsModelInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(List<CardInitialized> cards, int pagesLoaded,
             bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
@@ -201,9 +174,9 @@ class _$CardsModelInitial extends CardsModelInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CardsModelInitial value)? initial,
-    TResult Function(CardsModelLoadingInitial value)? loadingInitial,
-    TResult Function(CardsModelInitialized value)? initialized,
+    TResult? Function(CardsModelInitial value)? initial,
+    TResult? Function(CardsModelLoadingInitial value)? loadingInitial,
+    TResult? Function(CardsModelInitialized value)? initialized,
   }) {
     return initial?.call(this);
   }
@@ -229,23 +202,19 @@ abstract class CardsModelInitial extends CardsModel {
 }
 
 /// @nodoc
-abstract class $CardsModelLoadingInitialCopyWith<$Res> {
-  factory $CardsModelLoadingInitialCopyWith(CardsModelLoadingInitial value,
-          $Res Function(CardsModelLoadingInitial) then) =
-      _$CardsModelLoadingInitialCopyWithImpl<$Res>;
+abstract class _$$CardsModelLoadingInitialCopyWith<$Res> {
+  factory _$$CardsModelLoadingInitialCopyWith(_$CardsModelLoadingInitial value,
+          $Res Function(_$CardsModelLoadingInitial) then) =
+      __$$CardsModelLoadingInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$CardsModelLoadingInitialCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res>
-    implements $CardsModelLoadingInitialCopyWith<$Res> {
-  _$CardsModelLoadingInitialCopyWithImpl(CardsModelLoadingInitial _value,
-      $Res Function(CardsModelLoadingInitial) _then)
-      : super(_value, (v) => _then(v as CardsModelLoadingInitial));
-
-  @override
-  CardsModelLoadingInitial get _value =>
-      super._value as CardsModelLoadingInitial;
+class __$$CardsModelLoadingInitialCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelLoadingInitial>
+    implements _$$CardsModelLoadingInitialCopyWith<$Res> {
+  __$$CardsModelLoadingInitialCopyWithImpl(_$CardsModelLoadingInitial _value,
+      $Res Function(_$CardsModelLoadingInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -261,7 +230,8 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CardsModelLoadingInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$CardsModelLoadingInitial);
   }
 
   @override
@@ -282,9 +252,9 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(List<CardInitialized> cards, int pagesLoaded,
             bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
@@ -320,9 +290,9 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CardsModelInitial value)? initial,
-    TResult Function(CardsModelLoadingInitial value)? loadingInitial,
-    TResult Function(CardsModelInitialized value)? initialized,
+    TResult? Function(CardsModelInitial value)? initial,
+    TResult? Function(CardsModelLoadingInitial value)? loadingInitial,
+    TResult? Function(CardsModelInitialized value)? initialized,
   }) {
     return loadingInitial?.call(this);
   }
@@ -348,10 +318,11 @@ abstract class CardsModelLoadingInitial extends CardsModel {
 }
 
 /// @nodoc
-abstract class $CardsModelInitializedCopyWith<$Res> {
-  factory $CardsModelInitializedCopyWith(CardsModelInitialized value,
-          $Res Function(CardsModelInitialized) then) =
-      _$CardsModelInitializedCopyWithImpl<$Res>;
+abstract class _$$CardsModelInitializedCopyWith<$Res> {
+  factory _$$CardsModelInitializedCopyWith(_$CardsModelInitialized value,
+          $Res Function(_$CardsModelInitialized) then) =
+      __$$CardsModelInitializedCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {List<CardInitialized> cards,
       int pagesLoaded,
@@ -360,37 +331,35 @@ abstract class $CardsModelInitializedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CardsModelInitializedCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res>
-    implements $CardsModelInitializedCopyWith<$Res> {
-  _$CardsModelInitializedCopyWithImpl(
-      CardsModelInitialized _value, $Res Function(CardsModelInitialized) _then)
-      : super(_value, (v) => _then(v as CardsModelInitialized));
+class __$$CardsModelInitializedCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitialized>
+    implements _$$CardsModelInitializedCopyWith<$Res> {
+  __$$CardsModelInitializedCopyWithImpl(_$CardsModelInitialized _value,
+      $Res Function(_$CardsModelInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  CardsModelInitialized get _value => super._value as CardsModelInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cards = freezed,
-    Object? pagesLoaded = freezed,
-    Object? loadingNextPage = freezed,
-    Object? hasMoreCards = freezed,
+    Object? cards = null,
+    Object? pagesLoaded = null,
+    Object? loadingNextPage = null,
+    Object? hasMoreCards = null,
   }) {
-    return _then(CardsModelInitialized(
-      cards == freezed
-          ? _value.cards
+    return _then(_$CardsModelInitialized(
+      null == cards
+          ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
-      pagesLoaded == freezed
+      null == pagesLoaded
           ? _value.pagesLoaded
           : pagesLoaded // ignore: cast_nullable_to_non_nullable
               as int,
-      loadingNextPage == freezed
+      null == loadingNextPage
           ? _value.loadingNextPage
           : loadingNextPage // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasMoreCards == freezed
+      null == hasMoreCards
           ? _value.hasMoreCards
           : hasMoreCards // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -401,12 +370,19 @@ class _$CardsModelInitializedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CardsModelInitialized extends CardsModelInitialized {
-  _$CardsModelInitialized(
-      this.cards, this.pagesLoaded, this.loadingNextPage, this.hasMoreCards)
-      : super._();
+  _$CardsModelInitialized(final List<CardInitialized> cards, this.pagesLoaded,
+      this.loadingNextPage, this.hasMoreCards)
+      : _cards = cards,
+        super._();
 
+  final List<CardInitialized> _cards;
   @override
-  final List<CardInitialized> cards;
+  List<CardInitialized> get cards {
+    if (_cards is EqualUnmodifiableListView) return _cards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cards);
+  }
+
   @override
   final int pagesLoaded;
   @override
@@ -423,28 +399,29 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CardsModelInitialized &&
-            const DeepCollectionEquality().equals(other.cards, cards) &&
-            const DeepCollectionEquality()
-                .equals(other.pagesLoaded, pagesLoaded) &&
-            const DeepCollectionEquality()
-                .equals(other.loadingNextPage, loadingNextPage) &&
-            const DeepCollectionEquality()
-                .equals(other.hasMoreCards, hasMoreCards));
+            other is _$CardsModelInitialized &&
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            (identical(other.pagesLoaded, pagesLoaded) ||
+                other.pagesLoaded == pagesLoaded) &&
+            (identical(other.loadingNextPage, loadingNextPage) ||
+                other.loadingNextPage == loadingNextPage) &&
+            (identical(other.hasMoreCards, hasMoreCards) ||
+                other.hasMoreCards == hasMoreCards));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(cards),
-      const DeepCollectionEquality().hash(pagesLoaded),
-      const DeepCollectionEquality().hash(loadingNextPage),
-      const DeepCollectionEquality().hash(hasMoreCards));
+      const DeepCollectionEquality().hash(_cards),
+      pagesLoaded,
+      loadingNextPage,
+      hasMoreCards);
 
   @JsonKey(ignore: true)
   @override
-  $CardsModelInitializedCopyWith<CardsModelInitialized> get copyWith =>
-      _$CardsModelInitializedCopyWithImpl<CardsModelInitialized>(
+  @pragma('vm:prefer-inline')
+  _$$CardsModelInitializedCopyWith<_$CardsModelInitialized> get copyWith =>
+      __$$CardsModelInitializedCopyWithImpl<_$CardsModelInitialized>(
           this, _$identity);
 
   @override
@@ -462,9 +439,9 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadingInitial,
-    TResult Function(List<CardInitialized> cards, int pagesLoaded,
+    TResult? Function()? initial,
+    TResult? Function()? loadingInitial,
+    TResult? Function(List<CardInitialized> cards, int pagesLoaded,
             bool loadingNextPage, bool hasMoreCards)?
         initialized,
   }) {
@@ -500,9 +477,9 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(CardsModelInitial value)? initial,
-    TResult Function(CardsModelLoadingInitial value)? loadingInitial,
-    TResult Function(CardsModelInitialized value)? initialized,
+    TResult? Function(CardsModelInitial value)? initial,
+    TResult? Function(CardsModelLoadingInitial value)? loadingInitial,
+    TResult? Function(CardsModelInitialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -523,8 +500,11 @@ class _$CardsModelInitialized extends CardsModelInitialized {
 }
 
 abstract class CardsModelInitialized extends CardsModel {
-  factory CardsModelInitialized(List<CardInitialized> cards, int pagesLoaded,
-      bool loadingNextPage, bool hasMoreCards) = _$CardsModelInitialized;
+  factory CardsModelInitialized(
+      final List<CardInitialized> cards,
+      final int pagesLoaded,
+      final bool loadingNextPage,
+      final bool hasMoreCards) = _$CardsModelInitialized;
   CardsModelInitialized._() : super._();
 
   List<CardInitialized> get cards;
@@ -532,6 +512,6 @@ abstract class CardsModelInitialized extends CardsModel {
   bool get loadingNextPage;
   bool get hasMoreCards;
   @JsonKey(ignore: true)
-  $CardsModelInitializedCopyWith<CardsModelInitialized> get copyWith =>
+  _$$CardsModelInitializedCopyWith<_$CardsModelInitialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

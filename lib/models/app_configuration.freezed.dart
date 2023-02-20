@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_configuration.dart';
 
@@ -12,26 +12,7 @@ part of 'app_configuration.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AppConfigurationTearOff {
-  const _$AppConfigurationTearOff();
-
-  AppConfigurationInitialized initialized(String apiRoot, bool isApiHttps,
-      Platform platform, String apiVersion, String cookieDomain) {
-    return AppConfigurationInitialized(
-      apiRoot,
-      isApiHttps,
-      platform,
-      apiVersion,
-      cookieDomain,
-    );
-  }
-}
-
-/// @nodoc
-const $AppConfiguration = _$AppConfigurationTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AppConfiguration {
@@ -40,7 +21,6 @@ mixin _$AppConfiguration {
   Platform get platform => throw _privateConstructorUsedError;
   String get apiVersion => throw _privateConstructorUsedError;
   String get cookieDomain => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String apiRoot, bool isApiHttps,
@@ -50,7 +30,7 @@ mixin _$AppConfiguration {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps, Platform platform,
+    TResult? Function(String apiRoot, bool isApiHttps, Platform platform,
             String apiVersion, String cookieDomain)?
         initialized,
   }) =>
@@ -70,7 +50,7 @@ mixin _$AppConfiguration {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AppConfigurationInitialized value)? initialized,
+    TResult? Function(AppConfigurationInitialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,7 +69,8 @@ mixin _$AppConfiguration {
 abstract class $AppConfigurationCopyWith<$Res> {
   factory $AppConfigurationCopyWith(
           AppConfiguration value, $Res Function(AppConfiguration) then) =
-      _$AppConfigurationCopyWithImpl<$Res>;
+      _$AppConfigurationCopyWithImpl<$Res, AppConfiguration>;
+  @useResult
   $Res call(
       {String apiRoot,
       bool isApiHttps,
@@ -99,55 +80,58 @@ abstract class $AppConfigurationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppConfigurationCopyWithImpl<$Res>
+class _$AppConfigurationCopyWithImpl<$Res, $Val extends AppConfiguration>
     implements $AppConfigurationCopyWith<$Res> {
   _$AppConfigurationCopyWithImpl(this._value, this._then);
 
-  final AppConfiguration _value;
   // ignore: unused_field
-  final $Res Function(AppConfiguration) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiRoot = freezed,
-    Object? isApiHttps = freezed,
-    Object? platform = freezed,
-    Object? apiVersion = freezed,
-    Object? cookieDomain = freezed,
+    Object? apiRoot = null,
+    Object? isApiHttps = null,
+    Object? platform = null,
+    Object? apiVersion = null,
+    Object? cookieDomain = null,
   }) {
     return _then(_value.copyWith(
-      apiRoot: apiRoot == freezed
+      apiRoot: null == apiRoot
           ? _value.apiRoot
           : apiRoot // ignore: cast_nullable_to_non_nullable
               as String,
-      isApiHttps: isApiHttps == freezed
+      isApiHttps: null == isApiHttps
           ? _value.isApiHttps
           : isApiHttps // ignore: cast_nullable_to_non_nullable
               as bool,
-      platform: platform == freezed
+      platform: null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as Platform,
-      apiVersion: apiVersion == freezed
+      apiVersion: null == apiVersion
           ? _value.apiVersion
           : apiVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      cookieDomain: cookieDomain == freezed
+      cookieDomain: null == cookieDomain
           ? _value.cookieDomain
           : cookieDomain // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $AppConfigurationInitializedCopyWith<$Res>
+abstract class _$$AppConfigurationInitializedCopyWith<$Res>
     implements $AppConfigurationCopyWith<$Res> {
-  factory $AppConfigurationInitializedCopyWith(
-          AppConfigurationInitialized value,
-          $Res Function(AppConfigurationInitialized) then) =
-      _$AppConfigurationInitializedCopyWithImpl<$Res>;
+  factory _$$AppConfigurationInitializedCopyWith(
+          _$AppConfigurationInitialized value,
+          $Res Function(_$AppConfigurationInitialized) then) =
+      __$$AppConfigurationInitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String apiRoot,
       bool isApiHttps,
@@ -157,43 +141,41 @@ abstract class $AppConfigurationInitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$AppConfigurationInitializedCopyWithImpl<$Res>
-    extends _$AppConfigurationCopyWithImpl<$Res>
-    implements $AppConfigurationInitializedCopyWith<$Res> {
-  _$AppConfigurationInitializedCopyWithImpl(AppConfigurationInitialized _value,
-      $Res Function(AppConfigurationInitialized) _then)
-      : super(_value, (v) => _then(v as AppConfigurationInitialized));
+class __$$AppConfigurationInitializedCopyWithImpl<$Res>
+    extends _$AppConfigurationCopyWithImpl<$Res, _$AppConfigurationInitialized>
+    implements _$$AppConfigurationInitializedCopyWith<$Res> {
+  __$$AppConfigurationInitializedCopyWithImpl(
+      _$AppConfigurationInitialized _value,
+      $Res Function(_$AppConfigurationInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  AppConfigurationInitialized get _value =>
-      super._value as AppConfigurationInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiRoot = freezed,
-    Object? isApiHttps = freezed,
-    Object? platform = freezed,
-    Object? apiVersion = freezed,
-    Object? cookieDomain = freezed,
+    Object? apiRoot = null,
+    Object? isApiHttps = null,
+    Object? platform = null,
+    Object? apiVersion = null,
+    Object? cookieDomain = null,
   }) {
-    return _then(AppConfigurationInitialized(
-      apiRoot == freezed
+    return _then(_$AppConfigurationInitialized(
+      null == apiRoot
           ? _value.apiRoot
           : apiRoot // ignore: cast_nullable_to_non_nullable
               as String,
-      isApiHttps == freezed
+      null == isApiHttps
           ? _value.isApiHttps
           : isApiHttps // ignore: cast_nullable_to_non_nullable
               as bool,
-      platform == freezed
+      null == platform
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
               as Platform,
-      apiVersion == freezed
+      null == apiVersion
           ? _value.apiVersion
           : apiVersion // ignore: cast_nullable_to_non_nullable
               as String,
-      cookieDomain == freezed
+      null == cookieDomain
           ? _value.cookieDomain
           : cookieDomain // ignore: cast_nullable_to_non_nullable
               as String,
@@ -227,31 +209,28 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AppConfigurationInitialized &&
-            const DeepCollectionEquality().equals(other.apiRoot, apiRoot) &&
-            const DeepCollectionEquality()
-                .equals(other.isApiHttps, isApiHttps) &&
-            const DeepCollectionEquality().equals(other.platform, platform) &&
-            const DeepCollectionEquality()
-                .equals(other.apiVersion, apiVersion) &&
-            const DeepCollectionEquality()
-                .equals(other.cookieDomain, cookieDomain));
+            other is _$AppConfigurationInitialized &&
+            (identical(other.apiRoot, apiRoot) || other.apiRoot == apiRoot) &&
+            (identical(other.isApiHttps, isApiHttps) ||
+                other.isApiHttps == isApiHttps) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.apiVersion, apiVersion) ||
+                other.apiVersion == apiVersion) &&
+            (identical(other.cookieDomain, cookieDomain) ||
+                other.cookieDomain == cookieDomain));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(apiRoot),
-      const DeepCollectionEquality().hash(isApiHttps),
-      const DeepCollectionEquality().hash(platform),
-      const DeepCollectionEquality().hash(apiVersion),
-      const DeepCollectionEquality().hash(cookieDomain));
+      runtimeType, apiRoot, isApiHttps, platform, apiVersion, cookieDomain);
 
   @JsonKey(ignore: true)
   @override
-  $AppConfigurationInitializedCopyWith<AppConfigurationInitialized>
-      get copyWith => _$AppConfigurationInitializedCopyWithImpl<
-          AppConfigurationInitialized>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$AppConfigurationInitializedCopyWith<_$AppConfigurationInitialized>
+      get copyWith => __$$AppConfigurationInitializedCopyWithImpl<
+          _$AppConfigurationInitialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -266,7 +245,7 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String apiRoot, bool isApiHttps, Platform platform,
+    TResult? Function(String apiRoot, bool isApiHttps, Platform platform,
             String apiVersion, String cookieDomain)?
         initialized,
   }) {
@@ -300,7 +279,7 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AppConfigurationInitialized value)? initialized,
+    TResult? Function(AppConfigurationInitialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -320,11 +299,11 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
 
 abstract class AppConfigurationInitialized implements AppConfiguration {
   factory AppConfigurationInitialized(
-      String apiRoot,
-      bool isApiHttps,
-      Platform platform,
-      String apiVersion,
-      String cookieDomain) = _$AppConfigurationInitialized;
+      final String apiRoot,
+      final bool isApiHttps,
+      final Platform platform,
+      final String apiVersion,
+      final String cookieDomain) = _$AppConfigurationInitialized;
 
   @override
   String get apiRoot;
@@ -338,6 +317,6 @@ abstract class AppConfigurationInitialized implements AppConfiguration {
   String get cookieDomain;
   @override
   @JsonKey(ignore: true)
-  $AppConfigurationInitializedCopyWith<AppConfigurationInitialized>
+  _$$AppConfigurationInitializedCopyWith<_$AppConfigurationInitialized>
       get copyWith => throw _privateConstructorUsedError;
 }

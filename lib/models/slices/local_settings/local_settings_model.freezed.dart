@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'local_settings_model.dart';
 
@@ -12,26 +12,7 @@ part of 'local_settings_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LocalSettingsTearOff {
-  const _$LocalSettingsTearOff();
-
-  LocalSettingsModelInitial initial() {
-    return LocalSettingsModelInitial();
-  }
-
-  LocalSettingsModelInitialized initialized(
-      TimeOfDay? dailyNotificationTimeOfDay) {
-    return LocalSettingsModelInitialized(
-      dailyNotificationTimeOfDay,
-    );
-  }
-}
-
-/// @nodoc
-const $LocalSettings = _$LocalSettingsTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LocalSettings {
@@ -44,8 +25,8 @@ mixin _$LocalSettings {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
+    TResult? Function()? initial,
+    TResult? Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,8 +44,8 @@ mixin _$LocalSettings {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LocalSettingsModelInitial value)? initial,
-    TResult Function(LocalSettingsModelInitialized value)? initialized,
+    TResult? Function(LocalSettingsModelInitial value)? initial,
+    TResult? Function(LocalSettingsModelInitialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,37 +61,35 @@ mixin _$LocalSettings {
 abstract class $LocalSettingsCopyWith<$Res> {
   factory $LocalSettingsCopyWith(
           LocalSettings value, $Res Function(LocalSettings) then) =
-      _$LocalSettingsCopyWithImpl<$Res>;
+      _$LocalSettingsCopyWithImpl<$Res, LocalSettings>;
 }
 
 /// @nodoc
-class _$LocalSettingsCopyWithImpl<$Res>
+class _$LocalSettingsCopyWithImpl<$Res, $Val extends LocalSettings>
     implements $LocalSettingsCopyWith<$Res> {
   _$LocalSettingsCopyWithImpl(this._value, this._then);
 
-  final LocalSettings _value;
   // ignore: unused_field
-  final $Res Function(LocalSettings) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $LocalSettingsModelInitialCopyWith<$Res> {
-  factory $LocalSettingsModelInitialCopyWith(LocalSettingsModelInitial value,
-          $Res Function(LocalSettingsModelInitial) then) =
-      _$LocalSettingsModelInitialCopyWithImpl<$Res>;
+abstract class _$$LocalSettingsModelInitialCopyWith<$Res> {
+  factory _$$LocalSettingsModelInitialCopyWith(
+          _$LocalSettingsModelInitial value,
+          $Res Function(_$LocalSettingsModelInitial) then) =
+      __$$LocalSettingsModelInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LocalSettingsModelInitialCopyWithImpl<$Res>
-    extends _$LocalSettingsCopyWithImpl<$Res>
-    implements $LocalSettingsModelInitialCopyWith<$Res> {
-  _$LocalSettingsModelInitialCopyWithImpl(LocalSettingsModelInitial _value,
-      $Res Function(LocalSettingsModelInitial) _then)
-      : super(_value, (v) => _then(v as LocalSettingsModelInitial));
-
-  @override
-  LocalSettingsModelInitial get _value =>
-      super._value as LocalSettingsModelInitial;
+class __$$LocalSettingsModelInitialCopyWithImpl<$Res>
+    extends _$LocalSettingsCopyWithImpl<$Res, _$LocalSettingsModelInitial>
+    implements _$$LocalSettingsModelInitialCopyWith<$Res> {
+  __$$LocalSettingsModelInitialCopyWithImpl(_$LocalSettingsModelInitial _value,
+      $Res Function(_$LocalSettingsModelInitial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -127,7 +106,7 @@ class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LocalSettingsModelInitial);
+            other is _$LocalSettingsModelInitial);
   }
 
   @override
@@ -146,8 +125,8 @@ class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
+    TResult? Function()? initial,
+    TResult? Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
   }) {
     return initial?.call();
   }
@@ -177,8 +156,8 @@ class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LocalSettingsModelInitial value)? initial,
-    TResult Function(LocalSettingsModelInitialized value)? initialized,
+    TResult? Function(LocalSettingsModelInitial value)? initial,
+    TResult? Function(LocalSettingsModelInitialized value)? initialized,
   }) {
     return initial?.call(this);
   }
@@ -202,33 +181,31 @@ abstract class LocalSettingsModelInitial implements LocalSettings {
 }
 
 /// @nodoc
-abstract class $LocalSettingsModelInitializedCopyWith<$Res> {
-  factory $LocalSettingsModelInitializedCopyWith(
-          LocalSettingsModelInitialized value,
-          $Res Function(LocalSettingsModelInitialized) then) =
-      _$LocalSettingsModelInitializedCopyWithImpl<$Res>;
+abstract class _$$LocalSettingsModelInitializedCopyWith<$Res> {
+  factory _$$LocalSettingsModelInitializedCopyWith(
+          _$LocalSettingsModelInitialized value,
+          $Res Function(_$LocalSettingsModelInitialized) then) =
+      __$$LocalSettingsModelInitializedCopyWithImpl<$Res>;
+  @useResult
   $Res call({TimeOfDay? dailyNotificationTimeOfDay});
 }
 
 /// @nodoc
-class _$LocalSettingsModelInitializedCopyWithImpl<$Res>
-    extends _$LocalSettingsCopyWithImpl<$Res>
-    implements $LocalSettingsModelInitializedCopyWith<$Res> {
-  _$LocalSettingsModelInitializedCopyWithImpl(
-      LocalSettingsModelInitialized _value,
-      $Res Function(LocalSettingsModelInitialized) _then)
-      : super(_value, (v) => _then(v as LocalSettingsModelInitialized));
+class __$$LocalSettingsModelInitializedCopyWithImpl<$Res>
+    extends _$LocalSettingsCopyWithImpl<$Res, _$LocalSettingsModelInitialized>
+    implements _$$LocalSettingsModelInitializedCopyWith<$Res> {
+  __$$LocalSettingsModelInitializedCopyWithImpl(
+      _$LocalSettingsModelInitialized _value,
+      $Res Function(_$LocalSettingsModelInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  LocalSettingsModelInitialized get _value =>
-      super._value as LocalSettingsModelInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? dailyNotificationTimeOfDay = freezed,
   }) {
-    return _then(LocalSettingsModelInitialized(
-      dailyNotificationTimeOfDay == freezed
+    return _then(_$LocalSettingsModelInitialized(
+      freezed == dailyNotificationTimeOfDay
           ? _value.dailyNotificationTimeOfDay
           : dailyNotificationTimeOfDay // ignore: cast_nullable_to_non_nullable
               as TimeOfDay?,
@@ -253,20 +230,22 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LocalSettingsModelInitialized &&
-            const DeepCollectionEquality().equals(
-                other.dailyNotificationTimeOfDay, dailyNotificationTimeOfDay));
+            other is _$LocalSettingsModelInitialized &&
+            (identical(other.dailyNotificationTimeOfDay,
+                    dailyNotificationTimeOfDay) ||
+                other.dailyNotificationTimeOfDay ==
+                    dailyNotificationTimeOfDay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(dailyNotificationTimeOfDay));
+  int get hashCode => Object.hash(runtimeType, dailyNotificationTimeOfDay);
 
   @JsonKey(ignore: true)
   @override
-  $LocalSettingsModelInitializedCopyWith<LocalSettingsModelInitialized>
-      get copyWith => _$LocalSettingsModelInitializedCopyWithImpl<
-          LocalSettingsModelInitialized>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LocalSettingsModelInitializedCopyWith<_$LocalSettingsModelInitialized>
+      get copyWith => __$$LocalSettingsModelInitializedCopyWithImpl<
+          _$LocalSettingsModelInitialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -281,8 +260,8 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
+    TResult? Function()? initial,
+    TResult? Function(TimeOfDay? dailyNotificationTimeOfDay)? initialized,
   }) {
     return initialized?.call(dailyNotificationTimeOfDay);
   }
@@ -312,8 +291,8 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LocalSettingsModelInitial value)? initial,
-    TResult Function(LocalSettingsModelInitialized value)? initialized,
+    TResult? Function(LocalSettingsModelInitial value)? initial,
+    TResult? Function(LocalSettingsModelInitialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -333,11 +312,12 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
 }
 
 abstract class LocalSettingsModelInitialized implements LocalSettings {
-  factory LocalSettingsModelInitialized(TimeOfDay? dailyNotificationTimeOfDay) =
+  factory LocalSettingsModelInitialized(
+          final TimeOfDay? dailyNotificationTimeOfDay) =
       _$LocalSettingsModelInitialized;
 
   TimeOfDay? get dailyNotificationTimeOfDay;
   @JsonKey(ignore: true)
-  $LocalSettingsModelInitializedCopyWith<LocalSettingsModelInitialized>
+  _$$LocalSettingsModelInitializedCopyWith<_$LocalSettingsModelInitialized>
       get copyWith => throw _privateConstructorUsedError;
 }

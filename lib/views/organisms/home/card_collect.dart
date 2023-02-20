@@ -80,7 +80,6 @@ class CardCollect extends ConsumerWidget {
                     type: ButtonType.standard)
               ]))
         ]),
-        'Collect',
-        HeadingStyle.h1);
+        const Heading('Collect', HeadingStyle.h1));
   }
 }

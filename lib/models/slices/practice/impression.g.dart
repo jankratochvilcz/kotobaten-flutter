@@ -16,7 +16,7 @@ _$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
     <String, dynamic>{
       'card': instance.card,
-      'impressionType': _$ImpressionTypeEnumMap[instance.impressionType],
+      'impressionType': _$ImpressionTypeEnumMap[instance.impressionType]!,
       'speechPath': instance.speechPath,
     };
 

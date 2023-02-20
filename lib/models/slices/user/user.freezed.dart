@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user.dart';
 
@@ -12,33 +12,11 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return UserInitialized.fromJson(json);
 }
-
-/// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
-
-  UserInitialized call(UserStatistics stats, UserCore user, UserGoals goals,
-      UserOnboarding onboarding) {
-    return UserInitialized(
-      stats,
-      user,
-      goals,
-      onboarding,
-    );
-  }
-
-  User fromJson(Map<String, Object?> json) {
-    return User.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
@@ -55,7 +33,8 @@ mixin _$User {
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
   $Res call(
       {UserStatistics stats,
       UserCore user,
@@ -69,75 +48,83 @@ abstract class $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
   _$UserCopyWithImpl(this._value, this._then);
 
-  final User _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stats = freezed,
-    Object? user = freezed,
-    Object? goals = freezed,
-    Object? onboarding = freezed,
+    Object? stats = null,
+    Object? user = null,
+    Object? goals = null,
+    Object? onboarding = null,
   }) {
     return _then(_value.copyWith(
-      stats: stats == freezed
+      stats: null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as UserStatistics,
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserCore,
-      goals: goals == freezed
+      goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as UserGoals,
-      onboarding: onboarding == freezed
+      onboarding: null == onboarding
           ? _value.onboarding
           : onboarding // ignore: cast_nullable_to_non_nullable
               as UserOnboarding,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserStatisticsCopyWith<$Res> get stats {
     return $UserStatisticsCopyWith<$Res>(_value.stats, (value) {
-      return _then(_value.copyWith(stats: value));
+      return _then(_value.copyWith(stats: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserCoreCopyWith<$Res> get user {
     return $UserCoreCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserGoalsCopyWith<$Res> get goals {
     return $UserGoalsCopyWith<$Res>(_value.goals, (value) {
-      return _then(_value.copyWith(goals: value));
+      return _then(_value.copyWith(goals: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UserOnboardingCopyWith<$Res> get onboarding {
     return $UserOnboardingCopyWith<$Res>(_value.onboarding, (value) {
-      return _then(_value.copyWith(onboarding: value));
+      return _then(_value.copyWith(onboarding: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class $UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory $UserInitializedCopyWith(
-          UserInitialized value, $Res Function(UserInitialized) then) =
-      _$UserInitializedCopyWithImpl<$Res>;
+abstract class _$$UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$UserInitializedCopyWith(
+          _$UserInitialized value, $Res Function(_$UserInitialized) then) =
+      __$$UserInitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {UserStatistics stats,
       UserCore user,
@@ -155,36 +142,35 @@ abstract class $UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserInitializedCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements $UserInitializedCopyWith<$Res> {
-  _$UserInitializedCopyWithImpl(
-      UserInitialized _value, $Res Function(UserInitialized) _then)
-      : super(_value, (v) => _then(v as UserInitialized));
+class __$$UserInitializedCopyWithImpl<$Res>
+    extends _$UserCopyWithImpl<$Res, _$UserInitialized>
+    implements _$$UserInitializedCopyWith<$Res> {
+  __$$UserInitializedCopyWithImpl(
+      _$UserInitialized _value, $Res Function(_$UserInitialized) _then)
+      : super(_value, _then);
 
-  @override
-  UserInitialized get _value => super._value as UserInitialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? stats = freezed,
-    Object? user = freezed,
-    Object? goals = freezed,
-    Object? onboarding = freezed,
+    Object? stats = null,
+    Object? user = null,
+    Object? goals = null,
+    Object? onboarding = null,
   }) {
-    return _then(UserInitialized(
-      stats == freezed
+    return _then(_$UserInitialized(
+      null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as UserStatistics,
-      user == freezed
+      null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserCore,
-      goals == freezed
+      null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
               as UserGoals,
-      onboarding == freezed
+      null == onboarding
           ? _value.onboarding
           : onboarding // ignore: cast_nullable_to_non_nullable
               as UserOnboarding,
@@ -218,36 +204,38 @@ class _$UserInitialized implements UserInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is UserInitialized &&
-            const DeepCollectionEquality().equals(other.stats, stats) &&
-            const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality().equals(other.goals, goals) &&
-            const DeepCollectionEquality()
-                .equals(other.onboarding, onboarding));
+            other is _$UserInitialized &&
+            (identical(other.stats, stats) || other.stats == stats) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.goals, goals) || other.goals == goals) &&
+            (identical(other.onboarding, onboarding) ||
+                other.onboarding == onboarding));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(stats),
-      const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(goals),
-      const DeepCollectionEquality().hash(onboarding));
 
   @JsonKey(ignore: true)
   @override
-  $UserInitializedCopyWith<UserInitialized> get copyWith =>
-      _$UserInitializedCopyWithImpl<UserInitialized>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, stats, user, goals, onboarding);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserInitializedCopyWith<_$UserInitialized> get copyWith =>
+      __$$UserInitializedCopyWithImpl<_$UserInitialized>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserInitializedToJson(this);
+    return _$$UserInitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class UserInitialized implements User {
-  factory UserInitialized(UserStatistics stats, UserCore user, UserGoals goals,
-      UserOnboarding onboarding) = _$UserInitialized;
+  factory UserInitialized(
+      final UserStatistics stats,
+      final UserCore user,
+      final UserGoals goals,
+      final UserOnboarding onboarding) = _$UserInitialized;
 
   factory UserInitialized.fromJson(Map<String, dynamic> json) =
       _$UserInitialized.fromJson;
@@ -262,6 +250,6 @@ abstract class UserInitialized implements User {
   UserOnboarding get onboarding;
   @override
   @JsonKey(ignore: true)
-  $UserInitializedCopyWith<UserInitialized> get copyWith =>
+  _$$UserInitializedCopyWith<_$UserInitialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

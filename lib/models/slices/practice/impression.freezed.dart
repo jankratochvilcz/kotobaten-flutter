@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'impression.dart';
 
@@ -12,39 +12,17 @@ part of 'impression.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Impression _$ImpressionFromJson(Map<String, dynamic> json) {
   return Initialized.fromJson(json);
 }
 
 /// @nodoc
-class _$ImpressionTearOff {
-  const _$ImpressionTearOff();
-
-  Initialized initialized(
-      CardInitialized card, ImpressionType impressionType, String? speechPath) {
-    return Initialized(
-      card,
-      impressionType,
-      speechPath,
-    );
-  }
-
-  Impression fromJson(Map<String, Object?> json) {
-    return Impression.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Impression = _$ImpressionTearOff();
-
-/// @nodoc
 mixin _$Impression {
   CardInitialized get card => throw _privateConstructorUsedError;
   ImpressionType get impressionType => throw _privateConstructorUsedError;
   String? get speechPath => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(CardInitialized card,
@@ -54,7 +32,7 @@ mixin _$Impression {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType,
+    TResult? Function(CardInitialized card, ImpressionType impressionType,
             String? speechPath)?
         initialized,
   }) =>
@@ -74,7 +52,7 @@ mixin _$Impression {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,7 +71,8 @@ mixin _$Impression {
 abstract class $ImpressionCopyWith<$Res> {
   factory $ImpressionCopyWith(
           Impression value, $Res Function(Impression) then) =
-      _$ImpressionCopyWithImpl<$Res>;
+      _$ImpressionCopyWithImpl<$Res, Impression>;
+  @useResult
   $Res call(
       {CardInitialized card,
       ImpressionType impressionType,
@@ -101,42 +80,47 @@ abstract class $ImpressionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImpressionCopyWithImpl<$Res> implements $ImpressionCopyWith<$Res> {
+class _$ImpressionCopyWithImpl<$Res, $Val extends Impression>
+    implements $ImpressionCopyWith<$Res> {
   _$ImpressionCopyWithImpl(this._value, this._then);
 
-  final Impression _value;
   // ignore: unused_field
-  final $Res Function(Impression) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? card = freezed,
-    Object? impressionType = freezed,
+    Object? impressionType = null,
     Object? speechPath = freezed,
   }) {
     return _then(_value.copyWith(
-      card: card == freezed
+      card: freezed == card
           ? _value.card
           : card // ignore: cast_nullable_to_non_nullable
               as CardInitialized,
-      impressionType: impressionType == freezed
+      impressionType: null == impressionType
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      speechPath: speechPath == freezed
+      speechPath: freezed == speechPath
           ? _value.speechPath
           : speechPath // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $InitializedCopyWith<$Res> implements $ImpressionCopyWith<$Res> {
-  factory $InitializedCopyWith(
-          Initialized value, $Res Function(Initialized) then) =
-      _$InitializedCopyWithImpl<$Res>;
+abstract class _$$InitializedCopyWith<$Res>
+    implements $ImpressionCopyWith<$Res> {
+  factory _$$InitializedCopyWith(
+          _$Initialized value, $Res Function(_$Initialized) then) =
+      __$$InitializedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {CardInitialized card,
       ImpressionType impressionType,
@@ -144,31 +128,30 @@ abstract class $InitializedCopyWith<$Res> implements $ImpressionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializedCopyWithImpl<$Res> extends _$ImpressionCopyWithImpl<$Res>
-    implements $InitializedCopyWith<$Res> {
-  _$InitializedCopyWithImpl(
-      Initialized _value, $Res Function(Initialized) _then)
-      : super(_value, (v) => _then(v as Initialized));
+class __$$InitializedCopyWithImpl<$Res>
+    extends _$ImpressionCopyWithImpl<$Res, _$Initialized>
+    implements _$$InitializedCopyWith<$Res> {
+  __$$InitializedCopyWithImpl(
+      _$Initialized _value, $Res Function(_$Initialized) _then)
+      : super(_value, _then);
 
-  @override
-  Initialized get _value => super._value as Initialized;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? card = freezed,
-    Object? impressionType = freezed,
+    Object? impressionType = null,
     Object? speechPath = freezed,
   }) {
-    return _then(Initialized(
-      card == freezed
+    return _then(_$Initialized(
+      freezed == card
           ? _value.card
           : card // ignore: cast_nullable_to_non_nullable
               as CardInitialized,
-      impressionType == freezed
+      null == impressionType
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      speechPath == freezed
+      freezed == speechPath
           ? _value.speechPath
           : speechPath // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -200,25 +183,24 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Initialized &&
+            other is _$Initialized &&
             const DeepCollectionEquality().equals(other.card, card) &&
-            const DeepCollectionEquality()
-                .equals(other.impressionType, impressionType) &&
-            const DeepCollectionEquality()
-                .equals(other.speechPath, speechPath));
+            (identical(other.impressionType, impressionType) ||
+                other.impressionType == impressionType) &&
+            (identical(other.speechPath, speechPath) ||
+                other.speechPath == speechPath));
   }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(card),
-      const DeepCollectionEquality().hash(impressionType),
-      const DeepCollectionEquality().hash(speechPath));
 
   @JsonKey(ignore: true)
   @override
-  $InitializedCopyWith<Initialized> get copyWith =>
-      _$InitializedCopyWithImpl<Initialized>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(card), impressionType, speechPath);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -233,7 +215,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(CardInitialized card, ImpressionType impressionType,
+    TResult? Function(CardInitialized card, ImpressionType impressionType,
             String? speechPath)?
         initialized,
   }) {
@@ -265,7 +247,7 @@ class _$Initialized implements Initialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Initialized value)? initialized,
+    TResult? Function(Initialized value)? initialized,
   }) {
     return initialized?.call(this);
   }
@@ -284,13 +266,17 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(this);
+    return _$$InitializedToJson(
+      this,
+    );
   }
 }
 
 abstract class Initialized implements Impression {
-  factory Initialized(CardInitialized card, ImpressionType impressionType,
-      String? speechPath) = _$Initialized;
+  factory Initialized(
+      final CardInitialized card,
+      final ImpressionType impressionType,
+      final String? speechPath) = _$Initialized;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
       _$Initialized.fromJson;
@@ -303,6 +289,6 @@ abstract class Initialized implements Impression {
   String? get speechPath;
   @override
   @JsonKey(ignore: true)
-  $InitializedCopyWith<Initialized> get copyWith =>
+  _$$InitializedCopyWith<_$Initialized> get copyWith =>
       throw _privateConstructorUsedError;
 }

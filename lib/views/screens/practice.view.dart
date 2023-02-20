@@ -96,7 +96,11 @@ class PracticeView extends HookConsumerWidget {
       final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null) {
-        AudioPlayer().play(speechPath);
+        Future.microtask(() async {
+          final player = AudioPlayer();
+          await player.setSourceUrl(speechPath);
+          await player.resume();
+        });
         Future.microtask(practiceService.markSpeechAsPlayed);
       }
 

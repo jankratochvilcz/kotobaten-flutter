@@ -1,16 +1,19 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:kotobaten/consts/http.dart';
 import 'package:kotobaten/extensions/auth_model.dart';
 import 'package:kotobaten/models/app_configuration.dart';
 import 'package:kotobaten/models/search_result.dart';
+import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
+import 'package:kotobaten/models/slices/user/user_core.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
 import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/services/app_configuration.dart';
@@ -84,9 +87,16 @@ class KotobatenApiService {
   }
 
   Future<UserInitialized> getUser(
-          {bool updateRetentionBackstop = false}) async =>
-      UserInitialized.fromJson(await _getAuthenticated('user',
-          params: {'overrideBackstop': updateRetentionBackstop.toString()}));
+      {bool updateRetentionBackstop = false}) async {
+    var response = await _getAuthenticated('user',
+        params: {'overrideBackstop': updateRetentionBackstop.toString()});
+
+    if (response == null) {
+      throw ErrorDescription('User not authenticated');
+    }
+
+    return UserInitialized.fromJson(response);
+  }
 
   Future<SearchResult> search(String term) async => SearchResult.fromJson(
       await _getAuthenticated('search', params: {'term': term}));
@@ -128,7 +138,7 @@ class KotobatenApiService {
   }
 
   Future<UserGoals> updateGoals(UserGoals goals) async {
-    final url = _getUrl(_appConfiguration.apiRoot, 'goals', {
+    final url = _getUrl(_appConfiguration.apiRoot, 'settings/goals', {
       'discoverDaily': goals.discoverDaily.toString(),
       'discoverWeekly': goals.discoverWeekly.toString(),
       'discoverMonthly': goals.discoverMonthly.toString()
@@ -151,6 +161,20 @@ class KotobatenApiService {
     return result;
   }
 
+  Future<UserCoreInitialized> updateRetentionBackstopMaxThreshold(
+      int number) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'settings/dailyThreshold', {
+      'retentionBackstopMaxThreshold': number.toString(),
+    });
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    final response = await _kotobatenClient.post(url, headers: headers);
+    final body = utf8.decode(response.bodyBytes);
+    return UserCoreInitialized.fromJson(jsonDecode(body));
+  }
+
   Future hideOnboarding() async {
     await _postJson('hideOnboarding', {});
   }
@@ -161,6 +185,11 @@ class KotobatenApiService {
 
     final response = await _kotobatenClient.get(url,
         headers: await _getTokenHeadersOrThrow());
+
+    if (response.statusCode == 401) {
+      authRepository.update(AuthModel.unauthenticated());
+      return null;
+    }
 
     final body = utf8.decode(response.bodyBytes);
     return jsonDecode(body);

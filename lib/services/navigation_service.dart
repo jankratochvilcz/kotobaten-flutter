@@ -5,11 +5,26 @@ import 'package:kotobaten/consts/routes.dart';
 final navigationServiceProvider = Provider((ref) => NavigationService());
 
 class NavigationService {
+  String? currentRoute;
+
   goBack(BuildContext context) => Navigator.of(context).pop();
+
+  Future<dynamic> _pushNamed(String route, BuildContext context) {
+    currentRoute = route;
+    return Navigator.of(context).pushNamed(route);
+  }
+
+  Future<dynamic> _pushNamedAndRemoveUntil(String route,
+      bool Function(Route<dynamic>) removeUntil, BuildContext context) {
+    currentRoute = route;
+    return Navigator.of(context).pushNamedAndRemoveUntil(route, removeUntil);
+  }
 
   Future<dynamic> goPractice(BuildContext context,
       {bool replaceCurrent = false, bool showOnboarding = false}) {
     final navigator = Navigator.of(context);
+
+    currentRoute = practiceRoute;
 
     final args = PracticeArguments(showOnboarding);
 
@@ -22,20 +37,24 @@ class NavigationService {
       Navigator.of(context).pushReplacementNamed(postPracticeRoute);
 
   Future<dynamic> goSearch(BuildContext context) =>
-      Navigator.of(context).pushNamed(searchRoute);
+      _pushNamed(searchRoute, context);
 
   Future<dynamic> goCollection(BuildContext context) =>
-      Navigator.of(context).pushNamed(collectionRoute);
+      _pushNamed(collectionRoute, context);
 
   Future<dynamic> goSettings(BuildContext context) =>
-      Navigator.of(context).pushNamed(settingsRoute);
+      _pushNamed(settingsRoute, context);
 
-  Future<dynamic> goLogin(BuildContext context) => Navigator.of(context)
-      .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+  Future<dynamic> goLogin(BuildContext context) =>
+      _pushNamedAndRemoveUntil(loginRoute, (route) => false, context);
 
-  Future<dynamic> goHome(BuildContext context) => Navigator.of(context)
-      .pushNamedAndRemoveUntil(homeRoute, (route) => false);
+  Future<dynamic> goHome(BuildContext context) =>
+      _pushNamedAndRemoveUntil(homeRoute, (route) => false, context);
 
-  Future<dynamic> goOnboarding(BuildContext context) => Navigator.of(context)
-      .pushNamedAndRemoveUntil(onboardingRoute, ModalRoute.withName(homeRoute));
+  Future<dynamic> goOnboarding(BuildContext context) =>
+      _pushNamedAndRemoveUntil(
+          onboardingRoute, ModalRoute.withName(homeRoute), context);
+
+  bool isCurrentRouteAuthPage(BuildContext context) =>
+      currentRoute == loginRoute;
 }

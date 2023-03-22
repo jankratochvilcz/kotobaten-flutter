@@ -29,10 +29,6 @@ class LoginViewModel {
     return result;
   }
 
-  Future<void> reset() async {
-    await authService.initialize();
-  }
-
   String getPrimaryButtonDescription(LoginKind kind, AuthModel authModel) {
     if (authModel is AuthModelAuthenticating) {
       return 'Logging in...';

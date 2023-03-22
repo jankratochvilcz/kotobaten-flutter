@@ -48,8 +48,20 @@ class HomeView extends HookConsumerWidget {
       });
     }
 
+    if (authModel is AuthModelUnauthenticated &&
+        !navigationService.isCurrentRouteAuthPage(context)) {
+      Future.microtask(() => navigationService.goLogin(context));
+    }
+
     if (authModel is AuthModelAuthenticated && userModel is UserModelInitial) {
-      Future.microtask(() => userService.refreshUser());
+      Future.microtask(() async {
+        try {
+          await userService.refreshUser();
+        } catch (e) {
+          await authService.logout();
+          await navigationService.goLogin(context);
+        }
+      });
       Future.microtask(() async {
         await dailyReminderService.ensureInitialized();
       });

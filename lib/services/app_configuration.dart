@@ -31,9 +31,8 @@ getPlatform() {
 class AppConfigurationService {
   AppConfiguration getConfiguration() {
     const isProduction = bool.fromEnvironment('dart.vm.product');
-    const isWeb = kIsWeb;
 
-    const isDevEndpoint = isWeb && !isProduction;
+    const isDevEndpoint = !isProduction;
     const apiRoot = isDevEndpoint ? apiRootDev : apiRootProduction;
     const cookieDomain = isDevEndpoint ? 'localhost' : '.kotobaten.app';
 

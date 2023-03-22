@@ -13,7 +13,8 @@ showGoalsEditDialog(
         context: context,
         builder: (x) => Padding(
             padding: MediaQuery.of(x).viewInsets,
-            child: GoalsEditDialog(
+            child: Material(
+                child: GoalsEditDialog(
               (card) async {
                 await onSubmit(card);
 
@@ -22,7 +23,7 @@ showGoalsEditDialog(
                     const SnackBar(content: Text('Goals edited.')));
               },
               currentGoals,
-            )));
+            ))));
 
 class GoalsEditDialog extends StatefulWidget {
   final void Function(UserGoals goals) _onSubmit;
@@ -57,34 +58,33 @@ class _GoalsEditDialogState extends State<GoalsEditDialog> {
       }
     }
 
-    return Material(
-        child: Form(
-            key: _formKey,
-            child: Padding(
-              padding: allPadding(PaddingType.large),
-              child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    SizedBox(
-                        width: 120,
-                        child: TextFormField(
-                          controller: _goalDayController,
-                          validator: validateGoal,
-                          autofocus: true,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.number,
-                          decoration:
-                              const InputDecoration(suffixText: 'new words'),
-                        )),
-                    Align(
-                        alignment: Alignment.bottomRight,
-                        child: Button(
-                          'Save',
-                          onEditComplete,
-                          icon: Icons.edit_outlined,
-                        ))
-                  ]),
-            )));
+    return Form(
+        key: _formKey,
+        child: Padding(
+          padding: allPadding(PaddingType.large),
+          child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(
+                    width: 120,
+                    child: TextFormField(
+                      controller: _goalDayController,
+                      validator: validateGoal,
+                      autofocus: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      decoration:
+                          const InputDecoration(suffixText: 'new words'),
+                    )),
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Button(
+                      'Save',
+                      onEditComplete,
+                      icon: Icons.edit_outlined,
+                    ))
+              ]),
+        ));
   }
 }

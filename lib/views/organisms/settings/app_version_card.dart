@@ -17,7 +17,7 @@ class AppVersionCard extends HookConsumerWidget {
     return appPackageInformation.when(
         data: (data) => Headed(
             Description("${data.appName} ${data.version}+${data.buildNumber}"),
-            const Heading('App Version', HeadingStyle.h2)),
+            const Heading('App Version', HeadingStyle.h3)),
         error: (obj, trace) => const Empty(),
         loading: () => const Loading());
   }

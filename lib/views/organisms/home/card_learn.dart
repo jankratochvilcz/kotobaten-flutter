@@ -53,7 +53,7 @@ class CardLearn extends HookWidget {
                             TextSpan(
                                 text: leftForToday > 0
                                     ? '$leftForToday more new words to reach your daily goal. 💪'
-                                    : 'Practice ✅ Daily goal ✅. Amazing progress! 🙌')
+                                    : 'You reached your daily goal. お疲れ！ 🥂')
                           ],
                           textAlign: TextAlign.center,
                         ),

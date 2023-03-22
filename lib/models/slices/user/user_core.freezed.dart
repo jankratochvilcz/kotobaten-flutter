@@ -22,19 +22,24 @@ UserCore _$UserCoreFromJson(Map<String, dynamic> json) {
 mixin _$UserCore {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  int get retentionBackstopMaxThreshold => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String email) initialized,
+    required TResult Function(
+            int id, String email, int retentionBackstopMaxThreshold)
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String email)? initialized,
+    TResult? Function(int id, String email, int retentionBackstopMaxThreshold)?
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String email)? initialized,
+    TResult Function(int id, String email, int retentionBackstopMaxThreshold)?
+        initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -65,7 +70,7 @@ abstract class $UserCoreCopyWith<$Res> {
   factory $UserCoreCopyWith(UserCore value, $Res Function(UserCore) then) =
       _$UserCoreCopyWithImpl<$Res, UserCore>;
   @useResult
-  $Res call({int id, String email});
+  $Res call({int id, String email, int retentionBackstopMaxThreshold});
 }
 
 /// @nodoc
@@ -83,6 +88,7 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? retentionBackstopMaxThreshold = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,6 +99,10 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      retentionBackstopMaxThreshold: null == retentionBackstopMaxThreshold
+          ? _value.retentionBackstopMaxThreshold
+          : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -105,7 +115,7 @@ abstract class _$$UserCoreInitializedCopyWith<$Res>
       __$$UserCoreInitializedCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String email});
+  $Res call({int id, String email, int retentionBackstopMaxThreshold});
 }
 
 /// @nodoc
@@ -121,6 +131,7 @@ class __$$UserCoreInitializedCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? retentionBackstopMaxThreshold = null,
   }) {
     return _then(_$UserCoreInitialized(
       null == id
@@ -131,6 +142,10 @@ class __$$UserCoreInitializedCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      null == retentionBackstopMaxThreshold
+          ? _value.retentionBackstopMaxThreshold
+          : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -138,7 +153,8 @@ class __$$UserCoreInitializedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserCoreInitialized implements UserCoreInitialized {
-  _$UserCoreInitialized(this.id, this.email);
+  _$UserCoreInitialized(
+      this.id, this.email, this.retentionBackstopMaxThreshold);
 
   factory _$UserCoreInitialized.fromJson(Map<String, dynamic> json) =>
       _$$UserCoreInitializedFromJson(json);
@@ -147,10 +163,12 @@ class _$UserCoreInitialized implements UserCoreInitialized {
   final int id;
   @override
   final String email;
+  @override
+  final int retentionBackstopMaxThreshold;
 
   @override
   String toString() {
-    return 'UserCore.initialized(id: $id, email: $email)';
+    return 'UserCore.initialized(id: $id, email: $email, retentionBackstopMaxThreshold: $retentionBackstopMaxThreshold)';
   }
 
   @override
@@ -159,12 +177,17 @@ class _$UserCoreInitialized implements UserCoreInitialized {
         (other.runtimeType == runtimeType &&
             other is _$UserCoreInitialized &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.retentionBackstopMaxThreshold,
+                    retentionBackstopMaxThreshold) ||
+                other.retentionBackstopMaxThreshold ==
+                    retentionBackstopMaxThreshold));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email);
+  int get hashCode =>
+      Object.hash(runtimeType, id, email, retentionBackstopMaxThreshold);
 
   @JsonKey(ignore: true)
   @override
@@ -176,27 +199,31 @@ class _$UserCoreInitialized implements UserCoreInitialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id, String email) initialized,
+    required TResult Function(
+            int id, String email, int retentionBackstopMaxThreshold)
+        initialized,
   }) {
-    return initialized(id, email);
+    return initialized(id, email, retentionBackstopMaxThreshold);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String email)? initialized,
+    TResult? Function(int id, String email, int retentionBackstopMaxThreshold)?
+        initialized,
   }) {
-    return initialized?.call(id, email);
+    return initialized?.call(id, email, retentionBackstopMaxThreshold);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String email)? initialized,
+    TResult Function(int id, String email, int retentionBackstopMaxThreshold)?
+        initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(id, email);
+      return initialized(id, email, retentionBackstopMaxThreshold);
     }
     return orElse();
   }
@@ -238,8 +265,8 @@ class _$UserCoreInitialized implements UserCoreInitialized {
 }
 
 abstract class UserCoreInitialized implements UserCore {
-  factory UserCoreInitialized(final int id, final String email) =
-      _$UserCoreInitialized;
+  factory UserCoreInitialized(final int id, final String email,
+      final int retentionBackstopMaxThreshold) = _$UserCoreInitialized;
 
   factory UserCoreInitialized.fromJson(Map<String, dynamic> json) =
       _$UserCoreInitialized.fromJson;
@@ -248,6 +275,8 @@ abstract class UserCoreInitialized implements UserCore {
   int get id;
   @override
   String get email;
+  @override
+  int get retentionBackstopMaxThreshold;
   @override
   @JsonKey(ignore: true)
   _$$UserCoreInitializedCopyWith<_$UserCoreInitialized> get copyWith =>

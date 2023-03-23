@@ -37,7 +37,7 @@ class ImpressionHiddenActions extends StatelessWidget {
                     shortcut: '⏎',
                   )),
               DescriptionRichText([
-                const TextSpan(text: 'Try to remember '),
+                const TextSpan(text: 'Remember '),
                 TextSpan(
                     text: hintText,
                     style: const TextStyle(fontWeight: FontWeight.w900)),

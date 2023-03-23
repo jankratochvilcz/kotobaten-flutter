@@ -7,7 +7,6 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/extensions/string.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
-import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
 import 'package:kotobaten/models/slices/cards/cards_repository.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';

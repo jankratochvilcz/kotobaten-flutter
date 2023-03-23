@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
@@ -47,7 +48,8 @@ class WordCard extends ConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                if (furigana != null)
+                                if (card.type == CardType.word &&
+                                    furigana != null)
                                   DescriptionRichText([
                                     TextSpan(
                                         text: furigana,
@@ -55,11 +57,21 @@ class WordCard extends ConsumerWidget {
                                             color: Colors.black54,
                                             fontSize: 12))
                                   ]),
+                                if (card.type == CardType.grammar)
+                                  const DescriptionRichText([
+                                    TextSpan(
+                                        text: "(grammar)",
+                                        style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 12))
+                                  ]),
                                 Padding(
                                     padding: EdgeInsets.fromLTRB(
                                         0, 0, 0, furigana != null ? 22 : 4),
                                     child: Text(
-                                      primaryJapanese ?? '',
+                                      card.type == CardType.word
+                                          ? primaryJapanese ?? ''
+                                          : card.sense,
                                       style: const TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400),
@@ -68,7 +80,9 @@ class WordCard extends ConsumerWidget {
                             ))),
                     Expanded(
                         child: Heading(
-                      card.sense,
+                      card.type == CardType.word
+                          ? card.sense
+                          : card.kanji ?? '',
                       HeadingStyle.h3,
                       textAlign: TextAlign.left,
                     )),

@@ -3,13 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
+import 'dart:async' as _i9;
 
 import 'package:kotobaten/models/slices/user/user.dart' as _i4;
+import 'package:kotobaten/models/slices/user/user_core.dart' as _i6;
 import 'package:kotobaten/models/slices/user/user_goals.dart' as _i5;
 import 'package:kotobaten/models/slices/user/user_repository.dart' as _i3;
-import 'package:kotobaten/models/slices/user/user_service.dart' as _i7;
-import 'package:kotobaten/models/slices/user/user_statistics.dart' as _i6;
+import 'package:kotobaten/models/slices/user/user_service.dart' as _i8;
+import 'package:kotobaten/models/slices/user/user_statistics.dart' as _i7;
 import 'package:kotobaten/services/kotobaten_api.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -67,9 +68,20 @@ class _FakeUserGoals_3 extends _i1.SmartFake implements _i5.UserGoals {
         );
 }
 
-class _FakeUserStatistics_4 extends _i1.SmartFake
-    implements _i6.UserStatistics {
-  _FakeUserStatistics_4(
+class _FakeUserCoreInitialized_4 extends _i1.SmartFake
+    implements _i6.UserCoreInitialized {
+  _FakeUserCoreInitialized_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUserStatistics_5 extends _i1.SmartFake
+    implements _i7.UserStatistics {
+  _FakeUserStatistics_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -81,7 +93,7 @@ class _FakeUserStatistics_4 extends _i1.SmartFake
 /// A class which mocks [UserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserService extends _i1.Mock implements _i7.UserService {
+class MockUserService extends _i1.Mock implements _i8.UserService {
   MockUserService() {
     _i1.throwOnMissingStub(this);
   }
@@ -103,23 +115,23 @@ class MockUserService extends _i1.Mock implements _i7.UserService {
         ),
       ) as _i3.UserRepository);
   @override
-  _i8.Future<dynamic> refreshUser({bool? updateRetentionBackstop = false}) =>
+  _i9.Future<dynamic> refreshUser({bool? updateRetentionBackstop = false}) =>
       (super.noSuchMethod(
         Invocation.method(
           #refreshUser,
           [],
           {#updateRetentionBackstop: updateRetentionBackstop},
         ),
-        returnValue: _i8.Future<dynamic>.value(),
-      ) as _i8.Future<dynamic>);
+        returnValue: _i9.Future<dynamic>.value(),
+      ) as _i9.Future<dynamic>);
   @override
-  _i8.Future<dynamic> completeOnboarding() => (super.noSuchMethod(
+  _i9.Future<dynamic> completeOnboarding() => (super.noSuchMethod(
         Invocation.method(
           #completeOnboarding,
           [],
         ),
-        returnValue: _i8.Future<dynamic>.value(),
-      ) as _i8.Future<dynamic>);
+        returnValue: _i9.Future<dynamic>.value(),
+      ) as _i9.Future<dynamic>);
   @override
   _i4.UserInitialized setUser(_i4.UserInitialized? user) => (super.noSuchMethod(
         Invocation.method(
@@ -135,33 +147,50 @@ class MockUserService extends _i1.Mock implements _i7.UserService {
         ),
       ) as _i4.UserInitialized);
   @override
-  _i8.Future<_i5.UserGoals> updateGoals(_i5.UserGoals? goals) =>
+  _i9.Future<_i5.UserGoals> updateGoals(_i5.UserGoals? goals) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateGoals,
           [goals],
         ),
-        returnValue: _i8.Future<_i5.UserGoals>.value(_FakeUserGoals_3(
+        returnValue: _i9.Future<_i5.UserGoals>.value(_FakeUserGoals_3(
           this,
           Invocation.method(
             #updateGoals,
             [goals],
           ),
         )),
-      ) as _i8.Future<_i5.UserGoals>);
+      ) as _i9.Future<_i5.UserGoals>);
   @override
-  _i6.UserStatistics updateStatistics(_i6.UserStatistics? stats) =>
+  _i9.Future<_i6.UserCoreInitialized> updateRetentionBackstopMaxThreshold(
+          int? number) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateRetentionBackstopMaxThreshold,
+          [number],
+        ),
+        returnValue: _i9.Future<_i6.UserCoreInitialized>.value(
+            _FakeUserCoreInitialized_4(
+          this,
+          Invocation.method(
+            #updateRetentionBackstopMaxThreshold,
+            [number],
+          ),
+        )),
+      ) as _i9.Future<_i6.UserCoreInitialized>);
+  @override
+  _i7.UserStatistics updateStatistics(_i7.UserStatistics? stats) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateStatistics,
           [stats],
         ),
-        returnValue: _FakeUserStatistics_4(
+        returnValue: _FakeUserStatistics_5(
           this,
           Invocation.method(
             #updateStatistics,
             [stats],
           ),
         ),
-      ) as _i6.UserStatistics);
+      ) as _i7.UserStatistics);
 }

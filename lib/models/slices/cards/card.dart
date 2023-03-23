@@ -2,6 +2,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 
 part 'card.g.dart';
 part 'card.freezed.dart';
@@ -24,10 +25,11 @@ class Card with _$Card {
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
       DateTime created,
-      String? note) = CardInitialized;
+      String? note,
+      CardType type) = CardInitialized;
 
   factory Card.newCard(String sense, String? kana, String? kanji, String? note,
-      DateTime created) = CardNew;
+      DateTime created, CardType type) = CardNew;
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }

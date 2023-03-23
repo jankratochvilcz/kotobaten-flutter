@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
@@ -178,9 +179,18 @@ class PracticeService {
 
     if (currentState.currentImpression.impressionType ==
         ImpressionType.discover) {
+      if (currentState.currentImpression.card.type == CardType.grammar) {
+        return currentState.currentImpression.card.sense;
+      }
+
       return currentState.currentImpression.card.kanji ??
           currentState.currentImpression.card.kana ??
           '';
+    }
+
+    if (currentState.currentImpression.card.type == CardType.grammar &&
+        currentState.currentImpression.impressionType == ImpressionType.kana) {
+      return currentState.currentImpression.card.sense;
     }
 
     return currentState.currentImpression.impressionType == ImpressionType.sense
@@ -193,6 +203,7 @@ class PracticeService {
 
   String? getFurigana() {
     final currentState = repository.current;
+
     if ((currentState is! PracticeModelInProgress ||
         (!currentState.revealed &&
             currentState.currentImpression.impressionType !=
@@ -214,6 +225,10 @@ class PracticeService {
       return null;
     }
 
+    if (currentState.currentImpression.card.type == CardType.grammar) {
+      return currentState.currentImpression.card.kanji;
+    }
+
     return currentState.currentImpression.card.sense;
   }
 
@@ -230,6 +245,13 @@ class PracticeService {
     final currentState = repository.current;
     if (currentState is! PracticeModelInProgress) {
       return '';
+    }
+
+    if (currentState.currentImpression.card.type == CardType.grammar) {
+      return currentState.currentImpression.impressionType ==
+              ImpressionType.kana
+          ? "the grammar meaning"
+          : "the grammar";
     }
 
     return currentState.currentImpression.impressionType == ImpressionType.kana

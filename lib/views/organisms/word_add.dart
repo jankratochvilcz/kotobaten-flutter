@@ -3,9 +3,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
+import 'package:kotobaten/views/organisms/word_add/type_grammar.dart';
+import 'package:kotobaten/views/organisms/word_add/type_word.dart';
 
 const _hintTextStyle = TextStyle(color: Colors.black12);
 
@@ -70,6 +73,7 @@ class _WordAddFormState extends State<WordAddForm> {
   final _kanjiController = TextEditingController();
   final _kanaController = TextEditingController();
   final _noteController = TextEditingController();
+  CardType _cardType = CardType.word;
 
   @override
   void initState() {
@@ -80,7 +84,18 @@ class _WordAddFormState extends State<WordAddForm> {
       _kanjiController.text = widget.existingWord?.kanji ?? '';
       _kanaController.text = widget.existingWord?.kana ?? '';
       _noteController.text = widget.existingWord?.note ?? '';
+      _cardType = widget.existingWord?.type ?? CardType.word;
     }
+  }
+
+  void setCardType(CardType? cardType) {
+    setState(() {
+      if (cardType == null) {
+        return;
+      }
+
+      _cardType = cardType;
+    });
   }
 
   @override
@@ -94,106 +109,89 @@ class _WordAddFormState extends State<WordAddForm> {
               _kanaController.text,
               _kanjiController.text,
               DateTime.now(),
-              _noteController.text));
+              _noteController.text,
+              _cardType));
         } else {
           return widget._onSubmit(card_entity.Card.newCard(
-            _senseController.text,
-            _kanaController.text,
-            _kanjiController.text,
-            _noteController.text,
-            DateTime.now(),
-          ));
+              _senseController.text,
+              _kanaController.text,
+              _kanjiController.text,
+              _noteController.text,
+              DateTime.now(),
+              _cardType));
         }
       }
     }
 
-    return Form(
-        key: _formKey,
-        child: Padding(
-          padding: allPadding(PaddingType.large),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFormField(
-                  controller: _senseController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Add a meaning for the word you\'re adding';
-                    }
-
-                    return null;
-                  },
-                  autofocus: true,
-                  textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                      labelText: 'Meaning',
-                      hintText: 'Word in your native language.',
-                      hintStyle: _hintTextStyle),
-                ),
-                SizedBox(
-                  height: getPadding(PaddingType.small),
-                ),
-                TextFormField(
-                  controller: _kanjiController,
-                  textInputAction: TextInputAction.next,
-                  validator: (value) {
-                    if ((value == null || value.isEmpty) &&
-                        (_kanaController.text.isEmpty)) {
-                      return 'Fill in either the kanji or kana.';
-                    }
-
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      labelText: 'Kanji',
-                      hintText: 'Skip if you\'re not learning kanji yet.',
-                      hintStyle: _hintTextStyle),
-                ),
-                SizedBox(
-                  height: getPadding(PaddingType.small),
-                ),
-                TextFormField(
-                  controller: _kanaController,
-                  textInputAction: TextInputAction.next,
-                  validator: (value) {
-                    if ((value == null || value.isEmpty) &&
-                        (_kanjiController.text.isEmpty)) {
-                      return 'You need to fill in at least either the kanji or kana.';
-                    }
-
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                      labelText: 'Kana',
-                      hintText: 'Pronounciation of the word in hiragana.',
-                      hintStyle: _hintTextStyle),
-                ),
-                SizedBox(
-                  height: getPadding(PaddingType.small),
-                ),
-                TextFormField(
-                  onEditingComplete: onEditComplete,
-                  controller: _noteController,
-                  textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(
-                      labelText: 'Note (optional)',
-                      hintStyle: _hintTextStyle,
-                      hintText: 'Anything worth noting down about the word.'),
-                ),
-                SizedBox(height: getPadding(PaddingType.large)),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: ButtonAsync(
-                      widget.existingWord != null ? 'Edit word' : 'Add word',
-                      onEditComplete,
-                      icon: widget.existingWord != null
-                          ? Icons.edit_outlined
-                          : Icons.add_circle_outline,
-                      type: ButtonType.primary,
-                      size: ButtonSize.big,
-                    ))
-              ]),
-        ));
+    return ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 380),
+        child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: allPadding(PaddingType.large),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (widget.existingWord?.id == null)
+                      Center(
+                          child: Row(
+                        children: [
+                          Expanded(
+                              child: ListTile(
+                            title: const Text("Word"),
+                            leading: Radio<CardType>(
+                              value: CardType.word,
+                              onChanged: setCardType,
+                              groupValue: _cardType,
+                            ),
+                          )),
+                          Expanded(
+                              child: ListTile(
+                            title: const Text("Grammar"),
+                            leading: Radio<CardType>(
+                              value: CardType.grammar,
+                              onChanged: setCardType,
+                              groupValue: _cardType,
+                            ),
+                          ))
+                        ],
+                      )),
+                    if (widget.existingWord?.id == null)
+                      Padding(
+                          padding: verticalPadding(PaddingType.standard),
+                          child: const Divider()),
+                    if (_cardType == CardType.word)
+                      WordAddTypeWord(
+                          _senseController,
+                          _kanjiController,
+                          _kanaController,
+                          _noteController,
+                          _hintTextStyle,
+                          onEditComplete),
+                    if (_cardType == CardType.grammar)
+                      WordAddTypeGrammar(
+                          _senseController,
+                          _kanjiController,
+                          _kanaController,
+                          _noteController,
+                          _hintTextStyle,
+                          onEditComplete),
+                    SizedBox(height: getPadding(PaddingType.xLarge)),
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: ButtonAsync(
+                          widget.existingWord != null
+                              ? 'Edit word'
+                              : 'Add word',
+                          onEditComplete,
+                          icon: widget.existingWord != null
+                              ? Icons.edit_outlined
+                              : Icons.add_circle_outline,
+                          type: ButtonType.primary,
+                          size: ButtonSize.big,
+                        ))
+                  ]),
+            )));
   }
 }

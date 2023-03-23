@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -156,8 +157,8 @@ void main() {
     final List<Tuple4<Impression, String, String?, String?>> impressions = [
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', 'kana', 'kanji', DateTime.now(), null)
-                  as CardInitialized,
+              Card(0, 'sense', 'kana', 'kanji', DateTime.now(), null,
+                  CardType.word) as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -165,8 +166,8 @@ void main() {
           'kanji'),
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', 'kana', null, DateTime.now(), null)
-                  as CardInitialized,
+              Card(0, 'sense', 'kana', null, DateTime.now(), null,
+                  CardType.word) as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -174,8 +175,8 @@ void main() {
           'kana'),
       Tuple4(
           Impression.initialized(
-              Card(0, 'sense', null, 'kanji', DateTime.now(), null)
-                  as CardInitialized,
+              Card(0, 'sense', null, 'kanji', DateTime.now(), null,
+                  CardType.word) as CardInitialized,
               ImpressionType.discover,
               null),
           'sense',
@@ -228,7 +229,8 @@ Iterable<Impression> getImpressions(int count,
     ImpressionType impressionType = ImpressionType.kana}) sync* {
   for (var i = 0; i < count; i++) {
     yield Impression.initialized(
-        Card(i, 'a', 'b', 'c', DateTime.now(), 'd') as CardInitialized,
+        Card(i, 'a', 'b', 'c', DateTime.now(), 'd', CardType.word)
+            as CardInitialized,
         impressionType,
         speechPath);
   }

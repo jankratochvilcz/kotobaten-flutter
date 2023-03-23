@@ -36,6 +36,7 @@ mixin _$Card {
   String? get kanji => throw _privateConstructorUsedError;
   DateTime get created => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  CardType get type => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
@@ -44,10 +45,11 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)
+            String? note,
+            CardType type)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
-            String? note, DateTime created)
+            String? note, DateTime created, CardType type)
         newCard,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,10 +61,11 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,10 +77,11 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
     required TResult orElse(),
   }) =>
@@ -116,7 +120,8 @@ abstract class $CardCopyWith<$Res> {
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
       DateTime created,
-      String? note});
+      String? note,
+      CardType type});
 }
 
 /// @nodoc
@@ -137,6 +142,7 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
     Object? kanji = freezed,
     Object? created = null,
     Object? note = freezed,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       sense: null == sense
@@ -159,6 +165,10 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CardType,
     ) as $Val);
   }
 }
@@ -176,7 +186,8 @@ abstract class _$$CardInitializedCopyWith<$Res> implements $CardCopyWith<$Res> {
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
       DateTime created,
-      String? note});
+      String? note,
+      CardType type});
 }
 
 /// @nodoc
@@ -196,6 +207,7 @@ class __$$CardInitializedCopyWithImpl<$Res>
     Object? kanji = freezed,
     Object? created = null,
     Object? note = freezed,
+    Object? type = null,
   }) {
     return _then(_$CardInitialized(
       null == id
@@ -222,6 +234,10 @@ class __$$CardInitializedCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CardType,
     ));
   }
 }
@@ -237,6 +253,7 @@ class _$CardInitialized implements CardInitialized {
       @JsonKey(fromJson: toNonEmptyString) this.kanji,
       this.created,
       this.note,
+      this.type,
       {final String? $type})
       : $type = $type ?? 'default';
 
@@ -257,13 +274,15 @@ class _$CardInitialized implements CardInitialized {
   final DateTime created;
   @override
   final String? note;
+  @override
+  final CardType type;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'Card(id: $id, sense: $sense, kana: $kana, kanji: $kanji, created: $created, note: $note)';
+    return 'Card(id: $id, sense: $sense, kana: $kana, kanji: $kanji, created: $created, note: $note, type: $type)';
   }
 
   @override
@@ -276,13 +295,14 @@ class _$CardInitialized implements CardInitialized {
             (identical(other.kana, kana) || other.kana == kana) &&
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
             (identical(other.created, created) || other.created == created) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, sense, kana, kanji, created, note);
+      Object.hash(runtimeType, id, sense, kana, kanji, created, note, type);
 
   @JsonKey(ignore: true)
   @override
@@ -299,13 +319,14 @@ class _$CardInitialized implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)
+            String? note,
+            CardType type)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
-            String? note, DateTime created)
+            String? note, DateTime created, CardType type)
         newCard,
   }) {
-    return $default(id, sense, kana, kanji, created, note);
+    return $default(id, sense, kana, kanji, created, note, type);
   }
 
   @override
@@ -317,13 +338,14 @@ class _$CardInitialized implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
   }) {
-    return $default?.call(id, sense, kana, kanji, created, note);
+    return $default?.call(id, sense, kana, kanji, created, note, type);
   }
 
   @override
@@ -335,15 +357,16 @@ class _$CardInitialized implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, sense, kana, kanji, created, note);
+      return $default(id, sense, kana, kanji, created, note, type);
     }
     return orElse();
   }
@@ -394,7 +417,8 @@ abstract class CardInitialized implements Card {
       @JsonKey(fromJson: toNonEmptyString) final String? kana,
       @JsonKey(fromJson: toNonEmptyString) final String? kanji,
       final DateTime created,
-      final String? note) = _$CardInitialized;
+      final String? note,
+      final CardType type) = _$CardInitialized;
 
   factory CardInitialized.fromJson(Map<String, dynamic> json) =
       _$CardInitialized.fromJson;
@@ -413,6 +437,8 @@ abstract class CardInitialized implements Card {
   @override
   String? get note;
   @override
+  CardType get type;
+  @override
   @JsonKey(ignore: true)
   _$$CardInitializedCopyWith<_$CardInitialized> get copyWith =>
       throw _privateConstructorUsedError;
@@ -429,7 +455,8 @@ abstract class _$$CardNewCopyWith<$Res> implements $CardCopyWith<$Res> {
       String? kana,
       String? kanji,
       String? note,
-      DateTime created});
+      DateTime created,
+      CardType type});
 }
 
 /// @nodoc
@@ -446,6 +473,7 @@ class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
     Object? kanji = freezed,
     Object? note = freezed,
     Object? created = null,
+    Object? type = null,
   }) {
     return _then(_$CardNew(
       null == sense
@@ -468,6 +496,10 @@ class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CardType,
     ));
   }
 }
@@ -475,7 +507,8 @@ class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
 /// @nodoc
 @JsonSerializable()
 class _$CardNew implements CardNew {
-  _$CardNew(this.sense, this.kana, this.kanji, this.note, this.created,
+  _$CardNew(
+      this.sense, this.kana, this.kanji, this.note, this.created, this.type,
       {final String? $type})
       : $type = $type ?? 'newCard';
 
@@ -492,13 +525,15 @@ class _$CardNew implements CardNew {
   final String? note;
   @override
   final DateTime created;
+  @override
+  final CardType type;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'Card.newCard(sense: $sense, kana: $kana, kanji: $kanji, note: $note, created: $created)';
+    return 'Card.newCard(sense: $sense, kana: $kana, kanji: $kanji, note: $note, created: $created, type: $type)';
   }
 
   @override
@@ -510,13 +545,14 @@ class _$CardNew implements CardNew {
             (identical(other.kana, kana) || other.kana == kana) &&
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
             (identical(other.note, note) || other.note == note) &&
-            (identical(other.created, created) || other.created == created));
+            (identical(other.created, created) || other.created == created) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, sense, kana, kanji, note, created);
+      Object.hash(runtimeType, sense, kana, kanji, note, created, type);
 
   @JsonKey(ignore: true)
   @override
@@ -533,13 +569,14 @@ class _$CardNew implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)
+            String? note,
+            CardType type)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
-            String? note, DateTime created)
+            String? note, DateTime created, CardType type)
         newCard,
   }) {
-    return newCard(sense, kana, kanji, note, created);
+    return newCard(sense, kana, kanji, note, created, type);
   }
 
   @override
@@ -551,13 +588,14 @@ class _$CardNew implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
   }) {
-    return newCard?.call(sense, kana, kanji, note, created);
+    return newCard?.call(sense, kana, kanji, note, created, type);
   }
 
   @override
@@ -569,15 +607,16 @@ class _$CardNew implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
-            String? note)?
+            String? note,
+            CardType type)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
-            DateTime created)?
+            DateTime created, CardType type)?
         newCard,
     required TResult orElse(),
   }) {
     if (newCard != null) {
-      return newCard(sense, kana, kanji, note, created);
+      return newCard(sense, kana, kanji, note, created, type);
     }
     return orElse();
   }
@@ -622,8 +661,13 @@ class _$CardNew implements CardNew {
 }
 
 abstract class CardNew implements Card {
-  factory CardNew(final String sense, final String? kana, final String? kanji,
-      final String? note, final DateTime created) = _$CardNew;
+  factory CardNew(
+      final String sense,
+      final String? kana,
+      final String? kanji,
+      final String? note,
+      final DateTime created,
+      final CardType type) = _$CardNew;
 
   factory CardNew.fromJson(Map<String, dynamic> json) = _$CardNew.fromJson;
 
@@ -637,6 +681,8 @@ abstract class CardNew implements Card {
   String? get note;
   @override
   DateTime get created;
+  @override
+  CardType get type;
   @override
   @JsonKey(ignore: true)
   _$$CardNewCopyWith<_$CardNew> get copyWith =>

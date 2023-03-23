@@ -177,7 +177,7 @@ class _WordAddFormState extends State<WordAddForm> {
                           _noteController,
                           _hintTextStyle,
                           onEditComplete),
-                    SizedBox(height: getPadding(PaddingType.large)),
+                    SizedBox(height: getPadding(PaddingType.xLarge)),
                     Align(
                         alignment: Alignment.centerRight,
                         child: ButtonAsync(

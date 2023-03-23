@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
+import 'package:kotobaten/models/slices/user/user_core.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
@@ -59,6 +60,20 @@ class UserService {
     }
 
     return updatedGoals;
+  }
+
+  Future<UserCoreInitialized> updateRetentionBackstopMaxThreshold(
+      int number) async {
+    final updatedUser =
+        await apiService.updateRetentionBackstopMaxThreshold(number);
+
+    final userModel = userRepository.current;
+    if (userModel is UserModelInitialized) {
+      userRepository.update(
+          userModel.copyWith(user: userModel.user.copyWith(user: updatedUser)));
+    }
+
+    return updatedUser;
   }
 
   UserStatistics updateStatistics(UserStatistics stats) {

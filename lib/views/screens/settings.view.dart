@@ -12,13 +12,17 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/services/daily_reminder_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/desktop_card.dart';
+import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/atoms/mobile_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/settings/app_version_card.dart';
 import 'package:kotobaten/views/organisms/settings/goals_card.dart';
 import 'package:kotobaten/views/organisms/settings/profile_card.dart';
 import 'package:kotobaten/views/organisms/settings/reminders_card.dart';
+import 'package:kotobaten/views/organisms/settings/time_investment_card.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
+
+const cardBaseHeight = 74.0;
 
 class SettingsView extends HookConsumerWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -55,27 +59,56 @@ class SettingsView extends HookConsumerWidget {
             child: SingleChildScrollView(
                 child: Padding(
                     padding: verticalPadding(PaddingType.xLarge),
-                    child: MediaQuery.of(context).size.width >=
-                            minimumDesktopSize
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const DesktopCard(GoalsCard()),
-                              if (dailyReminderService.isPlatformSupported())
-                                const DesktopCard(RemindersCard()),
-                              const DesktopCard(AppVersionCard()),
-                              const DesktopCard(ProfileCard())
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const MobileCard(GoalsCard()),
-                              if (dailyReminderService.isPlatformSupported())
-                                const MobileCard(RemindersCard()),
-                              const MobileCard(AppVersionCard()),
-                              const MobileCard(ProfileCard())
-                            ],
-                          ))))));
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Heading("Difficulty", HeadingStyle.h1),
+                        Padding(
+                            padding: bottomPadding(PaddingType.xLarge),
+                            child: Card(
+                                child: Padding(
+                                    padding: allPadding(PaddingType.large),
+                                    child: SizedBox(
+                                        width: 400,
+                                        height: cardBaseHeight * 6,
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                  child: const GoalsCard(),
+                                                  padding: bottomPadding(
+                                                      PaddingType.xxLarge)),
+                                              const TimeInvestmentCard(),
+                                            ]))))),
+                        const Heading("Profile", HeadingStyle.h1),
+                        Padding(
+                            padding: bottomPadding(PaddingType.xLarge),
+                            child: Card(
+                              child: SizedBox(
+                                  width: 400,
+                                  height: cardBaseHeight,
+                                  child: Padding(
+                                      padding: allPadding(PaddingType.large),
+                                      child: Column(children: [
+                                        if (dailyReminderService
+                                            .isPlatformSupported())
+                                          const RemindersCard(),
+                                        const ProfileCard(),
+                                      ]))),
+                            )),
+                        const Heading("About", HeadingStyle.h1),
+                        Padding(
+                            padding: bottomPadding(PaddingType.xLarge),
+                            child: Card(
+                                child: SizedBox(
+                              height: cardBaseHeight,
+                              width: 400,
+                              child: Padding(
+                                  padding: allPadding(PaddingType.large),
+                                  child: const Center(child: AppVersionCard())),
+                            )))
+                      ],
+                    ))))));
   }
 }

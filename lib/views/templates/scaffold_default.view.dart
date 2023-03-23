@@ -87,7 +87,7 @@ class ScaffoldDefault extends HookConsumerWidget {
             IconButton(
                 onPressed: () => navigationService.goSettings(context),
                 tooltip: 'Settings',
-                icon: const Icon(Icons.more_horiz_rounded)),
+                icon: const Icon(Icons.settings_outlined)),
             if (!kIsWeb && Platform.isWindows)
               Padding(
                   padding: leftPadding(PaddingType.xxLarge),

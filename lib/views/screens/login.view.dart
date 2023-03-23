@@ -34,8 +34,6 @@ class _SwitchModeButton extends StatelessWidget {
           loginKind.value = loginKind.value == LoginKind.login
               ? LoginKind.signup
               : LoginKind.login;
-
-          await viewModel.reset();
         },
       );
 }

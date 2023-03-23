@@ -11,6 +11,7 @@ _$UserCoreInitialized _$$UserCoreInitializedFromJson(
     _$UserCoreInitialized(
       json['id'] as int,
       json['email'] as String,
+      json['retentionBackstopMaxThreshold'] as int,
     );
 
 Map<String, dynamic> _$$UserCoreInitializedToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$UserCoreInitializedToJson(
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
+      'retentionBackstopMaxThreshold': instance.retentionBackstopMaxThreshold,
     };

@@ -25206,12 +25206,13 @@ W4:function W4(a,b,c){this.a=a
 this.b=b
 this.c=c},
 afO:function afO(){},
-aRI(){if($.I==null)A.b1y()
-var s=$.I
+aRI(){var s,r
+if($.I==null)A.b1y()
+s=$.I
 s.ZH(B.Ow)
 s.LH()
-if($.aSL()){if($.iC){A.zW()
-$.iC=!1}$.uk().Va(new A.aFn())}},
+try{if($.aSL()){if($.iC){A.zW()
+$.iC=!1}$.uk().Va(new A.aFn())}}catch(r){}},
 aFn:function aFn(){},
 RV:function RV(a){this.a=a},
 ai6:function ai6(){},
@@ -87310,7 +87311,8 @@ return a/b},
 $S:495}
 A.aFn.prototype={
 $0(){if($.iC){A.zW()
-$.iC=!1}$.uk().gnV().svI(B.Q0)},
+$.iC=!1}var s=$.uk().gnV()
+s.svI(B.Q0)},
 $S:0}
 A.RV.prototype={
 H(a){var s
@@ -88447,7 +88449,7 @@ A.aEi.prototype={
 $1(a){return J.aVE(a.br($.aKD(),t.gi))},
 $S:527}
 A.nO.prototype={
-Lj(a){return new A.H3("kotobaten-api.azurewebsites.net",!0,A.b6h(),"2.0",".kotobaten.app")}}
+Lj(a){return new A.H3("kotobaten-api.fly.dev",!0,A.b6h(),"2.0",".kotobaten.app")}}
 A.aEz.prototype={
 $1(a){return new A.o6()},
 $S:528}

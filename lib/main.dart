@@ -19,17 +19,21 @@ import 'dart:io' as io show Platform;
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 
-  if (io.Platform.isWindows) {
-    doWhenWindowReady(() {
-      final window = appWindow;
+  try {
+    if (io.Platform.isWindows) {
+      doWhenWindowReady(() {
+        final window = appWindow;
 
-      const initialSize = Size(initialDesktopSize, 760);
-      window.minSize = const Size(400, 500);
-      window.size = initialSize;
-      window.alignment = Alignment.center;
+        const initialSize = Size(initialDesktopSize, 760);
+        window.minSize = const Size(400, 500);
+        window.size = initialSize;
+        window.alignment = Alignment.center;
 
-      window.show();
-    });
+        window.show();
+      });
+    }
+  } catch (e) {
+    // The library currently throws on non-Windows machines
   }
 }
 

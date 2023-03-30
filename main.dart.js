@@ -88449,7 +88449,7 @@ A.aEi.prototype={
 $1(a){return J.aVE(a.br($.aKD(),t.gi))},
 $S:527}
 A.nO.prototype={
-Lj(a){return new A.H3("https://kotobaten-api.fly.dev",!0,A.b6h(),"2.0",".kotobaten.app")}}
+Lj(a){return new A.H3("kotobaten-api.fly.dev",!0,A.b6h(),"2.0",".kotobaten.app")}}
 A.aEz.prototype={
 $1(a){return new A.o6()},
 $S:528}

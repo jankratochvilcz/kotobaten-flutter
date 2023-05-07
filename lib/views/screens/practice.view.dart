@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -92,7 +93,10 @@ class PracticeView extends HookConsumerWidget {
 
     var impressionViewType = practiceService.getImpressionViewType();
 
-    if (model is PracticeModelInProgress) {
+    // We don't play speech for grammar, as it was introduced by mistake.
+    // Speech for new cards is not getting generated.
+    if (model is PracticeModelInProgress &&
+        model.currentImpression.card.type != CardType.grammar) {
       final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null) {

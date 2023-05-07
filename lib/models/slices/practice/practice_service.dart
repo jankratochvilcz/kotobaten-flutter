@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
+import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';
@@ -41,6 +42,13 @@ class PracticeService {
     repository.update(const PracticeModel.loading());
 
     final impressions = await apiService.getImpressions();
+
+    // A demo grammar card for quick debugging
+    // final grammarImpression = Impression.initialized(
+    //     CardInitialized(1, "みたい", "try to do something", "", DateTime.now(),
+    //         "これをやってみたい", CardType.grammar),
+    //     ImpressionType.sense,
+    //     null);
 
     repository.update(PracticeModel.inProgress(
         impressions, impressions.sublist(1), impressions.first, false, false,
@@ -172,6 +180,15 @@ class PracticeService {
     }
 
     if (currentState.revealed) {
+      if (currentState.currentImpression.card.type == CardType.grammar) {
+        if (currentState.currentImpression.impressionType ==
+            ImpressionType.sense) {
+          return currentState.currentImpression.card.sense;
+        } else {
+          return currentState.currentImpression.card.kana ?? '';
+        }
+      }
+
       return currentState.currentImpression.card.kanji != null
           ? currentState.currentImpression.card.kanji ?? ''
           : currentState.currentImpression.card.kana ?? '';
@@ -208,6 +225,10 @@ class PracticeService {
         (!currentState.revealed &&
             currentState.currentImpression.impressionType !=
                 ImpressionType.discover))) {
+      return null;
+    }
+
+    if (currentState.currentImpression.card.type == CardType.grammar) {
       return null;
     }
 

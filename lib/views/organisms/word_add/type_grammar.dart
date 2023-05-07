@@ -72,7 +72,7 @@ class WordAddTypeGrammar extends StatelessWidget {
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: 'Example (optional)',
-              hintText: 'Write an example sentence fo rthe grammar.',
+              hintText: 'Write an example sentence for the grammar.',
               hintStyle: hintStyle),
           maxLines: 6,
           minLines: 1,

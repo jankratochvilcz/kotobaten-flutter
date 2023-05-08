@@ -95,11 +95,11 @@ class PracticeView extends HookConsumerWidget {
 
     // We don't play speech for grammar, as it was introduced by mistake.
     // Speech for new cards is not getting generated.
-    if (model is PracticeModelInProgress &&
-        model.currentImpression.card.type != CardType.grammar) {
+    if (model is PracticeModelInProgress) {
       final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
-      if (speechPath != null) {
+      if (speechPath != null &&
+          model.currentImpression.card.type != CardType.grammar) {
         Future.microtask(() async {
           final player = AudioPlayer();
           await player.setSourceUrl(speechPath);

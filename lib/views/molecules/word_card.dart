@@ -107,7 +107,6 @@ class WordCard extends ConsumerWidget {
                                               .editCard(word as card_entity
                                                   .CardInitialized);
                                           navigationService.goBack(context);
-                                          navigationService.goBack(context);
 
                                           return result;
                                         }, existingWord: card),

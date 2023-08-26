@@ -49,7 +49,8 @@ class WordAddDialogContents extends HookConsumerWidget {
             final createdCard = await onSubmit(card);
             navigationService.goBack(context);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Card for "${createdCard.sense}" created.')));
+                content: Text(
+                    'Card for "${createdCard.sense}" ${existingWord == null ? "created" : "updated"}.')));
           },
           existingWord: existingWord,
         ));

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
@@ -123,9 +124,10 @@ class CardsService {
     if (currentState is CardsModelInitialized) {
       final index = currentState.cards
           .indexOf(currentState.cards.firstWhere((x) => x.id == editedCard.id));
-      currentState.cards.removeAt(index);
-      currentState.cards.insert(index, editedCard);
-      cardsRepository.update(currentState.copyWith(cards: currentState.cards));
+      final updatedCards = currentState.cards
+          .mapIndexed((i, element) => i != index ? element : editedCard)
+          .toList();
+      cardsRepository.update(currentState.copyWith(cards: updatedCards));
     }
 
     final currentPracticeState = practiceRepository.current;

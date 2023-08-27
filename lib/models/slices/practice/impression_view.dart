@@ -1,1 +1,1 @@
-enum ImpressionViewType { hidden, revealed, discover, none }
+enum ImpressionViewType { hidden, revealed, discover, exampleSentence, none }

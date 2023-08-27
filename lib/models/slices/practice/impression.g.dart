@@ -24,4 +24,5 @@ const _$ImpressionTypeEnumMap = {
   ImpressionType.kana: 'KanaRequested',
   ImpressionType.sense: 'SenseRequested',
   ImpressionType.discover: 'NewOrForgottenCard',
+  ImpressionType.generatedSentence: 'GeneratedSentence',
 };

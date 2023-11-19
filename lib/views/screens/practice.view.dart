@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
+import 'package:kotobaten/hooks/bootstrap_hook.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
@@ -19,6 +20,7 @@ import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
+import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
 import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
@@ -35,15 +37,21 @@ class PracticeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as PracticeArguments;
+    var argsUntyped = ModalRoute.of(context)!.settings.arguments;
+    final args = argsUntyped != null ? argsUntyped as PracticeArguments : null;
 
     final practiceService = ref.watch(practiceServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
     final model = ref.watch(practiceRepositoryProvider);
 
     final currentStateProgress = useState(0.0);
-    final requiresOnboardingOverlay = useState(args.showOnboarding);
+    final requiresOnboardingOverlay = useState(args?.showOnboarding ?? false);
+
+    final userModelInitialized = useInitializedUser(context, ref);
+
+    if (userModelInitialized == null) {
+      return const Loading();
+    }
 
     final progressTimer = Timer(const Duration(milliseconds: 25), () {
       final currentPercentage = practiceService.getElapsedPercentage();

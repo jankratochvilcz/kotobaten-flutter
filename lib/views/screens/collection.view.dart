@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/extensions/string.dart';
+import 'package:kotobaten/hooks/bootstrap_hook.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
@@ -33,6 +34,12 @@ class CollectionView extends HookConsumerWidget {
     final cardsService = ref.watch(cardsServiceProvider);
     final cardsModel = ref.watch(cardsRepositoryProvider);
     final currentCardType = useState<String?>(null);
+
+    final userModelInitialized = useInitializedUser(context, ref);
+
+    if (userModelInitialized == null) {
+      return const Loading();
+    }
 
     if (cardsModel is CardsModelInitial) {
       unawaited(Future.microtask(() => cardsService.initialize()));

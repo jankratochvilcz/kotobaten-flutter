@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
@@ -9,8 +10,6 @@ import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/organisms/word_add/type_grammar.dart';
 import 'package:kotobaten/views/organisms/word_add/type_word.dart';
-
-const _hintTextStyle = TextStyle(color: Colors.black12);
 
 showWordAddBottomSheet(
         BuildContext context,
@@ -168,7 +167,7 @@ class _WordAddFormState extends State<WordAddForm> {
                           _kanjiController,
                           _kanaController,
                           _noteController,
-                          _hintTextStyle,
+                          TextStyle(color: getDescriptionColorSubtle(context)),
                           onEditComplete),
                     if (_cardType == CardType.grammar)
                       WordAddTypeGrammar(
@@ -176,7 +175,7 @@ class _WordAddFormState extends State<WordAddForm> {
                           _kanjiController,
                           _kanaController,
                           _noteController,
-                          _hintTextStyle,
+                          TextStyle(color: getDescriptionColorSubtle(context)),
                           onEditComplete),
                     SizedBox(height: getPadding(PaddingType.xLarge)),
                     Align(

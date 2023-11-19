@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
@@ -48,9 +49,10 @@ class ImpressionCard extends StatelessWidget {
                                   DescriptionRichText([
                                     TextSpan(
                                         text: furigana,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             fontSize: 14,
-                                            color: Colors.black54))
+                                            color:
+                                                getDescriptionColor(context)))
                                   ]),
                                 Heading(
                                   text,

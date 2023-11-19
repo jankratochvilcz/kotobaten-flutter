@@ -81,6 +81,9 @@ class GoalsCard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final foregroundColor = Theme.of(context).brightness == Brightness.light
+        ? Colors.black38
+        : Colors.white54;
     final userModel = ref.watch(userRepositoryProvider);
     final dropdownMode = useState(ChartType.goals);
 
@@ -143,8 +146,8 @@ class GoalsCard extends HookConsumerWidget {
                     focusColor: Colors.transparent,
                     dropdownColor: Theme.of(context).colorScheme.background,
                     underline: const Empty(),
-                    icon: const Icon(Icons.more_horiz_outlined,
-                        size: 0, color: Colors.black38),
+                    icon: Icon(Icons.more_horiz_outlined,
+                        size: 0, color: foregroundColor),
                     value: dropdownMode.value,
                     items: dropdownOptions
                         .map((dropdownOption) => DropdownMenuItem(
@@ -156,11 +159,10 @@ class GoalsCard extends HookConsumerWidget {
                                       padding: rightPadding(PaddingType.small),
                                       child: Icon(
                                         dropdownOption.icon,
-                                        color: Colors.black38,
+                                        color: foregroundColor,
                                       )),
                                   Text(dropdownOption.description,
-                                      style: const TextStyle(
-                                          color: Colors.black38))
+                                      style: TextStyle(color: foregroundColor))
                                 ]))))
                         .toList(),
                     onChanged: (selectedOption) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
@@ -31,6 +32,8 @@ class WordCard extends ConsumerWidget {
     final primaryJapanese =
         (card.kanji?.isNotEmpty ?? false) ? card.kanji : card.kana;
 
+    var foregroundColor = getDescriptionColor(context);
+
     return Card(
       child: Padding(
           padding: allPadding(PaddingType.standard),
@@ -53,16 +56,16 @@ class WordCard extends ConsumerWidget {
                                   DescriptionRichText([
                                     TextSpan(
                                         text: furigana,
-                                        style: const TextStyle(
-                                            color: Colors.black54,
+                                        style: TextStyle(
+                                            color: foregroundColor,
                                             fontSize: 12))
                                   ]),
                                 if (card.type == CardType.grammar)
-                                  const DescriptionRichText([
+                                  DescriptionRichText([
                                     TextSpan(
                                         text: "(grammar)",
                                         style: TextStyle(
-                                            color: Colors.black54,
+                                            color: foregroundColor,
                                             fontSize: 12))
                                   ]),
                                 Padding(
@@ -151,9 +154,9 @@ class WordCard extends ConsumerWidget {
                                       )
                                     ],
                                   ))),
-                          child: const Icon(
+                          child: Icon(
                             Icons.more_horiz,
-                            color: Colors.black38,
+                            color: foregroundColor,
                             size: 14,
                           ),
                         ))
@@ -166,18 +169,18 @@ class WordCard extends ConsumerWidget {
                   child: Row(children: [
                     Padding(
                         padding: topPadding(PaddingType.xSmall),
-                        child: const Icon(
+                        child: Icon(
                           Icons.description_outlined,
                           size: 12,
-                          color: Colors.black45,
+                          color: foregroundColor,
                         )),
                     Expanded(
                         child: Padding(
                             padding: leftPadding(PaddingType.small),
                             child: Text(card.note ?? '',
                                 softWrap: true,
-                                style: const TextStyle(
-                                    color: Colors.black54, fontSize: 12))))
+                                style: TextStyle(
+                                    color: foregroundColor, fontSize: 12))))
                   ])),
           ])),
     );

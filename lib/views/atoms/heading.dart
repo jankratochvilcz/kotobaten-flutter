@@ -28,10 +28,10 @@ FontWeight _getFontWeight(HeadingStyle style) {
   }
 }
 
-Color? _getColor(HeadingStyle style) {
+Color? _getColor(HeadingStyle style, BuildContext context) {
   switch (style) {
     case HeadingStyle.h3:
-      return descriptionColor;
+      return getDescriptionColor(context);
     default:
       return null;
   }
@@ -70,7 +70,7 @@ class Heading extends StatelessWidget {
         data,
         textAlign: textAlign,
         style: TextStyle(
-            color: _getColor(style),
+            color: _getColor(style, context),
             fontSize: fontSizeOverride ?? _getFontSize(style),
             fontWeight: fontWeightOverride ?? _getFontWeight(style)),
       ),

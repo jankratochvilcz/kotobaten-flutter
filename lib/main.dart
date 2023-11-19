@@ -48,6 +48,23 @@ class MyApp extends StatelessWidget {
     return (MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kotobaten',
+      darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: defaultFont,
+          colorScheme: const ColorScheme(
+              primary: Color(0xffBD0029),
+              secondary: Color(0xff554562),
+              onSurface: Color.fromARGB(255, 195, 195, 195),
+              background: Color(0xffffffff),
+              brightness: Brightness.dark,
+              error: Color(0xffFFDDDD),
+              onBackground: Color(0xff333333),
+              onError: Color(0xff6C0000),
+              onPrimary: Color(0xffffffff),
+              onSecondary: Color(0xffffffff),
+              primaryContainer: Color(0xff9E0022),
+              secondaryContainer: Color(0xff352B3D),
+              surface: Color(0xffffffff))),
       theme: ThemeData(
           fontFamily: defaultFont,
           colorScheme: const ColorScheme(
@@ -59,12 +76,13 @@ class MyApp extends StatelessWidget {
               error: Color(0xffFFDDDD),
               onBackground: Color(0xff333333),
               onError: Color(0xff6C0000),
-              onPrimary: Color(0xffffffff),
-              onSecondary: Color(0xffffffff),
+              onPrimary: Color.fromARGB(255, 255, 255, 255),
+              onSecondary: Color.fromARGB(255, 0, 0, 0),
               primaryContainer: Color(0xff9E0022),
               secondaryContainer: Color(0xff352B3D),
               surface: Color(0xffffffff))),
       initialRoute: homeRoute,
+      themeMode: ThemeMode.system,
       routes: {
         homeRoute: (_) => HomeView(),
         loginRoute: (_) => const LoginView(),

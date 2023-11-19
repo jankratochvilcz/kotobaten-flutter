@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/views/molecules/progress_bar_painter.dart';
 
 const width = 300.0;
@@ -61,16 +62,15 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
     }
 
     return CustomPaint(
-      size: const Size(width, height),
-      painter: ProgressBarPainter(
-          _currentlyRenderedValue +
-              (_currentAnimationProgress *
-                  (widget.currentValue - _currentlyRenderedValue)),
-          width,
-          height,
-          Theme.of(context).scaffoldBackgroundColor,
-          Theme.of(context).colorScheme.secondary,
-          const Color.fromARGB(16, 0, 0, 0)),
-    );
+        size: const Size(width, height),
+        painter: ProgressBarPainter(
+            _currentlyRenderedValue +
+                (_currentAnimationProgress *
+                    (widget.currentValue - _currentlyRenderedValue)),
+            width,
+            height,
+            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).colorScheme.secondary,
+            getDescriptionColorSubtle(context)));
   }
 }

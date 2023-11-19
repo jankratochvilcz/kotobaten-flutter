@@ -123,7 +123,9 @@ class PracticeView extends HookConsumerWidget {
 
       final cards = getBackgroundCards(
           getBackgroundCardsCount(impressionViewType, cardsRemaining),
-          Theme.of(context).scaffoldBackgroundColor);
+          Theme.of(context).brightness == Brightness.light
+              ? Theme.of(context).scaffoldBackgroundColor
+              : Colors.white12);
 
       var currentImpressionInSwitcher = AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),

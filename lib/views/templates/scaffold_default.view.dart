@@ -22,7 +22,7 @@ class HelpMenuItem extends StatelessWidget {
         Padding(
             child: Icon(
               icon,
-              color: Colors.black54,
+              color: getDescriptionColor(context),
             ),
             padding: rightPadding(PaddingType.large)),
         Text(label)

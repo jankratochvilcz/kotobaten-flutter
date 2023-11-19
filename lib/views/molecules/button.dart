@@ -91,6 +91,18 @@ class Button extends ConsumerWidget {
     final platform =
         ref.watch(appConfigurationProvider.select((value) => value.platform));
 
+    final secondaryForeground = Theme.of(context).colorScheme.onSecondary;
+
+    var shortcutForegroundLight =
+        type == ButtonType.primary ? Colors.white24 : Colors.black26;
+
+    var shortcutForegroundDark =
+        type == ButtonType.primary ? Colors.white24 : Colors.white38;
+
+    var shortcutColor = Theme.of(context).brightness == Brightness.light
+        ? shortcutForegroundLight
+        : shortcutForegroundDark;
+
     final buttonContents = Container(
         width: size == ButtonSize.big ? 220 : null,
         padding: size != ButtonSize.big && !noPadding
@@ -110,7 +122,7 @@ class Button extends ConsumerWidget {
                                 ? smallButtonSize
                                 : null,
                             color: type == ButtonType.secondary
-                                ? Colors.black54
+                                ? secondaryForeground
                                 : null,
                           )
                         : null),
@@ -122,7 +134,9 @@ class Button extends ConsumerWidget {
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: size == ButtonSize.small ? smallButtonSize : null,
-                  color: type == ButtonType.secondary ? Colors.black54 : null),
+                  color: type == ButtonType.secondary
+                      ? secondaryForeground
+                      : null),
             ),
             if (shortcut != null &&
                 platform.toDeviceType() == DeviceType.desktop)
@@ -133,9 +147,7 @@ class Button extends ConsumerWidget {
                       fontSize:
                           size == ButtonSize.small ? smallButtonSize : null,
                       fontWeight: FontWeight.w400,
-                      color: type == ButtonType.primary
-                          ? Colors.white24
-                          : Colors.black26),
+                      color: shortcutColor),
                 ),
                 padding: leftPadding(PaddingType.small),
               )

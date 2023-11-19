@@ -11,6 +11,7 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) => Text(
         data,
         textAlign: textAlign,
-        style: TextStyle(color: descriptionColor, fontStyle: FontStyle.italic),
+        style: TextStyle(
+            color: getDescriptionColor(context), fontStyle: FontStyle.italic),
       );
 }

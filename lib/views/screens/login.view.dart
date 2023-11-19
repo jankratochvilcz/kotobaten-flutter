@@ -63,7 +63,7 @@ class LoginView extends HookConsumerWidget {
       });
     }
 
-    final descriptionStyle = TextStyle(color: descriptionColor);
+    final descriptionStyle = TextStyle(color: descriptionColorLightTheme);
 
     const inputConstraints = BoxConstraints(maxWidth: 400);
 
@@ -152,15 +152,15 @@ class LoginView extends HookConsumerWidget {
                               style: descriptionStyle),
                           TextSpanFactory.link('Terms of Service',
                               Uri.https('kotobaten.app', 'terms'), context,
-                              color: descriptionColor),
+                              color: descriptionColorLightTheme),
                           TextSpan(text: ', ', style: descriptionStyle),
                           TextSpanFactory.link('Privacy Policy',
                               Uri.https('kotobaten.app', 'privacy'), context,
-                              color: descriptionColor),
+                              color: descriptionColorLightTheme),
                           TextSpan(text: ', and ', style: descriptionStyle),
                           TextSpanFactory.link('Cookie Policy',
                               Uri.https('kotobaten.app', 'cookies'), context,
-                              color: descriptionColor)
+                              color: descriptionColorLightTheme)
                         ], textAlign: TextAlign.center))
                 ],
               ))),

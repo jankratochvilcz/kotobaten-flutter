@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:kotobaten/extensions/color.dart';
 
 Color monthlyProgressColor(BuildContext context) =>
-    Theme.of(context).colorScheme.secondary.darken(0.05);
+    Theme.of(context).brightness == Brightness.light
+        ? Theme.of(context).colorScheme.secondary.darken(0.05)
+        : Theme.of(context).colorScheme.secondary.lighten(0.3);
 Color weeklyProgressColor(BuildContext context) =>
-    Theme.of(context).colorScheme.secondary.lighten(0.1);
+    Theme.of(context).brightness == Brightness.light
+        ? Theme.of(context).colorScheme.secondary.lighten(0.1)
+        : Theme.of(context).colorScheme.secondary.lighten(0.4);
 Color dailyProgressColor(BuildContext context) =>
-    Theme.of(context).colorScheme.secondary.lighten(0.3);
+    Theme.of(context).brightness == Brightness.light
+        ? Theme.of(context).colorScheme.secondary.lighten(0.3)
+        : Theme.of(context).colorScheme.secondary.lighten(0.5);
 
 Color successColor = Colors.amber.shade500;
 Color errorColor = Colors.red.shade500;
@@ -15,7 +21,20 @@ Color backgroundColor = const Color(0xFFFAFAFA);
 
 Color placeholderBackroundColor(Color color) => color.darken(0.03);
 
-Color descriptionColor = Colors.black54;
+Color descriptionColorLightTheme = Colors.black54;
+Color descriptionColorDarkTheme = Colors.white54;
+
+Color getDescriptionColor(BuildContext context) {
+  return Theme.of(context).brightness == Brightness.light
+      ? descriptionColorLightTheme
+      : descriptionColorDarkTheme;
+}
+
+Color getDescriptionColorSubtle(BuildContext context) {
+  return Theme.of(context).brightness == Brightness.light
+      ? Colors.black12
+      : Colors.white24;
+}
 
 final windowButtonColors = WindowButtonColors(
     iconNormal: Colors.white54,

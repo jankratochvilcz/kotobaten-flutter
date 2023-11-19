@@ -7,7 +7,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:timezone/data/latest_all.dart' as time_zone;
 import 'package:timezone/timezone.dart' as time_zone;
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 final notificationServiceProvider = Provider((ref) => NotificationService());
 
@@ -125,8 +124,8 @@ class NotificationService {
     }
 
     time_zone.initializeTimeZones();
-    final String? timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
-    time_zone.setLocalLocation(time_zone.getLocation(timeZoneName!));
+    // final String? timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
+    // time_zone.setLocalLocation(time_zone.getLocation(timeZoneName!));
   }
 
   InitializationSettings _getInitializationSettings() {

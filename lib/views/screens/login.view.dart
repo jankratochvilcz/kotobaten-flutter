@@ -63,8 +63,6 @@ class LoginView extends HookConsumerWidget {
       });
     }
 
-    final descriptionStyle = TextStyle(color: descriptionColorLightTheme);
-
     const inputConstraints = BoxConstraints(maxWidth: 400);
 
     final authResult =
@@ -149,18 +147,25 @@ class LoginView extends HookConsumerWidget {
                           TextSpan(
                               text:
                                   'By clicking Sign up, you\'re agreeing to the ',
-                              style: descriptionStyle),
+                              style: TextStyle(
+                                  color: getDescriptionColor(context))),
                           TextSpanFactory.link('Terms of Service',
                               Uri.https('kotobaten.app', 'terms'), context,
-                              color: descriptionColorLightTheme),
-                          TextSpan(text: ', ', style: descriptionStyle),
+                              color: getDescriptionColor(context)),
+                          TextSpan(
+                              text: ', ',
+                              style: TextStyle(
+                                  color: getDescriptionColor(context))),
                           TextSpanFactory.link('Privacy Policy',
                               Uri.https('kotobaten.app', 'privacy'), context,
-                              color: descriptionColorLightTheme),
-                          TextSpan(text: ', and ', style: descriptionStyle),
+                              color: getDescriptionColor(context)),
+                          TextSpan(
+                              text: ', and ',
+                              style: TextStyle(
+                                  color: getDescriptionColor(context))),
                           TextSpanFactory.link('Cookie Policy',
                               Uri.https('kotobaten.app', 'cookies'), context,
-                              color: descriptionColorLightTheme)
+                              color: getDescriptionColor(context))
                         ], textAlign: TextAlign.center))
                 ],
               ))),

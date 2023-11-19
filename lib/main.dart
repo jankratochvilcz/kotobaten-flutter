@@ -49,13 +49,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Kotobaten',
       darkTheme: ThemeData(
+          useMaterial3: false,
           brightness: Brightness.dark,
           fontFamily: defaultFont,
           colorScheme: const ColorScheme(
               primary: Color(0xffBD0029),
               secondary: Color(0xff554562),
               onSurface: Color.fromARGB(255, 195, 195, 195),
-              background: Color(0xffffffff),
+              background: Colors.black87,
               brightness: Brightness.dark,
               error: Color(0xffFFDDDD),
               onBackground: Color(0xff333333),
@@ -64,8 +65,9 @@ class MyApp extends StatelessWidget {
               onSecondary: Color(0xffffffff),
               primaryContainer: Color(0xff9E0022),
               secondaryContainer: Color(0xff352B3D),
-              surface: Color(0xffffffff))),
+              surface: Colors.black)),
       theme: ThemeData(
+          useMaterial3: false,
           fontFamily: defaultFont,
           colorScheme: const ColorScheme(
               primary: Color(0xffBD0029),

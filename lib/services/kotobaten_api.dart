@@ -11,6 +11,7 @@ import 'package:kotobaten/models/slices/auth/auth_model.dart';
 import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
 import 'package:kotobaten/models/slices/user/user_core.dart';
@@ -152,9 +153,15 @@ class KotobatenApiService {
     return UserGoals.fromJson(jsonDecode(body));
   }
 
-  Future<CardsResponse> getCards(int page, int pageSize) async {
-    final responseJson = await _getAuthenticated('cards',
-        params: {'pageSize': pageSize.toString(), 'page': page.toString()});
+  Future<CardsResponse> getCards(int page, int pageSize,
+      {CardType? type}) async {
+    final typeSerialized =
+        type != null ? (type == CardType.grammar ? "Grammar" : "Word") : null;
+    final responseJson = await _getAuthenticated('cards', params: {
+      'pageSize': pageSize.toString(),
+      'page': page.toString(),
+      'type': typeSerialized
+    });
 
     final result = CardsResponse.fromJson(responseJson);
 

@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
+import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -30,14 +31,15 @@ class CardsService {
   CardsService(this.apiService, this.cardsRepository, this.userService,
       this.practiceRepository, this.userRepository);
 
-  Future initialize() async {
+  Future initialize({CardType? type}) async {
     if (cardsRepository.current is CardsModelLoadingInitial) {
       return null;
     }
 
     cardsRepository.update(CardsModel.loadingInitial());
 
-    final firstBatch = await apiService.getCards(0, pageSize * initialPages);
+    final firstBatch =
+        await apiService.getCards(0, pageSize * initialPages, type: type);
     final result = CardsModel.initialized(
         firstBatch.cards, initialPages, false, firstBatch.hasMoreCards);
     cardsRepository.update(result);

@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
         homeRoute: (_) => HomeView(),
         loginRoute: (_) => const LoginView(),
         practiceRoute: (_) => const PracticeView(),
-        collectionRoute: (_) => const CollectionView(),
+        collectionRoute: (_) => CollectionView(),
         searchRoute: (_) => const SearchView(),
         settingsRoute: (_) => const SettingsView(),
         onboardingRoute: (_) => const OnboardingView(),

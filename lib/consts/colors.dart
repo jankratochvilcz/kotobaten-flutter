@@ -32,7 +32,7 @@ Color getDescriptionColor(BuildContext context) {
 
 Color getDescriptionColorSubtle(BuildContext context) {
   return Theme.of(context).brightness == Brightness.light
-      ? Colors.black12
+      ? Colors.black26
       : Colors.white24;
 }
 

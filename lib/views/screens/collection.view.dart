@@ -131,6 +131,7 @@ class CollectionView extends HookConsumerWidget {
         floatingActionButton: FloatingActionButton(
             tooltip: 'Add word',
             backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             onPressed: () => showWordAddBottomSheet(context, (card) async {
                   if (card is CardNew) {
                     return await cardsService.createCard(card);

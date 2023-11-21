@@ -16,7 +16,7 @@ class WindowingAppBar extends HookConsumerWidget
 
     if (configuration.platform == Platform.windows) {
       return AppBar(
-          iconTheme: const IconThemeData(color: Colors.black26),
+          iconTheme: IconThemeData(color: getDescriptionColorSubtle(context)),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
           actions: [
@@ -37,7 +37,7 @@ class WindowingAppBar extends HookConsumerWidget
 
     return AppBar(
       elevation: 0,
-      iconTheme: const IconThemeData(color: Colors.black26),
+      iconTheme: IconThemeData(color: getDescriptionColorSubtle(context)),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     );
   }

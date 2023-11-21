@@ -46,14 +46,17 @@ class ImpressionCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 if (furigana != null)
-                                  DescriptionRichText([
-                                    TextSpan(
-                                        text: furigana,
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color:
-                                                getDescriptionColor(context)))
-                                  ]),
+                                  DescriptionRichText(
+                                    [
+                                      TextSpan(
+                                          text: furigana,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color:
+                                                  getDescriptionColor(context)))
+                                    ],
+                                    textAlign: TextAlign.center,
+                                  ),
                                 Heading(
                                   text,
                                   HeadingStyle.h1,

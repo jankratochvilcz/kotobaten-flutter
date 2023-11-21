@@ -51,6 +51,7 @@ class WordAddTypeWord extends HookConsumerWidget {
       children: [
         TextFormField(
           controller: kanjiController,
+          autofocus: true,
           onChanged: (kanji) {
             fillInFurigana(kanji);
           },
@@ -103,7 +104,6 @@ class WordAddTypeWord extends HookConsumerWidget {
 
             return null;
           },
-          autofocus: true,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: 'Translation',

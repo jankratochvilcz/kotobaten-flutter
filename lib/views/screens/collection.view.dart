@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -49,16 +50,11 @@ class CollectionView extends HookConsumerWidget {
       final groups = groupBy<CardInitialized, DateTime>(cardsModel.cards,
           (x) => DateTime(x.created.year, x.created.month, x.created.day));
 
-      final cardsWithHeadings = groups.entries.fold<List<dynamic>>(
-        <dynamic>[],
-        (previous, current) => [...previous, current.key, ...current.value],
-      );
-
       return ScaffoldDefault(
         ListView.builder(
-            itemCount: cardsWithHeadings.length + 1,
+            itemCount: groups.length + 1,
             itemBuilder: (context, index) {
-              if (index == cardsWithHeadings.length) {
+              if (index == groups.length) {
                 if (!cardsModel.loadingNextPage && cardsModel.hasMoreCards) {
                   Future.microtask(() => cardsService.loadMoreCards());
                 }
@@ -73,60 +69,67 @@ class CollectionView extends HookConsumerWidget {
                 return const Empty();
               }
 
-              final current = cardsWithHeadings[index];
+              final isFirst = index == 0;
+              final group = groups.entries.toList()[index];
+              final date = group.key;
+              final cards = group.value;
 
-              if (current is CardInitialized) {
-                return WordCard(current);
-              }
-
-              if (current is DateTime) {
-                final isFirst = index == 0;
-                return Center(
+              return Column(children: [
+                Center(
                   child: Padding(
                     padding: allPadding(PaddingType.xLarge),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    child: Stack(
                       children: [
-                        Expanded(
+                        Align(
+                            alignment: Alignment.center,
                             child: Heading(
-                                current
+                                date
                                     .getRelativeToNowString(DateTime.now())
                                     .capitalize(),
                                 HeadingStyle.h2)),
                         if (isFirst)
-                          DropdownButton<String>(
-                            items: cardTypes.map((value) {
-                              return DropdownMenuItem<String>(
-                                value: value['value'],
-                                child: Text(value['title'] as String),
-                              );
-                            }).toList(),
-                            value: currentCardType.value,
-                            onChanged: (String? newValue) {
-                              switch (newValue) {
-                                case "0":
-                                  Future.microtask(() => cardsService
-                                      .initialize(type: CardType.word));
-                                  break;
-                                case "1":
-                                  Future.microtask(() => cardsService
-                                      .initialize(type: CardType.grammar));
-                                  break;
-                                default:
-                                  Future.microtask(
-                                      () => cardsService.initialize());
-                              }
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: DropdownButton<String>(
+                                items: cardTypes.map((value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value['value'],
+                                    child: Text(value['title'] as String),
+                                  );
+                                }).toList(),
+                                value: currentCardType.value,
+                                onChanged: (String? newValue) {
+                                  switch (newValue) {
+                                    case "0":
+                                      Future.microtask(() => cardsService
+                                          .initialize(type: CardType.word));
+                                      break;
+                                    case "1":
+                                      Future.microtask(() => cardsService
+                                          .initialize(type: CardType.grammar));
+                                      break;
+                                    default:
+                                      Future.microtask(
+                                          () => cardsService.initialize());
+                                  }
 
-                              currentCardType.value = newValue;
-                            },
-                          ),
+                                  currentCardType.value = newValue;
+                                },
+                              )),
                       ],
                     ),
                   ),
-                );
-              }
-
-              throw ErrorDescription("Invalid object type in collection list");
+                ),
+                Wrap(
+                  direction: Axis.horizontal,
+                  children: cards
+                      .map((card) => ConstrainedBox(
+                          constraints: const BoxConstraints(
+                              maxWidth: 500, maxHeight: 158, minHeight: 158),
+                          child: WordCard(card)))
+                      .toList(),
+                )
+              ]);
             }),
         floatingActionButton: FloatingActionButton(
             tooltip: 'Add word',

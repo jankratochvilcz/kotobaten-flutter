@@ -186,6 +186,15 @@ class KotobatenApiService {
     await _postJson('hideOnboarding', {});
   }
 
+  Future<List<String>> getFurigana(String kanji) async {
+    final url =
+        _getUrl(_appConfiguration.apiRoot, 'furigana', {'kanji': kanji});
+    final headers = await _getTokenHeadersOrThrow();
+    final response = await _kotobatenClient.get(url, headers: headers);
+    final body = utf8.decode(response.bodyBytes);
+    return List<String>.from(jsonDecode(body));
+  }
+
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
     final url = _getUrl(_appConfiguration.apiRoot, relativePath, params);

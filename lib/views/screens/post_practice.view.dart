@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/extensions/iterable.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -43,7 +44,11 @@ class PostPracticeView extends HookConsumerWidget {
                     if (index == 0) {
                       return Column(children: [
                         Padding(
-                            padding: verticalPadding(PaddingType.xxxLarge),
+                            padding: verticalPadding(
+                                MediaQuery.of(context).size.width >=
+                                        minimumDesktopSize
+                                    ? PaddingType.xxxLarge
+                                    : PaddingType.xxLarge),
                             child: CardLearn(
                               userModel.user,
                               goToPractice,

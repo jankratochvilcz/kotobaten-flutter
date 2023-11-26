@@ -124,25 +124,25 @@ class _$PracticeModelCopyWithImpl<$Res, $Val extends PracticeModel>
 }
 
 /// @nodoc
-abstract class _$$PracticeModelInitialCopyWith<$Res> {
-  factory _$$PracticeModelInitialCopyWith(_$PracticeModelInitial value,
-          $Res Function(_$PracticeModelInitial) then) =
-      __$$PracticeModelInitialCopyWithImpl<$Res>;
+abstract class _$$PracticeModelInitialImplCopyWith<$Res> {
+  factory _$$PracticeModelInitialImplCopyWith(_$PracticeModelInitialImpl value,
+          $Res Function(_$PracticeModelInitialImpl) then) =
+      __$$PracticeModelInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PracticeModelInitialCopyWithImpl<$Res>
-    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelInitial>
-    implements _$$PracticeModelInitialCopyWith<$Res> {
-  __$$PracticeModelInitialCopyWithImpl(_$PracticeModelInitial _value,
-      $Res Function(_$PracticeModelInitial) _then)
+class __$$PracticeModelInitialImplCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelInitialImpl>
+    implements _$$PracticeModelInitialImplCopyWith<$Res> {
+  __$$PracticeModelInitialImplCopyWithImpl(_$PracticeModelInitialImpl _value,
+      $Res Function(_$PracticeModelInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$PracticeModelInitial extends PracticeModelInitial {
-  const _$PracticeModelInitial() : super._();
+class _$PracticeModelInitialImpl extends PracticeModelInitial {
+  const _$PracticeModelInitialImpl() : super._();
 
   @override
   String toString() {
@@ -152,7 +152,8 @@ class _$PracticeModelInitial extends PracticeModelInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PracticeModelInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$PracticeModelInitialImpl);
   }
 
   @override
@@ -271,30 +272,30 @@ class _$PracticeModelInitial extends PracticeModelInitial {
 }
 
 abstract class PracticeModelInitial extends PracticeModel {
-  const factory PracticeModelInitial() = _$PracticeModelInitial;
+  const factory PracticeModelInitial() = _$PracticeModelInitialImpl;
   const PracticeModelInitial._() : super._();
 }
 
 /// @nodoc
-abstract class _$$PracticeModelLoadingCopyWith<$Res> {
-  factory _$$PracticeModelLoadingCopyWith(_$PracticeModelLoading value,
-          $Res Function(_$PracticeModelLoading) then) =
-      __$$PracticeModelLoadingCopyWithImpl<$Res>;
+abstract class _$$PracticeModelLoadingImplCopyWith<$Res> {
+  factory _$$PracticeModelLoadingImplCopyWith(_$PracticeModelLoadingImpl value,
+          $Res Function(_$PracticeModelLoadingImpl) then) =
+      __$$PracticeModelLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PracticeModelLoadingCopyWithImpl<$Res>
-    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelLoading>
-    implements _$$PracticeModelLoadingCopyWith<$Res> {
-  __$$PracticeModelLoadingCopyWithImpl(_$PracticeModelLoading _value,
-      $Res Function(_$PracticeModelLoading) _then)
+class __$$PracticeModelLoadingImplCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelLoadingImpl>
+    implements _$$PracticeModelLoadingImplCopyWith<$Res> {
+  __$$PracticeModelLoadingImplCopyWithImpl(_$PracticeModelLoadingImpl _value,
+      $Res Function(_$PracticeModelLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$PracticeModelLoading extends PracticeModelLoading {
-  const _$PracticeModelLoading() : super._();
+class _$PracticeModelLoadingImpl extends PracticeModelLoading {
+  const _$PracticeModelLoadingImpl() : super._();
 
   @override
   String toString() {
@@ -304,7 +305,8 @@ class _$PracticeModelLoading extends PracticeModelLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PracticeModelLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$PracticeModelLoadingImpl);
   }
 
   @override
@@ -423,25 +425,25 @@ class _$PracticeModelLoading extends PracticeModelLoading {
 }
 
 abstract class PracticeModelLoading extends PracticeModel {
-  const factory PracticeModelLoading() = _$PracticeModelLoading;
+  const factory PracticeModelLoading() = _$PracticeModelLoadingImpl;
   const PracticeModelLoading._() : super._();
 }
 
 /// @nodoc
-abstract class _$$PracticeModelErrorCopyWith<$Res> {
-  factory _$$PracticeModelErrorCopyWith(_$PracticeModelError value,
-          $Res Function(_$PracticeModelError) then) =
-      __$$PracticeModelErrorCopyWithImpl<$Res>;
+abstract class _$$PracticeModelErrorImplCopyWith<$Res> {
+  factory _$$PracticeModelErrorImplCopyWith(_$PracticeModelErrorImpl value,
+          $Res Function(_$PracticeModelErrorImpl) then) =
+      __$$PracticeModelErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$PracticeModelErrorCopyWithImpl<$Res>
-    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelError>
-    implements _$$PracticeModelErrorCopyWith<$Res> {
-  __$$PracticeModelErrorCopyWithImpl(
-      _$PracticeModelError _value, $Res Function(_$PracticeModelError) _then)
+class __$$PracticeModelErrorImplCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelErrorImpl>
+    implements _$$PracticeModelErrorImplCopyWith<$Res> {
+  __$$PracticeModelErrorImplCopyWithImpl(_$PracticeModelErrorImpl _value,
+      $Res Function(_$PracticeModelErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -449,7 +451,7 @@ class __$$PracticeModelErrorCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$PracticeModelError(
+    return _then(_$PracticeModelErrorImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -460,8 +462,8 @@ class __$$PracticeModelErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PracticeModelError extends PracticeModelError {
-  const _$PracticeModelError(this.error) : super._();
+class _$PracticeModelErrorImpl extends PracticeModelError {
+  const _$PracticeModelErrorImpl(this.error) : super._();
 
   @override
   final String error;
@@ -475,7 +477,7 @@ class _$PracticeModelError extends PracticeModelError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PracticeModelError &&
+            other is _$PracticeModelErrorImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -485,8 +487,8 @@ class _$PracticeModelError extends PracticeModelError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PracticeModelErrorCopyWith<_$PracticeModelError> get copyWith =>
-      __$$PracticeModelErrorCopyWithImpl<_$PracticeModelError>(
+  _$$PracticeModelErrorImplCopyWith<_$PracticeModelErrorImpl> get copyWith =>
+      __$$PracticeModelErrorImplCopyWithImpl<_$PracticeModelErrorImpl>(
           this, _$identity);
 
   @override
@@ -602,30 +604,32 @@ class _$PracticeModelError extends PracticeModelError {
 }
 
 abstract class PracticeModelError extends PracticeModel {
-  const factory PracticeModelError(final String error) = _$PracticeModelError;
+  const factory PracticeModelError(final String error) =
+      _$PracticeModelErrorImpl;
   const PracticeModelError._() : super._();
 
   String get error;
   @JsonKey(ignore: true)
-  _$$PracticeModelErrorCopyWith<_$PracticeModelError> get copyWith =>
+  _$$PracticeModelErrorImplCopyWith<_$PracticeModelErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PracticeModelFinishedCopyWith<$Res> {
-  factory _$$PracticeModelFinishedCopyWith(_$PracticeModelFinished value,
-          $Res Function(_$PracticeModelFinished) then) =
-      __$$PracticeModelFinishedCopyWithImpl<$Res>;
+abstract class _$$PracticeModelFinishedImplCopyWith<$Res> {
+  factory _$$PracticeModelFinishedImplCopyWith(
+          _$PracticeModelFinishedImpl value,
+          $Res Function(_$PracticeModelFinishedImpl) then) =
+      __$$PracticeModelFinishedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Impression> allImpressions, bool? navigatedAway});
 }
 
 /// @nodoc
-class __$$PracticeModelFinishedCopyWithImpl<$Res>
-    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelFinished>
-    implements _$$PracticeModelFinishedCopyWith<$Res> {
-  __$$PracticeModelFinishedCopyWithImpl(_$PracticeModelFinished _value,
-      $Res Function(_$PracticeModelFinished) _then)
+class __$$PracticeModelFinishedImplCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelFinishedImpl>
+    implements _$$PracticeModelFinishedImplCopyWith<$Res> {
+  __$$PracticeModelFinishedImplCopyWithImpl(_$PracticeModelFinishedImpl _value,
+      $Res Function(_$PracticeModelFinishedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -634,7 +638,7 @@ class __$$PracticeModelFinishedCopyWithImpl<$Res>
     Object? allImpressions = null,
     Object? navigatedAway = freezed,
   }) {
-    return _then(_$PracticeModelFinished(
+    return _then(_$PracticeModelFinishedImpl(
       null == allImpressions
           ? _value._allImpressions
           : allImpressions // ignore: cast_nullable_to_non_nullable
@@ -649,8 +653,8 @@ class __$$PracticeModelFinishedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PracticeModelFinished extends PracticeModelFinished {
-  const _$PracticeModelFinished(final List<Impression> allImpressions,
+class _$PracticeModelFinishedImpl extends PracticeModelFinished {
+  const _$PracticeModelFinishedImpl(final List<Impression> allImpressions,
       {this.navigatedAway})
       : _allImpressions = allImpressions,
         super._();
@@ -675,7 +679,7 @@ class _$PracticeModelFinished extends PracticeModelFinished {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PracticeModelFinished &&
+            other is _$PracticeModelFinishedImpl &&
             const DeepCollectionEquality()
                 .equals(other._allImpressions, _allImpressions) &&
             (identical(other.navigatedAway, navigatedAway) ||
@@ -689,9 +693,9 @@ class _$PracticeModelFinished extends PracticeModelFinished {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PracticeModelFinishedCopyWith<_$PracticeModelFinished> get copyWith =>
-      __$$PracticeModelFinishedCopyWithImpl<_$PracticeModelFinished>(
-          this, _$identity);
+  _$$PracticeModelFinishedImplCopyWith<_$PracticeModelFinishedImpl>
+      get copyWith => __$$PracticeModelFinishedImplCopyWithImpl<
+          _$PracticeModelFinishedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -807,21 +811,22 @@ class _$PracticeModelFinished extends PracticeModelFinished {
 
 abstract class PracticeModelFinished extends PracticeModel {
   const factory PracticeModelFinished(final List<Impression> allImpressions,
-      {final bool? navigatedAway}) = _$PracticeModelFinished;
+      {final bool? navigatedAway}) = _$PracticeModelFinishedImpl;
   const PracticeModelFinished._() : super._();
 
   List<Impression> get allImpressions;
   bool? get navigatedAway;
   @JsonKey(ignore: true)
-  _$$PracticeModelFinishedCopyWith<_$PracticeModelFinished> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PracticeModelFinishedImplCopyWith<_$PracticeModelFinishedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PracticeModelInProgressCopyWith<$Res> {
-  factory _$$PracticeModelInProgressCopyWith(_$PracticeModelInProgress value,
-          $Res Function(_$PracticeModelInProgress) then) =
-      __$$PracticeModelInProgressCopyWithImpl<$Res>;
+abstract class _$$PracticeModelInProgressImplCopyWith<$Res> {
+  factory _$$PracticeModelInProgressImplCopyWith(
+          _$PracticeModelInProgressImpl value,
+          $Res Function(_$PracticeModelInProgressImpl) then) =
+      __$$PracticeModelInProgressImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<Impression> allImpressions,
@@ -837,11 +842,12 @@ abstract class _$$PracticeModelInProgressCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$PracticeModelInProgressCopyWithImpl<$Res>
-    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelInProgress>
-    implements _$$PracticeModelInProgressCopyWith<$Res> {
-  __$$PracticeModelInProgressCopyWithImpl(_$PracticeModelInProgress _value,
-      $Res Function(_$PracticeModelInProgress) _then)
+class __$$PracticeModelInProgressImplCopyWithImpl<$Res>
+    extends _$PracticeModelCopyWithImpl<$Res, _$PracticeModelInProgressImpl>
+    implements _$$PracticeModelInProgressImplCopyWith<$Res> {
+  __$$PracticeModelInProgressImplCopyWithImpl(
+      _$PracticeModelInProgressImpl _value,
+      $Res Function(_$PracticeModelInProgressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -856,7 +862,7 @@ class __$$PracticeModelInProgressCopyWithImpl<$Res>
     Object? currentStepStart = freezed,
     Object? pausedPercentage = freezed,
   }) {
-    return _then(_$PracticeModelInProgress(
+    return _then(_$PracticeModelInProgressImpl(
       null == allImpressions
           ? _value._allImpressions
           : allImpressions // ignore: cast_nullable_to_non_nullable
@@ -903,8 +909,8 @@ class __$$PracticeModelInProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PracticeModelInProgress extends PracticeModelInProgress {
-  const _$PracticeModelInProgress(
+class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
+  const _$PracticeModelInProgressImpl(
       final List<Impression> allImpressions,
       final List<Impression> remainingImpressions,
       this.currentImpression,
@@ -956,7 +962,7 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PracticeModelInProgress &&
+            other is _$PracticeModelInProgressImpl &&
             const DeepCollectionEquality()
                 .equals(other._allImpressions, _allImpressions) &&
             const DeepCollectionEquality()
@@ -990,9 +996,9 @@ class _$PracticeModelInProgress extends PracticeModelInProgress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PracticeModelInProgressCopyWith<_$PracticeModelInProgress> get copyWith =>
-      __$$PracticeModelInProgressCopyWithImpl<_$PracticeModelInProgress>(
-          this, _$identity);
+  _$$PracticeModelInProgressImplCopyWith<_$PracticeModelInProgressImpl>
+      get copyWith => __$$PracticeModelInProgressImplCopyWithImpl<
+          _$PracticeModelInProgressImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1139,7 +1145,7 @@ abstract class PracticeModelInProgress extends PracticeModel {
       final bool speechPlayed,
       {final DateTime? nextStepTime,
       final DateTime? currentStepStart,
-      final double? pausedPercentage}) = _$PracticeModelInProgress;
+      final double? pausedPercentage}) = _$PracticeModelInProgressImpl;
   const PracticeModelInProgress._() : super._();
 
   List<Impression> get allImpressions;
@@ -1151,6 +1157,6 @@ abstract class PracticeModelInProgress extends PracticeModel {
   DateTime? get currentStepStart;
   double? get pausedPercentage;
   @JsonKey(ignore: true)
-  _$$PracticeModelInProgressCopyWith<_$PracticeModelInProgress> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PracticeModelInProgressImplCopyWith<_$PracticeModelInProgressImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

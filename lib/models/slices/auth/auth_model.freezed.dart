@@ -86,25 +86,25 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
 }
 
 /// @nodoc
-abstract class _$$AuthModelInitialCopyWith<$Res> {
-  factory _$$AuthModelInitialCopyWith(
-          _$AuthModelInitial value, $Res Function(_$AuthModelInitial) then) =
-      __$$AuthModelInitialCopyWithImpl<$Res>;
+abstract class _$$AuthModelInitialImplCopyWith<$Res> {
+  factory _$$AuthModelInitialImplCopyWith(_$AuthModelInitialImpl value,
+          $Res Function(_$AuthModelInitialImpl) then) =
+      __$$AuthModelInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthModelInitialCopyWithImpl<$Res>
-    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelInitial>
-    implements _$$AuthModelInitialCopyWith<$Res> {
-  __$$AuthModelInitialCopyWithImpl(
-      _$AuthModelInitial _value, $Res Function(_$AuthModelInitial) _then)
+class __$$AuthModelInitialImplCopyWithImpl<$Res>
+    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelInitialImpl>
+    implements _$$AuthModelInitialImplCopyWith<$Res> {
+  __$$AuthModelInitialImplCopyWithImpl(_$AuthModelInitialImpl _value,
+      $Res Function(_$AuthModelInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthModelInitial implements AuthModelInitial {
-  _$AuthModelInitial();
+class _$AuthModelInitialImpl implements AuthModelInitial {
+  _$AuthModelInitialImpl();
 
   @override
   String toString() {
@@ -114,7 +114,7 @@ class _$AuthModelInitial implements AuthModelInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthModelInitial);
+        (other.runtimeType == runtimeType && other is _$AuthModelInitialImpl);
   }
 
   @override
@@ -196,29 +196,31 @@ class _$AuthModelInitial implements AuthModelInitial {
 }
 
 abstract class AuthModelInitial implements AuthModel {
-  factory AuthModelInitial() = _$AuthModelInitial;
+  factory AuthModelInitial() = _$AuthModelInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthModelUnauthenticatedCopyWith<$Res> {
-  factory _$$AuthModelUnauthenticatedCopyWith(_$AuthModelUnauthenticated value,
-          $Res Function(_$AuthModelUnauthenticated) then) =
-      __$$AuthModelUnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthModelUnauthenticatedImplCopyWith<$Res> {
+  factory _$$AuthModelUnauthenticatedImplCopyWith(
+          _$AuthModelUnauthenticatedImpl value,
+          $Res Function(_$AuthModelUnauthenticatedImpl) then) =
+      __$$AuthModelUnauthenticatedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthModelUnauthenticatedCopyWithImpl<$Res>
-    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelUnauthenticated>
-    implements _$$AuthModelUnauthenticatedCopyWith<$Res> {
-  __$$AuthModelUnauthenticatedCopyWithImpl(_$AuthModelUnauthenticated _value,
-      $Res Function(_$AuthModelUnauthenticated) _then)
+class __$$AuthModelUnauthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelUnauthenticatedImpl>
+    implements _$$AuthModelUnauthenticatedImplCopyWith<$Res> {
+  __$$AuthModelUnauthenticatedImplCopyWithImpl(
+      _$AuthModelUnauthenticatedImpl _value,
+      $Res Function(_$AuthModelUnauthenticatedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthModelUnauthenticated implements AuthModelUnauthenticated {
-  _$AuthModelUnauthenticated();
+class _$AuthModelUnauthenticatedImpl implements AuthModelUnauthenticated {
+  _$AuthModelUnauthenticatedImpl();
 
   @override
   String toString() {
@@ -229,7 +231,7 @@ class _$AuthModelUnauthenticated implements AuthModelUnauthenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthModelUnauthenticated);
+            other is _$AuthModelUnauthenticatedImpl);
   }
 
   @override
@@ -311,29 +313,31 @@ class _$AuthModelUnauthenticated implements AuthModelUnauthenticated {
 }
 
 abstract class AuthModelUnauthenticated implements AuthModel {
-  factory AuthModelUnauthenticated() = _$AuthModelUnauthenticated;
+  factory AuthModelUnauthenticated() = _$AuthModelUnauthenticatedImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthModelAuthenticatingCopyWith<$Res> {
-  factory _$$AuthModelAuthenticatingCopyWith(_$AuthModelAuthenticating value,
-          $Res Function(_$AuthModelAuthenticating) then) =
-      __$$AuthModelAuthenticatingCopyWithImpl<$Res>;
+abstract class _$$AuthModelAuthenticatingImplCopyWith<$Res> {
+  factory _$$AuthModelAuthenticatingImplCopyWith(
+          _$AuthModelAuthenticatingImpl value,
+          $Res Function(_$AuthModelAuthenticatingImpl) then) =
+      __$$AuthModelAuthenticatingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthModelAuthenticatingCopyWithImpl<$Res>
-    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelAuthenticating>
-    implements _$$AuthModelAuthenticatingCopyWith<$Res> {
-  __$$AuthModelAuthenticatingCopyWithImpl(_$AuthModelAuthenticating _value,
-      $Res Function(_$AuthModelAuthenticating) _then)
+class __$$AuthModelAuthenticatingImplCopyWithImpl<$Res>
+    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelAuthenticatingImpl>
+    implements _$$AuthModelAuthenticatingImplCopyWith<$Res> {
+  __$$AuthModelAuthenticatingImplCopyWithImpl(
+      _$AuthModelAuthenticatingImpl _value,
+      $Res Function(_$AuthModelAuthenticatingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthModelAuthenticating implements AuthModelAuthenticating {
-  _$AuthModelAuthenticating();
+class _$AuthModelAuthenticatingImpl implements AuthModelAuthenticating {
+  _$AuthModelAuthenticatingImpl();
 
   @override
   String toString() {
@@ -344,7 +348,7 @@ class _$AuthModelAuthenticating implements AuthModelAuthenticating {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthModelAuthenticating);
+            other is _$AuthModelAuthenticatingImpl);
   }
 
   @override
@@ -426,14 +430,15 @@ class _$AuthModelAuthenticating implements AuthModelAuthenticating {
 }
 
 abstract class AuthModelAuthenticating implements AuthModel {
-  factory AuthModelAuthenticating() = _$AuthModelAuthenticating;
+  factory AuthModelAuthenticating() = _$AuthModelAuthenticatingImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthModelAuthenticatedCopyWith<$Res> {
-  factory _$$AuthModelAuthenticatedCopyWith(_$AuthModelAuthenticated value,
-          $Res Function(_$AuthModelAuthenticated) then) =
-      __$$AuthModelAuthenticatedCopyWithImpl<$Res>;
+abstract class _$$AuthModelAuthenticatedImplCopyWith<$Res> {
+  factory _$$AuthModelAuthenticatedImplCopyWith(
+          _$AuthModelAuthenticatedImpl value,
+          $Res Function(_$AuthModelAuthenticatedImpl) then) =
+      __$$AuthModelAuthenticatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AuthResult result});
 
@@ -441,11 +446,12 @@ abstract class _$$AuthModelAuthenticatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$AuthModelAuthenticatedCopyWithImpl<$Res>
-    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelAuthenticated>
-    implements _$$AuthModelAuthenticatedCopyWith<$Res> {
-  __$$AuthModelAuthenticatedCopyWithImpl(_$AuthModelAuthenticated _value,
-      $Res Function(_$AuthModelAuthenticated) _then)
+class __$$AuthModelAuthenticatedImplCopyWithImpl<$Res>
+    extends _$AuthModelCopyWithImpl<$Res, _$AuthModelAuthenticatedImpl>
+    implements _$$AuthModelAuthenticatedImplCopyWith<$Res> {
+  __$$AuthModelAuthenticatedImplCopyWithImpl(
+      _$AuthModelAuthenticatedImpl _value,
+      $Res Function(_$AuthModelAuthenticatedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -453,7 +459,7 @@ class __$$AuthModelAuthenticatedCopyWithImpl<$Res>
   $Res call({
     Object? result = null,
   }) {
-    return _then(_$AuthModelAuthenticated(
+    return _then(_$AuthModelAuthenticatedImpl(
       null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -472,8 +478,8 @@ class __$$AuthModelAuthenticatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthModelAuthenticated implements AuthModelAuthenticated {
-  _$AuthModelAuthenticated(this.result);
+class _$AuthModelAuthenticatedImpl implements AuthModelAuthenticated {
+  _$AuthModelAuthenticatedImpl(this.result);
 
   @override
   final AuthResult result;
@@ -487,7 +493,7 @@ class _$AuthModelAuthenticated implements AuthModelAuthenticated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthModelAuthenticated &&
+            other is _$AuthModelAuthenticatedImpl &&
             (identical(other.result, result) || other.result == result));
   }
 
@@ -497,9 +503,9 @@ class _$AuthModelAuthenticated implements AuthModelAuthenticated {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthModelAuthenticatedCopyWith<_$AuthModelAuthenticated> get copyWith =>
-      __$$AuthModelAuthenticatedCopyWithImpl<_$AuthModelAuthenticated>(
-          this, _$identity);
+  _$$AuthModelAuthenticatedImplCopyWith<_$AuthModelAuthenticatedImpl>
+      get copyWith => __$$AuthModelAuthenticatedImplCopyWithImpl<
+          _$AuthModelAuthenticatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -578,10 +584,10 @@ class _$AuthModelAuthenticated implements AuthModelAuthenticated {
 
 abstract class AuthModelAuthenticated implements AuthModel {
   factory AuthModelAuthenticated(final AuthResult result) =
-      _$AuthModelAuthenticated;
+      _$AuthModelAuthenticatedImpl;
 
   AuthResult get result;
   @JsonKey(ignore: true)
-  _$$AuthModelAuthenticatedCopyWith<_$AuthModelAuthenticated> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$AuthModelAuthenticatedImplCopyWith<_$AuthModelAuthenticatedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

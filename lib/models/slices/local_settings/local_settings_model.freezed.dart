@@ -76,26 +76,27 @@ class _$LocalSettingsCopyWithImpl<$Res, $Val extends LocalSettings>
 }
 
 /// @nodoc
-abstract class _$$LocalSettingsModelInitialCopyWith<$Res> {
-  factory _$$LocalSettingsModelInitialCopyWith(
-          _$LocalSettingsModelInitial value,
-          $Res Function(_$LocalSettingsModelInitial) then) =
-      __$$LocalSettingsModelInitialCopyWithImpl<$Res>;
+abstract class _$$LocalSettingsModelInitialImplCopyWith<$Res> {
+  factory _$$LocalSettingsModelInitialImplCopyWith(
+          _$LocalSettingsModelInitialImpl value,
+          $Res Function(_$LocalSettingsModelInitialImpl) then) =
+      __$$LocalSettingsModelInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LocalSettingsModelInitialCopyWithImpl<$Res>
-    extends _$LocalSettingsCopyWithImpl<$Res, _$LocalSettingsModelInitial>
-    implements _$$LocalSettingsModelInitialCopyWith<$Res> {
-  __$$LocalSettingsModelInitialCopyWithImpl(_$LocalSettingsModelInitial _value,
-      $Res Function(_$LocalSettingsModelInitial) _then)
+class __$$LocalSettingsModelInitialImplCopyWithImpl<$Res>
+    extends _$LocalSettingsCopyWithImpl<$Res, _$LocalSettingsModelInitialImpl>
+    implements _$$LocalSettingsModelInitialImplCopyWith<$Res> {
+  __$$LocalSettingsModelInitialImplCopyWithImpl(
+      _$LocalSettingsModelInitialImpl _value,
+      $Res Function(_$LocalSettingsModelInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
-  _$LocalSettingsModelInitial();
+class _$LocalSettingsModelInitialImpl implements LocalSettingsModelInitial {
+  _$LocalSettingsModelInitialImpl();
 
   @override
   String toString() {
@@ -106,7 +107,7 @@ class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalSettingsModelInitial);
+            other is _$LocalSettingsModelInitialImpl);
   }
 
   @override
@@ -177,26 +178,27 @@ class _$LocalSettingsModelInitial implements LocalSettingsModelInitial {
 }
 
 abstract class LocalSettingsModelInitial implements LocalSettings {
-  factory LocalSettingsModelInitial() = _$LocalSettingsModelInitial;
+  factory LocalSettingsModelInitial() = _$LocalSettingsModelInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$LocalSettingsModelInitializedCopyWith<$Res> {
-  factory _$$LocalSettingsModelInitializedCopyWith(
-          _$LocalSettingsModelInitialized value,
-          $Res Function(_$LocalSettingsModelInitialized) then) =
-      __$$LocalSettingsModelInitializedCopyWithImpl<$Res>;
+abstract class _$$LocalSettingsModelInitializedImplCopyWith<$Res> {
+  factory _$$LocalSettingsModelInitializedImplCopyWith(
+          _$LocalSettingsModelInitializedImpl value,
+          $Res Function(_$LocalSettingsModelInitializedImpl) then) =
+      __$$LocalSettingsModelInitializedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({TimeOfDay? dailyNotificationTimeOfDay});
 }
 
 /// @nodoc
-class __$$LocalSettingsModelInitializedCopyWithImpl<$Res>
-    extends _$LocalSettingsCopyWithImpl<$Res, _$LocalSettingsModelInitialized>
-    implements _$$LocalSettingsModelInitializedCopyWith<$Res> {
-  __$$LocalSettingsModelInitializedCopyWithImpl(
-      _$LocalSettingsModelInitialized _value,
-      $Res Function(_$LocalSettingsModelInitialized) _then)
+class __$$LocalSettingsModelInitializedImplCopyWithImpl<$Res>
+    extends _$LocalSettingsCopyWithImpl<$Res,
+        _$LocalSettingsModelInitializedImpl>
+    implements _$$LocalSettingsModelInitializedImplCopyWith<$Res> {
+  __$$LocalSettingsModelInitializedImplCopyWithImpl(
+      _$LocalSettingsModelInitializedImpl _value,
+      $Res Function(_$LocalSettingsModelInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -204,7 +206,7 @@ class __$$LocalSettingsModelInitializedCopyWithImpl<$Res>
   $Res call({
     Object? dailyNotificationTimeOfDay = freezed,
   }) {
-    return _then(_$LocalSettingsModelInitialized(
+    return _then(_$LocalSettingsModelInitializedImpl(
       freezed == dailyNotificationTimeOfDay
           ? _value.dailyNotificationTimeOfDay
           : dailyNotificationTimeOfDay // ignore: cast_nullable_to_non_nullable
@@ -215,8 +217,9 @@ class __$$LocalSettingsModelInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
-  _$LocalSettingsModelInitialized(this.dailyNotificationTimeOfDay);
+class _$LocalSettingsModelInitializedImpl
+    implements LocalSettingsModelInitialized {
+  _$LocalSettingsModelInitializedImpl(this.dailyNotificationTimeOfDay);
 
   @override
   final TimeOfDay? dailyNotificationTimeOfDay;
@@ -230,7 +233,7 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LocalSettingsModelInitialized &&
+            other is _$LocalSettingsModelInitializedImpl &&
             (identical(other.dailyNotificationTimeOfDay,
                     dailyNotificationTimeOfDay) ||
                 other.dailyNotificationTimeOfDay ==
@@ -243,9 +246,10 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LocalSettingsModelInitializedCopyWith<_$LocalSettingsModelInitialized>
-      get copyWith => __$$LocalSettingsModelInitializedCopyWithImpl<
-          _$LocalSettingsModelInitialized>(this, _$identity);
+  _$$LocalSettingsModelInitializedImplCopyWith<
+          _$LocalSettingsModelInitializedImpl>
+      get copyWith => __$$LocalSettingsModelInitializedImplCopyWithImpl<
+          _$LocalSettingsModelInitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -314,10 +318,11 @@ class _$LocalSettingsModelInitialized implements LocalSettingsModelInitialized {
 abstract class LocalSettingsModelInitialized implements LocalSettings {
   factory LocalSettingsModelInitialized(
           final TimeOfDay? dailyNotificationTimeOfDay) =
-      _$LocalSettingsModelInitialized;
+      _$LocalSettingsModelInitializedImpl;
 
   TimeOfDay? get dailyNotificationTimeOfDay;
   @JsonKey(ignore: true)
-  _$$LocalSettingsModelInitializedCopyWith<_$LocalSettingsModelInitialized>
+  _$$LocalSettingsModelInitializedImplCopyWith<
+          _$LocalSettingsModelInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

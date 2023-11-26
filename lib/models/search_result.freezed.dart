@@ -68,22 +68,24 @@ class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
 }
 
 /// @nodoc
-abstract class _$$SearchResultInitializedCopyWith<$Res>
+abstract class _$$SearchResultInitializedImplCopyWith<$Res>
     implements $SearchResultCopyWith<$Res> {
-  factory _$$SearchResultInitializedCopyWith(_$SearchResultInitialized value,
-          $Res Function(_$SearchResultInitialized) then) =
-      __$$SearchResultInitializedCopyWithImpl<$Res>;
+  factory _$$SearchResultInitializedImplCopyWith(
+          _$SearchResultInitializedImpl value,
+          $Res Function(_$SearchResultInitializedImpl) then) =
+      __$$SearchResultInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String query, List<CardInitialized> cards});
 }
 
 /// @nodoc
-class __$$SearchResultInitializedCopyWithImpl<$Res>
-    extends _$SearchResultCopyWithImpl<$Res, _$SearchResultInitialized>
-    implements _$$SearchResultInitializedCopyWith<$Res> {
-  __$$SearchResultInitializedCopyWithImpl(_$SearchResultInitialized _value,
-      $Res Function(_$SearchResultInitialized) _then)
+class __$$SearchResultInitializedImplCopyWithImpl<$Res>
+    extends _$SearchResultCopyWithImpl<$Res, _$SearchResultInitializedImpl>
+    implements _$$SearchResultInitializedImplCopyWith<$Res> {
+  __$$SearchResultInitializedImplCopyWithImpl(
+      _$SearchResultInitializedImpl _value,
+      $Res Function(_$SearchResultInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +94,7 @@ class __$$SearchResultInitializedCopyWithImpl<$Res>
     Object? query = null,
     Object? cards = null,
   }) {
-    return _then(_$SearchResultInitialized(
+    return _then(_$SearchResultInitializedImpl(
       null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -107,12 +109,12 @@ class __$$SearchResultInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SearchResultInitialized implements SearchResultInitialized {
-  _$SearchResultInitialized(this.query, final List<CardInitialized> cards)
+class _$SearchResultInitializedImpl implements SearchResultInitialized {
+  _$SearchResultInitializedImpl(this.query, final List<CardInitialized> cards)
       : _cards = cards;
 
-  factory _$SearchResultInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$SearchResultInitializedFromJson(json);
+  factory _$SearchResultInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchResultInitializedImplFromJson(json);
 
   @override
   final String query;
@@ -133,7 +135,7 @@ class _$SearchResultInitialized implements SearchResultInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchResultInitialized &&
+            other is _$SearchResultInitializedImpl &&
             (identical(other.query, query) || other.query == query) &&
             const DeepCollectionEquality().equals(other._cards, _cards));
   }
@@ -146,13 +148,13 @@ class _$SearchResultInitialized implements SearchResultInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchResultInitializedCopyWith<_$SearchResultInitialized> get copyWith =>
-      __$$SearchResultInitializedCopyWithImpl<_$SearchResultInitialized>(
-          this, _$identity);
+  _$$SearchResultInitializedImplCopyWith<_$SearchResultInitializedImpl>
+      get copyWith => __$$SearchResultInitializedImplCopyWithImpl<
+          _$SearchResultInitializedImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SearchResultInitializedToJson(
+    return _$$SearchResultInitializedImplToJson(
       this,
     );
   }
@@ -161,10 +163,10 @@ class _$SearchResultInitialized implements SearchResultInitialized {
 abstract class SearchResultInitialized implements SearchResult {
   factory SearchResultInitialized(
           final String query, final List<CardInitialized> cards) =
-      _$SearchResultInitialized;
+      _$SearchResultInitializedImpl;
 
   factory SearchResultInitialized.fromJson(Map<String, dynamic> json) =
-      _$SearchResultInitialized.fromJson;
+      _$SearchResultInitializedImpl.fromJson;
 
   @override
   String get query;
@@ -172,6 +174,6 @@ abstract class SearchResultInitialized implements SearchResult {
   List<CardInitialized> get cards;
   @override
   @JsonKey(ignore: true)
-  _$$SearchResultInitializedCopyWith<_$SearchResultInitialized> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SearchResultInitializedImplCopyWith<_$SearchResultInitializedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

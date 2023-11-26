@@ -6,8 +6,9 @@ part of 'card.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CardInitialized _$$CardInitializedFromJson(Map<String, dynamic> json) =>
-    _$CardInitialized(
+_$CardInitializedImpl _$$CardInitializedImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CardInitializedImpl(
       json['id'] as int,
       json['sense'] as String,
       toNonEmptyString(json['kana']),
@@ -18,7 +19,8 @@ _$CardInitialized _$$CardInitializedFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$CardInitializedToJson(_$CardInitialized instance) =>
+Map<String, dynamic> _$$CardInitializedImplToJson(
+        _$CardInitializedImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'sense': instance.sense,
@@ -35,7 +37,8 @@ const _$CardTypeEnumMap = {
   CardType.grammar: 'Grammar',
 };
 
-_$CardNew _$$CardNewFromJson(Map<String, dynamic> json) => _$CardNew(
+_$CardNewImpl _$$CardNewImplFromJson(Map<String, dynamic> json) =>
+    _$CardNewImpl(
       json['sense'] as String,
       json['kana'] as String?,
       json['kanji'] as String?,
@@ -45,7 +48,8 @@ _$CardNew _$$CardNewFromJson(Map<String, dynamic> json) => _$CardNew(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$CardNewToJson(_$CardNew instance) => <String, dynamic>{
+Map<String, dynamic> _$$CardNewImplToJson(_$CardNewImpl instance) =>
+    <String, dynamic>{
       'sense': instance.sense,
       'kana': instance.kana,
       'kanji': instance.kanji,

@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/views/molecules/progress_bar_painter.dart';
 
-const width = 300.0;
-const height = 12.0;
+const width = 210.0;
+const height = 14.0;
 
 class ProgressBar extends ConsumerStatefulWidget {
   final double currentValue;
@@ -71,8 +71,6 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
             height,
             Theme.of(context).colorScheme.background,
             Theme.of(context).colorScheme.secondary,
-            Theme.of(context).brightness == Brightness.light
-                ? Colors.black12
-                : Colors.white12));
+            getDescriptionColorSubtle(context)));
   }
 }

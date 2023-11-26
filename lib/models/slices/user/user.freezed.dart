@@ -119,10 +119,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$UserInitializedCopyWith(
-          _$UserInitialized value, $Res Function(_$UserInitialized) then) =
-      __$$UserInitializedCopyWithImpl<$Res>;
+abstract class _$$UserInitializedImplCopyWith<$Res>
+    implements $UserCopyWith<$Res> {
+  factory _$$UserInitializedImplCopyWith(_$UserInitializedImpl value,
+          $Res Function(_$UserInitializedImpl) then) =
+      __$$UserInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -142,11 +143,11 @@ abstract class _$$UserInitializedCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UserInitializedCopyWithImpl<$Res>
-    extends _$UserCopyWithImpl<$Res, _$UserInitialized>
-    implements _$$UserInitializedCopyWith<$Res> {
-  __$$UserInitializedCopyWithImpl(
-      _$UserInitialized _value, $Res Function(_$UserInitialized) _then)
+class __$$UserInitializedImplCopyWithImpl<$Res>
+    extends _$UserCopyWithImpl<$Res, _$UserInitializedImpl>
+    implements _$$UserInitializedImplCopyWith<$Res> {
+  __$$UserInitializedImplCopyWithImpl(
+      _$UserInitializedImpl _value, $Res Function(_$UserInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -157,7 +158,7 @@ class __$$UserInitializedCopyWithImpl<$Res>
     Object? goals = null,
     Object? onboarding = null,
   }) {
-    return _then(_$UserInitialized(
+    return _then(_$UserInitializedImpl(
       null == stats
           ? _value.stats
           : stats // ignore: cast_nullable_to_non_nullable
@@ -180,11 +181,11 @@ class __$$UserInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserInitialized implements UserInitialized {
-  _$UserInitialized(this.stats, this.user, this.goals, this.onboarding);
+class _$UserInitializedImpl implements UserInitialized {
+  _$UserInitializedImpl(this.stats, this.user, this.goals, this.onboarding);
 
-  factory _$UserInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserInitializedFromJson(json);
+  factory _$UserInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserInitializedImplFromJson(json);
 
   @override
   final UserStatistics stats;
@@ -204,7 +205,7 @@ class _$UserInitialized implements UserInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserInitialized &&
+            other is _$UserInitializedImpl &&
             (identical(other.stats, stats) || other.stats == stats) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.goals, goals) || other.goals == goals) &&
@@ -219,12 +220,13 @@ class _$UserInitialized implements UserInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserInitializedCopyWith<_$UserInitialized> get copyWith =>
-      __$$UserInitializedCopyWithImpl<_$UserInitialized>(this, _$identity);
+  _$$UserInitializedImplCopyWith<_$UserInitializedImpl> get copyWith =>
+      __$$UserInitializedImplCopyWithImpl<_$UserInitializedImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserInitializedToJson(
+    return _$$UserInitializedImplToJson(
       this,
     );
   }
@@ -235,10 +237,10 @@ abstract class UserInitialized implements User {
       final UserStatistics stats,
       final UserCore user,
       final UserGoals goals,
-      final UserOnboarding onboarding) = _$UserInitialized;
+      final UserOnboarding onboarding) = _$UserInitializedImpl;
 
   factory UserInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserInitialized.fromJson;
+      _$UserInitializedImpl.fromJson;
 
   @override
   UserStatistics get stats;
@@ -250,6 +252,6 @@ abstract class UserInitialized implements User {
   UserOnboarding get onboarding;
   @override
   @JsonKey(ignore: true)
-  _$$UserInitializedCopyWith<_$UserInitialized> get copyWith =>
+  _$$UserInitializedImplCopyWith<_$UserInitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

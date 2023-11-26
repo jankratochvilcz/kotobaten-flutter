@@ -6,18 +6,20 @@ part of 'user_core.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserCoreInitialized _$$UserCoreInitializedFromJson(
+_$UserCoreInitializedImpl _$$UserCoreInitializedImplFromJson(
         Map<String, dynamic> json) =>
-    _$UserCoreInitialized(
+    _$UserCoreInitializedImpl(
       json['id'] as int,
       json['email'] as String,
       json['retentionBackstopMaxThreshold'] as int,
+      json['disableSounds'] as bool,
     );
 
-Map<String, dynamic> _$$UserCoreInitializedToJson(
-        _$UserCoreInitialized instance) =>
+Map<String, dynamic> _$$UserCoreInitializedImplToJson(
+        _$UserCoreInitializedImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'retentionBackstopMaxThreshold': instance.retentionBackstopMaxThreshold,
+      'disableSounds': instance.disableSounds,
     };

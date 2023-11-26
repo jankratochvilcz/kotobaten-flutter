@@ -124,12 +124,12 @@ class _$AppConfigurationCopyWithImpl<$Res, $Val extends AppConfiguration>
 }
 
 /// @nodoc
-abstract class _$$AppConfigurationInitializedCopyWith<$Res>
+abstract class _$$AppConfigurationInitializedImplCopyWith<$Res>
     implements $AppConfigurationCopyWith<$Res> {
-  factory _$$AppConfigurationInitializedCopyWith(
-          _$AppConfigurationInitialized value,
-          $Res Function(_$AppConfigurationInitialized) then) =
-      __$$AppConfigurationInitializedCopyWithImpl<$Res>;
+  factory _$$AppConfigurationInitializedImplCopyWith(
+          _$AppConfigurationInitializedImpl value,
+          $Res Function(_$AppConfigurationInitializedImpl) then) =
+      __$$AppConfigurationInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -141,12 +141,13 @@ abstract class _$$AppConfigurationInitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AppConfigurationInitializedCopyWithImpl<$Res>
-    extends _$AppConfigurationCopyWithImpl<$Res, _$AppConfigurationInitialized>
-    implements _$$AppConfigurationInitializedCopyWith<$Res> {
-  __$$AppConfigurationInitializedCopyWithImpl(
-      _$AppConfigurationInitialized _value,
-      $Res Function(_$AppConfigurationInitialized) _then)
+class __$$AppConfigurationInitializedImplCopyWithImpl<$Res>
+    extends _$AppConfigurationCopyWithImpl<$Res,
+        _$AppConfigurationInitializedImpl>
+    implements _$$AppConfigurationInitializedImplCopyWith<$Res> {
+  __$$AppConfigurationInitializedImplCopyWithImpl(
+      _$AppConfigurationInitializedImpl _value,
+      $Res Function(_$AppConfigurationInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -158,7 +159,7 @@ class __$$AppConfigurationInitializedCopyWithImpl<$Res>
     Object? apiVersion = null,
     Object? cookieDomain = null,
   }) {
-    return _then(_$AppConfigurationInitialized(
+    return _then(_$AppConfigurationInitializedImpl(
       null == apiRoot
           ? _value.apiRoot
           : apiRoot // ignore: cast_nullable_to_non_nullable
@@ -185,9 +186,9 @@ class __$$AppConfigurationInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppConfigurationInitialized implements AppConfigurationInitialized {
-  _$AppConfigurationInitialized(this.apiRoot, this.isApiHttps, this.platform,
-      this.apiVersion, this.cookieDomain);
+class _$AppConfigurationInitializedImpl implements AppConfigurationInitialized {
+  _$AppConfigurationInitializedImpl(this.apiRoot, this.isApiHttps,
+      this.platform, this.apiVersion, this.cookieDomain);
 
   @override
   final String apiRoot;
@@ -209,7 +210,7 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppConfigurationInitialized &&
+            other is _$AppConfigurationInitializedImpl &&
             (identical(other.apiRoot, apiRoot) || other.apiRoot == apiRoot) &&
             (identical(other.isApiHttps, isApiHttps) ||
                 other.isApiHttps == isApiHttps) &&
@@ -228,9 +229,9 @@ class _$AppConfigurationInitialized implements AppConfigurationInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppConfigurationInitializedCopyWith<_$AppConfigurationInitialized>
-      get copyWith => __$$AppConfigurationInitializedCopyWithImpl<
-          _$AppConfigurationInitialized>(this, _$identity);
+  _$$AppConfigurationInitializedImplCopyWith<_$AppConfigurationInitializedImpl>
+      get copyWith => __$$AppConfigurationInitializedImplCopyWithImpl<
+          _$AppConfigurationInitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -303,7 +304,7 @@ abstract class AppConfigurationInitialized implements AppConfiguration {
       final bool isApiHttps,
       final Platform platform,
       final String apiVersion,
-      final String cookieDomain) = _$AppConfigurationInitialized;
+      final String cookieDomain) = _$AppConfigurationInitializedImpl;
 
   @override
   String get apiRoot;
@@ -317,6 +318,6 @@ abstract class AppConfigurationInitialized implements AppConfiguration {
   String get cookieDomain;
   @override
   @JsonKey(ignore: true)
-  _$$AppConfigurationInitializedCopyWith<_$AppConfigurationInitialized>
+  _$$AppConfigurationInitializedImplCopyWith<_$AppConfigurationInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

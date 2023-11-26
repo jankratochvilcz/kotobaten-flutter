@@ -6,16 +6,16 @@ part of 'user_goals.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserGoalsInitialized _$$UserGoalsInitializedFromJson(
+_$UserGoalsInitializedImpl _$$UserGoalsInitializedImplFromJson(
         Map<String, dynamic> json) =>
-    _$UserGoalsInitialized(
+    _$UserGoalsInitializedImpl(
       json['discoverWeekly'] as int,
       json['discoverMonthly'] as int,
       json['discoverDaily'] as int,
     );
 
-Map<String, dynamic> _$$UserGoalsInitializedToJson(
-        _$UserGoalsInitialized instance) =>
+Map<String, dynamic> _$$UserGoalsInitializedImplToJson(
+        _$UserGoalsInitializedImpl instance) =>
     <String, dynamic>{
       'discoverWeekly': instance.discoverWeekly,
       'discoverMonthly': instance.discoverMonthly,

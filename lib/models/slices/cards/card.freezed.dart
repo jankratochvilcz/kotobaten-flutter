@@ -174,10 +174,11 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
 }
 
 /// @nodoc
-abstract class _$$CardInitializedCopyWith<$Res> implements $CardCopyWith<$Res> {
-  factory _$$CardInitializedCopyWith(
-          _$CardInitialized value, $Res Function(_$CardInitialized) then) =
-      __$$CardInitializedCopyWithImpl<$Res>;
+abstract class _$$CardInitializedImplCopyWith<$Res>
+    implements $CardCopyWith<$Res> {
+  factory _$$CardInitializedImplCopyWith(_$CardInitializedImpl value,
+          $Res Function(_$CardInitializedImpl) then) =
+      __$$CardInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -191,11 +192,11 @@ abstract class _$$CardInitializedCopyWith<$Res> implements $CardCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CardInitializedCopyWithImpl<$Res>
-    extends _$CardCopyWithImpl<$Res, _$CardInitialized>
-    implements _$$CardInitializedCopyWith<$Res> {
-  __$$CardInitializedCopyWithImpl(
-      _$CardInitialized _value, $Res Function(_$CardInitialized) _then)
+class __$$CardInitializedImplCopyWithImpl<$Res>
+    extends _$CardCopyWithImpl<$Res, _$CardInitializedImpl>
+    implements _$$CardInitializedImplCopyWith<$Res> {
+  __$$CardInitializedImplCopyWithImpl(
+      _$CardInitializedImpl _value, $Res Function(_$CardInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -209,7 +210,7 @@ class __$$CardInitializedCopyWithImpl<$Res>
     Object? note = freezed,
     Object? type = null,
   }) {
-    return _then(_$CardInitialized(
+    return _then(_$CardInitializedImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -245,8 +246,8 @@ class __$$CardInitializedCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$CardInitialized implements CardInitialized {
-  _$CardInitialized(
+class _$CardInitializedImpl implements CardInitialized {
+  _$CardInitializedImpl(
       this.id,
       this.sense,
       @JsonKey(fromJson: toNonEmptyString) this.kana,
@@ -257,8 +258,8 @@ class _$CardInitialized implements CardInitialized {
       {final String? $type})
       : $type = $type ?? 'default';
 
-  factory _$CardInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$CardInitializedFromJson(json);
+  factory _$CardInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CardInitializedImplFromJson(json);
 
   @override
   final int id;
@@ -289,7 +290,7 @@ class _$CardInitialized implements CardInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CardInitialized &&
+            other is _$CardInitializedImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.sense, sense) || other.sense == sense) &&
             (identical(other.kana, kana) || other.kana == kana) &&
@@ -307,8 +308,9 @@ class _$CardInitialized implements CardInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CardInitializedCopyWith<_$CardInitialized> get copyWith =>
-      __$$CardInitializedCopyWithImpl<_$CardInitialized>(this, _$identity);
+  _$$CardInitializedImplCopyWith<_$CardInitializedImpl> get copyWith =>
+      __$$CardInitializedImplCopyWithImpl<_$CardInitializedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -404,7 +406,7 @@ class _$CardInitialized implements CardInitialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CardInitializedToJson(
+    return _$$CardInitializedImplToJson(
       this,
     );
   }
@@ -418,10 +420,10 @@ abstract class CardInitialized implements Card {
       @JsonKey(fromJson: toNonEmptyString) final String? kanji,
       final DateTime created,
       final String? note,
-      final CardType type) = _$CardInitialized;
+      final CardType type) = _$CardInitializedImpl;
 
   factory CardInitialized.fromJson(Map<String, dynamic> json) =
-      _$CardInitialized.fromJson;
+      _$CardInitializedImpl.fromJson;
 
   int get id;
   @override
@@ -440,14 +442,15 @@ abstract class CardInitialized implements Card {
   CardType get type;
   @override
   @JsonKey(ignore: true)
-  _$$CardInitializedCopyWith<_$CardInitialized> get copyWith =>
+  _$$CardInitializedImplCopyWith<_$CardInitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CardNewCopyWith<$Res> implements $CardCopyWith<$Res> {
-  factory _$$CardNewCopyWith(_$CardNew value, $Res Function(_$CardNew) then) =
-      __$$CardNewCopyWithImpl<$Res>;
+abstract class _$$CardNewImplCopyWith<$Res> implements $CardCopyWith<$Res> {
+  factory _$$CardNewImplCopyWith(
+          _$CardNewImpl value, $Res Function(_$CardNewImpl) then) =
+      __$$CardNewImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -460,9 +463,11 @@ abstract class _$$CardNewCopyWith<$Res> implements $CardCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
-    implements _$$CardNewCopyWith<$Res> {
-  __$$CardNewCopyWithImpl(_$CardNew _value, $Res Function(_$CardNew) _then)
+class __$$CardNewImplCopyWithImpl<$Res>
+    extends _$CardCopyWithImpl<$Res, _$CardNewImpl>
+    implements _$$CardNewImplCopyWith<$Res> {
+  __$$CardNewImplCopyWithImpl(
+      _$CardNewImpl _value, $Res Function(_$CardNewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -475,7 +480,7 @@ class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
     Object? created = null,
     Object? type = null,
   }) {
-    return _then(_$CardNew(
+    return _then(_$CardNewImpl(
       null == sense
           ? _value.sense
           : sense // ignore: cast_nullable_to_non_nullable
@@ -506,14 +511,14 @@ class __$$CardNewCopyWithImpl<$Res> extends _$CardCopyWithImpl<$Res, _$CardNew>
 
 /// @nodoc
 @JsonSerializable()
-class _$CardNew implements CardNew {
-  _$CardNew(
+class _$CardNewImpl implements CardNew {
+  _$CardNewImpl(
       this.sense, this.kana, this.kanji, this.note, this.created, this.type,
       {final String? $type})
       : $type = $type ?? 'newCard';
 
-  factory _$CardNew.fromJson(Map<String, dynamic> json) =>
-      _$$CardNewFromJson(json);
+  factory _$CardNewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CardNewImplFromJson(json);
 
   @override
   final String sense;
@@ -540,7 +545,7 @@ class _$CardNew implements CardNew {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CardNew &&
+            other is _$CardNewImpl &&
             (identical(other.sense, sense) || other.sense == sense) &&
             (identical(other.kana, kana) || other.kana == kana) &&
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
@@ -557,8 +562,8 @@ class _$CardNew implements CardNew {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CardNewCopyWith<_$CardNew> get copyWith =>
-      __$$CardNewCopyWithImpl<_$CardNew>(this, _$identity);
+  _$$CardNewImplCopyWith<_$CardNewImpl> get copyWith =>
+      __$$CardNewImplCopyWithImpl<_$CardNewImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -654,7 +659,7 @@ class _$CardNew implements CardNew {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CardNewToJson(
+    return _$$CardNewImplToJson(
       this,
     );
   }
@@ -667,9 +672,9 @@ abstract class CardNew implements Card {
       final String? kanji,
       final String? note,
       final DateTime created,
-      final CardType type) = _$CardNew;
+      final CardType type) = _$CardNewImpl;
 
-  factory CardNew.fromJson(Map<String, dynamic> json) = _$CardNew.fromJson;
+  factory CardNew.fromJson(Map<String, dynamic> json) = _$CardNewImpl.fromJson;
 
   @override
   String get sense;
@@ -685,6 +690,6 @@ abstract class CardNew implements Card {
   CardType get type;
   @override
   @JsonKey(ignore: true)
-  _$$CardNewCopyWith<_$CardNew> get copyWith =>
+  _$$CardNewImplCopyWith<_$CardNewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

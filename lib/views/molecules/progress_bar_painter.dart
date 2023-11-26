@@ -14,18 +14,27 @@ class ProgressBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawRRect(
-        RRect.fromLTRBR(0, 0, width, height, const Radius.circular(32)),
-        Paint()..color = border);
+        RRect.fromLTRBR(1, 1, width, height, const Radius.circular(24)),
+        Paint()
+          ..color = border
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5);
 
     canvas.drawRRect(
-        RRect.fromLTRBR(1, 1, width - 1, height - 1, const Radius.circular(32)),
-        Paint()..color = background);
+        RRect.fromLTRBR(1, 1, width, height, const Radius.circular(24)),
+        Paint()
+          ..color = border.withOpacity(0.06)
+          ..style = PaintingStyle.fill
+          ..strokeWidth = 1.5);
 
     if (progress > 0) {
       canvas.drawRRect(
-          RRect.fromLTRBR(1, 1, (width - 1) * progress, height - 1,
-              const Radius.circular(32)),
-          Paint()..color = foreground);
+          RRect.fromLTRBR(
+              1, 1, width * progress, height, const Radius.circular(24)),
+          Paint()
+            ..color = foreground
+            ..style = PaintingStyle.fill
+            ..strokeWidth = 1.5);
     }
   }
 

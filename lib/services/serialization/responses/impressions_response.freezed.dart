@@ -103,11 +103,11 @@ class _$ImpressionsResponseCopyWithImpl<$Res, $Val extends ImpressionsResponse>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res>
+abstract class _$$InitializedImplCopyWith<$Res>
     implements $ImpressionsResponseCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UserStatistics userStats});
@@ -117,11 +117,11 @@ abstract class _$$InitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionsResponseCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$ImpressionsResponseCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -129,7 +129,7 @@ class __$$InitializedCopyWithImpl<$Res>
   $Res call({
     Object? userStats = null,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       null == userStats
           ? _value.userStats
           : userStats // ignore: cast_nullable_to_non_nullable
@@ -140,11 +140,11 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Initialized implements Initialized {
-  _$Initialized(this.userStats);
+class _$InitializedImpl implements Initialized {
+  _$InitializedImpl(this.userStats);
 
-  factory _$Initialized.fromJson(Map<String, dynamic> json) =>
-      _$$InitializedFromJson(json);
+  factory _$InitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InitializedImplFromJson(json);
 
   @override
   final UserStatistics userStats;
@@ -158,7 +158,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             (identical(other.userStats, userStats) ||
                 other.userStats == userStats));
   }
@@ -170,8 +170,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -231,22 +231,22 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(
+    return _$$InitializedImplToJson(
       this,
     );
   }
 }
 
 abstract class Initialized implements ImpressionsResponse {
-  factory Initialized(final UserStatistics userStats) = _$Initialized;
+  factory Initialized(final UserStatistics userStats) = _$InitializedImpl;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
-      _$Initialized.fromJson;
+      _$InitializedImpl.fromJson;
 
   @override
   UserStatistics get userStats;
   @override
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

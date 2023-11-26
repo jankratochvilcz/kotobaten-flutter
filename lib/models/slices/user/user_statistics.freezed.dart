@@ -129,12 +129,12 @@ class _$UserStatisticsCopyWithImpl<$Res, $Val extends UserStatistics>
 }
 
 /// @nodoc
-abstract class _$$UserStatisticsInitializedCopyWith<$Res>
+abstract class _$$UserStatisticsInitializedImplCopyWith<$Res>
     implements $UserStatisticsCopyWith<$Res> {
-  factory _$$UserStatisticsInitializedCopyWith(
-          _$UserStatisticsInitialized value,
-          $Res Function(_$UserStatisticsInitialized) then) =
-      __$$UserStatisticsInitializedCopyWithImpl<$Res>;
+  factory _$$UserStatisticsInitializedImplCopyWith(
+          _$UserStatisticsInitializedImpl value,
+          $Res Function(_$UserStatisticsInitializedImpl) then) =
+      __$$UserStatisticsInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -151,11 +151,12 @@ abstract class _$$UserStatisticsInitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserStatisticsInitializedCopyWithImpl<$Res>
-    extends _$UserStatisticsCopyWithImpl<$Res, _$UserStatisticsInitialized>
-    implements _$$UserStatisticsInitializedCopyWith<$Res> {
-  __$$UserStatisticsInitializedCopyWithImpl(_$UserStatisticsInitialized _value,
-      $Res Function(_$UserStatisticsInitialized) _then)
+class __$$UserStatisticsInitializedImplCopyWithImpl<$Res>
+    extends _$UserStatisticsCopyWithImpl<$Res, _$UserStatisticsInitializedImpl>
+    implements _$$UserStatisticsInitializedImplCopyWith<$Res> {
+  __$$UserStatisticsInitializedImplCopyWithImpl(
+      _$UserStatisticsInitializedImpl _value,
+      $Res Function(_$UserStatisticsInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -172,7 +173,7 @@ class __$$UserStatisticsInitializedCopyWithImpl<$Res>
     Object? backstopThresholdExpiryFormatted = freezed,
     Object? dayStats = null,
   }) {
-    return _then(_$UserStatisticsInitialized(
+    return _then(_$UserStatisticsInitializedImpl(
       null == leftToPractice
           ? _value.leftToPractice
           : leftToPractice // ignore: cast_nullable_to_non_nullable
@@ -219,8 +220,8 @@ class __$$UserStatisticsInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserStatisticsInitialized implements UserStatisticsInitialized {
-  _$UserStatisticsInitialized(
+class _$UserStatisticsInitializedImpl implements UserStatisticsInitialized {
+  _$UserStatisticsInitializedImpl(
       this.leftToPractice,
       this.discoveredToday,
       this.discoveredWeek,
@@ -233,8 +234,8 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
       final List<UserStatisticsDayInitialized> dayStats)
       : _dayStats = dayStats;
 
-  factory _$UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserStatisticsInitializedFromJson(json);
+  factory _$UserStatisticsInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserStatisticsInitializedImplFromJson(json);
 
   @override
   final int leftToPractice;
@@ -271,7 +272,7 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserStatisticsInitialized &&
+            other is _$UserStatisticsInitializedImpl &&
             (identical(other.leftToPractice, leftToPractice) ||
                 other.leftToPractice == leftToPractice) &&
             (identical(other.discoveredToday, discoveredToday) ||
@@ -313,13 +314,13 @@ class _$UserStatisticsInitialized implements UserStatisticsInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserStatisticsInitializedCopyWith<_$UserStatisticsInitialized>
-      get copyWith => __$$UserStatisticsInitializedCopyWithImpl<
-          _$UserStatisticsInitialized>(this, _$identity);
+  _$$UserStatisticsInitializedImplCopyWith<_$UserStatisticsInitializedImpl>
+      get copyWith => __$$UserStatisticsInitializedImplCopyWithImpl<
+          _$UserStatisticsInitializedImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserStatisticsInitializedToJson(
+    return _$$UserStatisticsInitializedImplToJson(
       this,
     );
   }
@@ -337,10 +338,10 @@ abstract class UserStatisticsInitialized implements UserStatistics {
           final double retentionThreshold,
           final String? backstopThresholdExpiryFormatted,
           final List<UserStatisticsDayInitialized> dayStats) =
-      _$UserStatisticsInitialized;
+      _$UserStatisticsInitializedImpl;
 
   factory UserStatisticsInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserStatisticsInitialized.fromJson;
+      _$UserStatisticsInitializedImpl.fromJson;
 
   @override
   int get leftToPractice;
@@ -364,6 +365,6 @@ abstract class UserStatisticsInitialized implements UserStatistics {
   List<UserStatisticsDayInitialized> get dayStats;
   @override
   @JsonKey(ignore: true)
-  _$$UserStatisticsInitializedCopyWith<_$UserStatisticsInitialized>
+  _$$UserStatisticsInitializedImplCopyWith<_$UserStatisticsInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

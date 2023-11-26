@@ -6,14 +6,14 @@ part of 'user_onboarding.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserOnboardingInitialized _$$UserOnboardingInitializedFromJson(
+_$UserOnboardingInitializedImpl _$$UserOnboardingInitializedImplFromJson(
         Map<String, dynamic> json) =>
-    _$UserOnboardingInitialized(
+    _$UserOnboardingInitializedImpl(
       json['onboardingHidden'] as bool,
     );
 
-Map<String, dynamic> _$$UserOnboardingInitializedToJson(
-        _$UserOnboardingInitialized instance) =>
+Map<String, dynamic> _$$UserOnboardingInitializedImplToJson(
+        _$UserOnboardingInitializedImpl instance) =>
     <String, dynamic>{
       'onboardingHidden': instance.onboardingHidden,
     };

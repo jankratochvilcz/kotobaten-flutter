@@ -76,6 +76,29 @@ class UserService {
     return updatedUser;
   }
 
+  Future<UserCoreInitialized> toggleAudio() async {
+    final userModel = userRepository.current;
+
+    if (userModel is! UserModelInitialized) {
+      throw Error();
+    }
+
+    final originalSetting = userModel.user.user.disableSounds;
+    final revisedSetting = !originalSetting;
+
+    userRepository.update(userModel.copyWith(
+        user: userModel.user.copyWith(
+            user:
+                userModel.user.user.copyWith(disableSounds: revisedSetting))));
+
+    final updatedUser = await apiService.updateDisableAudio(revisedSetting);
+
+    userRepository.update(
+        userModel.copyWith(user: userModel.user.copyWith(user: updatedUser)));
+
+    return updatedUser;
+  }
+
   UserStatistics updateStatistics(UserStatistics stats) {
     final userModel = userRepository.current;
 

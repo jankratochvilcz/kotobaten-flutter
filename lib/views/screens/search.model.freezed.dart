@@ -107,22 +107,22 @@ class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
 }
 
 /// @nodoc
-abstract class _$$SearchModelInitialCopyWith<$Res>
+abstract class _$$SearchModelInitialImplCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory _$$SearchModelInitialCopyWith(_$SearchModelInitial value,
-          $Res Function(_$SearchModelInitial) then) =
-      __$$SearchModelInitialCopyWithImpl<$Res>;
+  factory _$$SearchModelInitialImplCopyWith(_$SearchModelInitialImpl value,
+          $Res Function(_$SearchModelInitialImpl) then) =
+      __$$SearchModelInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool searchFocused});
 }
 
 /// @nodoc
-class __$$SearchModelInitialCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelInitial>
-    implements _$$SearchModelInitialCopyWith<$Res> {
-  __$$SearchModelInitialCopyWithImpl(
-      _$SearchModelInitial _value, $Res Function(_$SearchModelInitial) _then)
+class __$$SearchModelInitialImplCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelInitialImpl>
+    implements _$$SearchModelInitialImplCopyWith<$Res> {
+  __$$SearchModelInitialImplCopyWithImpl(_$SearchModelInitialImpl _value,
+      $Res Function(_$SearchModelInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -130,7 +130,7 @@ class __$$SearchModelInitialCopyWithImpl<$Res>
   $Res call({
     Object? searchFocused = null,
   }) {
-    return _then(_$SearchModelInitial(
+    return _then(_$SearchModelInitialImpl(
       null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
@@ -141,8 +141,8 @@ class __$$SearchModelInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchModelInitial implements SearchModelInitial {
-  _$SearchModelInitial(this.searchFocused);
+class _$SearchModelInitialImpl implements SearchModelInitial {
+  _$SearchModelInitialImpl(this.searchFocused);
 
   @override
   final bool searchFocused;
@@ -156,7 +156,7 @@ class _$SearchModelInitial implements SearchModelInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchModelInitial &&
+            other is _$SearchModelInitialImpl &&
             (identical(other.searchFocused, searchFocused) ||
                 other.searchFocused == searchFocused));
   }
@@ -167,8 +167,8 @@ class _$SearchModelInitial implements SearchModelInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchModelInitialCopyWith<_$SearchModelInitial> get copyWith =>
-      __$$SearchModelInitialCopyWithImpl<_$SearchModelInitial>(
+  _$$SearchModelInitialImplCopyWith<_$SearchModelInitialImpl> get copyWith =>
+      __$$SearchModelInitialImplCopyWithImpl<_$SearchModelInitialImpl>(
           this, _$identity);
 
   @override
@@ -247,33 +247,34 @@ class _$SearchModelInitial implements SearchModelInitial {
 }
 
 abstract class SearchModelInitial implements SearchModel {
-  factory SearchModelInitial(final bool searchFocused) = _$SearchModelInitial;
+  factory SearchModelInitial(final bool searchFocused) =
+      _$SearchModelInitialImpl;
 
   @override
   bool get searchFocused;
   @override
   @JsonKey(ignore: true)
-  _$$SearchModelInitialCopyWith<_$SearchModelInitial> get copyWith =>
+  _$$SearchModelInitialImplCopyWith<_$SearchModelInitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SearchModelLoadingCopyWith<$Res>
+abstract class _$$SearchModelLoadingImplCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory _$$SearchModelLoadingCopyWith(_$SearchModelLoading value,
-          $Res Function(_$SearchModelLoading) then) =
-      __$$SearchModelLoadingCopyWithImpl<$Res>;
+  factory _$$SearchModelLoadingImplCopyWith(_$SearchModelLoadingImpl value,
+          $Res Function(_$SearchModelLoadingImpl) then) =
+      __$$SearchModelLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool searchFocused});
 }
 
 /// @nodoc
-class __$$SearchModelLoadingCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoading>
-    implements _$$SearchModelLoadingCopyWith<$Res> {
-  __$$SearchModelLoadingCopyWithImpl(
-      _$SearchModelLoading _value, $Res Function(_$SearchModelLoading) _then)
+class __$$SearchModelLoadingImplCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoadingImpl>
+    implements _$$SearchModelLoadingImplCopyWith<$Res> {
+  __$$SearchModelLoadingImplCopyWithImpl(_$SearchModelLoadingImpl _value,
+      $Res Function(_$SearchModelLoadingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -281,7 +282,7 @@ class __$$SearchModelLoadingCopyWithImpl<$Res>
   $Res call({
     Object? searchFocused = null,
   }) {
-    return _then(_$SearchModelLoading(
+    return _then(_$SearchModelLoadingImpl(
       null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
@@ -292,8 +293,8 @@ class __$$SearchModelLoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchModelLoading implements SearchModelLoading {
-  _$SearchModelLoading(this.searchFocused);
+class _$SearchModelLoadingImpl implements SearchModelLoading {
+  _$SearchModelLoadingImpl(this.searchFocused);
 
   @override
   final bool searchFocused;
@@ -307,7 +308,7 @@ class _$SearchModelLoading implements SearchModelLoading {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchModelLoading &&
+            other is _$SearchModelLoadingImpl &&
             (identical(other.searchFocused, searchFocused) ||
                 other.searchFocused == searchFocused));
   }
@@ -318,8 +319,8 @@ class _$SearchModelLoading implements SearchModelLoading {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchModelLoadingCopyWith<_$SearchModelLoading> get copyWith =>
-      __$$SearchModelLoadingCopyWithImpl<_$SearchModelLoading>(
+  _$$SearchModelLoadingImplCopyWith<_$SearchModelLoadingImpl> get copyWith =>
+      __$$SearchModelLoadingImplCopyWithImpl<_$SearchModelLoadingImpl>(
           this, _$identity);
 
   @override
@@ -398,22 +399,23 @@ class _$SearchModelLoading implements SearchModelLoading {
 }
 
 abstract class SearchModelLoading implements SearchModel {
-  factory SearchModelLoading(final bool searchFocused) = _$SearchModelLoading;
+  factory SearchModelLoading(final bool searchFocused) =
+      _$SearchModelLoadingImpl;
 
   @override
   bool get searchFocused;
   @override
   @JsonKey(ignore: true)
-  _$$SearchModelLoadingCopyWith<_$SearchModelLoading> get copyWith =>
+  _$$SearchModelLoadingImplCopyWith<_$SearchModelLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SearchModelLoadedCopyWith<$Res>
+abstract class _$$SearchModelLoadedImplCopyWith<$Res>
     implements $SearchModelCopyWith<$Res> {
-  factory _$$SearchModelLoadedCopyWith(
-          _$SearchModelLoaded value, $Res Function(_$SearchModelLoaded) then) =
-      __$$SearchModelLoadedCopyWithImpl<$Res>;
+  factory _$$SearchModelLoadedImplCopyWith(_$SearchModelLoadedImpl value,
+          $Res Function(_$SearchModelLoadedImpl) then) =
+      __$$SearchModelLoadedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -421,11 +423,11 @@ abstract class _$$SearchModelLoadedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SearchModelLoadedCopyWithImpl<$Res>
-    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoaded>
-    implements _$$SearchModelLoadedCopyWith<$Res> {
-  __$$SearchModelLoadedCopyWithImpl(
-      _$SearchModelLoaded _value, $Res Function(_$SearchModelLoaded) _then)
+class __$$SearchModelLoadedImplCopyWithImpl<$Res>
+    extends _$SearchModelCopyWithImpl<$Res, _$SearchModelLoadedImpl>
+    implements _$$SearchModelLoadedImplCopyWith<$Res> {
+  __$$SearchModelLoadedImplCopyWithImpl(_$SearchModelLoadedImpl _value,
+      $Res Function(_$SearchModelLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -435,7 +437,7 @@ class __$$SearchModelLoadedCopyWithImpl<$Res>
     Object? resultsQuery = null,
     Object? cards = null,
   }) {
-    return _then(_$SearchModelLoaded(
+    return _then(_$SearchModelLoadedImpl(
       null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
@@ -454,8 +456,8 @@ class __$$SearchModelLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchModelLoaded implements SearchModelLoaded {
-  _$SearchModelLoaded(
+class _$SearchModelLoadedImpl implements SearchModelLoaded {
+  _$SearchModelLoadedImpl(
       this.searchFocused, this.resultsQuery, final List<CardInitialized> cards)
       : _cards = cards;
 
@@ -480,7 +482,7 @@ class _$SearchModelLoaded implements SearchModelLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchModelLoaded &&
+            other is _$SearchModelLoadedImpl &&
             (identical(other.searchFocused, searchFocused) ||
                 other.searchFocused == searchFocused) &&
             (identical(other.resultsQuery, resultsQuery) ||
@@ -495,8 +497,9 @@ class _$SearchModelLoaded implements SearchModelLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchModelLoadedCopyWith<_$SearchModelLoaded> get copyWith =>
-      __$$SearchModelLoadedCopyWithImpl<_$SearchModelLoaded>(this, _$identity);
+  _$$SearchModelLoadedImplCopyWith<_$SearchModelLoadedImpl> get copyWith =>
+      __$$SearchModelLoadedImplCopyWithImpl<_$SearchModelLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -575,7 +578,7 @@ class _$SearchModelLoaded implements SearchModelLoaded {
 
 abstract class SearchModelLoaded implements SearchModel {
   factory SearchModelLoaded(final bool searchFocused, final String resultsQuery,
-      final List<CardInitialized> cards) = _$SearchModelLoaded;
+      final List<CardInitialized> cards) = _$SearchModelLoadedImpl;
 
   @override
   bool get searchFocused;
@@ -583,6 +586,6 @@ abstract class SearchModelLoaded implements SearchModel {
   List<CardInitialized> get cards;
   @override
   @JsonKey(ignore: true)
-  _$$SearchModelLoadedCopyWith<_$SearchModelLoaded> get copyWith =>
+  _$$SearchModelLoadedImplCopyWith<_$SearchModelLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

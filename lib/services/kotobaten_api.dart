@@ -186,6 +186,12 @@ class KotobatenApiService {
     await _postJson('hideOnboarding', {});
   }
 
+  Future<UserCoreInitialized> updateDisableAudio(bool disableAudio) async {
+    final response = await _postJson('user', {'disableSounds': disableAudio});
+    final body = utf8.decode(response.bodyBytes);
+    return UserCoreInitialized.fromJson(jsonDecode(body));
+  }
+
   Future<List<String>> getFurigana(String kanji) async {
     final url =
         _getUrl(_appConfiguration.apiRoot, 'furigana', {'kanji': kanji});

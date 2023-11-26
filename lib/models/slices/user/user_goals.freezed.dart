@@ -73,22 +73,22 @@ class _$UserGoalsCopyWithImpl<$Res, $Val extends UserGoals>
 }
 
 /// @nodoc
-abstract class _$$UserGoalsInitializedCopyWith<$Res>
+abstract class _$$UserGoalsInitializedImplCopyWith<$Res>
     implements $UserGoalsCopyWith<$Res> {
-  factory _$$UserGoalsInitializedCopyWith(_$UserGoalsInitialized value,
-          $Res Function(_$UserGoalsInitialized) then) =
-      __$$UserGoalsInitializedCopyWithImpl<$Res>;
+  factory _$$UserGoalsInitializedImplCopyWith(_$UserGoalsInitializedImpl value,
+          $Res Function(_$UserGoalsInitializedImpl) then) =
+      __$$UserGoalsInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int discoverWeekly, int discoverMonthly, int discoverDaily});
 }
 
 /// @nodoc
-class __$$UserGoalsInitializedCopyWithImpl<$Res>
-    extends _$UserGoalsCopyWithImpl<$Res, _$UserGoalsInitialized>
-    implements _$$UserGoalsInitializedCopyWith<$Res> {
-  __$$UserGoalsInitializedCopyWithImpl(_$UserGoalsInitialized _value,
-      $Res Function(_$UserGoalsInitialized) _then)
+class __$$UserGoalsInitializedImplCopyWithImpl<$Res>
+    extends _$UserGoalsCopyWithImpl<$Res, _$UserGoalsInitializedImpl>
+    implements _$$UserGoalsInitializedImplCopyWith<$Res> {
+  __$$UserGoalsInitializedImplCopyWithImpl(_$UserGoalsInitializedImpl _value,
+      $Res Function(_$UserGoalsInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$UserGoalsInitializedCopyWithImpl<$Res>
     Object? discoverMonthly = null,
     Object? discoverDaily = null,
   }) {
-    return _then(_$UserGoalsInitialized(
+    return _then(_$UserGoalsInitializedImpl(
       null == discoverWeekly
           ? _value.discoverWeekly
           : discoverWeekly // ignore: cast_nullable_to_non_nullable
@@ -117,12 +117,12 @@ class __$$UserGoalsInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserGoalsInitialized implements UserGoalsInitialized {
-  _$UserGoalsInitialized(
+class _$UserGoalsInitializedImpl implements UserGoalsInitialized {
+  _$UserGoalsInitializedImpl(
       this.discoverWeekly, this.discoverMonthly, this.discoverDaily);
 
-  factory _$UserGoalsInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserGoalsInitializedFromJson(json);
+  factory _$UserGoalsInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserGoalsInitializedImplFromJson(json);
 
   @override
   final int discoverWeekly;
@@ -140,7 +140,7 @@ class _$UserGoalsInitialized implements UserGoalsInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserGoalsInitialized &&
+            other is _$UserGoalsInitializedImpl &&
             (identical(other.discoverWeekly, discoverWeekly) ||
                 other.discoverWeekly == discoverWeekly) &&
             (identical(other.discoverMonthly, discoverMonthly) ||
@@ -157,13 +157,14 @@ class _$UserGoalsInitialized implements UserGoalsInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserGoalsInitializedCopyWith<_$UserGoalsInitialized> get copyWith =>
-      __$$UserGoalsInitializedCopyWithImpl<_$UserGoalsInitialized>(
-          this, _$identity);
+  _$$UserGoalsInitializedImplCopyWith<_$UserGoalsInitializedImpl>
+      get copyWith =>
+          __$$UserGoalsInitializedImplCopyWithImpl<_$UserGoalsInitializedImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserGoalsInitializedToJson(
+    return _$$UserGoalsInitializedImplToJson(
       this,
     );
   }
@@ -173,10 +174,10 @@ abstract class UserGoalsInitialized implements UserGoals {
   factory UserGoalsInitialized(
       final int discoverWeekly,
       final int discoverMonthly,
-      final int discoverDaily) = _$UserGoalsInitialized;
+      final int discoverDaily) = _$UserGoalsInitializedImpl;
 
   factory UserGoalsInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserGoalsInitialized.fromJson;
+      _$UserGoalsInitializedImpl.fromJson;
 
   @override
   int get discoverWeekly;
@@ -186,6 +187,6 @@ abstract class UserGoalsInitialized implements UserGoals {
   int get discoverDaily;
   @override
   @JsonKey(ignore: true)
-  _$$UserGoalsInitializedCopyWith<_$UserGoalsInitialized> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UserGoalsInitializedImplCopyWith<_$UserGoalsInitializedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

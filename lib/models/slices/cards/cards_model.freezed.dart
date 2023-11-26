@@ -87,25 +87,25 @@ class _$CardsModelCopyWithImpl<$Res, $Val extends CardsModel>
 }
 
 /// @nodoc
-abstract class _$$CardsModelInitialCopyWith<$Res> {
-  factory _$$CardsModelInitialCopyWith(
-          _$CardsModelInitial value, $Res Function(_$CardsModelInitial) then) =
-      __$$CardsModelInitialCopyWithImpl<$Res>;
+abstract class _$$CardsModelInitialImplCopyWith<$Res> {
+  factory _$$CardsModelInitialImplCopyWith(_$CardsModelInitialImpl value,
+          $Res Function(_$CardsModelInitialImpl) then) =
+      __$$CardsModelInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CardsModelInitialCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitial>
-    implements _$$CardsModelInitialCopyWith<$Res> {
-  __$$CardsModelInitialCopyWithImpl(
-      _$CardsModelInitial _value, $Res Function(_$CardsModelInitial) _then)
+class __$$CardsModelInitialImplCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitialImpl>
+    implements _$$CardsModelInitialImplCopyWith<$Res> {
+  __$$CardsModelInitialImplCopyWithImpl(_$CardsModelInitialImpl _value,
+      $Res Function(_$CardsModelInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CardsModelInitial extends CardsModelInitial {
-  _$CardsModelInitial() : super._();
+class _$CardsModelInitialImpl extends CardsModelInitial {
+  _$CardsModelInitialImpl() : super._();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$CardsModelInitial extends CardsModelInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CardsModelInitial);
+        (other.runtimeType == runtimeType && other is _$CardsModelInitialImpl);
   }
 
   @override
@@ -197,30 +197,32 @@ class _$CardsModelInitial extends CardsModelInitial {
 }
 
 abstract class CardsModelInitial extends CardsModel {
-  factory CardsModelInitial() = _$CardsModelInitial;
+  factory CardsModelInitial() = _$CardsModelInitialImpl;
   CardsModelInitial._() : super._();
 }
 
 /// @nodoc
-abstract class _$$CardsModelLoadingInitialCopyWith<$Res> {
-  factory _$$CardsModelLoadingInitialCopyWith(_$CardsModelLoadingInitial value,
-          $Res Function(_$CardsModelLoadingInitial) then) =
-      __$$CardsModelLoadingInitialCopyWithImpl<$Res>;
+abstract class _$$CardsModelLoadingInitialImplCopyWith<$Res> {
+  factory _$$CardsModelLoadingInitialImplCopyWith(
+          _$CardsModelLoadingInitialImpl value,
+          $Res Function(_$CardsModelLoadingInitialImpl) then) =
+      __$$CardsModelLoadingInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CardsModelLoadingInitialCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelLoadingInitial>
-    implements _$$CardsModelLoadingInitialCopyWith<$Res> {
-  __$$CardsModelLoadingInitialCopyWithImpl(_$CardsModelLoadingInitial _value,
-      $Res Function(_$CardsModelLoadingInitial) _then)
+class __$$CardsModelLoadingInitialImplCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelLoadingInitialImpl>
+    implements _$$CardsModelLoadingInitialImplCopyWith<$Res> {
+  __$$CardsModelLoadingInitialImplCopyWithImpl(
+      _$CardsModelLoadingInitialImpl _value,
+      $Res Function(_$CardsModelLoadingInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
-  _$CardsModelLoadingInitial() : super._();
+class _$CardsModelLoadingInitialImpl extends CardsModelLoadingInitial {
+  _$CardsModelLoadingInitialImpl() : super._();
 
   @override
   String toString() {
@@ -231,7 +233,7 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CardsModelLoadingInitial);
+            other is _$CardsModelLoadingInitialImpl);
   }
 
   @override
@@ -313,15 +315,16 @@ class _$CardsModelLoadingInitial extends CardsModelLoadingInitial {
 }
 
 abstract class CardsModelLoadingInitial extends CardsModel {
-  factory CardsModelLoadingInitial() = _$CardsModelLoadingInitial;
+  factory CardsModelLoadingInitial() = _$CardsModelLoadingInitialImpl;
   CardsModelLoadingInitial._() : super._();
 }
 
 /// @nodoc
-abstract class _$$CardsModelInitializedCopyWith<$Res> {
-  factory _$$CardsModelInitializedCopyWith(_$CardsModelInitialized value,
-          $Res Function(_$CardsModelInitialized) then) =
-      __$$CardsModelInitializedCopyWithImpl<$Res>;
+abstract class _$$CardsModelInitializedImplCopyWith<$Res> {
+  factory _$$CardsModelInitializedImplCopyWith(
+          _$CardsModelInitializedImpl value,
+          $Res Function(_$CardsModelInitializedImpl) then) =
+      __$$CardsModelInitializedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<CardInitialized> cards,
@@ -331,11 +334,11 @@ abstract class _$$CardsModelInitializedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CardsModelInitializedCopyWithImpl<$Res>
-    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitialized>
-    implements _$$CardsModelInitializedCopyWith<$Res> {
-  __$$CardsModelInitializedCopyWithImpl(_$CardsModelInitialized _value,
-      $Res Function(_$CardsModelInitialized) _then)
+class __$$CardsModelInitializedImplCopyWithImpl<$Res>
+    extends _$CardsModelCopyWithImpl<$Res, _$CardsModelInitializedImpl>
+    implements _$$CardsModelInitializedImplCopyWith<$Res> {
+  __$$CardsModelInitializedImplCopyWithImpl(_$CardsModelInitializedImpl _value,
+      $Res Function(_$CardsModelInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -346,7 +349,7 @@ class __$$CardsModelInitializedCopyWithImpl<$Res>
     Object? loadingNextPage = null,
     Object? hasMoreCards = null,
   }) {
-    return _then(_$CardsModelInitialized(
+    return _then(_$CardsModelInitializedImpl(
       null == cards
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
@@ -369,9 +372,9 @@ class __$$CardsModelInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CardsModelInitialized extends CardsModelInitialized {
-  _$CardsModelInitialized(final List<CardInitialized> cards, this.pagesLoaded,
-      this.loadingNextPage, this.hasMoreCards)
+class _$CardsModelInitializedImpl extends CardsModelInitialized {
+  _$CardsModelInitializedImpl(final List<CardInitialized> cards,
+      this.pagesLoaded, this.loadingNextPage, this.hasMoreCards)
       : _cards = cards,
         super._();
 
@@ -399,7 +402,7 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CardsModelInitialized &&
+            other is _$CardsModelInitializedImpl &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
             (identical(other.pagesLoaded, pagesLoaded) ||
                 other.pagesLoaded == pagesLoaded) &&
@@ -420,9 +423,9 @@ class _$CardsModelInitialized extends CardsModelInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CardsModelInitializedCopyWith<_$CardsModelInitialized> get copyWith =>
-      __$$CardsModelInitializedCopyWithImpl<_$CardsModelInitialized>(
-          this, _$identity);
+  _$$CardsModelInitializedImplCopyWith<_$CardsModelInitializedImpl>
+      get copyWith => __$$CardsModelInitializedImplCopyWithImpl<
+          _$CardsModelInitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -504,7 +507,7 @@ abstract class CardsModelInitialized extends CardsModel {
       final List<CardInitialized> cards,
       final int pagesLoaded,
       final bool loadingNextPage,
-      final bool hasMoreCards) = _$CardsModelInitialized;
+      final bool hasMoreCards) = _$CardsModelInitializedImpl;
   CardsModelInitialized._() : super._();
 
   List<CardInitialized> get cards;
@@ -512,6 +515,6 @@ abstract class CardsModelInitialized extends CardsModel {
   bool get loadingNextPage;
   bool get hasMoreCards;
   @JsonKey(ignore: true)
-  _$$CardsModelInitializedCopyWith<_$CardsModelInitialized> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CardsModelInitializedImplCopyWith<_$CardsModelInitializedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

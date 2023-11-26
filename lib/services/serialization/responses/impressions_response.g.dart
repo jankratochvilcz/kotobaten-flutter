@@ -6,12 +6,12 @@ part of 'impressions_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
-    _$Initialized(
+_$InitializedImpl _$$InitializedImplFromJson(Map<String, dynamic> json) =>
+    _$InitializedImpl(
       UserStatistics.fromJson(json['userStats'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
+Map<String, dynamic> _$$InitializedImplToJson(_$InitializedImpl instance) =>
     <String, dynamic>{
       'userStats': instance.userStats,
     };

@@ -121,11 +121,11 @@ class _$ImpressionsRequestCopyWithImpl<$Res, $Val extends ImpressionsRequest>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res>
+abstract class _$$InitializedImplCopyWith<$Res>
     implements $ImpressionsRequestCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -136,11 +136,11 @@ abstract class _$$InitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionsRequestCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$ImpressionsRequestCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -151,7 +151,7 @@ class __$$InitializedCopyWithImpl<$Res>
     Object? success = null,
     Object? timestamp = null,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       null == impressionType
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
@@ -174,12 +174,12 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Initialized implements Initialized {
-  _$Initialized(
+class _$InitializedImpl implements Initialized {
+  _$InitializedImpl(
       this.impressionType, this.stackCardId, this.success, this.timestamp);
 
-  factory _$Initialized.fromJson(Map<String, dynamic> json) =>
-      _$$InitializedFromJson(json);
+  factory _$InitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InitializedImplFromJson(json);
 
   @override
   final ImpressionType impressionType;
@@ -199,7 +199,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             (identical(other.impressionType, impressionType) ||
                 other.impressionType == impressionType) &&
             (identical(other.stackCardId, stackCardId) ||
@@ -217,8 +217,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -284,7 +284,7 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(
+    return _$$InitializedImplToJson(
       this,
     );
   }
@@ -295,10 +295,10 @@ abstract class Initialized implements ImpressionsRequest {
       final ImpressionType impressionType,
       final int stackCardId,
       final bool success,
-      final DateTime timestamp) = _$Initialized;
+      final DateTime timestamp) = _$InitializedImpl;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
-      _$Initialized.fromJson;
+      _$InitializedImpl.fromJson;
 
   @override
   ImpressionType get impressionType;
@@ -310,6 +310,6 @@ abstract class Initialized implements ImpressionsRequest {
   DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

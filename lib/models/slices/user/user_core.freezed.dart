@@ -23,22 +23,25 @@ mixin _$UserCore {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   int get retentionBackstopMaxThreshold => throw _privateConstructorUsedError;
+  bool get disableSounds => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id, String email, int retentionBackstopMaxThreshold)
+    required TResult Function(int id, String email,
+            int retentionBackstopMaxThreshold, bool disableSounds)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String email, int retentionBackstopMaxThreshold)?
+    TResult? Function(int id, String email, int retentionBackstopMaxThreshold,
+            bool disableSounds)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String email, int retentionBackstopMaxThreshold)?
+    TResult Function(int id, String email, int retentionBackstopMaxThreshold,
+            bool disableSounds)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -70,7 +73,11 @@ abstract class $UserCoreCopyWith<$Res> {
   factory $UserCoreCopyWith(UserCore value, $Res Function(UserCore) then) =
       _$UserCoreCopyWithImpl<$Res, UserCore>;
   @useResult
-  $Res call({int id, String email, int retentionBackstopMaxThreshold});
+  $Res call(
+      {int id,
+      String email,
+      int retentionBackstopMaxThreshold,
+      bool disableSounds});
 }
 
 /// @nodoc
@@ -89,6 +96,7 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
     Object? id = null,
     Object? email = null,
     Object? retentionBackstopMaxThreshold = null,
+    Object? disableSounds = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -103,27 +111,35 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
           ? _value.retentionBackstopMaxThreshold
           : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
               as int,
+      disableSounds: null == disableSounds
+          ? _value.disableSounds
+          : disableSounds // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$UserCoreInitializedCopyWith<$Res>
+abstract class _$$UserCoreInitializedImplCopyWith<$Res>
     implements $UserCoreCopyWith<$Res> {
-  factory _$$UserCoreInitializedCopyWith(_$UserCoreInitialized value,
-          $Res Function(_$UserCoreInitialized) then) =
-      __$$UserCoreInitializedCopyWithImpl<$Res>;
+  factory _$$UserCoreInitializedImplCopyWith(_$UserCoreInitializedImpl value,
+          $Res Function(_$UserCoreInitializedImpl) then) =
+      __$$UserCoreInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String email, int retentionBackstopMaxThreshold});
+  $Res call(
+      {int id,
+      String email,
+      int retentionBackstopMaxThreshold,
+      bool disableSounds});
 }
 
 /// @nodoc
-class __$$UserCoreInitializedCopyWithImpl<$Res>
-    extends _$UserCoreCopyWithImpl<$Res, _$UserCoreInitialized>
-    implements _$$UserCoreInitializedCopyWith<$Res> {
-  __$$UserCoreInitializedCopyWithImpl(
-      _$UserCoreInitialized _value, $Res Function(_$UserCoreInitialized) _then)
+class __$$UserCoreInitializedImplCopyWithImpl<$Res>
+    extends _$UserCoreCopyWithImpl<$Res, _$UserCoreInitializedImpl>
+    implements _$$UserCoreInitializedImplCopyWith<$Res> {
+  __$$UserCoreInitializedImplCopyWithImpl(_$UserCoreInitializedImpl _value,
+      $Res Function(_$UserCoreInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,8 +148,9 @@ class __$$UserCoreInitializedCopyWithImpl<$Res>
     Object? id = null,
     Object? email = null,
     Object? retentionBackstopMaxThreshold = null,
+    Object? disableSounds = null,
   }) {
-    return _then(_$UserCoreInitialized(
+    return _then(_$UserCoreInitializedImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -146,18 +163,22 @@ class __$$UserCoreInitializedCopyWithImpl<$Res>
           ? _value.retentionBackstopMaxThreshold
           : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
               as int,
+      null == disableSounds
+          ? _value.disableSounds
+          : disableSounds // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserCoreInitialized implements UserCoreInitialized {
-  _$UserCoreInitialized(
-      this.id, this.email, this.retentionBackstopMaxThreshold);
+class _$UserCoreInitializedImpl implements UserCoreInitialized {
+  _$UserCoreInitializedImpl(this.id, this.email,
+      this.retentionBackstopMaxThreshold, this.disableSounds);
 
-  factory _$UserCoreInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserCoreInitializedFromJson(json);
+  factory _$UserCoreInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserCoreInitializedImplFromJson(json);
 
   @override
   final int id;
@@ -165,65 +186,73 @@ class _$UserCoreInitialized implements UserCoreInitialized {
   final String email;
   @override
   final int retentionBackstopMaxThreshold;
+  @override
+  final bool disableSounds;
 
   @override
   String toString() {
-    return 'UserCore.initialized(id: $id, email: $email, retentionBackstopMaxThreshold: $retentionBackstopMaxThreshold)';
+    return 'UserCore.initialized(id: $id, email: $email, retentionBackstopMaxThreshold: $retentionBackstopMaxThreshold, disableSounds: $disableSounds)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserCoreInitialized &&
+            other is _$UserCoreInitializedImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.retentionBackstopMaxThreshold,
                     retentionBackstopMaxThreshold) ||
                 other.retentionBackstopMaxThreshold ==
-                    retentionBackstopMaxThreshold));
+                    retentionBackstopMaxThreshold) &&
+            (identical(other.disableSounds, disableSounds) ||
+                other.disableSounds == disableSounds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, email, retentionBackstopMaxThreshold);
+  int get hashCode => Object.hash(
+      runtimeType, id, email, retentionBackstopMaxThreshold, disableSounds);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserCoreInitializedCopyWith<_$UserCoreInitialized> get copyWith =>
-      __$$UserCoreInitializedCopyWithImpl<_$UserCoreInitialized>(
+  _$$UserCoreInitializedImplCopyWith<_$UserCoreInitializedImpl> get copyWith =>
+      __$$UserCoreInitializedImplCopyWithImpl<_$UserCoreInitializedImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            int id, String email, int retentionBackstopMaxThreshold)
+    required TResult Function(int id, String email,
+            int retentionBackstopMaxThreshold, bool disableSounds)
         initialized,
   }) {
-    return initialized(id, email, retentionBackstopMaxThreshold);
+    return initialized(id, email, retentionBackstopMaxThreshold, disableSounds);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id, String email, int retentionBackstopMaxThreshold)?
+    TResult? Function(int id, String email, int retentionBackstopMaxThreshold,
+            bool disableSounds)?
         initialized,
   }) {
-    return initialized?.call(id, email, retentionBackstopMaxThreshold);
+    return initialized?.call(
+        id, email, retentionBackstopMaxThreshold, disableSounds);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id, String email, int retentionBackstopMaxThreshold)?
+    TResult Function(int id, String email, int retentionBackstopMaxThreshold,
+            bool disableSounds)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(id, email, retentionBackstopMaxThreshold);
+      return initialized(
+          id, email, retentionBackstopMaxThreshold, disableSounds);
     }
     return orElse();
   }
@@ -258,18 +287,21 @@ class _$UserCoreInitialized implements UserCoreInitialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserCoreInitializedToJson(
+    return _$$UserCoreInitializedImplToJson(
       this,
     );
   }
 }
 
 abstract class UserCoreInitialized implements UserCore {
-  factory UserCoreInitialized(final int id, final String email,
-      final int retentionBackstopMaxThreshold) = _$UserCoreInitialized;
+  factory UserCoreInitialized(
+      final int id,
+      final String email,
+      final int retentionBackstopMaxThreshold,
+      final bool disableSounds) = _$UserCoreInitializedImpl;
 
   factory UserCoreInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserCoreInitialized.fromJson;
+      _$UserCoreInitializedImpl.fromJson;
 
   @override
   int get id;
@@ -278,7 +310,9 @@ abstract class UserCoreInitialized implements UserCore {
   @override
   int get retentionBackstopMaxThreshold;
   @override
+  bool get disableSounds;
+  @override
   @JsonKey(ignore: true)
-  _$$UserCoreInitializedCopyWith<_$UserCoreInitialized> get copyWith =>
+  _$$UserCoreInitializedImplCopyWith<_$UserCoreInitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

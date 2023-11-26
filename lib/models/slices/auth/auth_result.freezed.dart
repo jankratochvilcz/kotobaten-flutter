@@ -81,20 +81,20 @@ class _$AuthResultCopyWithImpl<$Res, $Val extends AuthResult>
 }
 
 /// @nodoc
-abstract class _$$AuthResultErrorCopyWith<$Res> {
-  factory _$$AuthResultErrorCopyWith(
-          _$AuthResultError value, $Res Function(_$AuthResultError) then) =
-      __$$AuthResultErrorCopyWithImpl<$Res>;
+abstract class _$$AuthResultErrorImplCopyWith<$Res> {
+  factory _$$AuthResultErrorImplCopyWith(_$AuthResultErrorImpl value,
+          $Res Function(_$AuthResultErrorImpl) then) =
+      __$$AuthResultErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int errorCode});
 }
 
 /// @nodoc
-class __$$AuthResultErrorCopyWithImpl<$Res>
-    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultError>
-    implements _$$AuthResultErrorCopyWith<$Res> {
-  __$$AuthResultErrorCopyWithImpl(
-      _$AuthResultError _value, $Res Function(_$AuthResultError) _then)
+class __$$AuthResultErrorImplCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultErrorImpl>
+    implements _$$AuthResultErrorImplCopyWith<$Res> {
+  __$$AuthResultErrorImplCopyWithImpl(
+      _$AuthResultErrorImpl _value, $Res Function(_$AuthResultErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$AuthResultErrorCopyWithImpl<$Res>
   $Res call({
     Object? errorCode = null,
   }) {
-    return _then(_$AuthResultError(
+    return _then(_$AuthResultErrorImpl(
       null == errorCode
           ? _value.errorCode
           : errorCode // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$AuthResultErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthResultError implements AuthResultError {
-  _$AuthResultError(this.errorCode);
+class _$AuthResultErrorImpl implements AuthResultError {
+  _$AuthResultErrorImpl(this.errorCode);
 
   @override
   final int errorCode;
@@ -128,7 +128,7 @@ class _$AuthResultError implements AuthResultError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthResultError &&
+            other is _$AuthResultErrorImpl &&
             (identical(other.errorCode, errorCode) ||
                 other.errorCode == errorCode));
   }
@@ -139,8 +139,9 @@ class _$AuthResultError implements AuthResultError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthResultErrorCopyWith<_$AuthResultError> get copyWith =>
-      __$$AuthResultErrorCopyWithImpl<_$AuthResultError>(this, _$identity);
+  _$$AuthResultErrorImplCopyWith<_$AuthResultErrorImpl> get copyWith =>
+      __$$AuthResultErrorImplCopyWithImpl<_$AuthResultErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -212,29 +213,29 @@ class _$AuthResultError implements AuthResultError {
 }
 
 abstract class AuthResultError implements AuthResult {
-  factory AuthResultError(final int errorCode) = _$AuthResultError;
+  factory AuthResultError(final int errorCode) = _$AuthResultErrorImpl;
 
   int get errorCode;
   @JsonKey(ignore: true)
-  _$$AuthResultErrorCopyWith<_$AuthResultError> get copyWith =>
+  _$$AuthResultErrorImplCopyWith<_$AuthResultErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthResultSuccessCopyWith<$Res> {
-  factory _$$AuthResultSuccessCopyWith(
-          _$AuthResultSuccess value, $Res Function(_$AuthResultSuccess) then) =
-      __$$AuthResultSuccessCopyWithImpl<$Res>;
+abstract class _$$AuthResultSuccessImplCopyWith<$Res> {
+  factory _$$AuthResultSuccessImplCopyWith(_$AuthResultSuccessImpl value,
+          $Res Function(_$AuthResultSuccessImpl) then) =
+      __$$AuthResultSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String token});
 }
 
 /// @nodoc
-class __$$AuthResultSuccessCopyWithImpl<$Res>
-    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultSuccess>
-    implements _$$AuthResultSuccessCopyWith<$Res> {
-  __$$AuthResultSuccessCopyWithImpl(
-      _$AuthResultSuccess _value, $Res Function(_$AuthResultSuccess) _then)
+class __$$AuthResultSuccessImplCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultSuccessImpl>
+    implements _$$AuthResultSuccessImplCopyWith<$Res> {
+  __$$AuthResultSuccessImplCopyWithImpl(_$AuthResultSuccessImpl _value,
+      $Res Function(_$AuthResultSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -242,7 +243,7 @@ class __$$AuthResultSuccessCopyWithImpl<$Res>
   $Res call({
     Object? token = null,
   }) {
-    return _then(_$AuthResultSuccess(
+    return _then(_$AuthResultSuccessImpl(
       null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -253,8 +254,8 @@ class __$$AuthResultSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthResultSuccess implements AuthResultSuccess {
-  _$AuthResultSuccess(this.token);
+class _$AuthResultSuccessImpl implements AuthResultSuccess {
+  _$AuthResultSuccessImpl(this.token);
 
   @override
   final String token;
@@ -268,7 +269,7 @@ class _$AuthResultSuccess implements AuthResultSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthResultSuccess &&
+            other is _$AuthResultSuccessImpl &&
             (identical(other.token, token) || other.token == token));
   }
 
@@ -278,8 +279,9 @@ class _$AuthResultSuccess implements AuthResultSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthResultSuccessCopyWith<_$AuthResultSuccess> get copyWith =>
-      __$$AuthResultSuccessCopyWithImpl<_$AuthResultSuccess>(this, _$identity);
+  _$$AuthResultSuccessImplCopyWith<_$AuthResultSuccessImpl> get copyWith =>
+      __$$AuthResultSuccessImplCopyWithImpl<_$AuthResultSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -351,29 +353,29 @@ class _$AuthResultSuccess implements AuthResultSuccess {
 }
 
 abstract class AuthResultSuccess implements AuthResult {
-  factory AuthResultSuccess(final String token) = _$AuthResultSuccess;
+  factory AuthResultSuccess(final String token) = _$AuthResultSuccessImpl;
 
   String get token;
   @JsonKey(ignore: true)
-  _$$AuthResultSuccessCopyWith<_$AuthResultSuccess> get copyWith =>
+  _$$AuthResultSuccessImplCopyWith<_$AuthResultSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthResultExceptionCopyWith<$Res> {
-  factory _$$AuthResultExceptionCopyWith(_$AuthResultException value,
-          $Res Function(_$AuthResultException) then) =
-      __$$AuthResultExceptionCopyWithImpl<$Res>;
+abstract class _$$AuthResultExceptionImplCopyWith<$Res> {
+  factory _$$AuthResultExceptionImplCopyWith(_$AuthResultExceptionImpl value,
+          $Res Function(_$AuthResultExceptionImpl) then) =
+      __$$AuthResultExceptionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ClientException exception});
 }
 
 /// @nodoc
-class __$$AuthResultExceptionCopyWithImpl<$Res>
-    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultException>
-    implements _$$AuthResultExceptionCopyWith<$Res> {
-  __$$AuthResultExceptionCopyWithImpl(
-      _$AuthResultException _value, $Res Function(_$AuthResultException) _then)
+class __$$AuthResultExceptionImplCopyWithImpl<$Res>
+    extends _$AuthResultCopyWithImpl<$Res, _$AuthResultExceptionImpl>
+    implements _$$AuthResultExceptionImplCopyWith<$Res> {
+  __$$AuthResultExceptionImplCopyWithImpl(_$AuthResultExceptionImpl _value,
+      $Res Function(_$AuthResultExceptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -381,7 +383,7 @@ class __$$AuthResultExceptionCopyWithImpl<$Res>
   $Res call({
     Object? exception = null,
   }) {
-    return _then(_$AuthResultException(
+    return _then(_$AuthResultExceptionImpl(
       null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -392,8 +394,8 @@ class __$$AuthResultExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthResultException implements AuthResultException {
-  _$AuthResultException(this.exception);
+class _$AuthResultExceptionImpl implements AuthResultException {
+  _$AuthResultExceptionImpl(this.exception);
 
   @override
   final ClientException exception;
@@ -407,7 +409,7 @@ class _$AuthResultException implements AuthResultException {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthResultException &&
+            other is _$AuthResultExceptionImpl &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
@@ -418,8 +420,8 @@ class _$AuthResultException implements AuthResultException {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthResultExceptionCopyWith<_$AuthResultException> get copyWith =>
-      __$$AuthResultExceptionCopyWithImpl<_$AuthResultException>(
+  _$$AuthResultExceptionImplCopyWith<_$AuthResultExceptionImpl> get copyWith =>
+      __$$AuthResultExceptionImplCopyWithImpl<_$AuthResultExceptionImpl>(
           this, _$identity);
 
   @override
@@ -493,10 +495,10 @@ class _$AuthResultException implements AuthResultException {
 
 abstract class AuthResultException implements AuthResult {
   factory AuthResultException(final ClientException exception) =
-      _$AuthResultException;
+      _$AuthResultExceptionImpl;
 
   ClientException get exception;
   @JsonKey(ignore: true)
-  _$$AuthResultExceptionCopyWith<_$AuthResultException> get copyWith =>
+  _$$AuthResultExceptionImplCopyWith<_$AuthResultExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

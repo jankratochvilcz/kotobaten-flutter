@@ -62,23 +62,24 @@ class _$UserOnboardingCopyWithImpl<$Res, $Val extends UserOnboarding>
 }
 
 /// @nodoc
-abstract class _$$UserOnboardingInitializedCopyWith<$Res>
+abstract class _$$UserOnboardingInitializedImplCopyWith<$Res>
     implements $UserOnboardingCopyWith<$Res> {
-  factory _$$UserOnboardingInitializedCopyWith(
-          _$UserOnboardingInitialized value,
-          $Res Function(_$UserOnboardingInitialized) then) =
-      __$$UserOnboardingInitializedCopyWithImpl<$Res>;
+  factory _$$UserOnboardingInitializedImplCopyWith(
+          _$UserOnboardingInitializedImpl value,
+          $Res Function(_$UserOnboardingInitializedImpl) then) =
+      __$$UserOnboardingInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool onboardingHidden});
 }
 
 /// @nodoc
-class __$$UserOnboardingInitializedCopyWithImpl<$Res>
-    extends _$UserOnboardingCopyWithImpl<$Res, _$UserOnboardingInitialized>
-    implements _$$UserOnboardingInitializedCopyWith<$Res> {
-  __$$UserOnboardingInitializedCopyWithImpl(_$UserOnboardingInitialized _value,
-      $Res Function(_$UserOnboardingInitialized) _then)
+class __$$UserOnboardingInitializedImplCopyWithImpl<$Res>
+    extends _$UserOnboardingCopyWithImpl<$Res, _$UserOnboardingInitializedImpl>
+    implements _$$UserOnboardingInitializedImplCopyWith<$Res> {
+  __$$UserOnboardingInitializedImplCopyWithImpl(
+      _$UserOnboardingInitializedImpl _value,
+      $Res Function(_$UserOnboardingInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +87,7 @@ class __$$UserOnboardingInitializedCopyWithImpl<$Res>
   $Res call({
     Object? onboardingHidden = null,
   }) {
-    return _then(_$UserOnboardingInitialized(
+    return _then(_$UserOnboardingInitializedImpl(
       null == onboardingHidden
           ? _value.onboardingHidden
           : onboardingHidden // ignore: cast_nullable_to_non_nullable
@@ -97,11 +98,11 @@ class __$$UserOnboardingInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserOnboardingInitialized implements UserOnboardingInitialized {
-  _$UserOnboardingInitialized(this.onboardingHidden);
+class _$UserOnboardingInitializedImpl implements UserOnboardingInitialized {
+  _$UserOnboardingInitializedImpl(this.onboardingHidden);
 
-  factory _$UserOnboardingInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserOnboardingInitializedFromJson(json);
+  factory _$UserOnboardingInitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserOnboardingInitializedImplFromJson(json);
 
   @override
   final bool onboardingHidden;
@@ -115,7 +116,7 @@ class _$UserOnboardingInitialized implements UserOnboardingInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserOnboardingInitialized &&
+            other is _$UserOnboardingInitializedImpl &&
             (identical(other.onboardingHidden, onboardingHidden) ||
                 other.onboardingHidden == onboardingHidden));
   }
@@ -127,13 +128,13 @@ class _$UserOnboardingInitialized implements UserOnboardingInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserOnboardingInitializedCopyWith<_$UserOnboardingInitialized>
-      get copyWith => __$$UserOnboardingInitializedCopyWithImpl<
-          _$UserOnboardingInitialized>(this, _$identity);
+  _$$UserOnboardingInitializedImplCopyWith<_$UserOnboardingInitializedImpl>
+      get copyWith => __$$UserOnboardingInitializedImplCopyWithImpl<
+          _$UserOnboardingInitializedImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserOnboardingInitializedToJson(
+    return _$$UserOnboardingInitializedImplToJson(
       this,
     );
   }
@@ -141,15 +142,15 @@ class _$UserOnboardingInitialized implements UserOnboardingInitialized {
 
 abstract class UserOnboardingInitialized implements UserOnboarding {
   factory UserOnboardingInitialized(final bool onboardingHidden) =
-      _$UserOnboardingInitialized;
+      _$UserOnboardingInitializedImpl;
 
   factory UserOnboardingInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserOnboardingInitialized.fromJson;
+      _$UserOnboardingInitializedImpl.fromJson;
 
   @override
   bool get onboardingHidden;
   @override
   @JsonKey(ignore: true)
-  _$$UserOnboardingInitializedCopyWith<_$UserOnboardingInitialized>
+  _$$UserOnboardingInitializedImplCopyWith<_$UserOnboardingInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

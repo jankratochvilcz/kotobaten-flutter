@@ -114,11 +114,11 @@ class _$ImpressionCopyWithImpl<$Res, $Val extends Impression>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res>
+abstract class _$$InitializedImplCopyWith<$Res>
     implements $ImpressionCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -128,11 +128,11 @@ abstract class _$$InitializedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$ImpressionCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$ImpressionCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -142,7 +142,7 @@ class __$$InitializedCopyWithImpl<$Res>
     Object? impressionType = null,
     Object? speechPath = freezed,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       freezed == card
           ? _value.card
           : card // ignore: cast_nullable_to_non_nullable
@@ -161,11 +161,11 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Initialized implements Initialized {
-  _$Initialized(this.card, this.impressionType, this.speechPath);
+class _$InitializedImpl implements Initialized {
+  _$InitializedImpl(this.card, this.impressionType, this.speechPath);
 
-  factory _$Initialized.fromJson(Map<String, dynamic> json) =>
-      _$$InitializedFromJson(json);
+  factory _$InitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InitializedImplFromJson(json);
 
   @override
   final CardInitialized card;
@@ -183,7 +183,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             const DeepCollectionEquality().equals(other.card, card) &&
             (identical(other.impressionType, impressionType) ||
                 other.impressionType == impressionType) &&
@@ -199,8 +199,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -266,7 +266,7 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(
+    return _$$InitializedImplToJson(
       this,
     );
   }
@@ -276,10 +276,10 @@ abstract class Initialized implements Impression {
   factory Initialized(
       final CardInitialized card,
       final ImpressionType impressionType,
-      final String? speechPath) = _$Initialized;
+      final String? speechPath) = _$InitializedImpl;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
-      _$Initialized.fromJson;
+      _$InitializedImpl.fromJson;
 
   @override
   CardInitialized get card;
@@ -289,6 +289,6 @@ abstract class Initialized implements Impression {
   String? get speechPath;
   @override
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

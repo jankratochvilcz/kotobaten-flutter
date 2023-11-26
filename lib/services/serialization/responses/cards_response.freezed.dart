@@ -102,22 +102,22 @@ class _$CardsResponseCopyWithImpl<$Res, $Val extends CardsResponse>
 }
 
 /// @nodoc
-abstract class _$$InitializedCopyWith<$Res>
+abstract class _$$InitializedImplCopyWith<$Res>
     implements $CardsResponseCopyWith<$Res> {
-  factory _$$InitializedCopyWith(
-          _$Initialized value, $Res Function(_$Initialized) then) =
-      __$$InitializedCopyWithImpl<$Res>;
+  factory _$$InitializedImplCopyWith(
+          _$InitializedImpl value, $Res Function(_$InitializedImpl) then) =
+      __$$InitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<CardInitialized> cards, bool hasMoreCards});
 }
 
 /// @nodoc
-class __$$InitializedCopyWithImpl<$Res>
-    extends _$CardsResponseCopyWithImpl<$Res, _$Initialized>
-    implements _$$InitializedCopyWith<$Res> {
-  __$$InitializedCopyWithImpl(
-      _$Initialized _value, $Res Function(_$Initialized) _then)
+class __$$InitializedImplCopyWithImpl<$Res>
+    extends _$CardsResponseCopyWithImpl<$Res, _$InitializedImpl>
+    implements _$$InitializedImplCopyWith<$Res> {
+  __$$InitializedImplCopyWithImpl(
+      _$InitializedImpl _value, $Res Function(_$InitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +126,7 @@ class __$$InitializedCopyWithImpl<$Res>
     Object? cards = null,
     Object? hasMoreCards = null,
   }) {
-    return _then(_$Initialized(
+    return _then(_$InitializedImpl(
       null == cards
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
@@ -141,12 +141,12 @@ class __$$InitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$Initialized implements Initialized {
-  _$Initialized(final List<CardInitialized> cards, this.hasMoreCards)
+class _$InitializedImpl implements Initialized {
+  _$InitializedImpl(final List<CardInitialized> cards, this.hasMoreCards)
       : _cards = cards;
 
-  factory _$Initialized.fromJson(Map<String, dynamic> json) =>
-      _$$InitializedFromJson(json);
+  factory _$InitializedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InitializedImplFromJson(json);
 
   final List<CardInitialized> _cards;
   @override
@@ -168,7 +168,7 @@ class _$Initialized implements Initialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Initialized &&
+            other is _$InitializedImpl &&
             const DeepCollectionEquality().equals(other._cards, _cards) &&
             (identical(other.hasMoreCards, hasMoreCards) ||
                 other.hasMoreCards == hasMoreCards));
@@ -182,8 +182,8 @@ class _$Initialized implements Initialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
-      __$$InitializedCopyWithImpl<_$Initialized>(this, _$identity);
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
+      __$$InitializedImplCopyWithImpl<_$InitializedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -246,7 +246,7 @@ class _$Initialized implements Initialized {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InitializedToJson(
+    return _$$InitializedImplToJson(
       this,
     );
   }
@@ -255,10 +255,10 @@ class _$Initialized implements Initialized {
 abstract class Initialized implements CardsResponse {
   factory Initialized(
           final List<CardInitialized> cards, final bool hasMoreCards) =
-      _$Initialized;
+      _$InitializedImpl;
 
   factory Initialized.fromJson(Map<String, dynamic> json) =
-      _$Initialized.fromJson;
+      _$InitializedImpl.fromJson;
 
   @override
   List<CardInitialized> get cards;
@@ -266,6 +266,6 @@ abstract class Initialized implements CardsResponse {
   bool get hasMoreCards;
   @override
   @JsonKey(ignore: true)
-  _$$InitializedCopyWith<_$Initialized> get copyWith =>
+  _$$InitializedImplCopyWith<_$InitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

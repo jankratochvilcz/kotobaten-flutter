@@ -74,25 +74,25 @@ class _$UserStatisticsDayCopyWithImpl<$Res, $Val extends UserStatisticsDay>
 }
 
 /// @nodoc
-abstract class _$$UserStatisticsDayInitializedCopyWith<$Res>
+abstract class _$$UserStatisticsDayInitializedImplCopyWith<$Res>
     implements $UserStatisticsDayCopyWith<$Res> {
-  factory _$$UserStatisticsDayInitializedCopyWith(
-          _$UserStatisticsDayInitialized value,
-          $Res Function(_$UserStatisticsDayInitialized) then) =
-      __$$UserStatisticsDayInitializedCopyWithImpl<$Res>;
+  factory _$$UserStatisticsDayInitializedImplCopyWith(
+          _$UserStatisticsDayInitializedImpl value,
+          $Res Function(_$UserStatisticsDayInitializedImpl) then) =
+      __$$UserStatisticsDayInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({DateTime date, int cardsAdded, int cardsDiscovered});
 }
 
 /// @nodoc
-class __$$UserStatisticsDayInitializedCopyWithImpl<$Res>
+class __$$UserStatisticsDayInitializedImplCopyWithImpl<$Res>
     extends _$UserStatisticsDayCopyWithImpl<$Res,
-        _$UserStatisticsDayInitialized>
-    implements _$$UserStatisticsDayInitializedCopyWith<$Res> {
-  __$$UserStatisticsDayInitializedCopyWithImpl(
-      _$UserStatisticsDayInitialized _value,
-      $Res Function(_$UserStatisticsDayInitialized) _then)
+        _$UserStatisticsDayInitializedImpl>
+    implements _$$UserStatisticsDayInitializedImplCopyWith<$Res> {
+  __$$UserStatisticsDayInitializedImplCopyWithImpl(
+      _$UserStatisticsDayInitializedImpl _value,
+      $Res Function(_$UserStatisticsDayInitializedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$UserStatisticsDayInitializedCopyWithImpl<$Res>
     Object? cardsAdded = null,
     Object? cardsDiscovered = null,
   }) {
-    return _then(_$UserStatisticsDayInitialized(
+    return _then(_$UserStatisticsDayInitializedImpl(
       null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -121,12 +121,14 @@ class __$$UserStatisticsDayInitializedCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserStatisticsDayInitialized implements UserStatisticsDayInitialized {
-  _$UserStatisticsDayInitialized(
+class _$UserStatisticsDayInitializedImpl
+    implements UserStatisticsDayInitialized {
+  _$UserStatisticsDayInitializedImpl(
       this.date, this.cardsAdded, this.cardsDiscovered);
 
-  factory _$UserStatisticsDayInitialized.fromJson(Map<String, dynamic> json) =>
-      _$$UserStatisticsDayInitializedFromJson(json);
+  factory _$UserStatisticsDayInitializedImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$UserStatisticsDayInitializedImplFromJson(json);
 
   @override
   final DateTime date;
@@ -144,7 +146,7 @@ class _$UserStatisticsDayInitialized implements UserStatisticsDayInitialized {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserStatisticsDayInitialized &&
+            other is _$UserStatisticsDayInitializedImpl &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.cardsAdded, cardsAdded) ||
                 other.cardsAdded == cardsAdded) &&
@@ -160,13 +162,14 @@ class _$UserStatisticsDayInitialized implements UserStatisticsDayInitialized {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserStatisticsDayInitializedCopyWith<_$UserStatisticsDayInitialized>
-      get copyWith => __$$UserStatisticsDayInitializedCopyWithImpl<
-          _$UserStatisticsDayInitialized>(this, _$identity);
+  _$$UserStatisticsDayInitializedImplCopyWith<
+          _$UserStatisticsDayInitializedImpl>
+      get copyWith => __$$UserStatisticsDayInitializedImplCopyWithImpl<
+          _$UserStatisticsDayInitializedImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserStatisticsDayInitializedToJson(
+    return _$$UserStatisticsDayInitializedImplToJson(
       this,
     );
   }
@@ -176,10 +179,10 @@ abstract class UserStatisticsDayInitialized implements UserStatisticsDay {
   factory UserStatisticsDayInitialized(
       final DateTime date,
       final int cardsAdded,
-      final int cardsDiscovered) = _$UserStatisticsDayInitialized;
+      final int cardsDiscovered) = _$UserStatisticsDayInitializedImpl;
 
   factory UserStatisticsDayInitialized.fromJson(Map<String, dynamic> json) =
-      _$UserStatisticsDayInitialized.fromJson;
+      _$UserStatisticsDayInitializedImpl.fromJson;
 
   @override
   DateTime get date;
@@ -189,6 +192,7 @@ abstract class UserStatisticsDayInitialized implements UserStatisticsDay {
   int get cardsDiscovered;
   @override
   @JsonKey(ignore: true)
-  _$$UserStatisticsDayInitializedCopyWith<_$UserStatisticsDayInitialized>
+  _$$UserStatisticsDayInitializedImplCopyWith<
+          _$UserStatisticsDayInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

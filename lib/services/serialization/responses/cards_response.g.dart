@@ -6,15 +6,15 @@ part of 'cards_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
-    _$Initialized(
+_$InitializedImpl _$$InitializedImplFromJson(Map<String, dynamic> json) =>
+    _$InitializedImpl(
       (json['cards'] as List<dynamic>)
           .map((e) => CardInitialized.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['hasMoreCards'] as bool,
     );
 
-Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
+Map<String, dynamic> _$$InitializedImplToJson(_$InitializedImpl instance) =>
     <String, dynamic>{
       'cards': instance.cards,
       'hasMoreCards': instance.hasMoreCards,

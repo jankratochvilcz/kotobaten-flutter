@@ -6,14 +6,14 @@ part of 'impression.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$Initialized _$$InitializedFromJson(Map<String, dynamic> json) =>
-    _$Initialized(
+_$InitializedImpl _$$InitializedImplFromJson(Map<String, dynamic> json) =>
+    _$InitializedImpl(
       CardInitialized.fromJson(json['card'] as Map<String, dynamic>),
       $enumDecode(_$ImpressionTypeEnumMap, json['impressionType']),
       json['speechPath'] as String?,
     );
 
-Map<String, dynamic> _$$InitializedToJson(_$Initialized instance) =>
+Map<String, dynamic> _$$InitializedImplToJson(_$InitializedImpl instance) =>
     <String, dynamic>{
       'card': instance.card,
       'impressionType': _$ImpressionTypeEnumMap[instance.impressionType]!,

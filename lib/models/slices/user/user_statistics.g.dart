@@ -6,9 +6,9 @@ part of 'user_statistics.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserStatisticsInitialized _$$UserStatisticsInitializedFromJson(
+_$UserStatisticsInitializedImpl _$$UserStatisticsInitializedImplFromJson(
         Map<String, dynamic> json) =>
-    _$UserStatisticsInitialized(
+    _$UserStatisticsInitializedImpl(
       json['leftToPractice'] as int,
       json['discoveredToday'] as int,
       json['discoveredWeek'] as int,
@@ -26,8 +26,8 @@ _$UserStatisticsInitialized _$$UserStatisticsInitializedFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$UserStatisticsInitializedToJson(
-        _$UserStatisticsInitialized instance) =>
+Map<String, dynamic> _$$UserStatisticsInitializedImplToJson(
+        _$UserStatisticsInitializedImpl instance) =>
     <String, dynamic>{
       'leftToPractice': instance.leftToPractice,
       'discoveredToday': instance.discoveredToday,

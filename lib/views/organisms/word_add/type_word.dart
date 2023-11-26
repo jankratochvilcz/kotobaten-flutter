@@ -70,7 +70,7 @@ class WordAddTypeWord extends HookConsumerWidget {
               hintStyle: hintStyle),
         ),
         SizedBox(
-          height: getPadding(PaddingType.small),
+          height: getPadding(PaddingType.standard),
         ),
         TextFormField(
           controller: kanaController,
@@ -95,6 +95,9 @@ class WordAddTypeWord extends HookConsumerWidget {
               hintText: 'Pronounciation of the word in hiragana.',
               hintStyle: hintStyle),
         ),
+        SizedBox(
+          height: getPadding(PaddingType.standard),
+        ),
         TextFormField(
           controller: senseController,
           validator: (value) {
@@ -111,10 +114,7 @@ class WordAddTypeWord extends HookConsumerWidget {
               hintStyle: hintStyle),
         ),
         SizedBox(
-          height: getPadding(PaddingType.small),
-        ),
-        SizedBox(
-          height: getPadding(PaddingType.small),
+          height: getPadding(PaddingType.standard),
         ),
         TextFormField(
           onEditingComplete: () {

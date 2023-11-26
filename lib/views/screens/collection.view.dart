@@ -15,9 +15,9 @@ import 'package:kotobaten/models/slices/cards/cards_repository.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
-import 'package:kotobaten/views/molecules/word_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
+import 'package:kotobaten/views/organisms/word_grid.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 
 class CollectionView extends HookConsumerWidget {
@@ -119,15 +119,7 @@ class CollectionView extends HookConsumerWidget {
                     ),
                   ),
                 ),
-                Wrap(
-                  direction: Axis.horizontal,
-                  children: cards
-                      .map((card) => ConstrainedBox(
-                          constraints: const BoxConstraints(
-                              maxWidth: 500, maxHeight: 158, minHeight: 158),
-                          child: WordCard(card)))
-                      .toList(),
-                )
+                WordGrid(cards),
               ]);
             }),
         floatingActionButton: FloatingActionButton(

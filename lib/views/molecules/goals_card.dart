@@ -31,7 +31,7 @@ class _GoalRingsInCard extends StatelessWidget {
         width: 80,
         height: 80,
         child: GoalRings(
-          Theme.of(context).scaffoldBackgroundColor,
+          Theme.of(context).colorScheme.background,
           strokeThickness: 6,
         ),
       );

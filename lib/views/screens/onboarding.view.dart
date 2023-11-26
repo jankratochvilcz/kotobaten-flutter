@@ -68,7 +68,7 @@ class OnboardingView extends HookConsumerWidget {
               currentStep: currentStep.value,
               controlsBuilder:
                   (BuildContext context, ControlsDetails details) =>
-                      Row(children: const []),
+                      const Row(children: []),
               steps: [
                 Step(
                     title: const Heading('Welcome 🙌', HeadingStyle.h2),

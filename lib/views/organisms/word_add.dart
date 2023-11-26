@@ -134,33 +134,37 @@ class _WordAddFormState extends State<WordAddForm> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (widget.existingWord?.id == null)
-                      Center(
-                          child: Row(
-                        children: [
-                          Expanded(
-                              child: ListTile(
-                            title: const Text("Word"),
-                            leading: Radio<CardType>(
-                              value: CardType.word,
-                              onChanged: setCardType,
-                              groupValue: _cardType,
-                            ),
-                          )),
-                          Expanded(
-                              child: ListTile(
-                            title: const Text("Grammar"),
-                            leading: Radio<CardType>(
-                              value: CardType.grammar,
-                              onChanged: setCardType,
-                              groupValue: _cardType,
-                            ),
-                          ))
-                        ],
-                      )),
-                    if (widget.existingWord?.id == null)
                       Padding(
-                          padding: verticalPadding(PaddingType.standard),
-                          child: const Divider()),
+                          padding: bottomPadding(PaddingType.xLarge),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              if (_cardType == CardType.word)
+                                TextButton.icon(
+                                    onPressed: () =>
+                                        setCardType(CardType.grammar),
+                                    icon: Icon(
+                                      Icons.switch_left_outlined,
+                                      color: getDescriptionColorSubtle(context),
+                                    ),
+                                    label: Text(
+                                      "Switch to grammar mode",
+                                      style: TextStyle(
+                                          color: getDescriptionColorSubtle(
+                                              context)),
+                                    )),
+                              if (_cardType == CardType.grammar)
+                                TextButton.icon(
+                                    onPressed: () => setCardType(CardType.word),
+                                    icon: Icon(Icons.switch_right_outlined,
+                                        color:
+                                            getDescriptionColorSubtle(context)),
+                                    label: Text("Switch to vocabulary mode",
+                                        style: TextStyle(
+                                            color: getDescriptionColorSubtle(
+                                                context)))),
+                            ],
+                          )),
                     if (_cardType == CardType.word)
                       WordAddTypeWord(
                           _senseController,
@@ -180,16 +184,19 @@ class _WordAddFormState extends State<WordAddForm> {
                     SizedBox(height: getPadding(PaddingType.xLarge)),
                     Align(
                         alignment: Alignment.centerRight,
-                        child: ButtonAsync(
-                          widget.existingWord != null
-                              ? 'Edit word'
-                              : 'Add word',
-                          onEditComplete,
-                          icon: widget.existingWord != null
-                              ? Icons.edit_outlined
-                              : Icons.add_circle_outline,
-                          type: ButtonType.primary,
-                          size: ButtonSize.big,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ButtonAsync(
+                              widget.existingWord != null ? 'Edit' : 'Add',
+                              onEditComplete,
+                              icon: widget.existingWord != null
+                                  ? Icons.edit_outlined
+                                  : Icons.add_circle_outline,
+                              type: ButtonType.primary,
+                              size: ButtonSize.big,
+                            )
+                          ],
                         ))
                   ]),
             )));

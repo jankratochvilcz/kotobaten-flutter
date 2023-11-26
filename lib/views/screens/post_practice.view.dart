@@ -11,9 +11,9 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
-import 'package:kotobaten/views/molecules/word_card.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
+import 'package:kotobaten/views/organisms/word_grid.dart';
 
 class PostPracticeView extends HookConsumerWidget {
   const PostPracticeView({Key? key}) : super(key: key);
@@ -38,32 +38,30 @@ class PostPracticeView extends HookConsumerWidget {
       return Scaffold(
           appBar: const WindowingAppBar(),
           backgroundColor: Theme.of(context).colorScheme.background,
-          body: SafeArea(
-              child: ListView.builder(
-                  itemCount: uniqueCards.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == 0) {
-                      return Column(children: [
-                        Padding(
-                            padding: verticalPadding(
-                                MediaQuery.of(context).size.width >=
-                                        minimumDesktopSize
-                                    ? PaddingType.xxxLarge
-                                    : PaddingType.xxLarge),
-                            child: CardLearn(
-                              userModel.user,
-                              goToPractice,
-                              heading: "Great work! 🙌",
-                              ctaText: "Keep learning!",
-                            )),
-                        const Heading("Practiced words", HeadingStyle.h2),
-                      ]);
-                    }
-
-                    return ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 400),
-                        child: WordCard(uniqueCards[index - 1]));
-                  })));
+          body: Expanded(
+              child: SingleChildScrollView(
+                  child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                  padding: verticalPadding(
+                      MediaQuery.of(context).size.width >= minimumDesktopSize
+                          ? PaddingType.xxxLarge
+                          : PaddingType.xxLarge),
+                  child: CardLearn(
+                    userModel.user,
+                    goToPractice,
+                    heading: "Great work! 🙌",
+                    ctaText: "Keep learning!",
+                  )),
+              Padding(
+                  padding: bottomPadding(PaddingType.large),
+                  child: const Center(
+                      child: Heading("Practiced words", HeadingStyle.h2))),
+              Center(child: WordGrid(uniqueCards))
+            ],
+          ))));
     }
 
     return const Loading();

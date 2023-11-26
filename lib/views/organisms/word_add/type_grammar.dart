@@ -43,7 +43,7 @@ class WordAddTypeGrammar extends StatelessWidget {
               hintStyle: hintStyle),
         ),
         SizedBox(
-          height: getPadding(PaddingType.small),
+          height: getPadding(PaddingType.standard),
         ),
         TextFormField(
           controller: kanjiController,
@@ -62,10 +62,10 @@ class WordAddTypeGrammar extends StatelessWidget {
               hintText: 'Add a short explanation of the grammar.',
               hintStyle: hintStyle),
           maxLines: 6,
-          minLines: 2,
+          minLines: 1,
         ),
         SizedBox(
-          height: getPadding(PaddingType.small),
+          height: getPadding(PaddingType.standard),
         ),
         TextFormField(
           controller: noteController,

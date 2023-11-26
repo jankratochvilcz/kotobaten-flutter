@@ -169,6 +169,7 @@ class PracticeView extends HookConsumerWidget {
       return WillPopScope(
         child: Scaffold(
             appBar: const WindowingAppBar(),
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: SafeArea(
                 child: Column(
               children: [

@@ -37,6 +37,7 @@ class PostPracticeView extends HookConsumerWidget {
 
       return Scaffold(
           appBar: const WindowingAppBar(),
+          backgroundColor: Theme.of(context).colorScheme.background,
           body: SafeArea(
               child: ListView.builder(
                   itemCount: uniqueCards.length + 1,

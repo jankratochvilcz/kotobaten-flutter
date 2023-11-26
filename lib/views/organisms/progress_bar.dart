@@ -69,8 +69,10 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
                     (widget.currentValue - _currentlyRenderedValue)),
             width,
             height,
-            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).colorScheme.background,
             Theme.of(context).colorScheme.secondary,
-            getDescriptionColorSubtle(context)));
+            Theme.of(context).brightness == Brightness.light
+                ? Colors.black12
+                : Colors.white12));
   }
 }

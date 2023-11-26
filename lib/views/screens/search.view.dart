@@ -23,6 +23,7 @@ class SearchView extends HookConsumerWidget {
           }
         },
         child: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             foregroundColor: Colors.white,

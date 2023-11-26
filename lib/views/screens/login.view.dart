@@ -73,6 +73,7 @@ class LoginView extends HookConsumerWidget {
 
     return Scaffold(
       appBar: const WindowingAppBar(),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
           padding: horizontalPadding(PaddingType.xLarge),
           child: Form(

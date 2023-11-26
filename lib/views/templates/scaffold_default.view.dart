@@ -42,6 +42,7 @@ class ScaffoldDefault extends HookConsumerWidget {
 
     return Scaffold(
         floatingActionButton: floatingActionButton,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           actions: [

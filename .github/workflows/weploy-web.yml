@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-    web-android:
+    web:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout from git

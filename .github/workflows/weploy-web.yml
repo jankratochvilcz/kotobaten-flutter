@@ -20,7 +20,7 @@ jobs:
         - name: Downloads packages
           run: flutter pub get
 
-        -  name: Get timestamp
+        - name: Get timestamp
           id: get_timestamp
           run: echo "::set-output name=TIMESTAMP::$(date +'%Y%m%d%H%M')"
 

@@ -39,7 +39,7 @@ jobs:
             path: pubspec.yaml
 
         - name: Builds web
-          run: flutter build web
+          run: flutter build web --source-maps
 
         - name: Upload Source to Sentry
           run: flutter packages pub run sentry_dart_plugin

@@ -58,7 +58,7 @@ class PostPracticeView extends HookConsumerWidget {
                   padding: bottomPadding(PaddingType.large),
                   child: const Center(
                       child: Heading("Practiced words", HeadingStyle.h2))),
-              Center(child: WordGrid(uniqueCards))
+              // Center(child: WordGrid(uniqueCards))
             ],
           )));
     }

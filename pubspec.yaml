@@ -60,6 +60,7 @@ dependencies:
 
 dev_dependencies:
   freezed: ^2.3.2
+  sentry_dart_plugin: ^1.0.0
   flutter_test:
     sdk: flutter
 
@@ -130,3 +131,9 @@ flutter_icons:
   android: false
   ios: true
   image_path: "assets/logos/logo_ios.png"
+
+sentry:
+  project: kotobaten-flutter
+  org: jan-kratochvil
+  upload_source_maps: true
+  upload_sources: true 

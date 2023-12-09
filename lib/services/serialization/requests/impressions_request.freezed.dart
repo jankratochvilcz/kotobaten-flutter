@@ -21,26 +21,26 @@ ImpressionsRequest _$ImpressionsRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImpressionsRequest {
   ImpressionType get impressionType => throw _privateConstructorUsedError;
-  int get stackCardId => throw _privateConstructorUsedError;
+  int? get stackCardId => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   DateTime get timestamp => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ImpressionType impressionType, int stackCardId,
+    required TResult Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ImpressionType impressionType, int stackCardId,
+    TResult? Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ImpressionType impressionType, int stackCardId,
+    TResult Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)?
         initialized,
     required TResult orElse(),
@@ -76,7 +76,7 @@ abstract class $ImpressionsRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {ImpressionType impressionType,
-      int stackCardId,
+      int? stackCardId,
       bool success,
       DateTime timestamp});
 }
@@ -95,7 +95,7 @@ class _$ImpressionsRequestCopyWithImpl<$Res, $Val extends ImpressionsRequest>
   @override
   $Res call({
     Object? impressionType = null,
-    Object? stackCardId = null,
+    Object? stackCardId = freezed,
     Object? success = null,
     Object? timestamp = null,
   }) {
@@ -104,10 +104,10 @@ class _$ImpressionsRequestCopyWithImpl<$Res, $Val extends ImpressionsRequest>
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      stackCardId: null == stackCardId
+      stackCardId: freezed == stackCardId
           ? _value.stackCardId
           : stackCardId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -130,7 +130,7 @@ abstract class _$$InitializedImplCopyWith<$Res>
   @useResult
   $Res call(
       {ImpressionType impressionType,
-      int stackCardId,
+      int? stackCardId,
       bool success,
       DateTime timestamp});
 }
@@ -147,7 +147,7 @@ class __$$InitializedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? impressionType = null,
-    Object? stackCardId = null,
+    Object? stackCardId = freezed,
     Object? success = null,
     Object? timestamp = null,
   }) {
@@ -156,10 +156,10 @@ class __$$InitializedImplCopyWithImpl<$Res>
           ? _value.impressionType
           : impressionType // ignore: cast_nullable_to_non_nullable
               as ImpressionType,
-      null == stackCardId
+      freezed == stackCardId
           ? _value.stackCardId
           : stackCardId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class _$InitializedImpl implements Initialized {
   @override
   final ImpressionType impressionType;
   @override
-  final int stackCardId;
+  final int? stackCardId;
   @override
   final bool success;
   @override
@@ -223,7 +223,7 @@ class _$InitializedImpl implements Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ImpressionType impressionType, int stackCardId,
+    required TResult Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)
         initialized,
   }) {
@@ -233,7 +233,7 @@ class _$InitializedImpl implements Initialized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ImpressionType impressionType, int stackCardId,
+    TResult? Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)?
         initialized,
   }) {
@@ -243,7 +243,7 @@ class _$InitializedImpl implements Initialized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ImpressionType impressionType, int stackCardId,
+    TResult Function(ImpressionType impressionType, int? stackCardId,
             bool success, DateTime timestamp)?
         initialized,
     required TResult orElse(),
@@ -293,7 +293,7 @@ class _$InitializedImpl implements Initialized {
 abstract class Initialized implements ImpressionsRequest {
   factory Initialized(
       final ImpressionType impressionType,
-      final int stackCardId,
+      final int? stackCardId,
       final bool success,
       final DateTime timestamp) = _$InitializedImpl;
 
@@ -303,7 +303,7 @@ abstract class Initialized implements ImpressionsRequest {
   @override
   ImpressionType get impressionType;
   @override
-  int get stackCardId;
+  int? get stackCardId;
   @override
   bool get success;
   @override

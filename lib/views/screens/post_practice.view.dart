@@ -33,7 +33,11 @@ class PostPracticeView extends HookConsumerWidget {
     if (userModel is UserModelInitialized &&
         practiceModel is PracticeModelFinished) {
       final cards = practiceModel.allImpressions.map((x) => x.card);
-      final uniqueCards = cards.unique((x) => x.id).toList();
+      final uniqueCards = cards
+          .where((x) =>
+              x.id != null && x.id != 0) // ID = 0 are generated sentences
+          .unique((x) => x.id!)
+          .toList();
 
       return Scaffold(
           appBar: const WindowingAppBar(),

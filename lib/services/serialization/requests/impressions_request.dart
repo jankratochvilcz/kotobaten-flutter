@@ -7,7 +7,7 @@ part 'impressions_request.g.dart';
 @freezed
 class ImpressionsRequest with _$ImpressionsRequest {
   factory ImpressionsRequest.initialized(ImpressionType impressionType,
-      int stackCardId, bool success, DateTime timestamp) = Initialized;
+      int? stackCardId, bool success, DateTime timestamp) = Initialized;
 
   factory ImpressionsRequest.fromJson(Map<String, dynamic> json) =>
       _$ImpressionsRequestFromJson(json);

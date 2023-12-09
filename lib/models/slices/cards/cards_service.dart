@@ -94,7 +94,10 @@ class CardsService {
   }
 
   Future<CardInitialized> deleteCard(CardInitialized card) async {
-    final deleteCardResult = await apiService.deleteCard(card.id);
+    if (card.id == null) {
+      throw Exception("ID is unexpectedly null");
+    }
+    final deleteCardResult = await apiService.deleteCard(card.id!);
 
     final currentState = cardsRepository.current;
     if (deleteCardResult && currentState is CardsModelInitialized) {

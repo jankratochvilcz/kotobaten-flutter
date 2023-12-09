@@ -9,7 +9,7 @@ part of 'card.dart';
 _$CardInitializedImpl _$$CardInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$CardInitializedImpl(
-      json['id'] as int,
+      json['id'] as int?,
       json['sense'] as String,
       toNonEmptyString(json['kana']),
       toNonEmptyString(json['kanji']),

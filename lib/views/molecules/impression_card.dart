@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/extensions/string.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/description_rich_text.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
@@ -29,7 +30,11 @@ class ImpressionCard extends StatelessWidget {
     final isLongPrimaryText = text.length > 10;
 
     return Padding(
-        padding: allPadding(PaddingType.xxLarge),
+        padding: EdgeInsets.fromLTRB(
+            getPadding(PaddingType.small),
+            getPadding(PaddingType.xxLarge),
+            getPadding(PaddingType.small),
+            getPadding(PaddingType.xxLarge)),
         child: Center(
             child: Card(
                 elevation: accented ? 10 : 5,
@@ -78,7 +83,7 @@ class ImpressionCard extends StatelessWidget {
                                 if (note?.isNotEmpty ?? false)
                                   Padding(
                                       padding: topPadding(PaddingType.xLarge),
-                                      child: Description(note!))
+                                      child: Description(note.ellipsis(40)!))
                               ],
                             ))))))));
   }

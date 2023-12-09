@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
+import 'package:kotobaten/extensions/string.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
@@ -29,8 +30,18 @@ class WordCard extends ConsumerWidget {
         (card.kanji?.isNotEmpty ?? false) && (card.kana?.isNotEmpty ?? false)
             ? card.kana
             : null;
+
+    final furiganaClipped = furigana.ellipsis(20);
+    final senseClipped = card.sense.ellipsis(40);
+    final kanjiClipped = card.kanji.ellipsis(8);
+    final kanaClipped = card.kana.ellipsis(20);
+
     final primaryJapanese =
-        (card.kanji?.isNotEmpty ?? false) ? card.kanji : card.kana;
+        (kanjiClipped?.isNotEmpty ?? false) ? kanjiClipped : kanaClipped;
+
+    final noteClipped = card.note != null && card.note!.length > 40
+        ? card.note!.substring(0, 40) + '...'
+        : card.note;
 
     var foregroundColor = getDescriptionColor(context);
 
@@ -52,10 +63,10 @@ class WordCard extends ConsumerWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 if (card.type == CardType.word &&
-                                    furigana != null)
+                                    furiganaClipped != null)
                                   DescriptionRichText([
                                     TextSpan(
-                                        text: furigana,
+                                        text: furiganaClipped,
                                         style: TextStyle(
                                             color: foregroundColor,
                                             fontSize: 12))
@@ -69,12 +80,12 @@ class WordCard extends ConsumerWidget {
                                             fontSize: 12))
                                   ]),
                                 Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                        0, 0, 0, furigana != null ? 22 : 4),
+                                    padding: EdgeInsets.fromLTRB(0, 0, 0,
+                                        furiganaClipped != null ? 22 : 4),
                                     child: Text(
                                       card.type == CardType.word
                                           ? primaryJapanese ?? ''
-                                          : card.sense,
+                                          : senseClipped,
                                       style: const TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400),
@@ -84,8 +95,8 @@ class WordCard extends ConsumerWidget {
                     Expanded(
                         child: Heading(
                       card.type == CardType.word
-                          ? card.sense
-                          : card.kanji ?? '',
+                          ? senseClipped
+                          : kanjiClipped ?? '',
                       HeadingStyle.h3,
                       textAlign: TextAlign.left,
                     )),
@@ -126,7 +137,7 @@ class WordCard extends ConsumerWidget {
                                                   title:
                                                       const Text('Delete word'),
                                                   content: Text(
-                                                      'Are you sure you want to delete "${card.sense}" from your collection?'),
+                                                      'Are you sure you want to delete "$senseClipped" from your collection?'),
                                                   actions: [
                                                     ButtonAsync(
                                                       'Yes',
@@ -162,7 +173,7 @@ class WordCard extends ConsumerWidget {
                         ))
                   ],
                 )),
-            if (card.note?.isNotEmpty ?? false)
+            if (noteClipped?.isNotEmpty ?? false)
               Padding(
                   padding: EdgeInsets.fromLTRB(getPadding(PaddingType.standard),
                       getPadding(PaddingType.standard), 0, 0),
@@ -177,7 +188,7 @@ class WordCard extends ConsumerWidget {
                     Expanded(
                         child: Padding(
                             padding: leftPadding(PaddingType.small),
-                            child: Text(card.note ?? '',
+                            child: Text(noteClipped ?? '',
                                 softWrap: true,
                                 style: TextStyle(
                                     color: foregroundColor, fontSize: 12))))

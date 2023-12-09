@@ -9,7 +9,7 @@ part of 'impressions_request.dart';
 _$InitializedImpl _$$InitializedImplFromJson(Map<String, dynamic> json) =>
     _$InitializedImpl(
       $enumDecode(_$ImpressionTypeEnumMap, json['impressionType']),
-      json['stackCardId'] as int,
+      json['stackCardId'] as int?,
       json['success'] as bool,
       DateTime.parse(json['timestamp'] as String),
     );

@@ -20,7 +20,7 @@ String? toNonEmptyString(dynamic x) {
 class Card with _$Card {
   @JsonSerializable(explicitToJson: true)
   factory Card(
-      int id,
+      int? id,
       String sense,
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,

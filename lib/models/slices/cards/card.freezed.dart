@@ -40,7 +40,7 @@ mixin _$Card {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -56,7 +56,7 @@ mixin _$Card {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -72,7 +72,7 @@ mixin _$Card {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -182,7 +182,7 @@ abstract class _$$CardInitializedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String sense,
       @JsonKey(fromJson: toNonEmptyString) String? kana,
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -202,7 +202,7 @@ class __$$CardInitializedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? sense = null,
     Object? kana = freezed,
     Object? kanji = freezed,
@@ -211,10 +211,10 @@ class __$$CardInitializedImplCopyWithImpl<$Res>
     Object? type = null,
   }) {
     return _then(_$CardInitializedImpl(
-      null == id
+      freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       null == sense
           ? _value.sense
           : sense // ignore: cast_nullable_to_non_nullable
@@ -262,7 +262,7 @@ class _$CardInitializedImpl implements CardInitialized {
       _$$CardInitializedImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String sense;
   @override
@@ -316,7 +316,7 @@ class _$CardInitializedImpl implements CardInitialized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -335,7 +335,7 @@ class _$CardInitializedImpl implements CardInitialized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -354,7 +354,7 @@ class _$CardInitializedImpl implements CardInitialized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -414,7 +414,7 @@ class _$CardInitializedImpl implements CardInitialized {
 
 abstract class CardInitialized implements Card {
   factory CardInitialized(
-      final int id,
+      final int? id,
       final String sense,
       @JsonKey(fromJson: toNonEmptyString) final String? kana,
       @JsonKey(fromJson: toNonEmptyString) final String? kanji,
@@ -425,7 +425,7 @@ abstract class CardInitialized implements Card {
   factory CardInitialized.fromJson(Map<String, dynamic> json) =
       _$CardInitializedImpl.fromJson;
 
-  int get id;
+  int? get id;
   @override
   String get sense;
   @override
@@ -569,7 +569,7 @@ class _$CardNewImpl implements CardNew {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -588,7 +588,7 @@ class _$CardNewImpl implements CardNew {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
@@ -607,7 +607,7 @@ class _$CardNewImpl implements CardNew {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int id,
+            int? id,
             String sense,
             @JsonKey(fromJson: toNonEmptyString) String? kana,
             @JsonKey(fromJson: toNonEmptyString) String? kanji,

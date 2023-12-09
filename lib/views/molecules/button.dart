@@ -32,18 +32,22 @@ LinearGradient _getPrimaryProgressGradient(
     ], tileMode: TileMode.clamp, transform: const GradientRotation(0.5));
 
 LinearGradient _getStandardProgressGradient(
-        BuildContext context, double percentage) =>
-    LinearGradient(colors: const [
-      Colors.black12,
-      Colors.black12,
-      Colors.transparent,
-      Colors.transparent
-    ], stops: [
-      0,
-      percentage,
-      percentage + 0.15,
-      1
-    ], tileMode: TileMode.clamp, transform: const GradientRotation(0.5));
+    BuildContext context, double percentage) {
+  var gradientColor = Theme.of(context).brightness == Brightness.light
+      ? Colors.black12
+      : Colors.white12;
+  return LinearGradient(colors: [
+    gradientColor,
+    gradientColor,
+    Colors.transparent,
+    Colors.transparent
+  ], stops: [
+    0,
+    percentage,
+    percentage + 0.15,
+    1
+  ], tileMode: TileMode.clamp, transform: const GradientRotation(0.5));
+}
 
 enum ButtonSize { small, standard, big }
 

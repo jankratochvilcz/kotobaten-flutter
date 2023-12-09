@@ -25,7 +25,11 @@ List<Widget> getBackgroundCards(int count, Color color) {
         child: Transform.translate(
             offset: Offset(0, offset),
             child: Padding(
-                padding: allPadding(PaddingType.xxLarge),
+                padding: EdgeInsets.fromLTRB(
+                    getPadding(PaddingType.small),
+                    getPadding(PaddingType.xxLarge),
+                    getPadding(PaddingType.small),
+                    getPadding(PaddingType.xxLarge)),
                 child: Center(
                     child: Card(
                         color: color,

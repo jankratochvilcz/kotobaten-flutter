@@ -16,8 +16,19 @@ import 'package:kotobaten/views/screens/search.view.dart';
 import 'package:kotobaten/views/screens/settings.view.dart';
 import 'dart:io' as io show Platform;
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+Future<void> main() async {
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://f944317b3775472f984911eb1744028c@o278485.ingest.sentry.io/4506365359489024';
+      // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+      // We recommend adjusting this value in production.
+      options.tracesSampleRate = 1.0;
+    },
+    appRunner: () => runApp(const ProviderScope(child: MyApp())),
+  );
 
   try {
     if (io.Platform.isWindows) {

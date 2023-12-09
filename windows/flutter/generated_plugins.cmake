@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
   bitsdojo_window_windows_v3
+  sentry_flutter
   url_launcher_windows
 )
 

@@ -38,7 +38,30 @@ class PostPracticeView extends HookConsumerWidget {
       return Scaffold(
           appBar: const WindowingAppBar(),
           backgroundColor: Theme.of(context).colorScheme.background,
-          body: Text("You're done!"));
+          body: Expanded(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("YOLO 1")
+              // Padding(
+              //     padding: verticalPadding(
+              //         MediaQuery.of(context).size.width >= minimumDesktopSize
+              //             ? PaddingType.xxxLarge
+              //             : PaddingType.xxLarge),
+              //     child: CardLearn(
+              //       userModel.user,
+              //       goToPractice,
+              //       heading: "Great work! 🙌",
+              //       ctaText: "Keep learning!",
+              //     )),
+              // Padding(
+              //     padding: bottomPadding(PaddingType.large),
+              //     child: const Center(
+              //         child: Heading("Practiced words", HeadingStyle.h2))),
+              // Center(child: WordGrid(uniqueCards))
+            ],
+          )));
     }
 
     return const Loading();

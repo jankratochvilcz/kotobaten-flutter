@@ -38,12 +38,11 @@ class PostPracticeView extends HookConsumerWidget {
       return Scaffold(
           appBar: const WindowingAppBar(),
           backgroundColor: Theme.of(context).colorScheme.background,
-          body: Expanded(
-              child: Column(
+          body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text("YOLO 1")
+              Text("YOLO 2")
               // Padding(
               //     padding: verticalPadding(
               //         MediaQuery.of(context).size.width >= minimumDesktopSize
@@ -61,7 +60,7 @@ class PostPracticeView extends HookConsumerWidget {
               //         child: Heading("Practiced words", HeadingStyle.h2))),
               // Center(child: WordGrid(uniqueCards))
             ],
-          )));
+          ));
     }
 
     return const Loading();

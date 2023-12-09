@@ -44,10 +44,9 @@ class PostPracticeView extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                  padding: verticalPadding(
-                      MediaQuery.of(context).size.width >= minimumDesktopSize
-                          ? PaddingType.xxxLarge
-                          : PaddingType.xxLarge),
+                  padding: verticalPadding(isDesktop(context)
+                      ? PaddingType.xxxLarge
+                      : PaddingType.xxLarge),
                   child: CardLearn(
                     userModel.user,
                     goToPractice,

@@ -149,7 +149,7 @@ class PracticeView extends HookConsumerWidget {
                         widget is ImpressionRevealed) ||
                     (currentImpressionViewType == ImpressionViewType.hidden &&
                         widget is ImpressionNew),
-                MediaQuery.of(context).size.width >= minimumDesktopSize),
+                isDesktop(context)),
         switchInCurve: animationType == AnimationType.rotate
             ? Curves.easeInBack
             : Curves.easeInCubic,

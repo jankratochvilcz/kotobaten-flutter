@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/extensions/datetime.dart';
 import 'package:kotobaten/extensions/string.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
@@ -73,50 +74,62 @@ class CollectionView extends HookConsumerWidget {
               final date = group.key;
               final cards = group.value;
 
+              var groupHeader = Align(
+                  alignment: Alignment.center,
+                  child: Heading(
+                      date.getRelativeToNowString(DateTime.now()).capitalize(),
+                      HeadingStyle.h2));
+              var cardTypeDropdown = DropdownButton<String>(
+                items: cardTypes.map((value) {
+                  return DropdownMenuItem<String>(
+                    value: value['value'],
+                    child: Text(value['title'] as String),
+                  );
+                }).toList(),
+                value: currentCardType.value,
+                onChanged: (String? newValue) {
+                  switch (newValue) {
+                    case "0":
+                      Future.microtask(
+                          () => cardsService.initialize(type: CardType.word));
+                      break;
+                    case "1":
+                      Future.microtask(() =>
+                          cardsService.initialize(type: CardType.grammar));
+                      break;
+                    default:
+                      Future.microtask(() => cardsService.initialize());
+                  }
+
+                  currentCardType.value = newValue;
+                },
+              );
+
               return Column(children: [
                 Center(
                   child: Padding(
                     padding: allPadding(PaddingType.xLarge),
-                    child: Stack(
-                      children: [
-                        Align(
-                            alignment: Alignment.center,
-                            child: Heading(
-                                date
-                                    .getRelativeToNowString(DateTime.now())
-                                    .capitalize(),
-                                HeadingStyle.h2)),
-                        if (isFirst)
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: DropdownButton<String>(
-                                items: cardTypes.map((value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value['value'],
-                                    child: Text(value['title'] as String),
-                                  );
-                                }).toList(),
-                                value: currentCardType.value,
-                                onChanged: (String? newValue) {
-                                  switch (newValue) {
-                                    case "0":
-                                      Future.microtask(() => cardsService
-                                          .initialize(type: CardType.word));
-                                      break;
-                                    case "1":
-                                      Future.microtask(() => cardsService
-                                          .initialize(type: CardType.grammar));
-                                      break;
-                                    default:
-                                      Future.microtask(
-                                          () => cardsService.initialize());
-                                  }
-
-                                  currentCardType.value = newValue;
-                                },
-                              )),
-                      ],
-                    ),
+                    child: isDesktop(context)
+                        ? Stack(
+                            children: [
+                              groupHeader,
+                              if (isFirst)
+                                Align(
+                                    alignment: Alignment.centerRight,
+                                    child: cardTypeDropdown),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              groupHeader,
+                              if (isFirst)
+                                Align(
+                                    alignment: Alignment.center,
+                                    child: cardTypeDropdown),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                          ),
                   ),
                 ),
                 WordGrid(cards),

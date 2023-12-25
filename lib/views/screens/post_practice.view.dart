@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
@@ -15,6 +16,7 @@ import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_grid.dart';
 
+@RoutePage(name: 'PostPracticeRoute')
 class PostPracticeView extends HookConsumerWidget {
   const PostPracticeView({Key? key}) : super(key: key);
 

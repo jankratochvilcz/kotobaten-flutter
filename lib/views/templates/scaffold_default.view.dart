@@ -1,13 +1,14 @@
-import 'dart:io';
-
-import 'package:bitsdojo_window_v3/bitsdojo_window_v3.dart';
-import 'package:flutter/foundation.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/app_router.dart';
 import 'package:kotobaten/consts/colors.dart';
+import 'package:kotobaten/consts/navigation.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/services/navigation_service.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:kotobaten/views/organisms/search/universal_search.dart';
 
 enum HelpMenuItems { about, androidApp, iosApp, help }
 
@@ -29,93 +30,171 @@ class HelpMenuItem extends StatelessWidget {
       ]);
 }
 
-class ScaffoldDefault extends HookConsumerWidget {
-  final Widget child;
-  final FloatingActionButton? floatingActionButton;
+int getRouteIndex(String? navigationPath) {
+  switch (navigationPath) {
+    case null:
+      return 0;
+    case HomeRoute.name:
+      return 0;
+    case CollectionRoute.name:
+      return 1;
+    case SettingsRoute.name:
+      return 2;
+    default:
+      return 0;
+  }
+}
 
-  const ScaffoldDefault(this.child, {Key? key, this.floatingActionButton})
-      : super(key: key);
+@RoutePage(name: 'ScaffoldRoute')
+class ScaffoldDefault extends HookConsumerWidget {
+  const ScaffoldDefault({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navigationService = ref.read(navigationServiceProvider);
+    final selectedNavigationIndex = useState(0);
+    final renderUniversalSearch = useState(false);
 
-    return Scaffold(
-        floatingActionButton: floatingActionButton,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          actions: [
-            PopupMenuButton<HelpMenuItems>(
-                itemBuilder: (context) => <PopupMenuEntry<HelpMenuItems>>[
-                      PopupMenuItem(
-                        onTap: () => launch(
-                            'https://apps.apple.com/us/app/kotobaten/id1618057300'),
-                        child:
-                            const HelpMenuItem(Icons.apple_outlined, 'iOS app'),
-                      ),
-                      PopupMenuItem(
-                        value: HelpMenuItems.androidApp,
-                        onTap: () => launch(
-                            'https://play.google.com/store/apps/details?id=janjanxyz.kotobaten&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'),
-                        child: const HelpMenuItem(
-                          Icons.android_outlined,
-                          'Android app',
-                        ),
-                      ),
-                      PopupMenuItem(
-                        value: HelpMenuItems.androidApp,
-                        onTap: () => launch(
-                            'mailto:hello@kotobaten.app?subject=Kotobaten Support'),
-                        child: const HelpMenuItem(
-                          Icons.help_outlined,
-                          'Get help',
-                        ),
-                      ),
-                      PopupMenuItem(
-                        value: HelpMenuItems.androidApp,
-                        onTap: () => launch('https://kotobaten.app'),
-                        child: const HelpMenuItem(
-                          Icons.lightbulb_rounded,
-                          'About',
-                        ),
-                      ),
+    final navigationItems = getNavigationItems(context);
+    final homeNavigation = navigationItems[NavigationItemType.home]!;
+    final collectionNavigation =
+        navigationItems[NavigationItemType.collection]!;
+    final settingsNavigation = navigationItems[NavigationItemType.settings]!;
+    final searchNavigation = navigationItems[NavigationItemType.search]!;
+
+    return AutoRouter(
+      builder: (context, child) {
+        final nestedRouter = AutoRouter.of(context);
+        selectedNavigationIndex.value =
+            getRouteIndex(nestedRouter.current.name);
+
+        var navigationBackgroundColor =
+            Theme.of(context).colorScheme.primaryContainer;
+        var navigationRailTextStyle =
+            TextStyle(color: Theme.of(context).colorScheme.onPrimary);
+        return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.endDocked,
+            floatingActionButton: !isDesktop(context)
+                ? FloatingActionButton(
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    child: searchNavigation.icon,
+                    onPressed: () {
+                      renderUniversalSearch.value = true;
+                    })
+                : null,
+            bottomNavigationBar: !isDesktop(context)
+                ? Row(children: [
+                    SizedBox(
+                        width: 220,
+                        child: BottomNavigationBar(
+                            selectedFontSize: 10,
+                            unselectedFontSize: 10,
+                            showUnselectedLabels: false,
+                            selectedItemColor:
+                                Theme.of(context).colorScheme.onPrimary,
+                            type: BottomNavigationBarType.fixed,
+                            backgroundColor: navigationBackgroundColor,
+                            items: [
+                              BottomNavigationBarItem(
+                                  icon: homeNavigation.icon,
+                                  activeIcon: homeNavigation.iconActive,
+                                  label: homeNavigation.label),
+                              BottomNavigationBarItem(
+                                  icon: collectionNavigation.icon,
+                                  activeIcon: collectionNavigation.iconActive,
+                                  label: collectionNavigation.label),
+                              BottomNavigationBarItem(
+                                  icon: settingsNavigation.icon,
+                                  activeIcon: settingsNavigation.iconActive,
+                                  label: settingsNavigation.label)
+                            ],
+                            landscapeLayout:
+                                BottomNavigationBarLandscapeLayout.spread,
+                            currentIndex: selectedNavigationIndex.value,
+                            onTap: (index) {
+                              switch (index) {
+                                case 0:
+                                  navigationService.goHome(context);
+                                  break;
+                                case 1:
+                                  navigationService.goCollection(context);
+                                  break;
+                                case 2:
+                                  navigationService.goSettings(context);
+                              }
+                            })),
+                    Expanded(
+                        child: Container(
+                      color: navigationBackgroundColor,
+                      height: 56,
+                    )),
+                  ])
+                : null,
+            body: isDesktop(context)
+                ? Row(
+                    children: [
+                      NavigationRail(
+                          groupAlignment: 0,
+                          backgroundColor: navigationBackgroundColor,
+                          destinations: [
+                            NavigationRailDestination(
+                              icon: homeNavigation.icon,
+                              selectedIcon: homeNavigation.iconActive,
+                              label: Text(
+                                homeNavigation.label,
+                                style: navigationRailTextStyle,
+                              ),
+                            ),
+                            NavigationRailDestination(
+                              icon: collectionNavigation.icon,
+                              selectedIcon: collectionNavigation.iconActive,
+                              label: Text(
+                                collectionNavigation.label,
+                                style: navigationRailTextStyle,
+                              ),
+                            ),
+                            NavigationRailDestination(
+                              icon: settingsNavigation.icon,
+                              selectedIcon: settingsNavigation.iconActive,
+                              label: Text(
+                                settingsNavigation.label,
+                                style: navigationRailTextStyle,
+                              ),
+                            )
+                          ],
+                          selectedIndex: selectedNavigationIndex.value,
+                          labelType: NavigationRailLabelType.selected,
+                          onDestinationSelected: (index) {
+                            switch (index) {
+                              case 0:
+                                navigationService.goHome(context);
+                                break;
+                              case 1:
+                                navigationService.goCollection(context);
+                                break;
+                              case 2:
+                                navigationService.goSettings(context);
+                            }
+                          }),
+                      const VerticalDivider(thickness: 1, width: 1),
+                      Expanded(child: child)
                     ],
-                icon: const Icon(Icons.help_outline_rounded)),
-            IconButton(
-                onPressed: () => navigationService.goSearch(context),
-                icon: const Icon(Icons.search)),
-            IconButton(
-                onPressed: () => navigationService.goSettings(context),
-                tooltip: 'Settings',
-                icon: const Icon(Icons.settings_outlined)),
-            if (!kIsWeb && Platform.isWindows)
-              Padding(
-                  padding: leftPadding(PaddingType.xxLarge),
-                  child: MinimizeWindowButton(colors: windowButtonColors)),
-            if (!kIsWeb && Platform.isWindows)
-              MaximizeWindowButton(colors: windowButtonColors),
-            if (!kIsWeb && Platform.isWindows)
-              CloseWindowButton(colors: closeWindowButtonColors)
-          ],
-          title: Table(columnWidths: const <int, TableColumnWidth>{
-            0: IntrinsicColumnWidth(),
-            1: FlexColumnWidth()
-          }, children: [
-            TableRow(children: [
-              const SizedBox(
-                  height: kToolbarHeight,
-                  width: 140,
-                  child: Image(
-                    image: AssetImage('assets/logos/logo_wide_white.png'),
-                  )),
-              if (!kIsWeb && Platform.isWindows)
-                SizedBox(
-                    height: kToolbarHeight,
-                    child: WindowTitleBarBox(child: MoveWindow()))
-            ])
-          ]),
-        ),
-        body: child);
+                  )
+                : Stack(
+                    children: [
+                      child,
+                      if (renderUniversalSearch.value)
+                        UniversalSearch(
+                          forceOpenView: true,
+                          onClosed: () {
+                            renderUniversalSearch.value = false;
+                          },
+                        ),
+                    ],
+                  ));
+      },
+    );
   }
 }

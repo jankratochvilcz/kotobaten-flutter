@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/views/atoms/description.dart';
@@ -7,6 +8,7 @@ import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+@RoutePage(name: 'SearchRoute')
 class SearchView extends HookConsumerWidget {
   const SearchView({Key? key}) : super(key: key);
 

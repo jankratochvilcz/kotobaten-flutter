@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
@@ -11,9 +12,10 @@ import 'package:kotobaten/views/molecules/goals_card.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
-import 'package:kotobaten/views/templates/scaffold_default.view.dart';
+import 'package:kotobaten/views/organisms/search/universal_search.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+@RoutePage(name: 'HomeRoute')
 class HomeView extends HookConsumerWidget {
   HomeView({Key? key}) : super(key: key);
 
@@ -40,41 +42,40 @@ class HomeView extends HookConsumerWidget {
       _pullToRefeshController.refreshCompleted();
     }
 
-    return ScaffoldDefault(SmartRefresher(
-        enablePullDown: true,
-        controller: _pullToRefeshController,
-        onRefresh: () => userService.refreshUser(),
-        header: WaterDropMaterialHeader(
-          color: Colors.white,
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        ),
-        child: Center(
-            child: SingleChildScrollView(
-                child: Padding(
-                    padding: verticalPadding(PaddingType.xLarge),
-                    child: MediaQuery.of(context).size.width >=
-                            minimumDesktopSize
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const DesktopCard(GoalsCard()),
-                              DesktopCard(CardLearn(
-                                  userModelInitialized.user, goToPractice)),
-                              const DesktopCard(CardCollect()),
-                            ],
-                          )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                  padding: bottomPadding(PaddingType.xxLarge),
-                                  child: CardLearn(
-                                      userModelInitialized.user, goToPractice)),
-                              const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
-                                  child: CardCollect()),
-                              const GoalsCard()
-                            ],
-                          ))))));
+    return Expanded(
+        child: Padding(
+            padding: allPadding(PaddingType.xLarge),
+            child: MediaQuery.of(context).size.width >= minimumDesktopSize
+                ? Expanded(
+                    child: Stack(children: [
+                    const Positioned(
+                        top: 0,
+                        right: 0,
+                        child: SizedBox(width: 300, child: UniversalSearch())),
+                    Center(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const DesktopCard(GoalsCard()),
+                        DesktopCard(
+                            CardLearn(userModelInitialized.user, goToPractice)),
+                        const DesktopCard(CardCollect()),
+                      ],
+                    ))
+                  ]))
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: bottomPadding(PaddingType.xxLarge),
+                          child: CardLearn(
+                              userModelInitialized.user, goToPractice)),
+                      const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
+                          child: CardCollect()),
+                      const GoalsCard()
+                    ],
+                  )));
   }
 }

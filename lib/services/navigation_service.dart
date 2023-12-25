@@ -1,60 +1,50 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/app_router.dart';
 import 'package:kotobaten/consts/routes.dart';
 
 final navigationServiceProvider = Provider((ref) => NavigationService());
 
 class NavigationService {
-  String? currentRoute;
-
-  goBack(BuildContext context) => Navigator.of(context).pop();
-
-  Future<dynamic> _pushNamed(String route, BuildContext context) {
-    currentRoute = route;
-    return Navigator.of(context).pushNamed(route);
-  }
-
-  Future<dynamic> _pushNamedAndRemoveUntil(String route,
-      bool Function(Route<dynamic>) removeUntil, BuildContext context) {
-    currentRoute = route;
-    return Navigator.of(context).pushNamedAndRemoveUntil(route, removeUntil);
-  }
+  canGoBack(BuildContext context) => context.router.canPop();
+  goBack(BuildContext context) => context.router.pop();
+  RouteData getCurrentRoute(BuildContext context) => context.router.current;
 
   Future<dynamic> goPractice(BuildContext context,
       {bool replaceCurrent = false, bool showOnboarding = false}) {
-    final navigator = Navigator.of(context);
-
-    currentRoute = practiceRoute;
+    final navigator = context.router;
 
     final args = PracticeArguments(showOnboarding);
 
     return replaceCurrent
-        ? navigator.pushReplacementNamed(practiceRoute, arguments: args)
-        : navigator.pushNamed(practiceRoute, arguments: args);
+        ? navigator.replace(
+            PracticeRoute(args: args),
+          )
+        : navigator.push(PracticeRoute(args: args));
   }
 
   Future<dynamic> goPostPractice(BuildContext context) =>
-      Navigator.of(context).pushReplacementNamed(postPracticeRoute);
+      context.router.replace(const PostPracticeRoute());
 
   Future<dynamic> goSearch(BuildContext context) =>
-      _pushNamed(searchRoute, context);
+      context.router.replace(const SearchRoute());
 
   Future<dynamic> goCollection(BuildContext context) =>
-      _pushNamed(collectionRoute, context);
+      context.router.replace(CollectionRoute());
 
   Future<dynamic> goSettings(BuildContext context) =>
-      _pushNamed(settingsRoute, context);
+      context.router.replace(const SettingsRoute());
 
   Future<dynamic> goLogin(BuildContext context) =>
-      _pushNamedAndRemoveUntil(loginRoute, (route) => false, context);
+      context.router.replace(const LoginRoute());
 
   Future<dynamic> goHome(BuildContext context) =>
-      _pushNamedAndRemoveUntil(homeRoute, (route) => false, context);
+      context.router.push(HomeRoute());
 
   Future<dynamic> goOnboarding(BuildContext context) =>
-      _pushNamedAndRemoveUntil(
-          onboardingRoute, ModalRoute.withName(homeRoute), context);
+      context.router.push(const OnboardingRoute());
 
   bool isCurrentRouteAuthPage(BuildContext context) =>
-      currentRoute == loginRoute;
+      context.router.current.name == LoginRoute.name;
 }

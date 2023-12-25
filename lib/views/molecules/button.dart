@@ -83,9 +83,9 @@ class Button extends ConsumerWidget {
       this.noPadding = false})
       : super(key: key);
 
-  _getButtonStyle() {
+  _getButtonStyle(BuildContext context) {
     return ElevatedButton.styleFrom(
-        onPrimary: color,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(borderRadius: _borderRadius));
   }
@@ -161,7 +161,7 @@ class Button extends ConsumerWidget {
     if (type == ButtonType.primary) {
       return ElevatedButton(
           onPressed: onPressed,
-          style: _getButtonStyle(),
+          style: _getButtonStyle(context),
           child: Ink(
               decoration: BoxDecoration(
                   gradient: _getPrimaryGradient(context),
@@ -172,7 +172,7 @@ class Button extends ConsumerWidget {
     if (type == ButtonType.primaryProgress && progressPercentage != null) {
       return ElevatedButton(
           onPressed: onPressed,
-          style: _getButtonStyle(),
+          style: _getButtonStyle(context),
           child: Ink(
               decoration: BoxDecoration(
                   gradient:
@@ -184,7 +184,7 @@ class Button extends ConsumerWidget {
     if (type == ButtonType.standardProgress && progressPercentage != null) {
       return TextButton(
           onPressed: onPressed,
-          style: _getButtonStyle(),
+          style: _getButtonStyle(context),
           child: Ink(
               decoration: BoxDecoration(
                   gradient: _getStandardProgressGradient(
@@ -193,7 +193,6 @@ class Button extends ConsumerWidget {
               child: buttonContents));
     }
 
-    return TextButton(
-        onPressed: onPressed, child: buttonContents, style: _getButtonStyle());
+    return TextButton(onPressed: onPressed, child: buttonContents);
   }
 }

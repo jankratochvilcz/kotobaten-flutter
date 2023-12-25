@@ -18,8 +18,10 @@ const minimumCardHeight = 80.0;
 
 class WordCard extends ConsumerWidget {
   final card_entity.CardInitialized card;
+  final bool disableEditOptions;
 
-  const WordCard(this.card, {Key? key}) : super(key: key);
+  const WordCard(this.card, {Key? key, this.disableEditOptions = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -100,77 +102,79 @@ class WordCard extends ConsumerWidget {
                       HeadingStyle.h3,
                       textAlign: TextAlign.left,
                     )),
-                    Padding(
-                        padding: leftPadding(PaddingType.standard),
-                        child: TextButton(
-                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                          onPressed: () => showModalBottomSheet(
-                              shape: defaultBottomSheetShape,
-                              context: context,
-                              builder: (_) => SizedBox(
-                                  height: 120,
-                                  child: Column(
-                                    children: [
-                                      ListTile(
-                                        leading:
-                                            const Icon(Icons.edit_outlined),
-                                        title: const Text('Edit word'),
-                                        onTap: () => showWordAddBottomSheet(
-                                            context, (word) async {
-                                          final result = await cardService
-                                              .editCard(word as card_entity
-                                                  .CardInitialized);
-                                          navigationService.goBack(context);
+                    if (!disableEditOptions)
+                      Padding(
+                          padding: leftPadding(PaddingType.standard),
+                          child: TextButton(
+                            style:
+                                TextButton.styleFrom(padding: EdgeInsets.zero),
+                            onPressed: () => showModalBottomSheet(
+                                shape: defaultBottomSheetShape,
+                                context: context,
+                                builder: (_) => SizedBox(
+                                    height: 120,
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                          leading:
+                                              const Icon(Icons.edit_outlined),
+                                          title: const Text('Edit word'),
+                                          onTap: () => showWordAddBottomSheet(
+                                              context, (word) async {
+                                            final result = await cardService
+                                                .editCard(word as card_entity
+                                                    .CardInitialized);
+                                            navigationService.goBack(context);
 
-                                          return result;
-                                        }, existingWord: card),
-                                      ),
-                                      ListTile(
-                                        iconColor: Colors.red,
-                                        textColor: Colors.red,
-                                        leading:
-                                            const Icon(Icons.delete_outline),
-                                        title: const Text('Delete word'),
-                                        onTap: () => showDialog(
-                                            context: context,
-                                            builder: (context) => AlertDialog(
-                                                  title:
-                                                      const Text('Delete word'),
-                                                  content: Text(
-                                                      'Are you sure you want to delete "$senseClipped" from your collection?'),
-                                                  actions: [
-                                                    ButtonAsync(
-                                                      'Yes',
-                                                      () async {
-                                                        await cardService
-                                                            .deleteCard(card);
-                                                        navigationService
-                                                            .goBack(context);
-                                                        navigationService
-                                                            .goBack(context);
-                                                      },
-                                                      icon: Icons.check,
-                                                    ),
-                                                    Button(
-                                                      'No',
-                                                      () => navigationService
-                                                          .goBack(context),
-                                                      icon:
-                                                          Icons.cancel_outlined,
-                                                      type:
-                                                          ButtonType.secondary,
-                                                    ),
-                                                  ],
-                                                )),
-                                      )
-                                    ],
-                                  ))),
-                          child: Icon(
-                            Icons.more_horiz,
-                            color: foregroundColor,
-                            size: 14,
-                          ),
-                        ))
+                                            return result;
+                                          }, existingWord: card),
+                                        ),
+                                        ListTile(
+                                          iconColor: Colors.red,
+                                          textColor: Colors.red,
+                                          leading:
+                                              const Icon(Icons.delete_outline),
+                                          title: const Text('Delete word'),
+                                          onTap: () => showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                    title: const Text(
+                                                        'Delete word'),
+                                                    content: Text(
+                                                        'Are you sure you want to delete "$senseClipped" from your collection?'),
+                                                    actions: [
+                                                      ButtonAsync(
+                                                        'Yes',
+                                                        () async {
+                                                          await cardService
+                                                              .deleteCard(card);
+                                                          navigationService
+                                                              .goBack(context);
+                                                          navigationService
+                                                              .goBack(context);
+                                                        },
+                                                        icon: Icons.check,
+                                                      ),
+                                                      Button(
+                                                        'No',
+                                                        () => navigationService
+                                                            .goBack(context),
+                                                        icon: Icons
+                                                            .cancel_outlined,
+                                                        type: ButtonType
+                                                            .secondary,
+                                                      ),
+                                                    ],
+                                                  )),
+                                        )
+                                      ],
+                                    ))),
+                            child: Icon(
+                              Icons.more_horiz,
+                              color: foregroundColor,
+                              size: 14,
+                            ),
+                          ))
                   ],
                 )),
             if (noteClipped?.isNotEmpty ?? false)

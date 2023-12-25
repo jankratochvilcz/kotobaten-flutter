@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,6 +22,7 @@ import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
 
+@RoutePage(name: 'OnboardingRoute')
 class OnboardingView extends HookConsumerWidget {
   const OnboardingView({Key? key}) : super(key: key);
 

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
@@ -13,10 +14,10 @@ import 'package:kotobaten/views/organisms/settings/goals_card.dart';
 import 'package:kotobaten/views/organisms/settings/profile_card.dart';
 import 'package:kotobaten/views/organisms/settings/reminders_card.dart';
 import 'package:kotobaten/views/organisms/settings/time_investment_card.dart';
-import 'package:kotobaten/views/templates/scaffold_default.view.dart';
 
 const cardBaseHeight = 74.0;
 
+@RoutePage(name: 'SettingsRoute')
 class SettingsView extends HookConsumerWidget {
   const SettingsView({Key? key}) : super(key: key);
 
@@ -41,7 +42,7 @@ class SettingsView extends HookConsumerWidget {
       return const Loading();
     }
 
-    return ScaffoldDefault(Padding(
+    return Padding(
         padding: allPadding(PaddingType.large),
         child: Center(
             child: SingleChildScrollView(
@@ -97,6 +98,6 @@ class SettingsView extends HookConsumerWidget {
                                   child: const Center(child: AppVersionCard())),
                             )))
                       ],
-                    ))))));
+                    )))));
   }
 }

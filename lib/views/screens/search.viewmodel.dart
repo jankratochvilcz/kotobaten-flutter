@@ -14,6 +14,7 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   final KotobatenApiService _apiService;
 
   final TextEditingController _searchTermController = TextEditingController();
+  final SearchController _searchController = SearchController();
   final StreamController<String> _searchTermUpdates =
       StreamController<String>();
 
@@ -24,6 +25,9 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   SearchViewModel(this._apiService) : super(SearchModel.initial(true)) {
     searchTermController
         .addListener(() => _searchTermUpdates.add(searchTermController.text));
+
+    searchController
+        .addListener(() => _searchTermUpdates.add(searchController.text));
 
     _searchTermUpdates.stream
         .distinct()
@@ -39,6 +43,7 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   }
 
   TextEditingController get searchTermController => _searchTermController;
+  SearchController get searchController => _searchController;
   FocusNode get searchTermFocusNode => _searchTextFocus;
 
   void focusSearch() {

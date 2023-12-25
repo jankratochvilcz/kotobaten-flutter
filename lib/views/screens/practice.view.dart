@@ -191,14 +191,14 @@ class PracticeView extends HookConsumerWidget {
                           Padding(
                               padding: EdgeInsets.fromLTRB(
                                   getPadding(PaddingType.standard), 0, 0, 0),
-                              child: IconButton.outlined(
+                              child: IconButton(
                                   color: getDescriptionColorSubtle(context),
                                   onPressed: () =>
                                       togglePause(model, practiceService),
                                   icon: Icon(model.pausedPercentage == null
                                       ? Icons.pause_circle_outline_outlined
                                       : Icons.play_circle_outline_rounded))),
-                          IconButton.outlined(
+                          IconButton(
                               key: moreMenuKey.value,
                               color: getDescriptionColorSubtle(context),
                               onPressed: () {

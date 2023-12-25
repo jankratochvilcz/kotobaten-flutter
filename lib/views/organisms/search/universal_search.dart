@@ -51,6 +51,8 @@ class UniversalSearch extends HookConsumerWidget {
     return SearchAnchor(
       searchController: searchViewModel.searchController,
       dividerColor: getDescriptionColorSubtle(context),
+      viewBackgroundColor: Theme.of(context).colorScheme.background,
+      viewSurfaceTintColor: Theme.of(context).colorScheme.background,
       builder: (context, controller) {
         if (!controller.isOpen && previousIsOpenValue.value && forceOpenView) {
           final currentOnClosed = onClosed;

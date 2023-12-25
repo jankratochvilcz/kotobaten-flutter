@@ -32,7 +32,7 @@ class SearchViewModel extends StateNotifier<SearchModel> {
     _searchTermUpdates.stream
         .distinct()
         .where((x) => x.length > 1)
-        .throttleTime(const Duration(milliseconds: 300))
+        .debounceTime(const Duration(milliseconds: 300))
         .forEach(executeSearch);
 
     _searchTextFocus.addListener(

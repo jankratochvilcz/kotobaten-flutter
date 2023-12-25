@@ -71,10 +71,10 @@ class UniversalSearch extends HookConsumerWidget {
             textStyle: MaterialStatePropertyAll(TextStyle(
                 fontSize: 14, color: getDescriptionColorSubtle(context))),
             onTap: () {
-              controller.openView();
+              if (!controller.isOpen) controller.openView();
             },
             onChanged: (_) {
-              controller.openView();
+              if (!controller.isOpen) controller.openView();
             },
             controller: searchViewModel.searchController,
             elevation: const MaterialStatePropertyAll(1),

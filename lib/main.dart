@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/app_router.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/fonts.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
@@ -46,8 +47,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
 
     return (MaterialApp.router(
       debugShowCheckedModeBanner: false,
@@ -55,36 +60,36 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
           brightness: Brightness.dark,
           fontFamily: defaultFont,
-          colorScheme: const ColorScheme(
-              primary: Color.fromARGB(255, 127, 92, 157),
-              secondary: Color.fromARGB(255, 92, 67, 111),
-              onSurface: Color.fromARGB(255, 195, 195, 195),
-              background: Color.fromARGB(255, 25, 25, 25),
+          colorScheme: ColorScheme(
+              primary: primaryColor,
+              secondary: secondaryColor,
+              onSurface: const Color.fromARGB(255, 195, 195, 195),
+              background: const Color.fromARGB(255, 25, 25, 25),
               brightness: Brightness.dark,
-              error: Color(0xffFFDDDD),
-              onBackground: Color(0xff333333),
-              onError: Color(0xff6C0000),
-              onPrimary: Color(0xffffffff),
-              onSecondary: Color(0xffffffff),
-              primaryContainer: Color.fromARGB(255, 80, 59, 96),
-              secondaryContainer: Color(0xff352B3D),
+              error: const Color(0xffFFDDDD),
+              onBackground: const Color(0xff333333),
+              onError: const Color(0xff6C0000),
+              onPrimary: const Color(0xffffffff),
+              onSecondary: const Color(0xffffffff),
+              primaryContainer: primaryColor,
+              secondaryContainer: const Color(0xff352B3D),
               surface: Colors.black)),
       theme: ThemeData(
           fontFamily: defaultFont,
-          colorScheme: const ColorScheme(
-              primary: Color.fromARGB(255, 117, 95, 134),
-              secondary: Color.fromARGB(255, 175, 162, 187),
-              onSurface: Color(0xff333333),
-              background: Color.fromARGB(255, 252, 252, 252),
+          colorScheme: ColorScheme(
+              primary: primaryColor,
+              secondary: secondaryColor,
+              onSurface: const Color(0xff333333),
+              background: const Color.fromARGB(255, 252, 252, 252),
               brightness: Brightness.light,
-              error: Color(0xffFFDDDD),
-              onBackground: Color(0xff333333),
-              onError: Color(0xff6C0000),
-              onPrimary: Color.fromARGB(255, 255, 255, 255),
-              onSecondary: Color.fromARGB(255, 0, 0, 0),
-              primaryContainer: Color.fromARGB(255, 117, 95, 134),
-              secondaryContainer: Color(0xff352B3D),
-              surface: Color(0xffffffff))),
+              error: const Color(0xffFFDDDD),
+              onBackground: const Color(0xff333333),
+              onError: const Color(0xff6C0000),
+              onPrimary: const Color.fromARGB(255, 255, 255, 255),
+              onSecondary: const Color.fromARGB(255, 0, 0, 0),
+              primaryContainer: primaryColor,
+              secondaryContainer: const Color(0xff352B3D),
+              surface: const Color(0xffffffff))),
       themeMode: ThemeMode.system,
       routerConfig: _appRouter.config(),
       builder: (context, widget) => widget != null

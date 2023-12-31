@@ -54,15 +54,19 @@ class UniversalSearch extends HookConsumerWidget {
       viewBackgroundColor: Theme.of(context).colorScheme.background,
       viewSurfaceTintColor: Theme.of(context).colorScheme.background,
       builder: (context, controller) {
-        if (!controller.isOpen && previousIsOpenValue.value && forceOpenView) {
-          final currentOnClosed = onClosed;
-          if (currentOnClosed != null) {
-            currentOnClosed();
-          }
+        if (!controller.isOpen && previousIsOpenValue.value) {
+          searchViewModel.searchController.clear();
 
-          previousIsOpenValue.value = false;
-          isForceOpened.value = false;
-          return const Empty();
+          if (forceOpenView) {
+            final currentOnClosed = onClosed;
+            if (currentOnClosed != null) {
+              currentOnClosed();
+            }
+
+            previousIsOpenValue.value = false;
+            isForceOpened.value = false;
+            return const Empty();
+          }
         }
 
         return SearchBar(

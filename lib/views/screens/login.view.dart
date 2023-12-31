@@ -57,7 +57,7 @@ class LoginView extends HookConsumerWidget {
         authModel.result is AuthResultSuccess) {
       Future.microtask(() async {
         await dailyReminderService.initializeDefaults();
-        unawaited(navigationService.goHome(context));
+        unawaited(navigationService.goHome(context, true));
 
         if (loginKind.value == LoginKind.signup) {
           unawaited(navigationService.goOnboarding(context));

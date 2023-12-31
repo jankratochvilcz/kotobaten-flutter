@@ -28,19 +28,21 @@ class NavigationService {
       context.router.replace(const PostPracticeRoute());
 
   Future<dynamic> goSearch(BuildContext context) =>
-      context.router.replace(const SearchRoute());
+      context.router.push(const SearchRoute());
 
   Future<dynamic> goCollection(BuildContext context) =>
-      context.router.replace(CollectionRoute());
+      context.router.push(CollectionRoute());
 
   Future<dynamic> goSettings(BuildContext context) =>
-      context.router.replace(const SettingsRoute());
+      context.router.push(const SettingsRoute());
 
   Future<dynamic> goLogin(BuildContext context) =>
       context.router.replace(const LoginRoute());
 
-  Future<dynamic> goHome(BuildContext context) =>
-      context.router.push(HomeRoute());
+  Future<dynamic> goHome(BuildContext context, bool replaceCurrentPath) =>
+      replaceCurrentPath
+          ? context.router.replace(HomeRoute())
+          : context.router.push(HomeRoute());
 
   Future<dynamic> goOnboarding(BuildContext context) =>
       context.router.push(const OnboardingRoute());

@@ -85,57 +85,69 @@ class ScaffoldDefault extends HookConsumerWidget {
                     })
                 : null,
             bottomNavigationBar: !isDesktop(context)
-                ? Row(children: [
-                    SizedBox(
-                        width: 220,
-                        child: BottomNavigationBar(
-                            selectedFontSize: 10,
-                            unselectedFontSize: 10,
-                            showUnselectedLabels: false,
-                            selectedItemColor:
-                                Theme.of(context).colorScheme.onPrimary,
-                            type: BottomNavigationBarType.fixed,
-                            backgroundColor: navigationBackgroundColor,
-                            items: [
-                              BottomNavigationBarItem(
-                                  icon: homeNavigation.icon,
-                                  activeIcon: homeNavigation.iconActive,
-                                  label: homeNavigation.label),
-                              BottomNavigationBarItem(
-                                  icon: collectionNavigation.icon,
-                                  activeIcon: collectionNavigation.iconActive,
-                                  label: collectionNavigation.label),
-                              BottomNavigationBarItem(
-                                  icon: settingsNavigation.icon,
-                                  activeIcon: settingsNavigation.iconActive,
-                                  label: settingsNavigation.label)
-                            ],
-                            landscapeLayout:
-                                BottomNavigationBarLandscapeLayout.spread,
-                            currentIndex: selectedNavigationIndex.value,
-                            onTap: (index) {
-                              switch (index) {
-                                case 0:
-                                  navigationService.goHome(context);
-                                  break;
-                                case 1:
-                                  navigationService.goCollection(context);
-                                  break;
-                                case 2:
-                                  navigationService.goSettings(context);
-                              }
-                            })),
-                    Expanded(
-                        child: Container(
-                      color: navigationBackgroundColor,
-                      height: 56,
-                    )),
-                  ])
+                ? Container(
+                    // this container is needed to paint the background as there is some bleed-through on high-def screens
+                    color: navigationBackgroundColor,
+                    child: Row(children: [
+                      SizedBox(
+                          width: 220,
+                          child: BottomNavigationBar(
+                              selectedFontSize: 10,
+                              unselectedFontSize: 10,
+                              showUnselectedLabels: false,
+                              selectedItemColor:
+                                  Theme.of(context).colorScheme.onPrimary,
+                              type: BottomNavigationBarType.fixed,
+                              backgroundColor: navigationBackgroundColor,
+                              items: [
+                                BottomNavigationBarItem(
+                                    icon: homeNavigation.icon,
+                                    activeIcon: homeNavigation.iconActive,
+                                    label: homeNavigation.label),
+                                BottomNavigationBarItem(
+                                    icon: collectionNavigation.icon,
+                                    activeIcon: collectionNavigation.iconActive,
+                                    label: collectionNavigation.label),
+                                BottomNavigationBarItem(
+                                    icon: settingsNavigation.icon,
+                                    activeIcon: settingsNavigation.iconActive,
+                                    label: settingsNavigation.label)
+                              ],
+                              landscapeLayout:
+                                  BottomNavigationBarLandscapeLayout.spread,
+                              currentIndex: selectedNavigationIndex.value,
+                              onTap: (index) {
+                                switch (index) {
+                                  case 0:
+                                    navigationService.goHome(context, false);
+                                    break;
+                                  case 1:
+                                    navigationService.goCollection(context);
+                                    break;
+                                  case 2:
+                                    navigationService.goSettings(context);
+                                }
+                              })),
+                      Expanded(
+                          child: Container(
+                        color: navigationBackgroundColor,
+                        height: 56,
+                      )),
+                    ]))
                 : null,
             body: isDesktop(context)
                 ? Row(
                     children: [
                       NavigationRail(
+                          leading: Padding(
+                              padding: topPadding(PaddingType.standard),
+                              child: Container(
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 40),
+                                  child: const Image(
+                                    image: AssetImage(
+                                        'assets/logos/logo_square_white.png'),
+                                  ))),
                           groupAlignment: 0,
                           backgroundColor: navigationBackgroundColor,
                           destinations: [
@@ -169,7 +181,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                           onDestinationSelected: (index) {
                             switch (index) {
                               case 0:
-                                navigationService.goHome(context);
+                                navigationService.goHome(context, false);
                                 break;
                               case 1:
                                 navigationService.goCollection(context);

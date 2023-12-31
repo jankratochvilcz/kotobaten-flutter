@@ -15,6 +15,8 @@ Color dailyProgressColor(BuildContext context) =>
         ? Theme.of(context).colorScheme.secondary.lighten(0.3)
         : Theme.of(context).colorScheme.secondary.lighten(0.5);
 
+Color primaryColor = const Color(0xff6F508A);
+Color secondaryColor = const Color(0xff4E7FDA);
 Color successColor = Colors.amber.shade500;
 Color errorColor = Colors.red.shade500;
 Color backgroundColor = const Color(0xFFFAFAFA);

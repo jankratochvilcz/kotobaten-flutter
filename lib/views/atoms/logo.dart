@@ -6,7 +6,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        constraints: const BoxConstraints(maxHeight: 200, maxWidth: 260),
+        constraints: const BoxConstraints(maxWidth: 360),
         child: const Image(
           image: AssetImage('assets/logos/logo_wide_color.png'),
         ));

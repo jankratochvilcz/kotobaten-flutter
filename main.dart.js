@@ -53125,7 +53125,7 @@ s===$&&A.b()
 return s},
 gF7(){var s,r,q=null,p=this.p4
 if(p===$){s=t.Op
-r=A.aY3(A.a([A.pk(q,!0,B.Qe,"/login"),A.pk(q,!1,B.Qf,"/onboarding"),A.pk(q,!1,B.Qh,"/practice"),A.pk(q,!1,B.Qg,"/post-practice"),A.pk(A.a([A.pk(q,!1,B.Qd,""),A.pk(q,!1,B.Qc,"collection"),A.pk(q,!1,B.Qj,"search"),A.pk(q,!1,B.Qk,"settings")],s),!1,B.Qi,"/app")],s),!0)
+r=A.aY3(A.a([A.pk(q,!1,B.Qe,"/login"),A.pk(q,!1,B.Qf,"/onboarding"),A.pk(q,!1,B.Qh,"/practice"),A.pk(q,!1,B.Qg,"/post-practice"),A.pk(A.a([A.pk(q,!0,B.Qd,""),A.pk(q,!1,B.Qc,"collection"),A.pk(q,!1,B.Qj,"search"),A.pk(q,!1,B.Qk,"settings")],s),!0,B.Qi,"/app")],s),!0)
 this.p4!==$&&A.ak()
 this.p4=r
 p=r}return p},

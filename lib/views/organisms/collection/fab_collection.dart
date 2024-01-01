@@ -16,7 +16,7 @@ class FabCollection extends ConsumerWidget {
         icon: const Icon(Icons.move_to_inbox_outlined),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        onPressed: () => showWordAddBottomSheet(context, (card) async {
+        onPressed: () => showWordAddBottomSheet(context, ref, (card) async {
               if (card is CardNew) {
                 return await cardsService.createCard(card);
               } else if (card is CardInitialized) {

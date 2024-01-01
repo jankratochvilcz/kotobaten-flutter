@@ -7,6 +7,7 @@ import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/navigation.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
+import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/organisms/search/universal_search.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
@@ -53,6 +54,7 @@ class ScaffoldDefault extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navigationService = ref.read(navigationServiceProvider);
+    final overlaysModel = ref.watch(overlaysRepositoryProvider);
     final selectedNavigationIndex = useState(0);
     final renderUniversalSearch = useState(false);
 
@@ -67,6 +69,20 @@ class ScaffoldDefault extends HookConsumerWidget {
       builder: (context, child) {
         final nestedRouter = AutoRouter.of(context);
         final pageSpecificFab = getFabForRoute(nestedRouter.current, context);
+
+        final fabToShow = overlaysModel.overlaysOpenedCount > 0
+            ? null
+            : (pageSpecificFab ??
+                (!isDesktop(context)
+                    ? FloatingActionButton(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        child: searchNavigation.icon,
+                        onPressed: () {
+                          renderUniversalSearch.value = true;
+                        })
+                    : null));
+
         selectedNavigationIndex.value =
             getRouteIndex(nestedRouter.current.name);
 
@@ -79,17 +95,9 @@ class ScaffoldDefault extends HookConsumerWidget {
             floatingActionButtonLocation: pageSpecificFab == null
                 ? FloatingActionButtonLocation.endDocked
                 : FloatingActionButtonLocation.endFloat,
-            floatingActionButton: pageSpecificFab ??
-                (!isDesktop(context)
-                    ? FloatingActionButton(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                        child: searchNavigation.icon,
-                        onPressed: () {
-                          renderUniversalSearch.value = true;
-                        })
-                    : null),
-            bottomNavigationBar: !isDesktop(context)
+            floatingActionButton: fabToShow,
+            bottomNavigationBar: !isDesktop(context) &&
+                    overlaysModel.overlaysOpenedCount < 1
                 ? Container(
                     // this container is needed to paint the background as there is some bleed-through on high-def screens
                     color: navigationBackgroundColor,

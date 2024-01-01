@@ -14,6 +14,7 @@ _$DictionaryCardInitializedImpl _$$DictionaryCardInitializedImplFromJson(
       (json['senses'] as List<dynamic>)
           .map((e) => (e as List<dynamic>).map((e) => e as String).toList())
           .toList(),
+      json['note'] as String?,
     );
 
 Map<String, dynamic> _$$DictionaryCardInitializedImplToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$DictionaryCardInitializedImplToJson(
       'kanji': instance.kanji,
       'kana': instance.kana,
       'senses': instance.senses,
+      'note': instance.note,
     };

@@ -64,7 +64,7 @@ class CardCollect extends ConsumerWidget {
                 ),
                 Button(
                     'Add word',
-                    () => showWordAddBottomSheet(context, (card) async {
+                    () => showWordAddBottomSheet(context, ref, (card) async {
                           if (card is card_entity.CardNew) {
                             return await cardsService.createCard(card);
                           }

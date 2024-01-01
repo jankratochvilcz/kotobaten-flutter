@@ -6,7 +6,8 @@ part 'dictionary_card.freezed.dart';
 @freezed
 class DictionaryCard with _$DictionaryCard {
   @JsonSerializable(explicitToJson: true)
-  factory DictionaryCard(String kanji, String kana, List<List<String>> senses) =
+  factory DictionaryCard(
+          String kanji, String kana, List<List<String>> senses, String? note) =
       DictionaryCardInitialized;
 
   factory DictionaryCard.fromJson(Map<String, dynamic> json) =>

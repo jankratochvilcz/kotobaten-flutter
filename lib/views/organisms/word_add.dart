@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
-import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
@@ -13,22 +13,15 @@ import 'package:kotobaten/views/organisms/word_add/type_grammar.dart';
 import 'package:kotobaten/views/organisms/word_add/type_word.dart';
 
 showWordAddBottomSheet(
-        BuildContext context,
-        Future<card_entity.CardInitialized> Function(card_entity.Card card)
-            onSubmit,
-        {card_entity.CardInitialized? existingWord}) =>
-    MediaQuery.of(context).size.width < 600
-        ? showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            shape: defaultBottomSheetShape,
-            builder: (context) =>
-                WordAddDialogContents(onSubmit, existingWord: existingWord))
-        : showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                content: WordAddDialogContents(onSubmit,
-                    existingWord: existingWord)));
+    BuildContext context,
+    WidgetRef ref,
+    Future<card_entity.CardInitialized> Function(card_entity.Card card)
+        onSubmit,
+    {card_entity.CardInitialized? existingWord}) {
+  final overlaysService = ref.read(overlaysServiceProvider);
+  overlaysService.showOverlay(context,
+      (context) => WordAddDialogContents(onSubmit, existingWord: existingWord));
+}
 
 class WordAddDialogContents extends HookConsumerWidget {
   final Future<card_entity.CardInitialized> Function(card_entity.Card card)

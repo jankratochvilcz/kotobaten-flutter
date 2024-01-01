@@ -155,7 +155,7 @@ class OnboardingView extends HookConsumerWidget {
                                   padding: topPadding(PaddingType.xLarge),
                                   child: Button(
                                       'Add word ($cardsLeftToAdd left)',
-                                      () => showWordAddBottomSheet(context,
+                                      () => showWordAddBottomSheet(context, ref,
                                               (card) async {
                                             if (card is card_entity.CardNew) {
                                               return await cardsService

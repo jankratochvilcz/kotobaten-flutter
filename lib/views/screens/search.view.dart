@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/molecules/cards/chooser_card.dart';
-import 'package:kotobaten/views/molecules/cards/word_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';

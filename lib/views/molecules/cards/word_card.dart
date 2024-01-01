@@ -24,7 +24,7 @@ class WordCard extends ConsumerWidget {
     return MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-            onTap: () => showWordAddBottomSheet(context, (card) async {
+            onTap: () => showWordAddBottomSheet(context, ref, (card) async {
                   final result = await cardService
                       .editCard(card as card_entity.CardInitialized);
                   return result;

@@ -23,6 +23,7 @@ mixin _$DictionaryCard {
   String get kanji => throw _privateConstructorUsedError;
   String get kana => throw _privateConstructorUsedError;
   List<List<String>> get senses => throw _privateConstructorUsedError;
+  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,8 @@ abstract class $DictionaryCardCopyWith<$Res> {
           DictionaryCard value, $Res Function(DictionaryCard) then) =
       _$DictionaryCardCopyWithImpl<$Res, DictionaryCard>;
   @useResult
-  $Res call({String kanji, String kana, List<List<String>> senses});
+  $Res call(
+      {String kanji, String kana, List<List<String>> senses, String? note});
 }
 
 /// @nodoc
@@ -55,6 +57,7 @@ class _$DictionaryCardCopyWithImpl<$Res, $Val extends DictionaryCard>
     Object? kanji = null,
     Object? kana = null,
     Object? senses = null,
+    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       kanji: null == kanji
@@ -69,6 +72,10 @@ class _$DictionaryCardCopyWithImpl<$Res, $Val extends DictionaryCard>
           ? _value.senses
           : senses // ignore: cast_nullable_to_non_nullable
               as List<List<String>>,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -82,7 +89,8 @@ abstract class _$$DictionaryCardInitializedImplCopyWith<$Res>
       __$$DictionaryCardInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String kanji, String kana, List<List<String>> senses});
+  $Res call(
+      {String kanji, String kana, List<List<String>> senses, String? note});
 }
 
 /// @nodoc
@@ -100,6 +108,7 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
     Object? kanji = null,
     Object? kana = null,
     Object? senses = null,
+    Object? note = freezed,
   }) {
     return _then(_$DictionaryCardInitializedImpl(
       null == kanji
@@ -114,6 +123,10 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
           ? _value._senses
           : senses // ignore: cast_nullable_to_non_nullable
               as List<List<String>>,
+      freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -123,7 +136,7 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
   _$DictionaryCardInitializedImpl(
-      this.kanji, this.kana, final List<List<String>> senses)
+      this.kanji, this.kana, final List<List<String>> senses, this.note)
       : _senses = senses;
 
   factory _$DictionaryCardInitializedImpl.fromJson(Map<String, dynamic> json) =>
@@ -142,8 +155,11 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
   }
 
   @override
+  final String? note;
+
+  @override
   String toString() {
-    return 'DictionaryCard(kanji: $kanji, kana: $kana, senses: $senses)';
+    return 'DictionaryCard(kanji: $kanji, kana: $kana, senses: $senses, note: $note)';
   }
 
   @override
@@ -153,13 +169,14 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
             other is _$DictionaryCardInitializedImpl &&
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
             (identical(other.kana, kana) || other.kana == kana) &&
-            const DeepCollectionEquality().equals(other._senses, _senses));
+            const DeepCollectionEquality().equals(other._senses, _senses) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, kanji, kana, const DeepCollectionEquality().hash(_senses));
+  int get hashCode => Object.hash(runtimeType, kanji, kana,
+      const DeepCollectionEquality().hash(_senses), note);
 
   @JsonKey(ignore: true)
   @override
@@ -177,8 +194,11 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
 }
 
 abstract class DictionaryCardInitialized implements DictionaryCard {
-  factory DictionaryCardInitialized(final String kanji, final String kana,
-      final List<List<String>> senses) = _$DictionaryCardInitializedImpl;
+  factory DictionaryCardInitialized(
+      final String kanji,
+      final String kana,
+      final List<List<String>> senses,
+      final String? note) = _$DictionaryCardInitializedImpl;
 
   factory DictionaryCardInitialized.fromJson(Map<String, dynamic> json) =
       _$DictionaryCardInitializedImpl.fromJson;
@@ -189,6 +209,8 @@ abstract class DictionaryCardInitialized implements DictionaryCard {
   String get kana;
   @override
   List<List<String>> get senses;
+  @override
+  String? get note;
   @override
   @JsonKey(ignore: true)
   _$$DictionaryCardInitializedImplCopyWith<_$DictionaryCardInitializedImpl>

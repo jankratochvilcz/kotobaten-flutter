@@ -4,10 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
+import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/organisms/search/search_results.dart';
+import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
+
+class SearchLoadingIndicator extends ConsumerWidget {
+  const SearchLoadingIndicator({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final searchModel = ref.watch(searchViewModelProvider);
+    final isLoading = searchModel is SearchModelLoading;
+
+    if (!isLoading) {
+      return const Empty();
+    }
+
+    return Padding(
+        padding: rightPadding(PaddingType.standard),
+        child: SizedBox.fromSize(
+          child: const CircularProgressIndicator(strokeWidth: 2),
+          size: const Size.square(20),
+        ));
+  }
+}
 
 class UniversalSearch extends HookConsumerWidget {
   final bool forceOpenView;
@@ -52,6 +75,7 @@ class UniversalSearch extends HookConsumerWidget {
     return SearchAnchor(
       searchController: searchViewModel.searchController,
       dividerColor: getDescriptionColorSubtle(context),
+      viewTrailing: const [SearchLoadingIndicator()],
       viewBackgroundColor: Theme.of(context).colorScheme.background,
       viewSurfaceTintColor: Theme.of(context).colorScheme.background,
       builder: (context, controller) {

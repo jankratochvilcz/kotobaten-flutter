@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/services/app_configuration.dart';
 
@@ -56,7 +57,8 @@ enum ButtonType {
   primary,
   secondary,
   primaryProgress,
-  standardProgress
+  standardProgress,
+  danger
 }
 
 class Button extends ConsumerWidget {
@@ -65,11 +67,11 @@ class Button extends ConsumerWidget {
   final Widget? iconWidget;
   final ButtonSize size;
   final ButtonType type;
-  final Color? color;
   final VoidCallback? onPressed;
   final String? shortcut;
   final double? progressPercentage;
   final bool noPadding;
+  final Color? color;
 
   const Button(this.label, this.onPressed,
       {Key? key,
@@ -77,9 +79,9 @@ class Button extends ConsumerWidget {
       this.size = ButtonSize.standard,
       this.type = ButtonType.standard,
       this.iconWidget,
-      this.color,
       this.shortcut,
       this.progressPercentage,
+      this.color,
       this.noPadding = false})
       : super(key: key);
 
@@ -193,6 +195,18 @@ class Button extends ConsumerWidget {
               child: buttonContents));
     }
 
-    return TextButton(onPressed: onPressed, child: buttonContents);
+    if (type == ButtonType.danger) {
+      return TextButton(
+        onPressed: onPressed,
+        child: buttonContents,
+        style:
+            ButtonStyle(foregroundColor: MaterialStatePropertyAll(errorColor)),
+      );
+    }
+
+    return TextButton(
+        onPressed: onPressed,
+        child: buttonContents,
+        style: ButtonStyle(foregroundColor: MaterialStatePropertyAll(color)));
   }
 }

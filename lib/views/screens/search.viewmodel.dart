@@ -55,6 +55,7 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   Future executeSearch(String text) async {
     state = SearchModel.loading(state.searchFocused);
     final result = await _apiService.search(text);
-    state = SearchModel.loaded(state.searchFocused, result.query, result.cards);
+    state = SearchModel.loaded(state.searchFocused, result.query, result.cards,
+        result.dictionaryCards);
   }
 }

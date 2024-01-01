@@ -27,7 +27,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(path: '/post-practice', page: PostPracticeRoute.page),
         AutoRoute(path: '/app', page: ScaffoldRoute.page, children: [
           AutoRoute(path: '', page: HomeRoute.page),
-          AutoRoute(path: 'collection', page: CollectionRoute.page),
+          AutoRoute(
+            path: 'collection',
+            page: CollectionRoute.page,
+          ),
           AutoRoute(path: 'search', page: SearchRoute.page),
           AutoRoute(path: 'settings', page: SettingsRoute.page)
         ])

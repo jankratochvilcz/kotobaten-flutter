@@ -21,8 +21,11 @@ mixin _$SearchModel {
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
     required TResult Function(bool searchFocused) loading,
-    required TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)
+    required TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,8 +33,11 @@ mixin _$SearchModel {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
     TResult? Function(bool searchFocused)? loading,
-    TResult? Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult? Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,8 +45,11 @@ mixin _$SearchModel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
     TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
     required TResult orElse(),
   }) =>
@@ -176,8 +185,11 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
     required TResult Function(bool searchFocused) loading,
-    required TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)
+    required TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)
         loaded,
   }) {
     return initial(searchFocused);
@@ -188,8 +200,11 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
     TResult? Function(bool searchFocused)? loading,
-    TResult? Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult? Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
   }) {
     return initial?.call(searchFocused);
@@ -200,8 +215,11 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
     TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
     required TResult orElse(),
   }) {
@@ -328,8 +346,11 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
     required TResult Function(bool searchFocused) loading,
-    required TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)
+    required TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)
         loaded,
   }) {
     return loading(searchFocused);
@@ -340,8 +361,11 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
     TResult? Function(bool searchFocused)? loading,
-    TResult? Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult? Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
   }) {
     return loading?.call(searchFocused);
@@ -352,8 +376,11 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
     TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
     required TResult orElse(),
   }) {
@@ -419,7 +446,10 @@ abstract class _$$SearchModelLoadedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool searchFocused, String resultsQuery, List<CardInitialized> cards});
+      {bool searchFocused,
+      String resultsQuery,
+      List<CardInitialized> cards,
+      List<DictionaryCardInitialized> dictionaryCards});
 }
 
 /// @nodoc
@@ -436,6 +466,7 @@ class __$$SearchModelLoadedImplCopyWithImpl<$Res>
     Object? searchFocused = null,
     Object? resultsQuery = null,
     Object? cards = null,
+    Object? dictionaryCards = null,
   }) {
     return _then(_$SearchModelLoadedImpl(
       null == searchFocused
@@ -450,6 +481,10 @@ class __$$SearchModelLoadedImplCopyWithImpl<$Res>
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
+      null == dictionaryCards
+          ? _value._dictionaryCards
+          : dictionaryCards // ignore: cast_nullable_to_non_nullable
+              as List<DictionaryCardInitialized>,
     ));
   }
 }
@@ -458,8 +493,12 @@ class __$$SearchModelLoadedImplCopyWithImpl<$Res>
 
 class _$SearchModelLoadedImpl implements SearchModelLoaded {
   _$SearchModelLoadedImpl(
-      this.searchFocused, this.resultsQuery, final List<CardInitialized> cards)
-      : _cards = cards;
+      this.searchFocused,
+      this.resultsQuery,
+      final List<CardInitialized> cards,
+      final List<DictionaryCardInitialized> dictionaryCards)
+      : _cards = cards,
+        _dictionaryCards = dictionaryCards;
 
   @override
   final bool searchFocused;
@@ -473,9 +512,17 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
     return EqualUnmodifiableListView(_cards);
   }
 
+  final List<DictionaryCardInitialized> _dictionaryCards;
+  @override
+  List<DictionaryCardInitialized> get dictionaryCards {
+    if (_dictionaryCards is EqualUnmodifiableListView) return _dictionaryCards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dictionaryCards);
+  }
+
   @override
   String toString() {
-    return 'SearchModel.loaded(searchFocused: $searchFocused, resultsQuery: $resultsQuery, cards: $cards)';
+    return 'SearchModel.loaded(searchFocused: $searchFocused, resultsQuery: $resultsQuery, cards: $cards, dictionaryCards: $dictionaryCards)';
   }
 
   @override
@@ -487,12 +534,18 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
                 other.searchFocused == searchFocused) &&
             (identical(other.resultsQuery, resultsQuery) ||
                 other.resultsQuery == resultsQuery) &&
-            const DeepCollectionEquality().equals(other._cards, _cards));
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            const DeepCollectionEquality()
+                .equals(other._dictionaryCards, _dictionaryCards));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchFocused, resultsQuery,
-      const DeepCollectionEquality().hash(_cards));
+  int get hashCode => Object.hash(
+      runtimeType,
+      searchFocused,
+      resultsQuery,
+      const DeepCollectionEquality().hash(_cards),
+      const DeepCollectionEquality().hash(_dictionaryCards));
 
   @JsonKey(ignore: true)
   @override
@@ -506,11 +559,14 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
     required TResult Function(bool searchFocused) loading,
-    required TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)
+    required TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)
         loaded,
   }) {
-    return loaded(searchFocused, resultsQuery, cards);
+    return loaded(searchFocused, resultsQuery, cards, dictionaryCards);
   }
 
   @override
@@ -518,11 +574,14 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
     TResult? Function(bool searchFocused)? loading,
-    TResult? Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult? Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
   }) {
-    return loaded?.call(searchFocused, resultsQuery, cards);
+    return loaded?.call(searchFocused, resultsQuery, cards, dictionaryCards);
   }
 
   @override
@@ -530,13 +589,16 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
     TResult Function(bool searchFocused)? loading,
-    TResult Function(bool searchFocused, String resultsQuery,
-            List<CardInitialized> cards)?
+    TResult Function(
+            bool searchFocused,
+            String resultsQuery,
+            List<CardInitialized> cards,
+            List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(searchFocused, resultsQuery, cards);
+      return loaded(searchFocused, resultsQuery, cards, dictionaryCards);
     }
     return orElse();
   }
@@ -577,13 +639,18 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
 }
 
 abstract class SearchModelLoaded implements SearchModel {
-  factory SearchModelLoaded(final bool searchFocused, final String resultsQuery,
-      final List<CardInitialized> cards) = _$SearchModelLoadedImpl;
+  factory SearchModelLoaded(
+          final bool searchFocused,
+          final String resultsQuery,
+          final List<CardInitialized> cards,
+          final List<DictionaryCardInitialized> dictionaryCards) =
+      _$SearchModelLoadedImpl;
 
   @override
   bool get searchFocused;
   String get resultsQuery;
   List<CardInitialized> get cards;
+  List<DictionaryCardInitialized> get dictionaryCards;
   @override
   @JsonKey(ignore: true)
   _$$SearchModelLoadedImplCopyWith<_$SearchModelLoadedImpl> get copyWith =>

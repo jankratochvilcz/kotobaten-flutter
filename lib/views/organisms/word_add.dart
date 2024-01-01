@@ -5,6 +5,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/card_type.dart';
+import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
@@ -56,7 +57,7 @@ class WordAddDialogContents extends HookConsumerWidget {
   }
 }
 
-class WordAddForm extends StatefulWidget {
+class WordAddForm extends StatefulHookConsumerWidget {
   final Future Function(card_entity.Card card) _onSubmit;
   final card_entity.CardInitialized? existingWord;
 
@@ -67,7 +68,7 @@ class WordAddForm extends StatefulWidget {
   _WordAddFormState createState() => _WordAddFormState();
 }
 
-class _WordAddFormState extends State<WordAddForm> {
+class _WordAddFormState extends ConsumerState<WordAddForm> {
   final _formKey = GlobalKey<FormState>();
   final _senseController = TextEditingController();
   final _kanjiController = TextEditingController();
@@ -100,6 +101,8 @@ class _WordAddFormState extends State<WordAddForm> {
 
   @override
   Widget build(BuildContext context) {
+    final cardsService = ref.read(cardsServiceProvider);
+
     onEditComplete() async {
       if (_formKey.currentState!.validate()) {
         if (widget.existingWord?.id != null) {
@@ -187,14 +190,54 @@ class _WordAddFormState extends State<WordAddForm> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            if (widget.existingWord != null)
+                              ButtonAsync(
+                                "Delete",
+                                () => showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          title: const Text('Delete word'),
+                                          content: Text(
+                                              'Are you sure you want to delete "${widget.existingWord!.sense}" from your collection?'),
+                                          actions: [
+                                            ButtonAsync(
+                                              'Yes',
+                                              () async {
+                                                await cardsService.deleteCard(
+                                                    widget.existingWord!);
+
+                                                // I need to pop twice here, once for the delete dialog and one for the overall card edit dialog
+                                                Navigator.of(context).pop();
+                                                Navigator.of(context).pop();
+                                              },
+                                              icon: Icons.check,
+                                            ),
+                                            Button(
+                                              'No',
+                                              () => Navigator.of(context).pop(),
+                                              icon: Icons.cancel_outlined,
+                                              type: ButtonType.secondary,
+                                            ),
+                                          ],
+                                        )),
+                                //                                     ),
+                                icon: Icons.delete_outline_outlined,
+                                type: ButtonType.standard,
+                                color: getDescriptionColor(context),
+                                size: ButtonSize.standard,
+                              ),
                             ButtonAsync(
                               widget.existingWord != null ? 'Edit' : 'Add',
                               onEditComplete,
                               icon: widget.existingWord != null
                                   ? Icons.edit_outlined
                                   : Icons.add_circle_outline,
-                              type: ButtonType.primary,
-                              size: ButtonSize.big,
+                              type: widget.existingWord == null
+                                  ? ButtonType.primary
+                                  : ButtonType.standard,
+                              size: widget.existingWord == null
+                                  ? ButtonSize.big
+                                  : ButtonSize.standard,
                             )
                           ],
                         ))

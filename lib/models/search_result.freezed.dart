@@ -22,6 +22,8 @@ SearchResult _$SearchResultFromJson(Map<String, dynamic> json) {
 mixin _$SearchResult {
   String get query => throw _privateConstructorUsedError;
   List<CardInitialized> get cards => throw _privateConstructorUsedError;
+  List<DictionaryCardInitialized> get dictionaryCards =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +37,10 @@ abstract class $SearchResultCopyWith<$Res> {
           SearchResult value, $Res Function(SearchResult) then) =
       _$SearchResultCopyWithImpl<$Res, SearchResult>;
   @useResult
-  $Res call({String query, List<CardInitialized> cards});
+  $Res call(
+      {String query,
+      List<CardInitialized> cards,
+      List<DictionaryCardInitialized> dictionaryCards});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
   $Res call({
     Object? query = null,
     Object? cards = null,
+    Object? dictionaryCards = null,
   }) {
     return _then(_value.copyWith(
       query: null == query
@@ -63,6 +69,10 @@ class _$SearchResultCopyWithImpl<$Res, $Val extends SearchResult>
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
+      dictionaryCards: null == dictionaryCards
+          ? _value.dictionaryCards
+          : dictionaryCards // ignore: cast_nullable_to_non_nullable
+              as List<DictionaryCardInitialized>,
     ) as $Val);
   }
 }
@@ -76,7 +86,10 @@ abstract class _$$SearchResultInitializedImplCopyWith<$Res>
       __$$SearchResultInitializedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String query, List<CardInitialized> cards});
+  $Res call(
+      {String query,
+      List<CardInitialized> cards,
+      List<DictionaryCardInitialized> dictionaryCards});
 }
 
 /// @nodoc
@@ -93,6 +106,7 @@ class __$$SearchResultInitializedImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
     Object? cards = null,
+    Object? dictionaryCards = null,
   }) {
     return _then(_$SearchResultInitializedImpl(
       null == query
@@ -103,6 +117,10 @@ class __$$SearchResultInitializedImplCopyWithImpl<$Res>
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
               as List<CardInitialized>,
+      null == dictionaryCards
+          ? _value._dictionaryCards
+          : dictionaryCards // ignore: cast_nullable_to_non_nullable
+              as List<DictionaryCardInitialized>,
     ));
   }
 }
@@ -110,8 +128,10 @@ class __$$SearchResultInitializedImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SearchResultInitializedImpl implements SearchResultInitialized {
-  _$SearchResultInitializedImpl(this.query, final List<CardInitialized> cards)
-      : _cards = cards;
+  _$SearchResultInitializedImpl(this.query, final List<CardInitialized> cards,
+      final List<DictionaryCardInitialized> dictionaryCards)
+      : _cards = cards,
+        _dictionaryCards = dictionaryCards;
 
   factory _$SearchResultInitializedImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchResultInitializedImplFromJson(json);
@@ -126,9 +146,17 @@ class _$SearchResultInitializedImpl implements SearchResultInitialized {
     return EqualUnmodifiableListView(_cards);
   }
 
+  final List<DictionaryCardInitialized> _dictionaryCards;
+  @override
+  List<DictionaryCardInitialized> get dictionaryCards {
+    if (_dictionaryCards is EqualUnmodifiableListView) return _dictionaryCards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dictionaryCards);
+  }
+
   @override
   String toString() {
-    return 'SearchResult(query: $query, cards: $cards)';
+    return 'SearchResult(query: $query, cards: $cards, dictionaryCards: $dictionaryCards)';
   }
 
   @override
@@ -137,13 +165,18 @@ class _$SearchResultInitializedImpl implements SearchResultInitialized {
         (other.runtimeType == runtimeType &&
             other is _$SearchResultInitializedImpl &&
             (identical(other.query, query) || other.query == query) &&
-            const DeepCollectionEquality().equals(other._cards, _cards));
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            const DeepCollectionEquality()
+                .equals(other._dictionaryCards, _dictionaryCards));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, query, const DeepCollectionEquality().hash(_cards));
+      runtimeType,
+      query,
+      const DeepCollectionEquality().hash(_cards),
+      const DeepCollectionEquality().hash(_dictionaryCards));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +195,9 @@ class _$SearchResultInitializedImpl implements SearchResultInitialized {
 
 abstract class SearchResultInitialized implements SearchResult {
   factory SearchResultInitialized(
-          final String query, final List<CardInitialized> cards) =
+          final String query,
+          final List<CardInitialized> cards,
+          final List<DictionaryCardInitialized> dictionaryCards) =
       _$SearchResultInitializedImpl;
 
   factory SearchResultInitialized.fromJson(Map<String, dynamic> json) =
@@ -172,6 +207,8 @@ abstract class SearchResultInitialized implements SearchResult {
   String get query;
   @override
   List<CardInitialized> get cards;
+  @override
+  List<DictionaryCardInitialized> get dictionaryCards;
   @override
   @JsonKey(ignore: true)
   _$$SearchResultInitializedImplCopyWith<_$SearchResultInitializedImpl>

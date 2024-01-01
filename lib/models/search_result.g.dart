@@ -13,6 +13,10 @@ _$SearchResultInitializedImpl _$$SearchResultInitializedImplFromJson(
       (json['cards'] as List<dynamic>)
           .map((e) => CardInitialized.fromJson(e as Map<String, dynamic>))
           .toList(),
+      (json['dictionaryCards'] as List<dynamic>)
+          .map((e) =>
+              DictionaryCardInitialized.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$SearchResultInitializedImplToJson(
@@ -20,4 +24,5 @@ Map<String, dynamic> _$$SearchResultInitializedImplToJson(
     <String, dynamic>{
       'query': instance.query,
       'cards': instance.cards,
+      'dictionaryCards': instance.dictionaryCards,
     };

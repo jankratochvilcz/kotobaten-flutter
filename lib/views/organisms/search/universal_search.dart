@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
+import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/organisms/search/search_results.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
@@ -88,7 +89,14 @@ class UniversalSearch extends HookConsumerWidget {
             ));
       },
       suggestionsBuilder: (context, controller) {
-        return [const SearchResults()];
+        return searchViewModel.searchController.text.isNotEmpty
+            ? [const SearchResults()]
+            : [
+                const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [Description("Type to start searching ...")])
+              ];
       },
       isFullScreen: true,
       viewBuilder: (widgets) => widgets.first,

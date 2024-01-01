@@ -2,7 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/views/atoms/description.dart';
-import 'package:kotobaten/views/molecules/word_card.dart';
+import 'package:kotobaten/views/molecules/cards/chooser_card.dart';
+import 'package:kotobaten/views/molecules/cards/word_card.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
@@ -55,7 +56,8 @@ class SearchView extends HookConsumerWidget {
           ),
           body: model is SearchModelLoaded
               ? ListView(
-                  children: model.cards.map((card) => WordCard(card)).toList(),
+                  children:
+                      model.cards.map((card) => ChooserCard(card)).toList(),
                 )
               : model is SearchModelLoading
                   ? const Loading()

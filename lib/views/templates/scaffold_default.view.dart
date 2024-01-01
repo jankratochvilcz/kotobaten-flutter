@@ -9,6 +9,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/organisms/search/universal_search.dart';
+import 'package:kotobaten/views/templates/fab_selector.dart';
 
 enum HelpMenuItems { about, androidApp, iosApp, help }
 
@@ -65,6 +66,7 @@ class ScaffoldDefault extends HookConsumerWidget {
     return AutoRouter(
       builder: (context, child) {
         final nestedRouter = AutoRouter.of(context);
+        final pageSpecificFab = getFabForRoute(nestedRouter.current, context);
         selectedNavigationIndex.value =
             getRouteIndex(nestedRouter.current.name);
 
@@ -74,16 +76,19 @@ class ScaffoldDefault extends HookConsumerWidget {
             TextStyle(color: Theme.of(context).colorScheme.onPrimary);
         return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.endDocked,
-            floatingActionButton: !isDesktop(context)
-                ? FloatingActionButton(
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    child: searchNavigation.icon,
-                    onPressed: () {
-                      renderUniversalSearch.value = true;
-                    })
-                : null,
+            floatingActionButtonLocation: pageSpecificFab == null
+                ? FloatingActionButtonLocation.endDocked
+                : FloatingActionButtonLocation.endFloat,
+            floatingActionButton: pageSpecificFab ??
+                (!isDesktop(context)
+                    ? FloatingActionButton(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.secondary,
+                        child: searchNavigation.icon,
+                        onPressed: () {
+                          renderUniversalSearch.value = true;
+                        })
+                    : null),
             bottomNavigationBar: !isDesktop(context)
                 ? Container(
                     // this container is needed to paint the background as there is some bleed-through on high-def screens

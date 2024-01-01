@@ -40,40 +40,38 @@ class HomeView extends HookConsumerWidget {
       _pullToRefeshController.refreshCompleted();
     }
 
-    return Expanded(
-        child: Padding(
-            padding: allPadding(PaddingType.xLarge),
-            child: MediaQuery.of(context).size.width >= minimumDesktopSize
-                ? Expanded(
-                    child: Stack(children: [
-                    const Positioned(
-                        top: 0,
-                        right: 0,
-                        child: SizedBox(width: 300, child: UniversalSearch())),
-                    Center(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const DesktopCard(GoalsCard()),
-                        DesktopCard(
-                            CardLearn(userModelInitialized.user, goToPractice)),
-                        const DesktopCard(CardCollect()),
-                      ],
-                    ))
-                  ]))
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding: bottomPadding(PaddingType.xxLarge),
-                          child: CardLearn(
-                              userModelInitialized.user, goToPractice)),
-                      const Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
-                          child: CardCollect()),
-                      const GoalsCard()
-                    ],
-                  )));
+    return Padding(
+        padding: allPadding(PaddingType.xLarge),
+        child: MediaQuery.of(context).size.width >= minimumDesktopSize
+            ? Stack(children: [
+                const Positioned(
+                    top: 0,
+                    right: 0,
+                    child: SizedBox(width: 300, child: UniversalSearch())),
+                Center(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const DesktopCard(GoalsCard()),
+                    DesktopCard(
+                        CardLearn(userModelInitialized.user, goToPractice)),
+                    const DesktopCard(CardCollect()),
+                  ],
+                ))
+              ])
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: bottomPadding(PaddingType.xxLarge),
+                      child:
+                          CardLearn(userModelInitialized.user, goToPractice)),
+                  const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 48),
+                      child: CardCollect()),
+                  const GoalsCard()
+                ],
+              ));
   }
 }

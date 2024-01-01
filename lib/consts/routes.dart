@@ -10,5 +10,5 @@ const postPracticeRoute = '/post-practice';
 class PracticeArguments {
   final bool showOnboarding;
 
-  PracticeArguments(this.showOnboarding);
+  PracticeArguments({this.showOnboarding = false});
 }

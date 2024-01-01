@@ -38,9 +38,9 @@ enum AnimationType { rotate, slide }
 
 @RoutePage(name: 'PracticeRoute')
 class PracticeView extends HookConsumerWidget {
-  final PracticeArguments args;
+  final PracticeArguments? args;
 
-  const PracticeView({required this.args, Key? key}) : super(key: key);
+  const PracticeView({this.args, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,7 +50,7 @@ class PracticeView extends HookConsumerWidget {
     final model = ref.watch(practiceRepositoryProvider);
 
     final currentStateProgress = useState(0.0);
-    final requiresOnboardingOverlay = useState(args.showOnboarding);
+    final requiresOnboardingOverlay = useState(args?.showOnboarding ?? false);
 
     final userModelInitialized = useInitializedUser(context, ref);
     final moreMenuKey = useState(GlobalKey());

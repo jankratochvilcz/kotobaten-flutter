@@ -203,7 +203,11 @@ class ScaffoldDefault extends HookConsumerWidget {
                                 navigationService.goSettings(context);
                             }
                           }),
-                      const VerticalDivider(thickness: 1, width: 1),
+                      VerticalDivider(
+                        thickness: 1,
+                        width: 0,
+                        color: getDescriptionColorSubtle(context),
+                      ),
                       Expanded(child: child)
                     ],
                   )

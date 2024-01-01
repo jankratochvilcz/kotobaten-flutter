@@ -29,12 +29,12 @@ class ProgressBarPainter extends CustomPainter {
 
     if (progress > 0) {
       canvas.drawRRect(
-          RRect.fromLTRBR(1.5, 1.5, width * progress, height - 1,
-              const Radius.circular(24)),
+          RRect.fromLTRBR(
+              1, 1, width * progress, height, const Radius.circular(24)),
           Paint()
             ..color = foreground
             ..style = PaintingStyle.fill
-            ..strokeWidth = 1.5);
+            ..strokeWidth = 2);
     }
   }
 

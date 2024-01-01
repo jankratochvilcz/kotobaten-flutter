@@ -35,9 +35,6 @@ class ImpressionRevealedActions extends StatelessWidget {
                         icon: Icons.close,
                         type: ButtonType.standardProgress,
                         progressPercentage: timeElapsedPercentage,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Colors.black45
-                            : Colors.white60,
                         shortcut: 'n',
                       ),
                       Button(

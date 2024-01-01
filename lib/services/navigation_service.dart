@@ -15,7 +15,7 @@ class NavigationService {
       {bool replaceCurrent = false, bool showOnboarding = false}) {
     final navigator = context.router;
 
-    final args = PracticeArguments(showOnboarding);
+    final args = PracticeArguments(showOnboarding: showOnboarding);
 
     return replaceCurrent
         ? navigator.replace(

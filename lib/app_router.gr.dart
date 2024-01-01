@@ -50,7 +50,8 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     PracticeRoute.name: (routeData) {
-      final args = routeData.argsAs<PracticeRouteArgs>();
+      final args = routeData.argsAs<PracticeRouteArgs>(
+          orElse: () => const PracticeRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: PracticeView(
@@ -183,7 +184,7 @@ class PostPracticeRoute extends PageRouteInfo<void> {
 /// [PracticeView]
 class PracticeRoute extends PageRouteInfo<PracticeRouteArgs> {
   PracticeRoute({
-    required PracticeArguments args,
+    PracticeArguments? args,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
@@ -203,11 +204,11 @@ class PracticeRoute extends PageRouteInfo<PracticeRouteArgs> {
 
 class PracticeRouteArgs {
   const PracticeRouteArgs({
-    required this.args,
+    this.args,
     this.key,
   });
 
-  final PracticeArguments args;
+  final PracticeArguments? args;
 
   final Key? key;
 

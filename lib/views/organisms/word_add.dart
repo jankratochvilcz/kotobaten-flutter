@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/models/slices/dictionary/dictionary_card.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/button.dart';
@@ -17,18 +19,24 @@ showWordAddBottomSheet(
     WidgetRef ref,
     Future<card_entity.CardInitialized> Function(card_entity.Card card)
         onSubmit,
-    {card_entity.CardInitialized? existingWord}) {
+    {card_entity.CardInitialized? existingWord,
+    DictionaryCard? prefillFromDictionaryCard}) {
   final overlaysService = ref.read(overlaysServiceProvider);
-  overlaysService.showOverlay(context,
-      (context) => WordAddDialogContents(onSubmit, existingWord: existingWord));
+  overlaysService.showOverlay(
+      context,
+      (context) => WordAddDialogContents(onSubmit,
+          existingWord: existingWord,
+          prefillFromDictionaryCard: prefillFromDictionaryCard));
 }
 
 class WordAddDialogContents extends HookConsumerWidget {
   final Future<card_entity.CardInitialized> Function(card_entity.Card card)
       onSubmit;
   final card_entity.CardInitialized? existingWord;
+  final DictionaryCard? prefillFromDictionaryCard;
 
-  const WordAddDialogContents(this.onSubmit, {Key? key, this.existingWord})
+  const WordAddDialogContents(this.onSubmit,
+      {Key? key, this.existingWord, this.prefillFromDictionaryCard})
       : super(key: key);
 
   @override
@@ -46,6 +54,7 @@ class WordAddDialogContents extends HookConsumerWidget {
                     'Card for "${createdCard.sense}" ${existingWord == null ? "created" : "updated"}.')));
           },
           existingWord: existingWord,
+          prefillFromDictionaryCard: prefillFromDictionaryCard,
         ));
   }
 }
@@ -53,8 +62,10 @@ class WordAddDialogContents extends HookConsumerWidget {
 class WordAddForm extends StatefulHookConsumerWidget {
   final Future Function(card_entity.Card card) _onSubmit;
   final card_entity.CardInitialized? existingWord;
+  final DictionaryCard? prefillFromDictionaryCard;
 
-  const WordAddForm(this._onSubmit, {Key? key, this.existingWord})
+  const WordAddForm(this._onSubmit,
+      {Key? key, this.existingWord, this.prefillFromDictionaryCard})
       : super(key: key);
 
   @override
@@ -79,6 +90,12 @@ class _WordAddFormState extends ConsumerState<WordAddForm> {
       _kanaController.text = widget.existingWord?.kana ?? '';
       _noteController.text = widget.existingWord?.note ?? '';
       _cardType = widget.existingWord?.type ?? CardType.word;
+    } else if (widget.prefillFromDictionaryCard != null) {
+      _senseController.text =
+          widget.prefillFromDictionaryCard!.senses.first.reduceWithCommas();
+      _kanjiController.text = widget.prefillFromDictionaryCard!.kanji;
+      _kanaController.text = widget.prefillFromDictionaryCard!.kana;
+      _cardType = CardType.word;
     }
   }
 

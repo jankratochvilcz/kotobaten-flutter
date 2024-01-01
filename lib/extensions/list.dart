@@ -28,3 +28,11 @@ List<T> _shuffleIntoListOnce<T>(List<T> list, T element) {
   result.insert(targetPosition, element);
   return result;
 }
+
+extension StringListExtensions on List<String> {
+  String reduceWithCommas() {
+    return reduce(
+      (soFar, current) => "$soFar, $current",
+    );
+  }
+}

@@ -21,18 +21,22 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: '/login', page: LoginRoute.page, initial: true),
+        AutoRoute(path: '/login', page: LoginRoute.page),
         AutoRoute(path: '/onboarding', page: OnboardingRoute.page),
         AutoRoute(path: '/practice', page: PracticeRoute.page),
         AutoRoute(path: '/post-practice', page: PostPracticeRoute.page),
-        AutoRoute(path: '/app', page: ScaffoldRoute.page, children: [
-          AutoRoute(path: '', page: HomeRoute.page),
-          AutoRoute(
-            path: 'collection',
-            page: CollectionRoute.page,
-          ),
-          AutoRoute(path: 'search', page: SearchRoute.page),
-          AutoRoute(path: 'settings', page: SettingsRoute.page)
-        ])
+        AutoRoute(
+            path: '/app',
+            page: ScaffoldRoute.page,
+            initial: true,
+            children: [
+              AutoRoute(path: '', page: HomeRoute.page, initial: true),
+              AutoRoute(
+                path: 'collection',
+                page: CollectionRoute.page,
+              ),
+              AutoRoute(path: 'search', page: SearchRoute.page),
+              AutoRoute(path: 'settings', page: SettingsRoute.page)
+            ])
       ];
 }

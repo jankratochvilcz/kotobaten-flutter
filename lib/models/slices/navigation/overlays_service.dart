@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
 
@@ -19,7 +20,10 @@ class OverlaysService {
             context: context,
             isScrollControlled: true,
             shape: defaultBottomSheetShape,
-            builder: builder)
+            builder: (context) => Padding(
+                  padding: allPadding(PaddingType.standard),
+                  child: builder(context),
+                ))
         : showDialog(
             context: context,
             builder: (localContext) => AlertDialog(

@@ -8,8 +8,9 @@ import 'package:kotobaten/consts/navigation.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
+import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
-import 'package:kotobaten/views/organisms/search/universal_search.dart';
+import 'package:kotobaten/views/organisms/search/universal_search_v3.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
 enum HelpMenuItems { about, androidApp, iosApp, help }
@@ -55,8 +56,8 @@ class ScaffoldDefault extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final navigationService = ref.read(navigationServiceProvider);
     final overlaysModel = ref.watch(overlaysRepositoryProvider);
+    final overlaysService = ref.read(overlaysServiceProvider);
     final selectedNavigationIndex = useState(0);
-    final renderUniversalSearch = useState(false);
 
     final navigationItems = getNavigationItems(context);
     final homeNavigation = navigationItems[NavigationItemType.home]!;
@@ -79,7 +80,15 @@ class ScaffoldDefault extends HookConsumerWidget {
                             Theme.of(context).colorScheme.secondary,
                         child: searchNavigation.icon,
                         onPressed: () {
-                          renderUniversalSearch.value = true;
+                          overlaysService.showOverlay(
+                              context,
+                              (context) => SizedBox.fromSize(
+                                  size: Size(
+                                      MediaQuery.of(context).size.width,
+                                      MediaQuery.of(context).size.height /
+                                          3 *
+                                          2),
+                                  child: const UniversalSearchV3()));
                         })
                     : null));
 
@@ -157,10 +166,34 @@ class ScaffoldDefault extends HookConsumerWidget {
                               child: Container(
                                   constraints:
                                       const BoxConstraints(maxWidth: 40),
-                                  child: const Image(
-                                    image: AssetImage(
-                                        'assets/logos/logo_square_white.png'),
-                                  ))),
+                                  child: Column(children: [
+                                    Container(
+                                        constraints:
+                                            const BoxConstraints(maxWidth: 36),
+                                        child: const Image(
+                                          image: AssetImage(
+                                              'assets/logos/logo_square_white.png'),
+                                        )),
+                                    Padding(
+                                        padding:
+                                            topPadding(PaddingType.standard),
+                                        child: IconButton.filled(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                            onPressed: () {
+                                              overlaysService.showOverlay(
+                                                  context,
+                                                  (context) =>
+                                                      SizedBox.fromSize(
+                                                        size: const Size(
+                                                            600, 800),
+                                                        child:
+                                                            const UniversalSearchV3(),
+                                                      ));
+                                            },
+                                            icon: const Icon(Icons.search)))
+                                  ]))),
                           groupAlignment: 0,
                           backgroundColor: navigationBackgroundColor,
                           destinations: [
@@ -212,16 +245,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                     ],
                   )
                 : Stack(
-                    children: [
-                      child,
-                      if (renderUniversalSearch.value)
-                        UniversalSearch(
-                          forceOpenView: true,
-                          onClosed: () {
-                            renderUniversalSearch.value = false;
-                          },
-                        ),
-                    ],
+                    children: [child],
                   ));
       },
     );

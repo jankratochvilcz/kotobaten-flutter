@@ -24,16 +24,15 @@ class SearchViewModel extends StateNotifier<SearchModel> {
 
   SearchViewModel(this._apiService) : super(SearchModel.initial(true)) {
     searchTermController
-        .addListener(() => _searchTermUpdates.add(searchTermController.text));
+        .addListener(() => executeSearch(searchTermController.text));
 
-    searchController
-        .addListener(() => _searchTermUpdates.add(searchController.text));
+    searchController.addListener(() => executeSearch(searchController.text));
 
     _searchTermUpdates.stream
         .distinct()
-        .where((x) => x.length > 1)
+        .where((x) => x.length > 0)
         .debounceTime(const Duration(milliseconds: 300))
-        .forEach(executeSearch);
+        .forEach(_executeSearch);
 
     _searchTextFocus.addListener(
         () => _searchTextFocusUpdates.add(_searchTextFocus.hasFocus));
@@ -52,7 +51,11 @@ class SearchViewModel extends StateNotifier<SearchModel> {
         baseOffset: 0, extentOffset: _searchTermController.text.length);
   }
 
-  Future executeSearch(String text) async {
+  void executeSearch(String text) {
+    _searchTermUpdates.add(text);
+  }
+
+  Future _executeSearch(String text) async {
     state = SearchModel.loading(state.searchFocused);
     final result = await _apiService.search(text.trim());
     state = SearchModel.loaded(state.searchFocused, result.query, result.cards,

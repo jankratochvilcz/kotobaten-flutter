@@ -11,7 +11,6 @@ import 'package:kotobaten/views/molecules/goals_card.dart';
 import 'package:kotobaten/views/organisms/home/card_collect.dart';
 import 'package:kotobaten/views/organisms/home/card_learn.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
-import 'package:kotobaten/views/organisms/search/universal_search.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 @RoutePage(name: 'HomeRoute')
@@ -43,23 +42,17 @@ class HomeView extends HookConsumerWidget {
     return Padding(
         padding: allPadding(PaddingType.xLarge),
         child: MediaQuery.of(context).size.width >= minimumDesktopSize
-            ? Stack(children: [
-                const Positioned(
-                    top: 0,
-                    right: 0,
-                    child: SizedBox(width: 300, child: UniversalSearch())),
-                Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const DesktopCard(GoalsCard()),
-                    DesktopCard(
-                        CardLearn(userModelInitialized.user, goToPractice)),
-                    const DesktopCard(CardCollect()),
-                  ],
-                ))
-              ])
+            ? Center(
+                child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const DesktopCard(GoalsCard()),
+                  DesktopCard(
+                      CardLearn(userModelInitialized.user, goToPractice)),
+                  const DesktopCard(CardCollect()),
+                ],
+              ))
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -21,6 +21,7 @@ import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
+import 'package:kotobaten/views/molecules/impression_card.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/loading.dart';
@@ -163,7 +164,10 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getSecondaryText(),
             practiceService.getFurigana(),
             practiceService.getHintText(),
-            practiceService.getNote()),
+            practiceService.getNote(),
+            model.currentImpression.card.type == CardType.grammar
+                ? ImpressionCardAccentType.grammar
+                : null),
         layoutBuilder: animationType == AnimationType.slide
             ? AnimatedSwitcher.defaultLayoutBuilder
             : (current, previous) => Stack(

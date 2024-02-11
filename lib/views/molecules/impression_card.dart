@@ -9,25 +9,40 @@ import 'package:kotobaten/views/atoms/heading.dart';
 const double pi = 3.141592653589793238;
 const double cardSize = 300;
 
+enum ImpressionCardAccentType { none, newCard, grammar }
+
 class ImpressionCard extends StatelessWidget {
   final String text;
   final String? secondaryText;
   final String? furigana;
   final String? note;
-  final bool accented;
+  final ImpressionCardAccentType accent;
 
   const ImpressionCard(this.text,
       {Key? key,
       this.secondaryText,
       this.furigana,
       this.note,
-      this.accented = false})
+      this.accent = ImpressionCardAccentType.none})
       : super(key: key);
+
+  Color? _getAccentColor(
+      ImpressionCardAccentType accentType, BuildContext context) {
+    switch (accentType) {
+      case ImpressionCardAccentType.newCard:
+        return Colors.orangeAccent;
+      case ImpressionCardAccentType.grammar:
+        return Theme.of(context).colorScheme.secondary;
+      default:
+        return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final isLongSecondaryText = (secondaryText?.length ?? 0) > 16;
     final isLongPrimaryText = text.length > 10;
+    final accentColor = _getAccentColor(accent, context);
 
     return Padding(
         padding: EdgeInsets.fromLTRB(
@@ -37,8 +52,8 @@ class ImpressionCard extends StatelessWidget {
             getPadding(PaddingType.xxLarge)),
         child: Center(
             child: Card(
-                elevation: accented ? 10 : 5,
-                shadowColor: accented ? Colors.orangeAccent : null,
+                elevation: accent == ImpressionCardAccentType.newCard ? 10 : 5,
+                shadowColor: accentColor,
                 child: ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: cardSize),
                     child: AspectRatio(
@@ -71,6 +86,7 @@ class ImpressionCard extends StatelessWidget {
                                   fontWeightOverride: isLongPrimaryText
                                       ? FontWeight.normal
                                       : null,
+                                  colorOverride: accentColor,
                                 ),
                                 if (secondaryText?.isNotEmpty ?? false)
                                   Heading(secondaryText ?? '', HeadingStyle.h2,

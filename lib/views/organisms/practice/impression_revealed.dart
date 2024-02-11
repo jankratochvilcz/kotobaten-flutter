@@ -6,9 +6,10 @@ class ImpressionRevealed extends StatelessWidget {
   final String? secondaryText;
   final String? furiganaText;
   final String? note;
+  final ImpressionCardAccentType? accent;
 
-  const ImpressionRevealed(
-      this.primaryText, this.secondaryText, this.furiganaText, this.note,
+  const ImpressionRevealed(this.primaryText, this.secondaryText,
+      this.furiganaText, this.note, this.accent,
       {Key? key})
       : super(key: key);
 
@@ -19,6 +20,7 @@ class ImpressionRevealed extends StatelessWidget {
       secondaryText: secondaryText,
       furigana: furiganaText,
       note: note,
+      accent: accent ?? ImpressionCardAccentType.none,
     );
   }
 }

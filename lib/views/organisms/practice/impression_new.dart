@@ -17,7 +17,7 @@ class ImpressionNew extends StatelessWidget {
     return ImpressionCard(primaryText,
         secondaryText: secondaryText,
         furigana: furiganaText,
-        accented: true,
+        accent: ImpressionCardAccentType.newCard,
         note: note);
   }
 }

@@ -16,14 +16,12 @@ import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
 import 'package:kotobaten/models/slices/user/user_core.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
-import 'package:kotobaten/models/slices/user/user_statistics.dart';
 import 'package:kotobaten/services/app_configuration.dart';
 import 'package:kotobaten/services/cookies_service.dart';
 import 'package:kotobaten/services/cookies_service_base.dart';
 import 'package:kotobaten/services/kotobaten_client.dart';
 import 'package:kotobaten/services/serialization/requests/impressions_request.dart';
 import 'package:kotobaten/services/serialization/responses/cards_response.dart';
-import 'package:kotobaten/services/serialization/responses/impressions_response.dart';
 import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:mockito/annotations.dart';
 

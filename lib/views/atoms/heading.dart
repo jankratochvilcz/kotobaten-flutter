@@ -55,13 +55,15 @@ class Heading extends StatelessWidget {
   final bool noPadding;
   final double? fontSizeOverride;
   final FontWeight? fontWeightOverride;
+  final Color? colorOverride;
 
   const Heading(this.data, this.style,
       {Key? key,
       this.textAlign,
       this.noPadding = false,
       this.fontSizeOverride,
-      this.fontWeightOverride})
+      this.fontWeightOverride,
+      this.colorOverride})
       : super(key: key);
 
   @override
@@ -70,7 +72,7 @@ class Heading extends StatelessWidget {
         data,
         textAlign: textAlign,
         style: TextStyle(
-            color: _getColor(style, context),
+            color: colorOverride ?? _getColor(style, context),
             fontSize: fontSizeOverride ?? _getFontSize(style),
             fontWeight: fontWeightOverride ?? _getFontWeight(style)),
       ),

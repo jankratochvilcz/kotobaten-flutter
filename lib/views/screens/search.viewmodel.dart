@@ -30,7 +30,7 @@ class SearchViewModel extends StateNotifier<SearchModel> {
 
     _searchTermUpdates.stream
         .distinct()
-        .where((x) => x.length > 0)
+        .where((x) => x.isNotEmpty)
         .debounceTime(const Duration(milliseconds: 300))
         .forEach(_executeSearch);
 

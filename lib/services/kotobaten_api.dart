@@ -106,15 +106,11 @@ class KotobatenApiService {
           await _getAuthenticated('practice', params: {'count': '15'}))
       .impressions;
 
-  Future<UserStatistics> postImpression(
-      Impression impression, bool success) async {
+  Future postImpression(Impression impression, bool success) async {
     final requestBody = ImpressionsRequest.initialized(
         impression.impressionType, impression.card.id, success, DateTime.now());
 
-    final responseBody = await _postJson('impressions', requestBody.toJson());
-
-    final stats = ImpressionsResponse.fromJson(responseBody).userStats;
-    return stats;
+    await _postJson('impressions', requestBody.toJson());
   }
 
   Future<CardInitialized> postCard(Card card) async {

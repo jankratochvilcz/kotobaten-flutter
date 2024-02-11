@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
@@ -9,6 +10,7 @@ import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
+import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
@@ -24,8 +26,24 @@ class PostPracticeView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final practiceService = ref.read(practiceServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
+    final userService = ref.read(userServiceProvider);
     final userModel = ref.watch(userRepositoryProvider);
     final practiceModel = ref.watch(practiceRepositoryProvider);
+
+    final hasUpdatedState = useState(false);
+
+    useEffect(() {
+      if (hasUpdatedState.value ||
+          userModel is! UserModelInitialized ||
+          practiceModel is! PracticeModelFinished) {
+        return;
+      }
+
+      Future.microtask(() => userService.refreshUser());
+      hasUpdatedState.value = true;
+
+      return null;
+    }, [userModel, practiceModel]);
 
     goToPractice() async {
       await practiceService.initialize();
@@ -33,6 +51,7 @@ class PostPracticeView extends HookConsumerWidget {
     }
 
     if (userModel is UserModelInitialized &&
+        !userModel.refreshing &&
         practiceModel is PracticeModelFinished) {
       final cards = practiceModel.allImpressions.map((x) => x.card);
       final uniqueCards = cards

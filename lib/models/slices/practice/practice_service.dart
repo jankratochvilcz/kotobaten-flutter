@@ -101,8 +101,7 @@ class PracticeService {
         nextStepTime: _getHiddenStateExpiry(),
         currentStepStart: DateTime.now()));
 
-    userService.updateStatistics(
-        await apiService.postImpression(currentState.currentImpression, true));
+    await apiService.postImpression(currentState.currentImpression, true);
   }
 
   Future evaluateWrong() async {
@@ -136,8 +135,7 @@ class PracticeService {
         nextStepTime: _getHiddenStateExpiry(),
         currentStepStart: DateTime.now()));
 
-    userService.updateStatistics(
-        await apiService.postImpression(currentState.currentImpression, false));
+    await apiService.postImpression(currentState.currentImpression, false);
   }
 
   String? getSpeechToPlay() {

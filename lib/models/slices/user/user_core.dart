@@ -10,8 +10,8 @@ class UserCore with _$UserCore {
       String email,
       int retentionBackstopMaxThreshold,
       bool disableSounds,
-      String timezoneName,
-      int utcOffsetHours) = UserCoreInitialized;
+      String? timezoneName,
+      int? utcOffsetHours) = UserCoreInitialized;
 
   factory UserCore.fromJson(Map<String, dynamic> json) =>
       _$UserCoreFromJson(json);

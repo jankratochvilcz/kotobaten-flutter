@@ -64,7 +64,16 @@ class UserService {
 
   Future<UserCoreInitialized> updateTimezone(
       String timezoneName, int utcOffsetHours) async {
-    return await apiService.updateTimezone(timezoneName, utcOffsetHours);
+    final updatedUser =
+        await apiService.updateTimezone(timezoneName, utcOffsetHours);
+
+    final userModel = userRepository.current;
+    if (userModel is UserModelInitialized) {
+      userRepository.update(
+          userModel.copyWith(user: userModel.user.copyWith(user: updatedUser)));
+    }
+
+    return updatedUser;
   }
 
   Future<UserCoreInitialized> updateRetentionBackstopMaxThreshold(

@@ -190,8 +190,8 @@ class KotobatenApiService {
       String timezoneName, int utcOffsetHours) async {
     final response = await _postJson('user',
         {'utcOffsetHours': utcOffsetHours, 'timezoneName': timezoneName});
-    final body = utf8.decode(response.bodyBytes);
-    return UserCoreInitialized.fromJson(jsonDecode(body));
+
+    return UserCoreInitialized.fromJson(response['user']);
   }
 
   Future<List<String>> getFurigana(String kanji) async {

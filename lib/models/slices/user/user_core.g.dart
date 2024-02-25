@@ -13,6 +13,8 @@ _$UserCoreInitializedImpl _$$UserCoreInitializedImplFromJson(
       json['email'] as String,
       json['retentionBackstopMaxThreshold'] as int,
       json['disableSounds'] as bool,
+      json['timezoneName'] as String,
+      json['utcOffsetHours'] as int,
     );
 
 Map<String, dynamic> _$$UserCoreInitializedImplToJson(
@@ -22,4 +24,6 @@ Map<String, dynamic> _$$UserCoreInitializedImplToJson(
       'email': instance.email,
       'retentionBackstopMaxThreshold': instance.retentionBackstopMaxThreshold,
       'disableSounds': instance.disableSounds,
+      'timezoneName': instance.timezoneName,
+      'utcOffsetHours': instance.utcOffsetHours,
     };

@@ -76,7 +76,6 @@ class SettingsView extends HookConsumerWidget {
                             child: Card(
                               child: SizedBox(
                                   width: 400,
-                                  height: cardBaseHeight,
                                   child: Padding(
                                       padding: allPadding(PaddingType.large),
                                       child: Column(children: [

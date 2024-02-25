@@ -9,7 +9,9 @@ class UserCore with _$UserCore {
       int id,
       String email,
       int retentionBackstopMaxThreshold,
-      bool disableSounds) = UserCoreInitialized;
+      bool disableSounds,
+      String timezoneName,
+      int utcOffsetHours) = UserCoreInitialized;
 
   factory UserCore.fromJson(Map<String, dynamic> json) =>
       _$UserCoreFromJson(json);

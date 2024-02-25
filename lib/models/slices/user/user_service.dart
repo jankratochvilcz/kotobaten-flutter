@@ -62,6 +62,11 @@ class UserService {
     return updatedGoals;
   }
 
+  Future<UserCoreInitialized> updateTimezone(
+      String timezoneName, int utcOffsetHours) async {
+    return await apiService.updateTimezone(timezoneName, utcOffsetHours);
+  }
+
   Future<UserCoreInitialized> updateRetentionBackstopMaxThreshold(
       int number) async {
     final updatedUser =

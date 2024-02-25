@@ -23,15 +23,15 @@ class TimeInvestmentCard extends HookConsumerWidget {
     final userModel = ref.watch(userRepositoryProvider);
     final userService = ref.read(userServiceProvider);
     final currentValue = useState(0);
-    final isIntialized = useState(false);
+    final isInitialized = useState(false);
 
     if (userModel is! UserModelInitialized) {
       return const Loading();
     }
 
-    if (!isIntialized.value) {
+    if (!isInitialized.value) {
       currentValue.value = userModel.user.user.retentionBackstopMaxThreshold;
-      isIntialized.value = true;
+      isInitialized.value = true;
     }
 
     final currentValueDouble = currentValue.value.toDouble();

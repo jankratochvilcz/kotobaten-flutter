@@ -98,7 +98,7 @@ class UserService {
     }
 
     final originalSetting = userModel.user.user.disableSounds;
-    final revisedSetting = !originalSetting;
+    final revisedSetting = !(originalSetting ?? false);
 
     userRepository.update(userModel.copyWith(
         user: userModel.user.copyWith(

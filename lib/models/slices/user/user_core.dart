@@ -9,7 +9,7 @@ class UserCore with _$UserCore {
       int id,
       String email,
       int retentionBackstopMaxThreshold,
-      bool disableSounds,
+      bool? disableSounds,
       String? timezoneName,
       int? utcOffsetHours) = UserCoreInitialized;
 

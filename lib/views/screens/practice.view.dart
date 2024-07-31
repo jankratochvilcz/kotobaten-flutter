@@ -115,7 +115,7 @@ class PracticeView extends HookConsumerWidget {
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null &&
           model.currentImpression.card.type != CardType.grammar &&
-          !userModelInitialized.user.user.disableSounds) {
+          !(userModelInitialized.user.user.disableSounds ?? false)) {
         Future.microtask(() async {
           final player = AudioPlayer();
           await player.setSourceUrl(speechPath);
@@ -214,12 +214,14 @@ class PracticeView extends HookConsumerWidget {
                                       PopupMenuItem(
                                           onTap: userService.toggleAudio,
                                           child: HelpMenuItem(
-                                              userModelInitialized
-                                                      .user.user.disableSounds
+                                              (userModelInitialized.user.user
+                                                          .disableSounds ??
+                                                      false)
                                                   ? Icons.volume_up_outlined
                                                   : Icons.volume_off_outlined,
-                                              userModelInitialized
-                                                      .user.user.disableSounds
+                                              (userModelInitialized.user.user
+                                                          .disableSounds ??
+                                                      false)
                                                   ? "Unmute"
                                                   : "Mute"))
                                     ]);

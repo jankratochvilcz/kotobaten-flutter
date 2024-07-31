@@ -203,6 +203,18 @@ class KotobatenApiService {
     return List<String>.from(jsonDecode(body));
   }
 
+  Future<List<CardInitialized>> getWordSuggestions(int limit) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'suggestedCards',
+        {'limit': limit.toString()});
+    final headers = await _getTokenHeadersOrThrow();
+    final response = await _kotobatenClient.get(url, headers: headers);
+    final body = utf8.decode(response.bodyBytes);
+    final responseJson = jsonDecode(body);
+    final result = CardsResponse.fromJson(responseJson);
+
+    return result.cards;
+  }
+
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
     final url = _getUrl(_appConfiguration.apiRoot, relativePath, params);

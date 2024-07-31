@@ -12,7 +12,7 @@ _$UserCoreInitializedImpl _$$UserCoreInitializedImplFromJson(
       json['id'] as int,
       json['email'] as String,
       json['retentionBackstopMaxThreshold'] as int,
-      json['disableSounds'] as bool,
+      json['disableSounds'] as bool?,
       json['timezoneName'] as String?,
       json['utcOffsetHours'] as int?,
     );

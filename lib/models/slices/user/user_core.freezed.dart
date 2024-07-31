@@ -23,7 +23,7 @@ mixin _$UserCore {
   int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   int get retentionBackstopMaxThreshold => throw _privateConstructorUsedError;
-  bool get disableSounds => throw _privateConstructorUsedError;
+  bool? get disableSounds => throw _privateConstructorUsedError;
   String? get timezoneName => throw _privateConstructorUsedError;
   int? get utcOffsetHours => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,7 +32,7 @@ mixin _$UserCore {
             int id,
             String email,
             int retentionBackstopMaxThreshold,
-            bool disableSounds,
+            bool? disableSounds,
             String? timezoneName,
             int? utcOffsetHours)
         initialized,
@@ -41,14 +41,14 @@ mixin _$UserCore {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id, String email, int retentionBackstopMaxThreshold,
-            bool disableSounds, String? timezoneName, int? utcOffsetHours)?
+            bool? disableSounds, String? timezoneName, int? utcOffsetHours)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id, String email, int retentionBackstopMaxThreshold,
-            bool disableSounds, String? timezoneName, int? utcOffsetHours)?
+            bool? disableSounds, String? timezoneName, int? utcOffsetHours)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -84,7 +84,7 @@ abstract class $UserCoreCopyWith<$Res> {
       {int id,
       String email,
       int retentionBackstopMaxThreshold,
-      bool disableSounds,
+      bool? disableSounds,
       String? timezoneName,
       int? utcOffsetHours});
 }
@@ -105,7 +105,7 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
     Object? id = null,
     Object? email = null,
     Object? retentionBackstopMaxThreshold = null,
-    Object? disableSounds = null,
+    Object? disableSounds = freezed,
     Object? timezoneName = freezed,
     Object? utcOffsetHours = freezed,
   }) {
@@ -122,10 +122,10 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
           ? _value.retentionBackstopMaxThreshold
           : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
               as int,
-      disableSounds: null == disableSounds
+      disableSounds: freezed == disableSounds
           ? _value.disableSounds
           : disableSounds // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       timezoneName: freezed == timezoneName
           ? _value.timezoneName
           : timezoneName // ignore: cast_nullable_to_non_nullable
@@ -150,7 +150,7 @@ abstract class _$$UserCoreInitializedImplCopyWith<$Res>
       {int id,
       String email,
       int retentionBackstopMaxThreshold,
-      bool disableSounds,
+      bool? disableSounds,
       String? timezoneName,
       int? utcOffsetHours});
 }
@@ -169,7 +169,7 @@ class __$$UserCoreInitializedImplCopyWithImpl<$Res>
     Object? id = null,
     Object? email = null,
     Object? retentionBackstopMaxThreshold = null,
-    Object? disableSounds = null,
+    Object? disableSounds = freezed,
     Object? timezoneName = freezed,
     Object? utcOffsetHours = freezed,
   }) {
@@ -186,10 +186,10 @@ class __$$UserCoreInitializedImplCopyWithImpl<$Res>
           ? _value.retentionBackstopMaxThreshold
           : retentionBackstopMaxThreshold // ignore: cast_nullable_to_non_nullable
               as int,
-      null == disableSounds
+      freezed == disableSounds
           ? _value.disableSounds
           : disableSounds // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       freezed == timezoneName
           ? _value.timezoneName
           : timezoneName // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
   @override
   final int retentionBackstopMaxThreshold;
   @override
-  final bool disableSounds;
+  final bool? disableSounds;
   @override
   final String? timezoneName;
   @override
@@ -278,7 +278,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
             int id,
             String email,
             int retentionBackstopMaxThreshold,
-            bool disableSounds,
+            bool? disableSounds,
             String? timezoneName,
             int? utcOffsetHours)
         initialized,
@@ -291,7 +291,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id, String email, int retentionBackstopMaxThreshold,
-            bool disableSounds, String? timezoneName, int? utcOffsetHours)?
+            bool? disableSounds, String? timezoneName, int? utcOffsetHours)?
         initialized,
   }) {
     return initialized?.call(id, email, retentionBackstopMaxThreshold,
@@ -302,7 +302,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id, String email, int retentionBackstopMaxThreshold,
-            bool disableSounds, String? timezoneName, int? utcOffsetHours)?
+            bool? disableSounds, String? timezoneName, int? utcOffsetHours)?
         initialized,
     required TResult orElse(),
   }) {
@@ -354,7 +354,7 @@ abstract class UserCoreInitialized implements UserCore {
       final int id,
       final String email,
       final int retentionBackstopMaxThreshold,
-      final bool disableSounds,
+      final bool? disableSounds,
       final String? timezoneName,
       final int? utcOffsetHours) = _$UserCoreInitializedImpl;
 
@@ -368,7 +368,7 @@ abstract class UserCoreInitialized implements UserCore {
   @override
   int get retentionBackstopMaxThreshold;
   @override
-  bool get disableSounds;
+  bool? get disableSounds;
   @override
   String? get timezoneName;
   @override

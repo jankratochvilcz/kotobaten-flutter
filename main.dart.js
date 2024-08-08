@@ -100672,7 +100672,7 @@ A.aNJ.prototype={
 $1(a){return J.b6P(a.bz($.aV9(),t.gi))},
 $S:629}
 A.ps.prototype={
-Pv(a){return new A.JE("kotobatenprod-api.yellowglacier-9d313cfc.northeurope.azurecontainerapps.io",!0,A.bkI(),"2.0",".kotobaten.app")}}
+Pv(a){return new A.JE("kotoprodapiapp.delightfulrock-6f4fb83c.northeurope.azurecontainerapps.io",!0,A.bkI(),"2.0",".kotobaten.app")}}
 A.aO0.prototype={
 $1(a){return new A.nv()},
 $S:630}

@@ -1,4 +1,4 @@
 const apiRootProduction =
-    'kotobatenprod-api.yellowglacier-9d313cfc.northeurope.azurecontainerapps.io';
-const apiRootDev = 'localhost:5000';
+    'kotoprodapiapp.delightfulrock-6f4fb83c.northeurope.azurecontainerapps.io';
+const apiRootDev = 'localhost:5001';
 const apiVersion = '2.0';

@@ -15,13 +15,13 @@ Widget getImpressionForViewType(
     String? note,
     ImpressionCardAccentType? accent) {
   switch (impressionViewType) {
-    case ImpressionViewType.hidden:
+    case ImpressionViewType.wordHidden:
       return ImpressionHidden(
           primaryText, hintText, accent ?? ImpressionCardAccentType.none);
-    case ImpressionViewType.revealed:
+    case ImpressionViewType.wordRevealed:
       return ImpressionRevealed(
           primaryText, secondaryText, furigana, note, accent);
-    case ImpressionViewType.discover:
+    case ImpressionViewType.wordDiscover:
       return ImpressionNew(primaryText, secondaryText, furigana, note);
     default:
       throw ErrorDescription("Unsupported impressionViewType");

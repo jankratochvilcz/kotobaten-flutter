@@ -4,11 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
+import 'package:kotobaten/models/slices/practice/card_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
+import 'package:kotobaten/models/slices/practice/kana_guess_impression.dart';
+import 'package:kotobaten/models/slices/practice/new_card_impression.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
+import 'package:kotobaten/models/slices/practice/sense_guess_impression.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
 
@@ -40,7 +46,10 @@ class PracticeService {
 
     repository.update(const PracticeModel.loading());
 
-    final impressions = await apiService.getImpressions();
+    final impressions = (await apiService.getPractice())
+        .where((element) =>
+            element.type != ImpressionType.generatedSentenceWithParticlesSelect)
+        .toList();
 
     // A demo grammar card for quick debugging
     // final grammarImpression = Impression.initialized(
@@ -140,12 +149,21 @@ class PracticeService {
 
   String? getSpeechToPlay() {
     final currentState = repository.current;
-    return currentState is PracticeModelInProgress &&
-            !currentState.speechPlayed &&
-            currentState.currentImpression.speechPath != null &&
-            currentState.currentImpression.impressionType != ImpressionType.kana
-        ? currentState.currentImpression.speechPath
-        : null;
+
+    if (currentState is! PracticeModelInProgress) {
+      return null;
+    }
+
+    if (currentState.speechPlayed) {
+      return null;
+    }
+
+    final currentImpression = currentState.currentImpression;
+    if (currentImpression is! SenseGuessImpression) {
+      return null;
+    }
+
+    return currentImpression.speechPath;
   }
 
   markSpeechAsPlayed() {
@@ -162,12 +180,47 @@ class PracticeService {
       return ImpressionViewType.none;
     }
 
-    return currentState.currentImpression.impressionType ==
-            ImpressionType.discover
-        ? ImpressionViewType.discover
+    if (currentState.currentImpression is MultiselectImpression) {
+      return currentState.revealed
+          ? ImpressionViewType.multiselectRevealed
+          : ImpressionViewType.multiselectHidden;
+    }
+
+    return currentState.currentImpression is NewCardImpression
+        ? ImpressionViewType.wordDiscover
         : currentState.revealed
-            ? ImpressionViewType.revealed
-            : ImpressionViewType.hidden;
+            ? ImpressionViewType.wordRevealed
+            : ImpressionViewType.wordHidden;
+  }
+
+  String? _getPrimaryTextRevealedState(Impression impression) {
+    if (impression is CardImpression) {
+      if (impression.card.type == CardType.grammar) {
+        return impression.card.sense;
+      }
+
+      return impression.card.kanji ?? impression.card.kana;
+    } else if (impression is GeneratedSentenceGuessImpression) {
+      return impression.withKanji;
+    } else {
+      throw Exception(
+          "Unsupported impression type for primary text revealed state: ${impression.type}");
+    }
+  }
+
+  String? _getPrimaryTextDefaultState(Impression impression) {
+    if (impression is SenseGuessImpression) {
+      return impression.card.kana ?? impression.card.kanji;
+    } else if (impression is KanaGuessImpression) {
+      return impression.card.type == CardType.grammar
+          ? impression.card.sense
+          : (impression.card.kanji ?? impression.card.sense);
+    } else if (impression is GeneratedSentenceGuessImpression) {
+      return impression.withKanji;
+    } else {
+      throw Exception(
+          "Unsupported impression type for primary text default state: ${impression.type}");
+    }
   }
 
   String getPrimaryText() {
@@ -176,78 +229,52 @@ class PracticeService {
       return '';
     }
 
-    if (currentState.revealed) {
-      if (currentState.currentImpression.card.type == CardType.grammar) {
-        if (currentState.currentImpression.impressionType ==
-            ImpressionType.sense) {
-          return currentState.currentImpression.card.sense;
-        } else {
-          return currentState.currentImpression.card.kana ?? '';
-        }
-      }
+    final impression = currentState.currentImpression;
+    final primaryText = currentState.revealed
+        ? _getPrimaryTextRevealedState(impression)
+        : _getPrimaryTextDefaultState(impression);
 
-      return currentState.currentImpression.card.kanji != null
-          ? currentState.currentImpression.card.kanji ?? ''
-          : currentState.currentImpression.card.kana ?? '';
-    }
-
-    if (currentState.currentImpression.impressionType ==
-        ImpressionType.discover) {
-      if (currentState.currentImpression.card.type == CardType.grammar) {
-        return currentState.currentImpression.card.sense;
-      }
-
-      return currentState.currentImpression.card.kanji ??
-          currentState.currentImpression.card.kana ??
-          '';
-    }
-
-    if (currentState.currentImpression.card.type == CardType.grammar &&
-        currentState.currentImpression.impressionType == ImpressionType.kana) {
-      return currentState.currentImpression.card.sense;
-    }
-
-    return currentState.currentImpression.impressionType == ImpressionType.sense
-        ? currentState.currentImpression.card.kana ??
-            currentState.currentImpression.card.kanji ??
-            ''
-        : currentState.currentImpression.card.kanji ??
-            currentState.currentImpression.card.sense;
+    return primaryText ?? '';
   }
 
   String? getFurigana() {
     final currentState = repository.current;
 
-    if ((currentState is! PracticeModelInProgress ||
-        (!currentState.revealed &&
-            currentState.currentImpression.impressionType !=
-                ImpressionType.discover))) {
+    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
       return null;
     }
 
-    if (currentState.currentImpression.card.type == CardType.grammar) {
-      return null;
+    final impression = currentState.currentImpression;
+
+    if (impression is GeneratedSentenceGuessImpression) {
+      return impression.kanaOnly;
     }
 
-    return currentState.currentImpression.card.kanji != null
-        ? currentState.currentImpression.card.kana
-        : null;
+    if (impression is CardImpression &&
+        impression.card.type != CardType.grammar) {
+      return impression.card.kana;
+    }
+
+    return null;
   }
 
   String? getSecondaryText() {
     final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress ||
-        (!currentState.revealed &&
-            currentState.currentImpression.impressionType !=
-                ImpressionType.discover)) {
+    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
       return null;
     }
 
-    if (currentState.currentImpression.card.type == CardType.grammar) {
-      return currentState.currentImpression.card.kanji;
-    }
+    final impression = currentState.currentImpression;
 
-    return currentState.currentImpression.card.sense;
+    if (impression is CardImpression) {
+      return impression.card.type == CardType.grammar
+          ? impression.card.kanji
+          : impression.card.sense;
+    } else if (impression is GeneratedSentenceGuessImpression) {
+      return impression.sense;
+    } else {
+      return null;
+    }
   }
 
   String? getNote() {
@@ -256,7 +283,13 @@ class PracticeService {
       return null;
     }
 
-    return currentState.currentImpression.card.note;
+    final currentImpression = currentState.currentImpression;
+
+    if (currentImpression is! CardImpression) {
+      return null;
+    }
+
+    return currentImpression.card.note;
   }
 
   String getHintText() {
@@ -265,14 +298,16 @@ class PracticeService {
       return '';
     }
 
-    if (currentState.currentImpression.card.type == CardType.grammar) {
-      return currentState.currentImpression.impressionType ==
-              ImpressionType.kana
+    final currentImpression = currentState.currentImpression;
+
+    if (currentImpression is CardImpression &&
+        currentImpression.card.type == CardType.grammar) {
+      return currentImpression is KanaGuessImpression
           ? "the grammar meaning"
           : "the grammar";
     }
 
-    return currentState.currentImpression.impressionType == ImpressionType.kana
+    return currentState.currentImpression is KanaGuessImpression
         ? 'the kana'
         : 'the meaning';
   }

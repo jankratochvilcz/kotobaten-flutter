@@ -27,13 +27,13 @@ class ImpressionActionsForViewType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (impressionViewType) {
-      case ImpressionViewType.hidden:
+      case ImpressionViewType.wordHidden:
         return ImpressionHiddenActions(
             hintText, revealAnswer, elapsedPercentage, toggleTimer);
-      case ImpressionViewType.revealed:
+      case ImpressionViewType.wordRevealed:
         return ImpressionRevealedActions(
             onAnswered, elapsedPercentage, toggleTimer);
-      case ImpressionViewType.discover:
+      case ImpressionViewType.wordDiscover:
         return ImpressionNewActions(() => onAnswered(true));
       default:
         throw ErrorDescription("Unsupported impressionViewType");

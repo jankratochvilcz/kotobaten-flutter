@@ -13,6 +13,7 @@ import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
+import 'package:kotobaten/models/slices/practice/card_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -71,10 +72,10 @@ class PracticeView extends HookConsumerWidget {
 
       if (currentPercentage >= 1) {
         switch (practiceService.getImpressionViewType()) {
-          case ImpressionViewType.hidden:
+          case ImpressionViewType.wordHidden:
             practiceService.reveal();
             break;
-          case ImpressionViewType.revealed:
+          case ImpressionViewType.wordRevealed:
             practiceService.evaluateWrong();
             break;
           default:
@@ -114,7 +115,6 @@ class PracticeView extends HookConsumerWidget {
       final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null &&
-          model.currentImpression.card.type != CardType.grammar &&
           !(userModelInitialized.user.user.disableSounds ?? false)) {
         Future.microtask(() async {
           final player = AudioPlayer();
@@ -125,7 +125,7 @@ class PracticeView extends HookConsumerWidget {
       }
 
       final animationType =
-          currentImpressionViewType != ImpressionViewType.revealed
+          currentImpressionViewType != ImpressionViewType.wordRevealed
               ? AnimationType.rotate
               : AnimationType.slide;
 
@@ -141,15 +141,16 @@ class PracticeView extends HookConsumerWidget {
             ? (widget, animation) => flip(
                 widget,
                 animation,
-                currentImpressionViewType == ImpressionViewType.revealed
+                currentImpressionViewType == ImpressionViewType.wordRevealed
                     ? widget is! ImpressionHidden
                     : widget is ImpressionHidden)
             : (widget, animation) => slideOut(
                 widget,
                 animation,
-                (currentImpressionViewType != ImpressionViewType.revealed &&
+                (currentImpressionViewType != ImpressionViewType.wordRevealed &&
                         widget is ImpressionRevealed) ||
-                    (currentImpressionViewType == ImpressionViewType.hidden &&
+                    (currentImpressionViewType ==
+                            ImpressionViewType.wordHidden &&
                         widget is ImpressionNew),
                 isDesktop(context)),
         switchInCurve: animationType == AnimationType.rotate
@@ -165,7 +166,9 @@ class PracticeView extends HookConsumerWidget {
             practiceService.getFurigana(),
             practiceService.getHintText(),
             practiceService.getNote(),
-            model.currentImpression.card.type == CardType.grammar
+            model is CardImpression &&
+                    (model.currentImpression as CardImpression).card.type ==
+                        CardType.grammar
                 ? ImpressionCardAccentType.grammar
                 : null),
         layoutBuilder: animationType == AnimationType.slide

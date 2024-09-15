@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/cards/cards_model.dart';
+import 'package:kotobaten/models/slices/practice/card_impression.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
@@ -110,7 +111,7 @@ class CardsService {
     if (currentPracticeState is PracticeModelFinished) {
       final updatedPracticeStateImpressions = currentPracticeState
           .allImpressions
-          .where((x) => x.card.id != card.id)
+          .where((x) => x is CardImpression && x.card.id != card.id)
           .toList();
 
       practiceRepository.update(currentPracticeState.copyWith(
@@ -138,10 +139,14 @@ class CardsService {
     final currentPracticeState = practiceRepository.current;
 
     if (currentPracticeState is PracticeModelFinished) {
-      final updatedPracticeStateImpressions = currentPracticeState
-          .allImpressions
-          .map((x) => x.card.id == card.id ? x.copyWith(card: card) : x)
-          .toList();
+      final updatedPracticeStateImpressions =
+          currentPracticeState.allImpressions.map((x) {
+        if (x is CardImpression && x.card.id == card.id) {
+          x.card = card;
+        }
+
+        return x;
+      }).toList();
 
       practiceRepository.update(currentPracticeState.copyWith(
           allImpressions: updatedPracticeStateImpressions));

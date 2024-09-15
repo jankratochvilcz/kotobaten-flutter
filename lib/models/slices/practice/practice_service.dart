@@ -51,12 +51,23 @@ class PracticeService {
             element.type != ImpressionType.generatedSentenceWithParticlesSelect)
         .toList();
 
-    // A demo grammar card for quick debugging
+    // Ad-hoc code for quickly testing different card types
+
     // final grammarImpression = Impression.initialized(
     //     CardInitialized(1, "みたい", "try to do something", "", DateTime.now(),
     //         "これをやってみたい", CardType.grammar),
     //     ImpressionType.sense,
     //     null);
+
+    // final newImpression = NewCardImpression(CardInitialized(
+    //     1, 'Sense', 'Kana', 'Kanji', DateTime.now(), 'my note', CardType.word));
+
+    // final impressions = [newImpression];
+
+    // repository.update(PracticeModel.inProgress(
+    //     impressions, impressions.sublist(1), impressions.first, false, false,
+    //     nextStepTime: _getHiddenStateExpiry(),
+    //     currentStepStart: DateTime.now()));
 
     repository.update(PracticeModel.inProgress(
         impressions, impressions.sublist(1), impressions.first, false, false,
@@ -217,6 +228,8 @@ class PracticeService {
           : (impression.card.kanji ?? impression.card.sense);
     } else if (impression is GeneratedSentenceGuessImpression) {
       return impression.withKanji;
+    } else if (impression is NewCardImpression) {
+      return _getPrimaryTextRevealedState(impression);
     } else {
       throw Exception(
           "Unsupported impression type for primary text default state: ${impression.type}");
@@ -240,11 +253,15 @@ class PracticeService {
   String? getFurigana() {
     final currentState = repository.current;
 
-    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
+    if (currentState is! PracticeModelInProgress) {
       return null;
     }
 
     final impression = currentState.currentImpression;
+
+    if (!currentState.revealed && impression is! NewCardImpression) {
+      return null;
+    }
 
     if (impression is GeneratedSentenceGuessImpression) {
       return impression.kanaOnly;
@@ -260,11 +277,17 @@ class PracticeService {
 
   String? getSecondaryText() {
     final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
+
+    if (currentState is! PracticeModelInProgress) {
       return null;
     }
 
     final impression = currentState.currentImpression;
+
+    if (!currentState.revealed &&
+        currentState.currentImpression is! NewCardImpression) {
+      return null;
+    }
 
     if (impression is CardImpression) {
       return impression.card.type == CardType.grammar
@@ -279,13 +302,18 @@ class PracticeService {
 
   String? getNote() {
     final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress || !currentState.revealed) {
+    if (currentState is! PracticeModelInProgress) {
       return null;
     }
 
     final currentImpression = currentState.currentImpression;
 
     if (currentImpression is! CardImpression) {
+      return null;
+    }
+
+    if (currentState.revealed &&
+        currentState.currentImpression is! NewCardImpression) {
       return null;
     }
 

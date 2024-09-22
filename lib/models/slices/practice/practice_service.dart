@@ -62,6 +62,9 @@ class PracticeService {
     // final newImpression = NewCardImpression(CardInitialized(
     //     1, 'Sense', 'Kana', 'Kanji', DateTime.now(), 'my note', CardType.word));
 
+    // final newImpression = GeneratedSentenceGuessImpression(
+    //     'きょうははるだ', '今日は春だ', 'Today is a bright weather');
+
     // final impressions = [newImpression];
 
     // repository.update(PracticeModel.inProgress(
@@ -204,140 +207,30 @@ class PracticeService {
             : ImpressionViewType.wordHidden;
   }
 
-  String? _getPrimaryTextRevealedState(Impression impression) {
-    if (impression is CardImpression) {
-      if (impression.card.type == CardType.grammar) {
-        return impression.card.sense;
-      }
-
-      return impression.card.kanji ?? impression.card.kana;
-    } else if (impression is GeneratedSentenceGuessImpression) {
-      return impression.withKanji;
-    } else {
-      throw Exception(
-          "Unsupported impression type for primary text revealed state: ${impression.type}");
-    }
-  }
-
-  String? _getPrimaryTextDefaultState(Impression impression) {
-    if (impression is SenseGuessImpression) {
-      return impression.card.kana ?? impression.card.kanji;
-    } else if (impression is KanaGuessImpression) {
-      return impression.card.type == CardType.grammar
-          ? impression.card.sense
-          : (impression.card.kanji ?? impression.card.sense);
-    } else if (impression is GeneratedSentenceGuessImpression) {
-      return impression.withKanji;
-    } else if (impression is NewCardImpression) {
-      return _getPrimaryTextRevealedState(impression);
-    } else {
-      throw Exception(
-          "Unsupported impression type for primary text default state: ${impression.type}");
-    }
-  }
-
-  String getPrimaryText() {
+  Impression getImpression() {
     final currentState = repository.current;
     if (currentState is! PracticeModelInProgress) {
-      return '';
+      throw ErrorDescription(
+          'Practice is not in progress, cannot get impression');
     }
 
-    final impression = currentState.currentImpression;
-    final primaryText = currentState.revealed
-        ? _getPrimaryTextRevealedState(impression)
-        : _getPrimaryTextDefaultState(impression);
-
-    return primaryText ?? '';
-  }
-
-  String? getFurigana() {
-    final currentState = repository.current;
-
-    if (currentState is! PracticeModelInProgress) {
-      return null;
-    }
-
-    final impression = currentState.currentImpression;
-
-    if (!currentState.revealed && impression is! NewCardImpression) {
-      return null;
-    }
-
-    if (impression is GeneratedSentenceGuessImpression) {
-      return impression.kanaOnly;
-    }
-
-    if (impression is CardImpression &&
-        impression.card.type != CardType.grammar) {
-      return impression.card.kana;
-    }
-
-    return null;
-  }
-
-  String? getSecondaryText() {
-    final currentState = repository.current;
-
-    if (currentState is! PracticeModelInProgress) {
-      return null;
-    }
-
-    final impression = currentState.currentImpression;
-
-    if (!currentState.revealed &&
-        currentState.currentImpression is! NewCardImpression) {
-      return null;
-    }
-
-    if (impression is CardImpression) {
-      return impression.card.type == CardType.grammar
-          ? impression.card.kanji
-          : impression.card.sense;
-    } else if (impression is GeneratedSentenceGuessImpression) {
-      return impression.sense;
-    } else {
-      return null;
-    }
-  }
-
-  String? getNote() {
-    final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress) {
-      return null;
-    }
-
-    final currentImpression = currentState.currentImpression;
-
-    if (currentImpression is! CardImpression) {
-      return null;
-    }
-
-    if (currentState.revealed &&
-        currentState.currentImpression is! NewCardImpression) {
-      return null;
-    }
-
-    return currentImpression.card.note;
+    return currentState.currentImpression;
   }
 
   String getHintText() {
-    final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress) {
+    final impression = getImpression();
+
+    if (impression is! CardImpression) {
       return '';
     }
 
-    final currentImpression = currentState.currentImpression;
-
-    if (currentImpression is CardImpression &&
-        currentImpression.card.type == CardType.grammar) {
-      return currentImpression is KanaGuessImpression
+    if (impression.card.type == CardType.grammar) {
+      return impression is KanaGuessImpression
           ? "the grammar meaning"
           : "the grammar";
     }
 
-    return currentState.currentImpression is KanaGuessImpression
-        ? 'the kana'
-        : 'the meaning';
+    return impression is KanaGuessImpression ? 'the kana' : 'the meaning';
   }
 
   double getProgress() {

@@ -12,8 +12,6 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
-import 'package:kotobaten/models/slices/cards/card_type.dart';
-import 'package:kotobaten/models/slices/practice/card_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -22,16 +20,15 @@ import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
-import 'package:kotobaten/views/molecules/impression_card.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
-import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
+import 'package:kotobaten/views/organisms/practice/impression_selector.dart';
 import 'package:kotobaten/views/organisms/practice_onboarding.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
@@ -159,18 +156,8 @@ class PracticeView extends HookConsumerWidget {
         switchOutCurve: animationType == AnimationType.rotate
             ? Curves.easeInBack.flipped
             : Curves.easeInCubic.flipped,
-        child: getImpressionForViewType(
-            impressionViewType,
-            practiceService.getPrimaryText(),
-            practiceService.getSecondaryText(),
-            practiceService.getFurigana(),
-            practiceService.getHintText(),
-            practiceService.getNote(),
-            model is CardImpression &&
-                    (model.currentImpression as CardImpression).card.type ==
-                        CardType.grammar
-                ? ImpressionCardAccentType.grammar
-                : null),
+        child: ImpressionSelector.getWidget(practiceService.getImpression(),
+            practiceService.getImpressionViewType()),
         layoutBuilder: animationType == AnimationType.slide
             ? AnimatedSwitcher.defaultLayoutBuilder
             : (current, previous) => Stack(

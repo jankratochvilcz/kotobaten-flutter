@@ -43,7 +43,7 @@ class ChartProgress extends ConsumerWidget {
         lineBarsData: [
           LineChartBarData(
             spots: chartSpots,
-            dotData: FlDotData(show: false),
+            dotData: const FlDotData(show: false),
             preventCurveOverShooting: true,
             preventCurveOvershootingThreshold: 0,
             isCurved: true,
@@ -58,9 +58,12 @@ class ChartProgress extends ConsumerWidget {
                 left: BorderSide.none,
                 right: BorderSide.none)),
         titlesData: FlTitlesData(
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            leftTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
               showTitles: true,

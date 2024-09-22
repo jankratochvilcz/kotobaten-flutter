@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
+import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden_actions.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new_actions.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed_actions.dart';
@@ -35,6 +36,8 @@ class ImpressionActionsForViewType extends StatelessWidget {
             onAnswered, elapsedPercentage, toggleTimer);
       case ImpressionViewType.wordDiscover:
         return ImpressionNewActions(() => onAnswered(true));
+      case ImpressionViewType.multiselectHidden:
+        return Empty();
       default:
         throw ErrorDescription("Unsupported impressionViewType");
     }

@@ -3,14 +3,17 @@ import 'package:kotobaten/models/slices/practice/generated_sentence_with_particl
 import 'package:kotobaten/views/molecules/multiselect_card.dart';
 
 class ImpressionMultiselect extends StatelessWidget {
-  final MultiselectImpression impression;
+  final GeneratedSentenceWithParticlesSelectImpression impression;
+  final bool revealed;
 
-  const ImpressionMultiselect(this.impression, {Key? key}) : super(key: key);
+  const ImpressionMultiselect(this.impression, this.revealed, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiselectCard(
       impression: impression,
+      revealed: revealed,
     );
   }
 }

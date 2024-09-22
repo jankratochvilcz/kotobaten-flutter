@@ -5,12 +5,12 @@ import 'package:kotobaten/models/slices/practice/generated_sentence_with_particl
 const double cardSize = 300;
 
 class MultiselectCard extends StatelessWidget {
-  final MultiselectImpression impression;
+  final GeneratedSentenceWithParticlesSelectImpression impression;
+  final bool revealed;
 
-  const MultiselectCard({
-    Key? key,
-    required this.impression,
-  }) : super(key: key);
+  const MultiselectCard(
+      {Key? key, required this.impression, required this.revealed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

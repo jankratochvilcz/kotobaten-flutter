@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
-import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/kana_guess_impression.dart';
@@ -13,7 +12,7 @@ import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
 
 // Technically not a component since this would break higher-level animations (I can't have this component be permanent, I need to change the component when the word changes for the animation to take place)
-class WordImpressionSelector {
+class CardImpressionSelector {
   static String? _getPrimaryTextRevealedState(CardImpression impression) {
     if (impression.card.type == CardType.grammar) {
       return impression.card.sense;
@@ -98,26 +97,6 @@ class WordImpressionSelector {
       case ImpressionViewType.wordDiscover:
         return ImpressionNew(
             primaryText, secondaryText, furiganaText, noteText);
-      default:
-        throw ErrorDescription("Unsupported impressionViewType");
-    }
-  }
-
-  static Widget getSentenceWidget(GeneratedSentenceGuessImpression impression,
-      ImpressionViewType viewType) {
-    final primaryText = impression.withKanji;
-    final secondaryText =
-        viewType == ImpressionViewType.wordRevealed ? impression.sense : null;
-    final furiganaText = viewType == ImpressionViewType.wordRevealed
-        ? impression.kanaOnly
-        : null;
-
-    switch (viewType) {
-      case ImpressionViewType.wordHidden:
-        return ImpressionHidden(primaryText, ImpressionCardAccentType.none);
-      case ImpressionViewType.wordRevealed:
-        return ImpressionRevealed(primaryText, secondaryText, furiganaText,
-            null, ImpressionCardAccentType.none);
       default:
         throw ErrorDescription("Unsupported impressionViewType");
     }

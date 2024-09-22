@@ -128,7 +128,7 @@ class KotobatenApiService {
           return GeneratedSentenceGuessImpression(impression['kanaOnly'],
               impression['withKanji'], impression['sense']);
         case "GeneratedSentenceWithParticlesSelect":
-          return MultiselectImpression(
+          return GeneratedSentenceWithParticlesSelectImpression(
               impression['correctOption'],
               impression['explanation'],
               impression['sense'],

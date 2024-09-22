@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
-import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_option.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';
@@ -64,6 +64,13 @@ class PracticeService {
 
     // final newImpression = GeneratedSentenceGuessImpression(
     //     'きょうははるだ', '今日は春だ', 'Today is a bright weather');
+
+    // final newImpression = GeneratedSentenceWithParticlesSelectImpression(
+    //     2, '2 is correct because of lorem ipsum', 'I went to the movies', [
+    //   Sentence('映画観を行った', 'えいがかんでいいた'),
+    //   Sentence('映画観に行った', 'えいがかんでいいた'),
+    //   Sentence('映画観で行った', 'えいがかんでいいた')
+    // ]);
 
     // final impressions = [newImpression];
 
@@ -194,7 +201,8 @@ class PracticeService {
       return ImpressionViewType.none;
     }
 
-    if (currentState.currentImpression is MultiselectImpression) {
+    if (currentState.currentImpression
+        is GeneratedSentenceWithParticlesSelectImpression) {
       return currentState.revealed
           ? ImpressionViewType.multiselectRevealed
           : ImpressionViewType.multiselectHidden;

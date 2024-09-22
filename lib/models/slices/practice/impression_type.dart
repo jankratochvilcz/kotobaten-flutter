@@ -1,12 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+@JsonEnum()
 enum ImpressionType {
-  @JsonValue('KanaRequested')
-  kana,
-  @JsonValue('SenseRequested')
-  sense,
-  @JsonValue('NewOrForgottenCard')
-  discover,
-  @JsonValue('GeneratedSentence')
-  generatedSentence,
+  @JsonValue('KanaGuess')
+  kanaGuess,
+  @JsonValue('SenseGuess')
+  senseGuess,
+  @JsonValue('NewCard')
+  newCard,
+  @JsonValue('GeneratedSentenceGuess')
+  generatedSentenceGuess,
+  @JsonValue('GeneratedSentenceWithParticlesSelect')
+  generatedSentenceWithParticlesSelect,
 }

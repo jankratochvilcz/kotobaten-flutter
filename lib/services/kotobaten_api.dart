@@ -12,7 +12,14 @@ import 'package:kotobaten/models/slices/auth/auth_repository.dart';
 import 'package:kotobaten/models/slices/auth/auth_result.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
+import 'package:kotobaten/models/slices/practice/card_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_option.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
+import 'package:kotobaten/models/slices/practice/kana_guess_impression.dart';
+import 'package:kotobaten/models/slices/practice/new_card_impression.dart';
+import 'package:kotobaten/models/slices/practice/sense_guess_impression.dart';
 import 'package:kotobaten/models/slices/user/user.dart';
 import 'package:kotobaten/models/slices/user/user_core.dart';
 import 'package:kotobaten/models/slices/user/user_goals.dart';
@@ -20,9 +27,7 @@ import 'package:kotobaten/services/app_configuration.dart';
 import 'package:kotobaten/services/cookies_service.dart';
 import 'package:kotobaten/services/cookies_service_base.dart';
 import 'package:kotobaten/services/kotobaten_client.dart';
-import 'package:kotobaten/services/serialization/requests/impressions_request.dart';
 import 'package:kotobaten/services/serialization/responses/cards_response.dart';
-import 'package:kotobaten/services/serialization/responses/practice_response.dart';
 import 'package:mockito/annotations.dart';
 
 final kotobatenApiServiceProvider = Provider((ref) => KotobatenApiService(
@@ -100,15 +105,59 @@ class KotobatenApiService {
   Future<SearchResult> search(String term) async => SearchResult.fromJson(
       await _getAuthenticated('search', params: {'term': term}));
 
-  Future<List<Impression>> getImpressions() async => PracticeResponse.fromJson(
-          await _getAuthenticated('practice', params: {'count': '15'}))
-      .impressions;
+  _getCardInitialized(dynamic data) {
+    return CardInitialized.fromJson(data);
+  }
+
+  Future<List<Impression>> getPractice() async {
+    final response =
+        await _getAuthenticated('practice', params: {'count': '15'});
+    final impressionsUnparsed = response['impressions'] as List<dynamic>;
+
+    final impressionsParsed = impressionsUnparsed.map((impression) {
+      final impressionType = impression['type'] as String;
+      switch (impressionType) {
+        case "KanaGuess":
+          return KanaGuessImpression(_getCardInitialized(impression['card']));
+        case "SenseGuess":
+          return SenseGuessImpression(_getCardInitialized(impression['card']),
+              impression['card']['speechPath']);
+        case "NewCard":
+          return NewCardImpression(_getCardInitialized(impression['card']));
+        case "GeneratedSentenceGuess":
+          return GeneratedSentenceGuessImpression(impression['kanaOnly'],
+              impression['withKanji'], impression['sense']);
+        case "GeneratedSentenceWithParticlesSelect":
+          return GeneratedSentenceWithParticlesSelectImpression(
+              impression['correctOption'],
+              impression['explanation'],
+              impression['sense'],
+              (impression['options'] as List<dynamic>)
+                  .map((option) =>
+                      Sentence(option['withKanji'], option['kanaOnly']))
+                  .toList());
+        default:
+          throw Exception('Unknown impression type: $impressionType');
+      }
+    });
+
+    return impressionsParsed.toList();
+  }
 
   Future postImpression(Impression impression, bool success) async {
-    final requestBody = ImpressionsRequest.initialized(
-        impression.impressionType, impression.card.id, success, DateTime.now());
+    int? cardId;
 
-    await _postJson('impressions', requestBody.toJson());
+    if (impression is CardImpression) {
+      cardId = impression.card.id;
+    }
+
+    final request = {
+      'cardId': cardId,
+      'success': success,
+      'impressionType': impression.type.name
+    };
+
+    await _postJson('impressions', request);
   }
 
   Future<CardInitialized> postCard(Card card) async {

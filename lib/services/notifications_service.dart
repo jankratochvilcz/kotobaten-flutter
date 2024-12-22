@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -9,6 +8,9 @@ import 'package:timezone/data/latest_all.dart' as time_zone;
 import 'package:timezone/timezone.dart' as time_zone;
 
 final notificationServiceProvider = Provider((ref) => NotificationService());
+
+// Migrated to new version to unblock Android builds
+// Good chance this is broken since it was migrated using LLM
 
 class ReceivedNotification {
   ReceivedNotification({
@@ -52,43 +54,45 @@ class NotificationService {
   bool platformSupportsPeriodicNotifications() =>
       !kIsWeb && !Platform.isLinux && !Platform.isWindows;
 
-  Future _initialize() async {
+  Future<void> initialize() async {
     await _configureLocalTimeZone();
 
-    await notifications.initialize(_getInitializationSettings(),
-        onSelectNotification: (String? payload) async {
-      if (payload != null) {
-        debugPrint('notification payload: $payload');
-      }
-      selectedNotificationPayload = payload;
-      selectNotificationSubject.add(payload);
-    });
+    await notifications.initialize(
+      _getInitializationSettings(),
+      onDidReceiveNotificationResponse: (NotificationResponse response) async {
+        if (response.payload != null) {
+          debugPrint('notification payload: ${response.payload}');
+        }
+        selectedNotificationPayload = response.payload;
+        selectNotificationSubject.add(response.payload);
+      },
+    );
   }
 
-  Future showImmediate(String title, String? body, {int? id}) async {
-    await _initialize();
-    await notifications.show(
-        id ?? 0, title, body, defaultPlatformChannelSpecifics);
-  }
-
-  Future showDaily(
+  Future<void> showDaily(
       String title, String? body, TimeOfDay timeOfDay, int? id) async {
     if (!platformSupportsPeriodicNotifications()) {
       return;
     }
 
-    await _initialize();
-    await notifications.zonedSchedule(id ?? 0, title, body,
-        _getNextDailyOccurrence(timeOfDay), defaultPlatformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time);
+    await initialize();
+    await notifications.zonedSchedule(
+      id ?? 0,
+      title,
+      body,
+      _getNextDailyOccurrence(timeOfDay),
+      defaultPlatformChannelSpecifics,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
   }
 
-  Future clear(int notificationId) => notifications.cancel(notificationId);
+  Future<void> clear(int notificationId) =>
+      notifications.cancel(notificationId);
 
-  requestPermissions() {
+  void requestPermissions() {
     notifications
         .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin>()
@@ -134,40 +138,36 @@ class NotificationService {
 
     /// Note: permissions aren't requested here just to demonstrate that can be
     /// done later
-    final initializationSettingsIOS = IOSInitializationSettings(
-        requestAlertPermission: false,
-        requestBadgePermission: false,
-        requestSoundPermission: false,
-        onDidReceiveLocalNotification: (
-          int id,
-          String? title,
-          String? body,
-          String? payload,
-        ) async {
-          didReceiveLocalNotificationSubject.add(
-            ReceivedNotification(
-              id: id,
-              title: title,
-              body: body,
-              payload: payload,
-            ),
-          );
-        });
-    const initializationSettingsMacOS = MacOSInitializationSettings(
-      requestAlertPermission: false,
-      requestBadgePermission: false,
-      requestSoundPermission: false,
-    );
-    final initializationSettingsLinux = LinuxInitializationSettings(
-      defaultActionName: 'Open notification',
-      defaultIcon: AssetsLinuxIcon('icons/app_icon.png'),
-    );
-    final initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
-      macOS: initializationSettingsMacOS,
-      linux: initializationSettingsLinux,
-    );
+    // final initializationSettingsIOS = DarwinInitializationSettings(
+    //     requestAlertPermission: false,
+    //     requestBadgePermission: false,
+    //     requestSoundPermission: false,
+    //     onDidReceiveLocalNotification: (
+    //       int id,
+    //       String? title,
+    //       String? body,
+    //       String? payload,
+    //     ) async {
+    //       didReceiveLocalNotificationSubject.add(
+    //         ReceivedNotification(
+    //           id: id,
+    //           title: title,
+    //           body: body,
+    //           payload: payload,
+    //         ),
+    //       );
+    //     });
+    // const initializationSettingsMacOS = DarwinInitializationSettings(
+    //   requestAlertPermission: false,
+    //   requestBadgePermission: false,
+    //   requestSoundPermission: false,
+    // );
+    // const initializationSettingsLinux = LinuxInitializationSettings(
+    //   defaultActionName: 'Open notification',
+    //   defaultIcon: AssetsLinuxIcon('icons/app_icon.png'),
+    // );
+    const initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
 
     return initializationSettings;
   }

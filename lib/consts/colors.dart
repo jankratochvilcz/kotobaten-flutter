@@ -1,4 +1,4 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:bitsdojo_window_v3/bitsdojo_window_v3.dart';
 import 'package:flutter/material.dart';
 import 'package:kotobaten/extensions/color.dart';
 
@@ -50,3 +50,17 @@ final closeWindowButtonColors = WindowButtonColors(
     mouseDown: const Color(0xFFB71C1C),
     iconNormal: Colors.white,
     iconMouseOver: Colors.white);
+
+final windowButtonColorsPractice = WindowButtonColors(
+    iconNormal: Colors.black26,
+    iconMouseOver: Colors.black,
+    iconMouseDown: Colors.black,
+    mouseDown: Colors.white,
+    mouseOver: Colors.white);
+
+final closeWindowButtonPractice = WindowButtonColors(
+    iconMouseDown: const Color(0xFFB71C1C),
+    iconMouseOver: const Color(0xFFD32F2F),
+    iconNormal: Colors.black26,
+    mouseDown: Colors.white,
+    mouseOver: Colors.white);

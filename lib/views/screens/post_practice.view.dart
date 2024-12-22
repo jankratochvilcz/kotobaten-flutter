@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/extensions/iterable.dart';
+import 'package:kotobaten/models/slices/practice/card_impression.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
 import 'package:kotobaten/models/slices/practice/practice_service.dart';
@@ -53,7 +54,9 @@ class PostPracticeView extends HookConsumerWidget {
     if (userModel is UserModelInitialized &&
         !userModel.refreshing &&
         practiceModel is PracticeModelFinished) {
-      final cards = practiceModel.allImpressions.map((x) => x.card);
+      final cards = practiceModel.allImpressions
+          .whereType<CardImpression>()
+          .map((x) => x.card);
       final uniqueCards = cards
           .where((x) =>
               x.id != null && x.id != 0) // ID = 0 are generated sentences

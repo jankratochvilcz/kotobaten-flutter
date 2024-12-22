@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/app_router.dart';
@@ -10,6 +11,7 @@ import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
+import 'package:kotobaten/views/organisms/collection/fab_collection.dart';
 import 'package:kotobaten/views/organisms/search/universal_search_v3.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
@@ -101,9 +103,11 @@ class ScaffoldDefault extends HookConsumerWidget {
             TextStyle(color: Theme.of(context).colorScheme.onPrimary);
         return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
-            floatingActionButtonLocation: pageSpecificFab == null
-                ? FloatingActionButtonLocation.endDocked
-                : FloatingActionButtonLocation.endFloat,
+            floatingActionButtonLocation: pageSpecificFab is FabCollection
+                ? ExpandableFab.location
+                : (pageSpecificFab == null
+                    ? FloatingActionButtonLocation.endDocked
+                    : FloatingActionButtonLocation.endFloat),
             floatingActionButton: fabToShow,
             bottomNavigationBar: !isDesktop(context) &&
                     overlaysModel.overlaysOpenedCount < 1

@@ -20,7 +20,7 @@ jobs:
         - name: Gets Flutter
           uses: subosito/flutter-action@v2
           with:
-            flutter-version: '3.16.0'
+            flutter-version: '3.24.3'
             channel: 'stable'
 
         - name: Downloads packages
@@ -83,7 +83,7 @@ jobs:
         - name: Gets Flutter
           uses: subosito/flutter-action@v2
           with:
-            flutter-version: '3.16.0'
+            flutter-version: '3.24.3'
             channel: 'stable'
 
         - name: Downloads packages

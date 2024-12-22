@@ -837,8 +837,6 @@ abstract class _$$PracticeModelInProgressImplCopyWith<$Res> {
       DateTime? nextStepTime,
       DateTime? currentStepStart,
       double? pausedPercentage});
-
-  $ImpressionCopyWith<$Res> get currentImpression;
 }
 
 /// @nodoc
@@ -896,14 +894,6 @@ class __$$PracticeModelInProgressImplCopyWithImpl<$Res>
           : pausedPercentage // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ImpressionCopyWith<$Res> get currentImpression {
-    return $ImpressionCopyWith<$Res>(_value.currentImpression, (value) {
-      return _then(_value.copyWith(currentImpression: value));
-    });
   }
 }
 

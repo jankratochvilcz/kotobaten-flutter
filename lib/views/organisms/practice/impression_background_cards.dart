@@ -5,7 +5,7 @@ import 'package:kotobaten/views/molecules/impression_card.dart';
 
 int getBackgroundCardsCount(
         ImpressionViewType impressionViewType, int cardsRemaining) =>
-    impressionViewType == ImpressionViewType.revealed
+    impressionViewType == ImpressionViewType.wordRevealed
         ? cardsRemaining - 1
         : cardsRemaining;
 

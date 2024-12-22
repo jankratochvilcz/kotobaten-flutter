@@ -21,12 +21,12 @@ class ChartProgress extends ConsumerWidget {
     }).toList();
 
     return LineChartData(
-        gridData: FlGridData(show: false),
+        gridData: const FlGridData(show: false),
         lineTouchData: LineTouchData(
             enabled: true,
             getTouchedSpotIndicator: (barData, spotIndexes) => spotIndexes
                 .map((e) => TouchedSpotIndicatorData(
-                    FlLine(strokeWidth: 0),
+                    const FlLine(strokeWidth: 0),
                     FlDotData(
                         getDotPainter: (p0, p1, p2, p3) => FlDotCirclePainter(
                             radius: 8,
@@ -34,7 +34,6 @@ class ChartProgress extends ConsumerWidget {
                             color: Theme.of(context).colorScheme.secondary))))
                 .toList(),
             touchTooltipData: LineTouchTooltipData(
-              tooltipBgColor: Theme.of(context).colorScheme.secondary,
               getTooltipItems: (touchedSpots) => touchedSpots
                   .map((touchedSpot) => LineTooltipItem(
                       "${DateTime.now().add(Duration(days: touchedSpot.x.toInt())).getRelativeToNowString(DateTime.now())}: ${touchedSpot.y} new words",
@@ -44,7 +43,7 @@ class ChartProgress extends ConsumerWidget {
         lineBarsData: [
           LineChartBarData(
             spots: chartSpots,
-            dotData: FlDotData(show: false),
+            dotData: const FlDotData(show: false),
             preventCurveOverShooting: true,
             preventCurveOvershootingThreshold: 0,
             isCurved: true,
@@ -59,9 +58,12 @@ class ChartProgress extends ConsumerWidget {
                 left: BorderSide.none,
                 right: BorderSide.none)),
         titlesData: FlTitlesData(
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            leftTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
             bottomTitles: AxisTitles(
                 sideTitles: SideTitles(
               showTitles: true,

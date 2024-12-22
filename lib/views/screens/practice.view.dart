@@ -12,7 +12,6 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
-import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -21,16 +20,15 @@ import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
-import 'package:kotobaten/views/molecules/impression_card.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
-import 'package:kotobaten/views/organisms/practice/impression_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new.dart';
 import 'package:kotobaten/views/organisms/practice/impression_revealed.dart';
+import 'package:kotobaten/views/organisms/practice/impression_selector.dart';
 import 'package:kotobaten/views/organisms/practice_onboarding.dart';
 import 'package:kotobaten/views/organisms/progress_bar.dart';
 import 'package:kotobaten/views/templates/scaffold_default.view.dart';
@@ -71,10 +69,10 @@ class PracticeView extends HookConsumerWidget {
 
       if (currentPercentage >= 1) {
         switch (practiceService.getImpressionViewType()) {
-          case ImpressionViewType.hidden:
+          case ImpressionViewType.wordHidden:
             practiceService.reveal();
             break;
-          case ImpressionViewType.revealed:
+          case ImpressionViewType.wordRevealed:
             practiceService.evaluateWrong();
             break;
           default:
@@ -114,7 +112,6 @@ class PracticeView extends HookConsumerWidget {
       final currentImpressionViewType = practiceService.getImpressionViewType();
       final speechPath = practiceService.getSpeechToPlay();
       if (speechPath != null &&
-          model.currentImpression.card.type != CardType.grammar &&
           !(userModelInitialized.user.user.disableSounds ?? false)) {
         Future.microtask(() async {
           final player = AudioPlayer();
@@ -125,7 +122,7 @@ class PracticeView extends HookConsumerWidget {
       }
 
       final animationType =
-          currentImpressionViewType != ImpressionViewType.revealed
+          currentImpressionViewType != ImpressionViewType.wordRevealed
               ? AnimationType.rotate
               : AnimationType.slide;
 
@@ -141,15 +138,16 @@ class PracticeView extends HookConsumerWidget {
             ? (widget, animation) => flip(
                 widget,
                 animation,
-                currentImpressionViewType == ImpressionViewType.revealed
+                currentImpressionViewType == ImpressionViewType.wordRevealed
                     ? widget is! ImpressionHidden
                     : widget is ImpressionHidden)
             : (widget, animation) => slideOut(
                 widget,
                 animation,
-                (currentImpressionViewType != ImpressionViewType.revealed &&
+                (currentImpressionViewType != ImpressionViewType.wordRevealed &&
                         widget is ImpressionRevealed) ||
-                    (currentImpressionViewType == ImpressionViewType.hidden &&
+                    (currentImpressionViewType ==
+                            ImpressionViewType.wordHidden &&
                         widget is ImpressionNew),
                 isDesktop(context)),
         switchInCurve: animationType == AnimationType.rotate
@@ -158,16 +156,8 @@ class PracticeView extends HookConsumerWidget {
         switchOutCurve: animationType == AnimationType.rotate
             ? Curves.easeInBack.flipped
             : Curves.easeInCubic.flipped,
-        child: getImpressionForViewType(
-            impressionViewType,
-            practiceService.getPrimaryText(),
-            practiceService.getSecondaryText(),
-            practiceService.getFurigana(),
-            practiceService.getHintText(),
-            practiceService.getNote(),
-            model.currentImpression.card.type == CardType.grammar
-                ? ImpressionCardAccentType.grammar
-                : null),
+        child: ImpressionSelector.getWidget(practiceService.getImpression(),
+            practiceService.getImpressionViewType()),
         layoutBuilder: animationType == AnimationType.slide
             ? AnimatedSwitcher.defaultLayoutBuilder
             : (current, previous) => Stack(

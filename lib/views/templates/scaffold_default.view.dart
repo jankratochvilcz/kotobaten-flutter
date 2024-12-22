@@ -103,11 +103,9 @@ class ScaffoldDefault extends HookConsumerWidget {
             TextStyle(color: Theme.of(context).colorScheme.onPrimary);
         return Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
-            floatingActionButtonLocation: pageSpecificFab is FabCollection
-                ? ExpandableFab.location
-                : (pageSpecificFab == null
-                    ? FloatingActionButtonLocation.endDocked
-                    : FloatingActionButtonLocation.endFloat),
+            floatingActionButtonLocation: pageSpecificFab == null
+                ? FloatingActionButtonLocation.endDocked
+                : FloatingActionButtonLocation.endFloat,
             floatingActionButton: fabToShow,
             bottomNavigationBar: !isDesktop(context) &&
                     overlaysModel.overlaysOpenedCount < 1

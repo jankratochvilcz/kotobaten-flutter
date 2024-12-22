@@ -12,7 +12,7 @@ part of 'card.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Card _$CardFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -46,7 +46,9 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
             String? note, DateTime created, CardType type)
@@ -62,7 +64,9 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
@@ -78,7 +82,9 @@ mixin _$Card {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
@@ -105,8 +111,13 @@ mixin _$Card {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this Card to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CardCopyWith<Card> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -134,6 +145,8 @@ class _$CardCopyWithImpl<$Res, $Val extends Card>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -188,7 +201,9 @@ abstract class _$$CardInitializedImplCopyWith<$Res>
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
       DateTime created,
       String? note,
-      CardType type});
+      CardType type,
+      double? senseRetention,
+      double? kanaRetention});
 }
 
 /// @nodoc
@@ -199,6 +214,8 @@ class __$$CardInitializedImplCopyWithImpl<$Res>
       _$CardInitializedImpl _value, $Res Function(_$CardInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,6 +226,8 @@ class __$$CardInitializedImplCopyWithImpl<$Res>
     Object? created = null,
     Object? note = freezed,
     Object? type = null,
+    Object? senseRetention = freezed,
+    Object? kanaRetention = freezed,
   }) {
     return _then(_$CardInitializedImpl(
       freezed == id
@@ -239,6 +258,14 @@ class __$$CardInitializedImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CardType,
+      freezed == senseRetention
+          ? _value.senseRetention
+          : senseRetention // ignore: cast_nullable_to_non_nullable
+              as double?,
+      freezed == kanaRetention
+          ? _value.kanaRetention
+          : kanaRetention // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -255,6 +282,8 @@ class _$CardInitializedImpl implements CardInitialized {
       this.created,
       this.note,
       this.type,
+      this.senseRetention,
+      this.kanaRetention,
       {final String? $type})
       : $type = $type ?? 'default';
 
@@ -277,17 +306,21 @@ class _$CardInitializedImpl implements CardInitialized {
   final String? note;
   @override
   final CardType type;
+  @override
+  final double? senseRetention;
+  @override
+  final double? kanaRetention;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'Card(id: $id, sense: $sense, kana: $kana, kanji: $kanji, created: $created, note: $note, type: $type)';
+    return 'Card(id: $id, sense: $sense, kana: $kana, kanji: $kanji, created: $created, note: $note, type: $type, senseRetention: $senseRetention, kanaRetention: $kanaRetention)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardInitializedImpl &&
@@ -297,15 +330,21 @@ class _$CardInitializedImpl implements CardInitialized {
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
             (identical(other.created, created) || other.created == created) &&
             (identical(other.note, note) || other.note == note) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.senseRetention, senseRetention) ||
+                other.senseRetention == senseRetention) &&
+            (identical(other.kanaRetention, kanaRetention) ||
+                other.kanaRetention == kanaRetention));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, sense, kana, kanji, created, note, type);
+  int get hashCode => Object.hash(runtimeType, id, sense, kana, kanji, created,
+      note, type, senseRetention, kanaRetention);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardInitializedImplCopyWith<_$CardInitializedImpl> get copyWith =>
@@ -322,13 +361,16 @@ class _$CardInitializedImpl implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
             String? note, DateTime created, CardType type)
         newCard,
   }) {
-    return $default(id, sense, kana, kanji, created, note, type);
+    return $default(id, sense, kana, kanji, created, note, type, senseRetention,
+        kanaRetention);
   }
 
   @override
@@ -341,13 +383,16 @@ class _$CardInitializedImpl implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
         newCard,
   }) {
-    return $default?.call(id, sense, kana, kanji, created, note, type);
+    return $default?.call(id, sense, kana, kanji, created, note, type,
+        senseRetention, kanaRetention);
   }
 
   @override
@@ -360,7 +405,9 @@ class _$CardInitializedImpl implements CardInitialized {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
@@ -368,7 +415,8 @@ class _$CardInitializedImpl implements CardInitialized {
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, sense, kana, kanji, created, note, type);
+      return $default(id, sense, kana, kanji, created, note, type,
+          senseRetention, kanaRetention);
     }
     return orElse();
   }
@@ -420,7 +468,9 @@ abstract class CardInitialized implements Card {
       @JsonKey(fromJson: toNonEmptyString) final String? kanji,
       final DateTime created,
       final String? note,
-      final CardType type) = _$CardInitializedImpl;
+      final CardType type,
+      final double? senseRetention,
+      final double? kanaRetention) = _$CardInitializedImpl;
 
   factory CardInitialized.fromJson(Map<String, dynamic> json) =
       _$CardInitializedImpl.fromJson;
@@ -440,8 +490,13 @@ abstract class CardInitialized implements Card {
   String? get note;
   @override
   CardType get type;
+  double? get senseRetention;
+  double? get kanaRetention;
+
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardInitializedImplCopyWith<_$CardInitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -470,6 +525,8 @@ class __$$CardNewImplCopyWithImpl<$Res>
       _$CardNewImpl _value, $Res Function(_$CardNewImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -542,7 +599,7 @@ class _$CardNewImpl implements CardNew {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardNewImpl &&
@@ -554,12 +611,14 @@ class _$CardNewImpl implements CardNew {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, sense, kana, kanji, note, created, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardNewImplCopyWith<_$CardNewImpl> get copyWith =>
@@ -575,7 +634,9 @@ class _$CardNewImpl implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)
         $default, {
     required TResult Function(String sense, String? kana, String? kanji,
             String? note, DateTime created, CardType type)
@@ -594,7 +655,9 @@ class _$CardNewImpl implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult? Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
@@ -613,7 +676,9 @@ class _$CardNewImpl implements CardNew {
             @JsonKey(fromJson: toNonEmptyString) String? kanji,
             DateTime created,
             String? note,
-            CardType type)?
+            CardType type,
+            double? senseRetention,
+            double? kanaRetention)?
         $default, {
     TResult Function(String sense, String? kana, String? kanji, String? note,
             DateTime created, CardType type)?
@@ -688,8 +753,11 @@ abstract class CardNew implements Card {
   DateTime get created;
   @override
   CardType get type;
+
+  /// Create a copy of Card
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardNewImplCopyWith<_$CardNewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

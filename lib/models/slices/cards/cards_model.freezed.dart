@@ -12,7 +12,7 @@ part of 'cards_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CardsModel {
@@ -84,6 +84,9 @@ class _$CardsModelCopyWithImpl<$Res, $Val extends CardsModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,6 +103,9 @@ class __$$CardsModelInitialImplCopyWithImpl<$Res>
   __$$CardsModelInitialImplCopyWithImpl(_$CardsModelInitialImpl _value,
       $Res Function(_$CardsModelInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -113,7 +119,7 @@ class _$CardsModelInitialImpl extends CardsModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$CardsModelInitialImpl);
   }
@@ -217,6 +223,9 @@ class __$$CardsModelLoadingInitialImplCopyWithImpl<$Res>
       _$CardsModelLoadingInitialImpl _value,
       $Res Function(_$CardsModelLoadingInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -230,7 +239,7 @@ class _$CardsModelLoadingInitialImpl extends CardsModelLoadingInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardsModelLoadingInitialImpl);
@@ -341,6 +350,8 @@ class __$$CardsModelInitializedImplCopyWithImpl<$Res>
       $Res Function(_$CardsModelInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -399,7 +410,7 @@ class _$CardsModelInitializedImpl extends CardsModelInitialized {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardsModelInitializedImpl &&
@@ -420,7 +431,9 @@ class _$CardsModelInitializedImpl extends CardsModelInitialized {
       loadingNextPage,
       hasMoreCards);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CardsModelInitializedImplCopyWith<_$CardsModelInitializedImpl>
@@ -514,7 +527,10 @@ abstract class CardsModelInitialized extends CardsModel {
   int get pagesLoaded;
   bool get loadingNextPage;
   bool get hasMoreCards;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CardsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CardsModelInitializedImplCopyWith<_$CardsModelInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

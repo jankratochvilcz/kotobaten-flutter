@@ -123,7 +123,9 @@ class _WordAddFormState extends ConsumerState<WordAddForm> {
               _kanjiController.text,
               DateTime.now(),
               _noteController.text,
-              _cardType));
+              _cardType,
+              null,
+              null));
         } else {
           return widget._onSubmit(card_entity.Card.newCard(
               _senseController.text,

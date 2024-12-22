@@ -12,7 +12,7 @@ part of 'search.model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SearchModel {
@@ -77,7 +77,9 @@ mixin _$SearchModel {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchModelCopyWith<SearchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -101,6 +103,8 @@ class _$SearchModelCopyWithImpl<$Res, $Val extends SearchModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +138,8 @@ class __$$SearchModelInitialImplCopyWithImpl<$Res>
       $Res Function(_$SearchModelInitialImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,7 +168,7 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchModelInitialImpl &&
@@ -173,7 +179,9 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   @override
   int get hashCode => Object.hash(runtimeType, searchFocused);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchModelInitialImplCopyWith<_$SearchModelInitialImpl> get copyWith =>
@@ -270,8 +278,11 @@ abstract class SearchModelInitial implements SearchModel {
 
   @override
   bool get searchFocused;
+
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchModelInitialImplCopyWith<_$SearchModelInitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -295,6 +306,8 @@ class __$$SearchModelLoadingImplCopyWithImpl<$Res>
       $Res Function(_$SearchModelLoadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -323,7 +336,7 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchModelLoadingImpl &&
@@ -334,7 +347,9 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   @override
   int get hashCode => Object.hash(runtimeType, searchFocused);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchModelLoadingImplCopyWith<_$SearchModelLoadingImpl> get copyWith =>
@@ -431,8 +446,11 @@ abstract class SearchModelLoading implements SearchModel {
 
   @override
   bool get searchFocused;
+
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchModelLoadingImplCopyWith<_$SearchModelLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -460,6 +478,8 @@ class __$$SearchModelLoadedImplCopyWithImpl<$Res>
       $Res Function(_$SearchModelLoadedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -526,7 +546,7 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchModelLoadedImpl &&
@@ -547,7 +567,9 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
       const DeepCollectionEquality().hash(_cards),
       const DeepCollectionEquality().hash(_dictionaryCards));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchModelLoadedImplCopyWith<_$SearchModelLoadedImpl> get copyWith =>
@@ -651,8 +673,11 @@ abstract class SearchModelLoaded implements SearchModel {
   String get resultsQuery;
   List<CardInitialized> get cards;
   List<DictionaryCardInitialized> get dictionaryCards;
+
+  /// Create a copy of SearchModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchModelLoadedImplCopyWith<_$SearchModelLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

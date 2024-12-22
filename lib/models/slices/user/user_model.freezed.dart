@@ -12,7 +12,7 @@ part of 'user_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserModel {
@@ -78,6 +78,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$UserModelInitialImplCopyWithImpl<$Res>
   __$$UserModelInitialImplCopyWithImpl(_$UserModelInitialImpl _value,
       $Res Function(_$UserModelInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -107,7 +113,7 @@ class _$UserModelInitialImpl extends UserModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$UserModelInitialImpl);
   }
@@ -206,6 +212,9 @@ class __$$UserModelLoadingInitialImplCopyWithImpl<$Res>
       _$UserModelLoadingInitialImpl _value,
       $Res Function(_$UserModelLoadingInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -219,7 +228,7 @@ class _$UserModelLoadingInitialImpl extends UserModelLoadingInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelLoadingInitialImpl);
@@ -320,6 +329,8 @@ class __$$UserModelInitializedImplCopyWithImpl<$Res>
       $Res Function(_$UserModelInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -356,7 +367,7 @@ class _$UserModelInitializedImpl extends UserModelInitialized {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelInitializedImpl &&
@@ -369,7 +380,9 @@ class _$UserModelInitializedImpl extends UserModelInitialized {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(user), refreshing);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserModelInitializedImplCopyWith<_$UserModelInitializedImpl>
@@ -454,7 +467,10 @@ abstract class UserModelInitialized extends UserModel {
 
   UserInitialized get user;
   bool get refreshing;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserModelInitializedImplCopyWith<_$UserModelInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

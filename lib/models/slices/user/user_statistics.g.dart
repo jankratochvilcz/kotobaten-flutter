@@ -9,11 +9,11 @@ part of 'user_statistics.dart';
 _$UserStatisticsInitializedImpl _$$UserStatisticsInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$UserStatisticsInitializedImpl(
-      json['leftToPractice'] as int,
-      json['discoveredToday'] as int,
-      json['discoveredWeek'] as int,
-      json['discoveredMonth'] as int,
-      json['addedWeek'] as int,
+      (json['leftToPractice'] as num).toInt(),
+      (json['discoveredToday'] as num).toInt(),
+      (json['discoveredWeek'] as num).toInt(),
+      (json['discoveredMonth'] as num).toInt(),
+      (json['addedWeek'] as num).toInt(),
       json['nextToDiscoverCreated'] == null
           ? null
           : DateTime.parse(json['nextToDiscoverCreated'] as String),

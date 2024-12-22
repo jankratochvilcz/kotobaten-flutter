@@ -12,7 +12,7 @@ part of 'user_core.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserCore _$UserCoreFromJson(Map<String, dynamic> json) {
   return UserCoreInitialized.fromJson(json);
@@ -69,8 +69,13 @@ mixin _$UserCore {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this UserCore to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserCore
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserCoreCopyWith<UserCore> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -99,6 +104,8 @@ class _$UserCoreCopyWithImpl<$Res, $Val extends UserCore>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserCore
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,6 +170,8 @@ class __$$UserCoreInitializedImplCopyWithImpl<$Res>
       $Res Function(_$UserCoreInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserCore
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -235,7 +244,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserCoreInitializedImpl &&
@@ -253,7 +262,7 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
                 other.utcOffsetHours == utcOffsetHours));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -264,7 +273,9 @@ class _$UserCoreInitializedImpl implements UserCoreInitialized {
       timezoneName,
       utcOffsetHours);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserCore
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserCoreInitializedImplCopyWith<_$UserCoreInitializedImpl> get copyWith =>
@@ -373,8 +384,11 @@ abstract class UserCoreInitialized implements UserCore {
   String? get timezoneName;
   @override
   int? get utcOffsetHours;
+
+  /// Create a copy of UserCore
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserCoreInitializedImplCopyWith<_$UserCoreInitializedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

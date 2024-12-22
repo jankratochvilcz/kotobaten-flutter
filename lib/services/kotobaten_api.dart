@@ -305,7 +305,7 @@ class KotobatenApiService {
     final response = await _kotobatenClient.post(url,
         body: json.encode(requestBody), headers: headers);
     final body = utf8.decode(response.bodyBytes);
-    return jsonDecode(body);
+    return body != "" ? jsonDecode(body) : null;
   }
 }
 

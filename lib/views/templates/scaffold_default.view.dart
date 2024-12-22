@@ -10,6 +10,7 @@ import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
+import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/search/universal_search_v3.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
@@ -158,94 +159,110 @@ class ScaffoldDefault extends HookConsumerWidget {
                     ]))
                 : null,
             body: isDesktop(context)
-                ? Row(
-                    children: [
-                      NavigationRail(
-                          leading: Padding(
-                              padding: topPadding(PaddingType.standard),
-                              child: Container(
-                                  constraints:
-                                      const BoxConstraints(maxWidth: 40),
-                                  child: Column(children: [
-                                    Container(
-                                        constraints:
-                                            const BoxConstraints(maxWidth: 36),
-                                        child: const Image(
-                                          image: AssetImage(
-                                              'assets/logos/logo_square_white.png'),
-                                        )),
-                                    Padding(
-                                        padding:
-                                            topPadding(PaddingType.standard),
-                                        child: IconButton.filled(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary,
-                                            onPressed: () {
-                                              overlaysService.showOverlay(
-                                                  context,
-                                                  (context) =>
-                                                      SizedBox.fromSize(
-                                                        size: const Size(
-                                                            600, 800),
-                                                        child:
-                                                            const UniversalSearchV3(),
-                                                      ));
-                                            },
-                                            icon: const Icon(Icons.search)))
-                                  ]))),
-                          groupAlignment: 0,
-                          backgroundColor: navigationBackgroundColor,
-                          destinations: [
-                            NavigationRailDestination(
-                              icon: homeNavigation.icon,
-                              selectedIcon: homeNavigation.iconActive,
-                              label: Text(
-                                homeNavigation.label,
-                                style: navigationRailTextStyle,
+                ? Stack(children: [
+                    Row(
+                      children: [
+                        NavigationRail(
+                            leading: Padding(
+                                padding: topPadding(PaddingType.standard),
+                                child: Container(
+                                    constraints:
+                                        const BoxConstraints(maxWidth: 40),
+                                    child: Column(children: [
+                                      Container(
+                                          constraints: const BoxConstraints(
+                                              maxWidth: 36),
+                                          child: const Image(
+                                            image: AssetImage(
+                                                'assets/logos/logo_square_white.png'),
+                                          )),
+                                      Padding(
+                                          padding:
+                                              topPadding(PaddingType.standard),
+                                          child: IconButton.filled(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onPrimary,
+                                              onPressed: () {
+                                                overlaysService.showOverlay(
+                                                    context,
+                                                    (context) =>
+                                                        SizedBox.fromSize(
+                                                          size: const Size(
+                                                              600, 800),
+                                                          child:
+                                                              const UniversalSearchV3(),
+                                                        ));
+                                              },
+                                              icon: const Icon(Icons.search)))
+                                    ]))),
+                            groupAlignment: 0,
+                            backgroundColor: navigationBackgroundColor,
+                            destinations: [
+                              NavigationRailDestination(
+                                icon: homeNavigation.icon,
+                                selectedIcon: homeNavigation.iconActive,
+                                label: Text(
+                                  homeNavigation.label,
+                                  style: navigationRailTextStyle,
+                                ),
                               ),
-                            ),
-                            NavigationRailDestination(
-                              icon: collectionNavigation.icon,
-                              selectedIcon: collectionNavigation.iconActive,
-                              label: Text(
-                                collectionNavigation.label,
-                                style: navigationRailTextStyle,
+                              NavigationRailDestination(
+                                icon: collectionNavigation.icon,
+                                selectedIcon: collectionNavigation.iconActive,
+                                label: Text(
+                                  collectionNavigation.label,
+                                  style: navigationRailTextStyle,
+                                ),
                               ),
-                            ),
-                            NavigationRailDestination(
-                              icon: settingsNavigation.icon,
-                              selectedIcon: settingsNavigation.iconActive,
-                              label: Text(
-                                settingsNavigation.label,
-                                style: navigationRailTextStyle,
-                              ),
-                            )
-                          ],
-                          selectedIndex: selectedNavigationIndex.value,
-                          labelType: NavigationRailLabelType.selected,
-                          onDestinationSelected: (index) {
-                            switch (index) {
-                              case 0:
-                                navigationService.goHome(context, false);
-                                break;
-                              case 1:
-                                navigationService.goCollection(context);
-                                break;
-                              case 2:
-                                navigationService.goSettings(context);
-                            }
-                          }),
-                      VerticalDivider(
-                        thickness: 1,
-                        width: 0,
-                        color: getDescriptionColorSubtle(context),
-                      ),
-                      Expanded(child: child)
-                    ],
-                  )
+                              NavigationRailDestination(
+                                icon: settingsNavigation.icon,
+                                selectedIcon: settingsNavigation.iconActive,
+                                label: Text(
+                                  settingsNavigation.label,
+                                  style: navigationRailTextStyle,
+                                ),
+                              )
+                            ],
+                            selectedIndex: selectedNavigationIndex.value,
+                            labelType: NavigationRailLabelType.selected,
+                            onDestinationSelected: (index) {
+                              switch (index) {
+                                case 0:
+                                  navigationService.goHome(context, false);
+                                  break;
+                                case 1:
+                                  navigationService.goCollection(context);
+                                  break;
+                                case 2:
+                                  navigationService.goSettings(context);
+                              }
+                            }),
+                        VerticalDivider(
+                          thickness: 1,
+                          width: 0,
+                          color: getDescriptionColorSubtle(context),
+                        ),
+                        Expanded(child: child)
+                      ],
+                    ),
+                    const Positioned(
+                      child: WindowingAppBar(),
+                      top: 0,
+                      right: 0,
+                      left: 0,
+                    )
+                  ])
                 : Stack(
-                    children: [child],
+                    children: [
+                      child,
+                      const Positioned(
+                        child: WindowingAppBar(),
+                        top: 0,
+                        right: 0,
+                        left: 0,
+                      )
+                    ],
                   ));
       },
     );

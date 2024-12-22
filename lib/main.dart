@@ -1,4 +1,4 @@
-import 'package:bitsdojo_window_v3/bitsdojo_window_v3.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

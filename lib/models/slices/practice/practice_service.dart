@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
-import 'package:kotobaten/models/slices/practice/generated_sentence_option.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_type.dart';

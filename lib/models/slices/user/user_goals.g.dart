@@ -9,9 +9,9 @@ part of 'user_goals.dart';
 _$UserGoalsInitializedImpl _$$UserGoalsInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$UserGoalsInitializedImpl(
-      json['discoverWeekly'] as int,
-      json['discoverMonthly'] as int,
-      json['discoverDaily'] as int,
+      (json['discoverWeekly'] as num).toInt(),
+      (json['discoverMonthly'] as num).toInt(),
+      (json['discoverDaily'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$UserGoalsInitializedImplToJson(

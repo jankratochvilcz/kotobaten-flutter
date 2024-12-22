@@ -12,7 +12,7 @@ part of 'practice_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PracticeModel {
@@ -121,6 +121,9 @@ class _$PracticeModelCopyWithImpl<$Res, $Val extends PracticeModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -137,6 +140,9 @@ class __$$PracticeModelInitialImplCopyWithImpl<$Res>
   __$$PracticeModelInitialImplCopyWithImpl(_$PracticeModelInitialImpl _value,
       $Res Function(_$PracticeModelInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -150,7 +156,7 @@ class _$PracticeModelInitialImpl extends PracticeModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PracticeModelInitialImpl);
@@ -290,6 +296,9 @@ class __$$PracticeModelLoadingImplCopyWithImpl<$Res>
   __$$PracticeModelLoadingImplCopyWithImpl(_$PracticeModelLoadingImpl _value,
       $Res Function(_$PracticeModelLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -303,7 +312,7 @@ class _$PracticeModelLoadingImpl extends PracticeModelLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PracticeModelLoadingImpl);
@@ -446,6 +455,8 @@ class __$$PracticeModelErrorImplCopyWithImpl<$Res>
       $Res Function(_$PracticeModelErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -474,7 +485,7 @@ class _$PracticeModelErrorImpl extends PracticeModelError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PracticeModelErrorImpl &&
@@ -484,7 +495,9 @@ class _$PracticeModelErrorImpl extends PracticeModelError {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PracticeModelErrorImplCopyWith<_$PracticeModelErrorImpl> get copyWith =>
@@ -609,7 +622,10 @@ abstract class PracticeModelError extends PracticeModel {
   const PracticeModelError._() : super._();
 
   String get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PracticeModelErrorImplCopyWith<_$PracticeModelErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -632,6 +648,8 @@ class __$$PracticeModelFinishedImplCopyWithImpl<$Res>
       $Res Function(_$PracticeModelFinishedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -676,7 +694,7 @@ class _$PracticeModelFinishedImpl extends PracticeModelFinished {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PracticeModelFinishedImpl &&
@@ -690,7 +708,9 @@ class _$PracticeModelFinishedImpl extends PracticeModelFinished {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_allImpressions), navigatedAway);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PracticeModelFinishedImplCopyWith<_$PracticeModelFinishedImpl>
@@ -816,7 +836,10 @@ abstract class PracticeModelFinished extends PracticeModel {
 
   List<Impression> get allImpressions;
   bool? get navigatedAway;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PracticeModelFinishedImplCopyWith<_$PracticeModelFinishedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -848,6 +871,8 @@ class __$$PracticeModelInProgressImplCopyWithImpl<$Res>
       $Res Function(_$PracticeModelInProgressImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -949,7 +974,7 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PracticeModelInProgressImpl &&
@@ -983,7 +1008,9 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
       currentStepStart,
       pausedPercentage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PracticeModelInProgressImplCopyWith<_$PracticeModelInProgressImpl>
@@ -1146,7 +1173,10 @@ abstract class PracticeModelInProgress extends PracticeModel {
   DateTime? get nextStepTime;
   DateTime? get currentStepStart;
   double? get pausedPercentage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PracticeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PracticeModelInProgressImplCopyWith<_$PracticeModelInProgressImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

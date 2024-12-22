@@ -12,7 +12,7 @@ part of 'auth_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthResult {
@@ -78,6 +78,9 @@ class _$AuthResultCopyWithImpl<$Res, $Val extends AuthResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,6 +100,8 @@ class __$$AuthResultErrorImplCopyWithImpl<$Res>
       _$AuthResultErrorImpl _value, $Res Function(_$AuthResultErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,7 +130,7 @@ class _$AuthResultErrorImpl implements AuthResultError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthResultErrorImpl &&
@@ -136,7 +141,9 @@ class _$AuthResultErrorImpl implements AuthResultError {
   @override
   int get hashCode => Object.hash(runtimeType, errorCode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResultErrorImplCopyWith<_$AuthResultErrorImpl> get copyWith =>
@@ -216,7 +223,10 @@ abstract class AuthResultError implements AuthResult {
   factory AuthResultError(final int errorCode) = _$AuthResultErrorImpl;
 
   int get errorCode;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthResultErrorImplCopyWith<_$AuthResultErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -238,6 +248,8 @@ class __$$AuthResultSuccessImplCopyWithImpl<$Res>
       $Res Function(_$AuthResultSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -266,7 +278,7 @@ class _$AuthResultSuccessImpl implements AuthResultSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthResultSuccessImpl &&
@@ -276,7 +288,9 @@ class _$AuthResultSuccessImpl implements AuthResultSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, token);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResultSuccessImplCopyWith<_$AuthResultSuccessImpl> get copyWith =>
@@ -356,7 +370,10 @@ abstract class AuthResultSuccess implements AuthResult {
   factory AuthResultSuccess(final String token) = _$AuthResultSuccessImpl;
 
   String get token;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthResultSuccessImplCopyWith<_$AuthResultSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -378,6 +395,8 @@ class __$$AuthResultExceptionImplCopyWithImpl<$Res>
       $Res Function(_$AuthResultExceptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,7 +425,7 @@ class _$AuthResultExceptionImpl implements AuthResultException {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthResultExceptionImpl &&
@@ -417,7 +436,9 @@ class _$AuthResultExceptionImpl implements AuthResultException {
   @override
   int get hashCode => Object.hash(runtimeType, exception);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResultExceptionImplCopyWith<_$AuthResultExceptionImpl> get copyWith =>
@@ -498,7 +519,10 @@ abstract class AuthResultException implements AuthResult {
       _$AuthResultExceptionImpl;
 
   ClientException get exception;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthResultExceptionImplCopyWith<_$AuthResultExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

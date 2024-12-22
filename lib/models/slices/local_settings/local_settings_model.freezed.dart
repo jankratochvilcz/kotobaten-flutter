@@ -12,7 +12,7 @@ part of 'local_settings_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LocalSettings {
@@ -73,6 +73,9 @@ class _$LocalSettingsCopyWithImpl<$Res, $Val extends LocalSettings>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LocalSettings
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,6 +94,9 @@ class __$$LocalSettingsModelInitialImplCopyWithImpl<$Res>
       _$LocalSettingsModelInitialImpl _value,
       $Res Function(_$LocalSettingsModelInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LocalSettings
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -104,7 +110,7 @@ class _$LocalSettingsModelInitialImpl implements LocalSettingsModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalSettingsModelInitialImpl);
@@ -201,6 +207,8 @@ class __$$LocalSettingsModelInitializedImplCopyWithImpl<$Res>
       $Res Function(_$LocalSettingsModelInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocalSettings
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,7 +238,7 @@ class _$LocalSettingsModelInitializedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalSettingsModelInitializedImpl &&
@@ -243,7 +251,9 @@ class _$LocalSettingsModelInitializedImpl
   @override
   int get hashCode => Object.hash(runtimeType, dailyNotificationTimeOfDay);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocalSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocalSettingsModelInitializedImplCopyWith<
@@ -321,7 +331,10 @@ abstract class LocalSettingsModelInitialized implements LocalSettings {
       _$LocalSettingsModelInitializedImpl;
 
   TimeOfDay? get dailyNotificationTimeOfDay;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocalSettings
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocalSettingsModelInitializedImplCopyWith<
           _$LocalSettingsModelInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;

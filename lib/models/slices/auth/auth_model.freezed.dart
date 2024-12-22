@@ -12,7 +12,7 @@ part of 'auth_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthModel {
@@ -83,6 +83,9 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -99,6 +102,9 @@ class __$$AuthModelInitialImplCopyWithImpl<$Res>
   __$$AuthModelInitialImplCopyWithImpl(_$AuthModelInitialImpl _value,
       $Res Function(_$AuthModelInitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -112,7 +118,7 @@ class _$AuthModelInitialImpl implements AuthModelInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$AuthModelInitialImpl);
   }
@@ -215,6 +221,9 @@ class __$$AuthModelUnauthenticatedImplCopyWithImpl<$Res>
       _$AuthModelUnauthenticatedImpl _value,
       $Res Function(_$AuthModelUnauthenticatedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -228,7 +237,7 @@ class _$AuthModelUnauthenticatedImpl implements AuthModelUnauthenticated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelUnauthenticatedImpl);
@@ -332,6 +341,9 @@ class __$$AuthModelAuthenticatingImplCopyWithImpl<$Res>
       _$AuthModelAuthenticatingImpl _value,
       $Res Function(_$AuthModelAuthenticatingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -345,7 +357,7 @@ class _$AuthModelAuthenticatingImpl implements AuthModelAuthenticating {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelAuthenticatingImpl);
@@ -454,6 +466,8 @@ class __$$AuthModelAuthenticatedImplCopyWithImpl<$Res>
       $Res Function(_$AuthModelAuthenticatedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -467,6 +481,8 @@ class __$$AuthModelAuthenticatedImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AuthResultCopyWith<$Res> get result {
@@ -490,7 +506,7 @@ class _$AuthModelAuthenticatedImpl implements AuthModelAuthenticated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelAuthenticatedImpl &&
@@ -500,7 +516,9 @@ class _$AuthModelAuthenticatedImpl implements AuthModelAuthenticated {
   @override
   int get hashCode => Object.hash(runtimeType, result);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthModelAuthenticatedImplCopyWith<_$AuthModelAuthenticatedImpl>
@@ -587,7 +605,10 @@ abstract class AuthModelAuthenticated implements AuthModel {
       _$AuthModelAuthenticatedImpl;
 
   AuthResult get result;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthModelAuthenticatedImplCopyWith<_$AuthModelAuthenticatedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -10,8 +10,8 @@ _$UserStatisticsDayInitializedImpl _$$UserStatisticsDayInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$UserStatisticsDayInitializedImpl(
       DateTime.parse(json['date'] as String),
-      json['cardsAdded'] as int,
-      json['cardsDiscovered'] as int,
+      (json['cardsAdded'] as num).toInt(),
+      (json['cardsDiscovered'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$UserStatisticsDayInitializedImplToJson(

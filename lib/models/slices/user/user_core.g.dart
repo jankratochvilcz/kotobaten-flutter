@@ -9,12 +9,12 @@ part of 'user_core.dart';
 _$UserCoreInitializedImpl _$$UserCoreInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$UserCoreInitializedImpl(
-      json['id'] as int,
+      (json['id'] as num).toInt(),
       json['email'] as String,
-      json['retentionBackstopMaxThreshold'] as int,
+      (json['retentionBackstopMaxThreshold'] as num).toInt(),
       json['disableSounds'] as bool?,
       json['timezoneName'] as String?,
-      json['utcOffsetHours'] as int?,
+      (json['utcOffsetHours'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UserCoreInitializedImplToJson(

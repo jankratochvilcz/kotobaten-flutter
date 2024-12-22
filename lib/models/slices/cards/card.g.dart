@@ -9,13 +9,15 @@ part of 'card.dart';
 _$CardInitializedImpl _$$CardInitializedImplFromJson(
         Map<String, dynamic> json) =>
     _$CardInitializedImpl(
-      json['id'] as int?,
+      (json['id'] as num?)?.toInt(),
       json['sense'] as String,
       toNonEmptyString(json['kana']),
       toNonEmptyString(json['kanji']),
       DateTime.parse(json['created'] as String),
       json['note'] as String?,
       $enumDecode(_$CardTypeEnumMap, json['type']),
+      (json['senseRetention'] as num?)?.toDouble(),
+      (json['kanaRetention'] as num?)?.toDouble(),
       $type: json['runtimeType'] as String?,
     );
 
@@ -29,6 +31,8 @@ Map<String, dynamic> _$$CardInitializedImplToJson(
       'created': instance.created.toIso8601String(),
       'note': instance.note,
       'type': _$CardTypeEnumMap[instance.type]!,
+      'senseRetention': instance.senseRetention,
+      'kanaRetention': instance.kanaRetention,
       'runtimeType': instance.$type,
     };
 

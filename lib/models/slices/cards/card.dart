@@ -26,7 +26,9 @@ class Card with _$Card {
       @JsonKey(fromJson: toNonEmptyString) String? kanji,
       DateTime created,
       String? note,
-      CardType type) = CardInitialized;
+      CardType type,
+      double? senseRetention,
+      double? kanaRetention) = CardInitialized;
 
   factory Card.newCard(String sense, String? kana, String? kanji, String? note,
       DateTime created, CardType type) = CardNew;

@@ -10,9 +10,9 @@ After pulling the codebase and [installing Flutter](https://docs.flutter.dev/get
 
 ### CLI
 
-The project makes use of [freezed](https://pub.dev/packages/freezed), so you need to run `flutter pub run build_runner build` whenever you make changes to files that take advantage of freezed.
+The project makes use of [freezed](https://pub.dev/packages/freezed), so you need to run `dart run build_runner build` whenever you make changes to files that take advantage of freezed.
 
-iOS logo generation happens via [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons). Run `flutter pub run flutter_launcher_icons:main` to generate the icons.
+iOS logo generation happens via [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons). Run `dart run flutter_launcher_icons:main` to generate the icons.
 
 ## Releasing
 

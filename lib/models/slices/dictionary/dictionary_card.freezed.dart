@@ -12,7 +12,7 @@ part of 'dictionary_card.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DictionaryCard _$DictionaryCardFromJson(Map<String, dynamic> json) {
   return DictionaryCardInitialized.fromJson(json);
@@ -25,8 +25,12 @@ mixin _$DictionaryCard {
   List<List<String>> get senses => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
 
+  /// Serializes this DictionaryCard to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DictionaryCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DictionaryCardCopyWith<DictionaryCard> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$DictionaryCardCopyWithImpl<$Res, $Val extends DictionaryCard>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DictionaryCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -102,6 +108,8 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
       $Res Function(_$DictionaryCardInitializedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DictionaryCard
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,7 +171,7 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DictionaryCardInitializedImpl &&
@@ -173,12 +181,14 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
             (identical(other.note, note) || other.note == note));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, kanji, kana,
       const DeepCollectionEquality().hash(_senses), note);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DictionaryCard
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DictionaryCardInitializedImplCopyWith<_$DictionaryCardInitializedImpl>
@@ -211,8 +221,11 @@ abstract class DictionaryCardInitialized implements DictionaryCard {
   List<List<String>> get senses;
   @override
   String? get note;
+
+  /// Create a copy of DictionaryCard
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DictionaryCardInitializedImplCopyWith<_$DictionaryCardInitializedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -185,7 +185,7 @@ class PracticeView extends HookConsumerWidget {
                 child: Column(
               children: [
                 Padding(
-                    padding: topPadding(kIsWeb || !Platform.isWindows
+                    padding: topPadding(isDesktop(context)
                         ? PaddingType.xxLarge
                         : PaddingType.standard),
                     child: Row(

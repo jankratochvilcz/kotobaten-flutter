@@ -9,6 +9,8 @@ import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/views/atoms/description.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
+import 'package:kotobaten/views/molecules/button.dart';
+import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/molecules/headed.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 
@@ -41,7 +43,6 @@ class TimeInvestmentCard extends HookConsumerWidget {
     return Headed(
         SizedBox(
           width: 400,
-          height: 150,
           child: Column(children: [
             const Description(
                 'Set the maximum for how many words you can daily. 100 words may take 30 minutes with good focus.'),
@@ -61,6 +62,13 @@ class TimeInvestmentCard extends HookConsumerWidget {
                 currentValue.value = valueAsInt;
                 userService.updateRetentionBackstopMaxThreshold(valueAsInt);
               },
+            ),
+            ButtonAsync(
+              'Reset today\'s practice cards',
+              () async {
+                await userService.refreshUser(updateRetentionBackstop: true);
+              },
+              type: ButtonType.standard,
             )
           ]),
         ),

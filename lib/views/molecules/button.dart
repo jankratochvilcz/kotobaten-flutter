@@ -72,6 +72,7 @@ class Button extends ConsumerWidget {
   final double? progressPercentage;
   final bool noPadding;
   final Color? color;
+  final String? tooltip;
 
   const Button(this.label, this.onPressed,
       {Key? key,
@@ -82,7 +83,8 @@ class Button extends ConsumerWidget {
       this.shortcut,
       this.progressPercentage,
       this.color,
-      this.noPadding = false})
+      this.noPadding = false,
+      this.tooltip})
       : super(key: key);
 
   _getPrimaryButtonStyle(BuildContext context) {

@@ -11,6 +11,7 @@ import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
+import 'package:kotobaten/views/organisms/global_shortcuts.dart';
 import 'package:kotobaten/views/organisms/search/universal_search_v3.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
@@ -158,7 +159,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                       )),
                     ]))
                 : null,
-            body: isDesktop(context)
+            body: GlobalShortcuts(isDesktop(context)
                 ? Stack(children: [
                     Row(
                       children: [
@@ -180,6 +181,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                                           padding:
                                               topPadding(PaddingType.standard),
                                           child: IconButton.filled(
+                                              tooltip: "Ctrl + P",
                                               color: Theme.of(context)
                                                   .colorScheme
                                                   .onPrimary,
@@ -263,7 +265,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                         left: 0,
                       )
                     ],
-                  ));
+                  )));
       },
     );
   }

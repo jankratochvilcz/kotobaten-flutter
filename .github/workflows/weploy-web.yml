@@ -47,7 +47,8 @@ jobs:
             branch: gh-pages # The branch the action should deploy to.
             folder: build/web # The folder the action should deploy. 
 
-        - name: Upload Source to Sentry
-          run: flutter packages pub run sentry_dart_plugin --ignore-missing
-          env:
-            SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        # There is some brokenness regarding hashes, need to fix it
+        # - name: Upload Source to Sentry
+        #   run: flutter packages pub run sentry_dart_plugin --ignore-missing
+        #   env:
+        #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

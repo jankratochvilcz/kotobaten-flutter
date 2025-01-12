@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/shapes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
@@ -27,8 +28,11 @@ class OverlaysService {
         : showDialog(
             context: context,
             builder: (localContext) => AlertDialog(
-                  content: builder(localContext),
-                ));
+                content: builder(localContext),
+                shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                    side: BorderSide(
+                        color: getBorderColor(context), width: 2.0))));
 
     _repository.increment();
 

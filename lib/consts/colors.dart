@@ -38,6 +38,12 @@ Color getDescriptionColorSubtle(BuildContext context) {
       : Colors.white24;
 }
 
+Color getBorderColor(BuildContext context) {
+  return Theme.of(context).brightness == Brightness.light
+      ? Colors.black12
+      : Colors.white12;
+}
+
 final windowButtonColors = WindowButtonColors(
     iconNormal: Colors.white54,
     iconMouseOver: Colors.white,

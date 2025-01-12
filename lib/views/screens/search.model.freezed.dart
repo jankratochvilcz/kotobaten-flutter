@@ -20,7 +20,9 @@ mixin _$SearchModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
-    required TResult Function(bool searchFocused) loading,
+    required TResult Function(
+            bool searchFocused, SearchModelLoaded? previousResults)
+        loading,
     required TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -32,7 +34,8 @@ mixin _$SearchModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
-    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult? Function(
             bool searchFocused,
             String resultsQuery,
@@ -44,7 +47,8 @@ mixin _$SearchModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
+    TResult Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -192,7 +196,9 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
-    required TResult Function(bool searchFocused) loading,
+    required TResult Function(
+            bool searchFocused, SearchModelLoaded? previousResults)
+        loading,
     required TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -207,7 +213,8 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
-    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult? Function(
             bool searchFocused,
             String resultsQuery,
@@ -222,7 +229,8 @@ class _$SearchModelInitialImpl implements SearchModelInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
+    TResult Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -295,7 +303,7 @@ abstract class _$$SearchModelLoadingImplCopyWith<$Res>
       __$$SearchModelLoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool searchFocused});
+  $Res call({bool searchFocused, SearchModelLoaded? previousResults});
 }
 
 /// @nodoc
@@ -312,12 +320,17 @@ class __$$SearchModelLoadingImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchFocused = null,
+    Object? previousResults = freezed,
   }) {
     return _then(_$SearchModelLoadingImpl(
       null == searchFocused
           ? _value.searchFocused
           : searchFocused // ignore: cast_nullable_to_non_nullable
               as bool,
+      freezed == previousResults
+          ? _value.previousResults
+          : previousResults // ignore: cast_nullable_to_non_nullable
+              as SearchModelLoaded?,
     ));
   }
 }
@@ -325,14 +338,16 @@ class __$$SearchModelLoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchModelLoadingImpl implements SearchModelLoading {
-  _$SearchModelLoadingImpl(this.searchFocused);
+  _$SearchModelLoadingImpl(this.searchFocused, this.previousResults);
 
   @override
   final bool searchFocused;
+  @override
+  final SearchModelLoaded? previousResults;
 
   @override
   String toString() {
-    return 'SearchModel.loading(searchFocused: $searchFocused)';
+    return 'SearchModel.loading(searchFocused: $searchFocused, previousResults: $previousResults)';
   }
 
   @override
@@ -341,11 +356,14 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
         (other.runtimeType == runtimeType &&
             other is _$SearchModelLoadingImpl &&
             (identical(other.searchFocused, searchFocused) ||
-                other.searchFocused == searchFocused));
+                other.searchFocused == searchFocused) &&
+            const DeepCollectionEquality()
+                .equals(other.previousResults, previousResults));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchFocused);
+  int get hashCode => Object.hash(runtimeType, searchFocused,
+      const DeepCollectionEquality().hash(previousResults));
 
   /// Create a copy of SearchModel
   /// with the given fields replaced by the non-null parameter values.
@@ -360,7 +378,9 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
-    required TResult Function(bool searchFocused) loading,
+    required TResult Function(
+            bool searchFocused, SearchModelLoaded? previousResults)
+        loading,
     required TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -368,14 +388,15 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
             List<DictionaryCardInitialized> dictionaryCards)
         loaded,
   }) {
-    return loading(searchFocused);
+    return loading(searchFocused, previousResults);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
-    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult? Function(
             bool searchFocused,
             String resultsQuery,
@@ -383,14 +404,15 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
             List<DictionaryCardInitialized> dictionaryCards)?
         loaded,
   }) {
-    return loading?.call(searchFocused);
+    return loading?.call(searchFocused, previousResults);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
+    TResult Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -400,7 +422,7 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(searchFocused);
+      return loading(searchFocused, previousResults);
     }
     return orElse();
   }
@@ -441,11 +463,13 @@ class _$SearchModelLoadingImpl implements SearchModelLoading {
 }
 
 abstract class SearchModelLoading implements SearchModel {
-  factory SearchModelLoading(final bool searchFocused) =
+  factory SearchModelLoading(
+          final bool searchFocused, final SearchModelLoaded? previousResults) =
       _$SearchModelLoadingImpl;
 
   @override
   bool get searchFocused;
+  SearchModelLoaded? get previousResults;
 
   /// Create a copy of SearchModel
   /// with the given fields replaced by the non-null parameter values.
@@ -580,7 +604,9 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool searchFocused) initial,
-    required TResult Function(bool searchFocused) loading,
+    required TResult Function(
+            bool searchFocused, SearchModelLoaded? previousResults)
+        loading,
     required TResult Function(
             bool searchFocused,
             String resultsQuery,
@@ -595,7 +621,8 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool searchFocused)? initial,
-    TResult? Function(bool searchFocused)? loading,
+    TResult? Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult? Function(
             bool searchFocused,
             String resultsQuery,
@@ -610,7 +637,8 @@ class _$SearchModelLoadedImpl implements SearchModelLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool searchFocused)? initial,
-    TResult Function(bool searchFocused)? loading,
+    TResult Function(bool searchFocused, SearchModelLoaded? previousResults)?
+        loading,
     TResult Function(
             bool searchFocused,
             String resultsQuery,

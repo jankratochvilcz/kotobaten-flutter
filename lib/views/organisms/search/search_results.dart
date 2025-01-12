@@ -4,7 +4,6 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/cards/chooser_card.dart';
 import 'package:kotobaten/views/molecules/cards/dictionary_card.dart';
-import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
 
 class SearchResults extends HookConsumerWidget {
@@ -12,12 +11,18 @@ class SearchResults extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Needs to be here so that the component gets updates.
+    // ignore: unused_local_variable
     final searchModel = ref.watch(searchViewModelProvider);
+    final searchViewModel = ref.read(searchViewModelProvider.notifier);
+
+    final searchResultsToShow = searchViewModel.getSearchResultsToShow();
+
     Iterable<Widget> collectionResultWidgets;
     Iterable<Widget> dictionaryResultWidgets;
 
-    if (searchModel is SearchModelLoaded) {
-      collectionResultWidgets = searchModel.cards.map((card) => Padding(
+    if (searchResultsToShow != null) {
+      collectionResultWidgets = searchResultsToShow.cards.map((card) => Padding(
           padding: verticalPadding(PaddingType.small),
           child: Center(
               child: ConstrainedBox(
@@ -27,7 +32,7 @@ class SearchResults extends HookConsumerWidget {
                   )))));
 
       dictionaryResultWidgets =
-          searchModel.dictionaryCards.map((card) => Padding(
+          searchResultsToShow.dictionaryCards.map((card) => Padding(
               padding: verticalPadding(PaddingType.small),
               child: Center(
                   child: ConstrainedBox(

@@ -22,6 +22,8 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   final StreamController<bool> _searchTextFocusUpdates =
       StreamController<bool>();
 
+  Future? currentSearchRequest;
+
   SearchViewModel(this._apiService) : super(SearchModel.initial(true)) {
     searchTermController
         .addListener(() => executeSearch(searchTermController.text));
@@ -30,7 +32,6 @@ class SearchViewModel extends StateNotifier<SearchModel> {
 
     _searchTermUpdates.stream
         .distinct()
-        .where((x) => x.isNotEmpty)
         .debounceTime(const Duration(milliseconds: 300))
         .forEach(_executeSearch);
 
@@ -56,9 +57,71 @@ class SearchViewModel extends StateNotifier<SearchModel> {
   }
 
   Future _executeSearch(String text) async {
-    state = SearchModel.loading(state.searchFocused);
-    final result = await _apiService.search(text.trim());
-    state = SearchModel.loaded(state.searchFocused, result.query, result.cards,
-        result.dictionaryCards);
+    if (currentSearchRequest != null) {
+      await currentSearchRequest;
+    }
+
+    final currentState = state;
+
+    if (currentState is SearchModelLoaded) {
+      state = SearchModel.loading(state.searchFocused, currentState);
+    } else if (currentState is SearchModelLoading) {
+      state = SearchModel.loading(
+          state.searchFocused, currentState.previousResults);
+    } else {
+      state = SearchModel.loading(state.searchFocused, null);
+    }
+
+    final trimmedText = text.trim();
+
+    if (trimmedText.isNotEmpty) {
+      final searchRequest = _apiService.search(text.trim());
+      currentSearchRequest = searchRequest;
+      final result = await searchRequest;
+      currentSearchRequest = null;
+      state = SearchModel.loaded(state.searchFocused, result.query,
+          result.cards, result.dictionaryCards);
+    } else {
+      state = SearchModel.loaded(state.searchFocused, trimmedText, [], []);
+    }
+  }
+
+  SearchModelLoaded? getSearchResultsToShow() {
+    final currentState = state;
+    if (currentState is SearchModelLoaded) {
+      return currentState;
+    } else if (currentState is SearchModelLoading) {
+      return currentState.previousResults;
+    }
+
+    return null;
+  }
+
+  String getCounterText() {
+    final currentModel = state;
+    var counterText = "No results";
+
+    if (currentModel is SearchModelLoaded) {
+      if (currentModel.dictionaryCards.isNotEmpty &&
+          currentModel.cards.isEmpty) {
+        counterText =
+            "${currentModel.dictionaryCards.length} dictionary results";
+      }
+
+      if (currentModel.cards.isNotEmpty &&
+          currentModel.dictionaryCards.isEmpty) {
+        counterText = "${currentModel.cards.length} collection results";
+      }
+
+      if (currentModel.cards.isNotEmpty &&
+          currentModel.dictionaryCards.isNotEmpty) {
+        counterText =
+            "${currentModel.cards.length} collection + ${currentModel.dictionaryCards.length} dictionary results";
+      }
+    } else if (currentModel is SearchModelLoading) {
+      counterText = "Loading...";
+    }
+
+    return counterText;
   }
 }

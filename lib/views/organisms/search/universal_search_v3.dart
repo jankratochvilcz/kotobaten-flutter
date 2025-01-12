@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
+import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/views/organisms/search/search_results.dart';
 import 'package:kotobaten/views/screens/search.model.dart';
 import 'package:kotobaten/views/screens/search.viewmodel.dart';
@@ -12,23 +13,15 @@ class UniversalSearchV3 extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.read(searchViewModelProvider.notifier);
+
+    // I need to register for this to get the re-renders on model update
+    // ignore: unused_local_variable
     final model = ref.watch(searchViewModelProvider);
 
-    var loadedCounter = "No results";
-    if (model is SearchModelLoaded) {
-      if (model.dictionaryCards.isNotEmpty && model.cards.isEmpty) {
-        loadedCounter = "${model.dictionaryCards.length} dictionary results";
-      }
-
-      if (model.cards.isNotEmpty && model.dictionaryCards.isEmpty) {
-        loadedCounter = "${model.cards.length} collection results";
-      }
-
-      if (model.cards.isNotEmpty && model.dictionaryCards.isNotEmpty) {
-        loadedCounter =
-            "${model.cards.length} collection + ${model.dictionaryCards.length} dictionary results";
-      }
-    }
+    var resultsToShow = viewModel.getSearchResultsToShow();
+    var canShowResults = resultsToShow != null &&
+        (resultsToShow.cards.isNotEmpty ||
+            resultsToShow.dictionaryCards.isNotEmpty);
 
     return Column(
       children: [
@@ -38,6 +31,10 @@ class UniversalSearchV3 extends HookConsumerWidget {
             autofocus: true,
             controller: viewModel.searchTermController,
             decoration: InputDecoration(
+              hintText: "E.g., \"cheerful\"",
+              hintStyle: TextStyle(
+                  color: getDescriptionColorSubtle(context),
+                  fontSize: textSizeSmall),
               counter: viewModel is SearchModelLoading
                   ? SizedBox.fromSize(
                       size: const Size(12, 12),
@@ -45,10 +42,8 @@ class UniversalSearchV3 extends HookConsumerWidget {
                     )
                   : (viewModel is SearchModelInitial
                       ? null
-                      : Text(loadedCounter)),
-              labelText: "Universal search",
-              border: const UnderlineInputBorder(),
-              suffixIcon: const Icon(Icons.search),
+                      : Text(viewModel.getCounterText())),
+              border: const OutlineInputBorder(),
             ),
             onSubmitted: (value) {
               // Implement your search function here
@@ -57,9 +52,7 @@ class UniversalSearchV3 extends HookConsumerWidget {
         ),
         Expanded(
             child: viewModel.searchTermController.text.isNotEmpty
-                ? (model is SearchModelLoaded &&
-                        (model.cards.isNotEmpty ||
-                            model.dictionaryCards.isNotEmpty)
+                ? (canShowResults
                     ? const SearchResults()
                     : Center(
                         child: Text(

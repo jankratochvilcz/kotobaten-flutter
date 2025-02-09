@@ -97227,7 +97227,7 @@ A.aPu.prototype={
 $1(a){return J.b8C(a.bu($.aWF(),t.gi))},
 $S:631}
 A.pw.prototype={
-P_(a){return new A.JV("kotoprodapiapp.delightfulrock-6f4fb83c.northeurope.azurecontainerapps.io",!0,A.bmD(),"2.0",".kotobaten.app")}}
+P_(a){return new A.JV("kotoprdapiapp.salmonsmoke-5b2676a9.northeurope.azurecontainerapps.io",!0,A.bmD(),"2.0",".kotobaten.app")}}
 A.aPL.prototype={
 $1(a){return new A.ns()},
 $S:632}

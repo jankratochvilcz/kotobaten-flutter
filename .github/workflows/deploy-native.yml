@@ -39,7 +39,7 @@ jobs:
             regex: false
             include: "pubspec.yaml"
 
-        - uses: actions/upload-artifact@v3
+        - uses: actions/upload-artifact@v4
           with:
             name: versioned-pubspec-web-android
             path: pubspec.yaml
@@ -59,7 +59,7 @@ jobs:
         - name: Builds Android
           run: flutter build appbundle
 
-        - uses: actions/upload-artifact@v3
+        - uses: actions/upload-artifact@v4
           with:
             name: android-release
             path: build/app/outputs/bundle/release/app-release.aab
@@ -99,7 +99,7 @@ jobs:
           run: |
             (Get-Content -path pubspec.yaml -Raw).replace("0.0.0+0","${{ steps.get_version.outputs.VERSION }}").replace("0.0.0.0",[regex]::Match("${{ steps.get_version.outputs.VERSION }}", "^(?<version>[^\+]*)\+").groups["version"].value) | Set-Content -Path pubspec.yaml
 
-        - uses: actions/upload-artifact@v3
+        - uses: actions/upload-artifact@v4
           with:
             name: versioned-pubspec-windows
             path: pubspec.yaml

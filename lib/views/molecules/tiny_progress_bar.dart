@@ -13,8 +13,8 @@ class TinyProgressBar extends StatelessWidget {
       } else {
         return Color.lerp(
             // Skewing towards blue to make things less depressing.
-            Colors.redAccent,
-            Colors.greenAccent,
+            Colors.red,
+            Colors.green,
             progress! * 6 / 3)!;
       }
     }

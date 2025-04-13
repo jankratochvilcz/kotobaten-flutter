@@ -4,31 +4,72 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_option.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
+import 'package:kotobaten/models/slices/practice/practice_service.dart';
 
 const double cardSize = 300;
 
-class MultiselectCard extends HookConsumerWidget {
-  final GeneratedSentenceWithParticlesSelectImpression impression;
-  final bool revealed;
+// class MultiselectCardRevealed extends HookConsumerWidget {
+//   final GeneratedSentenceWithParticlesSelectImpression impression;
+//   final Sentence sentence;
+//
+//   const MultiselectCardRevealed(this.impression, this.sentence, {super.key})
+//
+//
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return Padding(padding: EdgeInsets.fromLTRB(
+//         getPadding(PaddingType.small),
+//         getPadding(PaddingType.xxLarge),
+//         getPadding(PaddingType.small),
+//         getPadding(PaddingType.xxLarge)), child: Center(child: Card(
+//       elevation: 5,
+//       child: ConstrainedBox(
+//         constraints: const BoxConstraints(maxHeight: cardSize),
+//         child: AspectRatio(
+//           aspectRatio: 1,
+//           child: Padding(
+//             padding: allPadding(PaddingType.standard),
+//             child: Center(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                 children: impression.options
+//                     .map((sentence) => SentenceRowWidget(
+//                   // we want a 1-based index
+//                     impression.options.indexOf(sentence),
+//                     sentence,
+//                     impression,
+//                     practiceService))
+//                     .toList(),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     ),),)
+//   }}
 
-  const MultiselectCard(
-      {Key? key, required this.impression, required this.revealed})
+class MultiselectCardHidden extends HookConsumerWidget {
+  final GeneratedSentenceWithParticlesSelectImpression impression;
+  final PracticeService practiceService;
+
+  const MultiselectCardHidden(
+      {Key? key, required this.impression, required this.practiceService})
       : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        getPadding(PaddingType.small),
-        getPadding(PaddingType.xxLarge),
-        getPadding(PaddingType.small),
-        getPadding(PaddingType.xxLarge),
-      ),
+          getPadding(PaddingType.small),
+          getPadding(PaddingType.xxLarge),
+          getPadding(PaddingType.small),
+          getPadding(PaddingType.xxLarge)),
       child: Center(
         child: Card(
           elevation: 5,
-          shadowColor: Colors.grey,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: cardSize),
             child: AspectRatio(
@@ -40,11 +81,12 @@ class MultiselectCard extends HookConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: impression.options
-                        .map((currentCard) => SentenceRowWidget(
+                        .map((sentence) => SentenceRowWidget(
                             // we want a 1-based index
-                            impression.options.indexOf(currentCard) + 1,
-                            currentCard.withKanji,
-                            currentCard.kanaOnly))
+                            impression.options.indexOf(sentence),
+                            sentence,
+                            impression,
+                            practiceService))
                         .toList(),
                   ),
                 ),
@@ -59,11 +101,12 @@ class MultiselectCard extends HookConsumerWidget {
 
 class SentenceRowWidget extends HookConsumerWidget {
   final int index;
-  final String? sentenceWithKanji;
-  final String? sentenceKanaOnly;
+  final Sentence sentence;
+  final PracticeService practiceService;
+  final GeneratedSentenceWithParticlesSelectImpression impression;
 
   const SentenceRowWidget(
-      this.index, this.sentenceWithKanji, this.sentenceKanaOnly,
+      this.index, this.sentence, this.impression, this.practiceService,
       {super.key});
 
   @override
@@ -81,15 +124,15 @@ class SentenceRowWidget extends HookConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    if (sentenceKanaOnly != null)
+                    if (sentence.kanaOnly != null)
                       Text(
-                        sentenceKanaOnly ?? '',
+                        sentence.kanaOnly ?? '',
                         style: TextStyle(
                             fontSize: textSizeSmall,
                             color: getDescriptionColor(context)),
                       ),
                     Text(
-                      sentenceWithKanji ?? '',
+                      sentence.withKanji ?? '',
                       style: const TextStyle(fontSize: 16),
                     )
                   ]),
@@ -108,7 +151,7 @@ class SentenceRowWidget extends HookConsumerWidget {
               ),
               alignment: Alignment.center,
               child: Text(
-                index.toString(),
+                (index + 1).toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -118,7 +161,9 @@ class SentenceRowWidget extends HookConsumerWidget {
             ),
           )
       ]),
-      onTap: () => print("Tapped!"),
+      onTap: () => impression.correctOption == index
+          ? practiceService.evaluateCorrect()
+          : practiceService.evaluateWrong(),
       onHover: (hovered) => hoverActive.value = hovered,
     ));
   }

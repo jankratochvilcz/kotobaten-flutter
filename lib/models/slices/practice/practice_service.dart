@@ -45,10 +45,7 @@ class PracticeService {
 
     repository.update(const PracticeModel.loading());
 
-    final impressions = (await apiService.getPractice())
-        .where((element) =>
-            element.type != ImpressionType.generatedSentenceWithParticlesSelect)
-        .toList();
+    final impressions = (await apiService.getPractice());
 
     // Ad-hoc code for quickly testing different card types
 

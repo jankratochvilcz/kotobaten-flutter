@@ -156,8 +156,7 @@ class PracticeView extends HookConsumerWidget {
         switchOutCurve: animationType == AnimationType.rotate
             ? Curves.easeInBack.flipped
             : Curves.easeInCubic.flipped,
-        child: ImpressionSelector.getWidget(practiceService.getImpression(),
-            practiceService.getImpressionViewType()),
+        child: ImpressionSelector.getWidget(practiceService),
         layoutBuilder: animationType == AnimationType.slide
             ? AnimatedSwitcher.defaultLayoutBuilder
             : (current, previous) => Stack(

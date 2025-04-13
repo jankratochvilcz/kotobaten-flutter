@@ -32,7 +32,7 @@ class AppConfigurationService {
   AppConfiguration getConfiguration() {
     const isProduction = bool.fromEnvironment('dart.vm.product');
 
-    const isDevEndpoint = !isProduction;
+    const isDevEndpoint = true;
     const apiRoot = isDevEndpoint ? apiRootDev : apiRootProduction;
     const cookieDomain = isDevEndpoint ? 'localhost' : '.kotobaten.app';
 

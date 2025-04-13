@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
+import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/views/molecules/impression_card.dart';
 import 'package:kotobaten/views/organisms/practice/impression_hidden.dart';
 import 'package:kotobaten/views/organisms/practice/impression_multiselect.dart';
@@ -31,12 +32,13 @@ class GeneratedSentenceImpressionSelector {
 
   static Widget getGeneratedSentenceWithParticlesSelectImpressionWidget(
       GeneratedSentenceWithParticlesSelectImpression impression,
-      ImpressionViewType viewType) {
+      ImpressionViewType viewType,
+      PracticeService practiceService) {
     switch (viewType) {
       case ImpressionViewType.multiselectHidden:
-        return ImpressionMultiselect(impression, false);
+        return ImpressionMultiselect(impression, false, practiceService);
       case ImpressionViewType.multiselectRevealed:
-        return ImpressionMultiselect(impression, true);
+        return ImpressionMultiselect(impression, true, practiceService);
       default:
         throw ErrorDescription("Unsupported impressionViewType");
     }

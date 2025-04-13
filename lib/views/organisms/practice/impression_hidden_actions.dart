@@ -8,10 +8,9 @@ class ImpressionHiddenActions extends StatelessWidget {
   final String hintText;
   final VoidCallback revealAnswer;
   final VoidCallback toggleTimer;
-  final double timeElapsedPercentage;
 
-  const ImpressionHiddenActions(this.hintText, this.revealAnswer,
-      this.timeElapsedPercentage, this.toggleTimer,
+  const ImpressionHiddenActions(
+      this.hintText, this.revealAnswer, this.toggleTimer,
       {Key? key})
       : super(key: key);
 
@@ -31,7 +30,6 @@ class ImpressionHiddenActions extends StatelessWidget {
                     'Reveal answer',
                     revealAnswer,
                     type: ButtonType.primaryProgress,
-                    progressPercentage: timeElapsedPercentage,
                     icon: Icons.remove_red_eye_outlined,
                     size: ButtonSize.big,
                     shortcut: '⏎',

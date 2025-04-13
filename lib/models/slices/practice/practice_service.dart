@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
@@ -22,18 +23,47 @@ final practiceServiceProvider = Provider<PracticeService>((ref) =>
         ref.watch(kotobatenApiServiceProvider),
         ref.watch(userServiceProvider)));
 
+enum HiddenStateDurationType {
+  defaultDuration,
+  longDuration,
+}
+
+DateTime getHiddenStateExpiry(Impression impression) {
+  final duration = getHiddenStateDurationType(impression);
+  final hiddenStateDuration = getHiddenStateDuration(duration);
+  return DateTime.now().add(hiddenStateDuration);
+}
+
+final revealedStateDuration = new Duration(hours: 10000);
+
+Duration getHiddenStateDuration(HiddenStateDurationType duration) {
+  int hiddenStateSeconds = 0;
+  switch (duration) {
+    case HiddenStateDurationType.longDuration:
+      hiddenStateSeconds = 20;
+      break;
+    default:
+      hiddenStateSeconds = 10;
+      break;
+  }
+  return Duration(seconds: hiddenStateSeconds);
+}
+
+HiddenStateDurationType getHiddenStateDurationType(Impression impression) {
+  if (impression is GeneratedSentenceWithParticlesSelectImpression ||
+      impression is GeneratedSentenceGuessImpression) {
+    return HiddenStateDurationType.longDuration;
+  }
+
+  return HiddenStateDurationType.defaultDuration;
+}
+
 class PracticeService {
   final PracticeRepository repository;
   final KotobatenApiService apiService;
   final UserService userService;
 
-  final _hiddenStateMaxDuration = const Duration(seconds: 10);
-  final _revealedStateMaxDuration = const Duration(seconds: 5);
-
   PracticeService(this.repository, this.apiService, this.userService);
-
-  _getHiddenStateExpiry() => DateTime.now().add(_hiddenStateMaxDuration);
-  _getRevealedStateExpiry() => DateTime.now().add(_revealedStateMaxDuration);
 
   Future initialize() async {
     final currentState = repository.current;
@@ -76,7 +106,7 @@ class PracticeService {
 
     repository.update(PracticeModel.inProgress(
         impressions, impressions.sublist(1), impressions.first, false, false,
-        nextStepTime: _getHiddenStateExpiry(),
+        nextStepTime: getHiddenStateExpiry(impressions.first),
         currentStepStart: DateTime.now()));
   }
 
@@ -90,7 +120,8 @@ class PracticeService {
         pausedPercentage: null,
         revealedIsCorrect: isCorrect,
         revealed: true,
-        nextStepTime: _getRevealedStateExpiry(),
+        nextStepTime: DateTime.now().add(
+            revealedStateDuration), // we don't want to go to the next card automatically
         currentStepStart: DateTime.now()));
   }
 
@@ -112,7 +143,7 @@ class PracticeService {
             revealedIsCorrect: null,
             pausedPercentage: null,
             revealed: false,
-            nextStepTime: _getHiddenStateExpiry(),
+            nextStepTime: null,
             currentStepStart: DateTime.now()));
       }
       repository.update(PracticeModel.finished(currentState.allImpressions));
@@ -128,7 +159,8 @@ class PracticeService {
           speechPlayed: false,
           remainingImpressions: currentState.remainingImpressions.sublist(1),
           currentImpression: currentState.remainingImpressions.first,
-          nextStepTime: _getHiddenStateExpiry(),
+          nextStepTime:
+              getHiddenStateExpiry(currentState.remainingImpressions.first),
           currentStepStart: DateTime.now()));
     } else {
       final nextImpressions = currentState.remainingImpressions
@@ -145,7 +177,8 @@ class PracticeService {
           speechPlayed: false,
           remainingImpressions: nextRemainingImpressions,
           currentImpression: nextCurrentImpression,
-          nextStepTime: _getHiddenStateExpiry(),
+          nextStepTime:
+              getHiddenStateExpiry(currentState.remainingImpressions.first),
           currentStepStart: DateTime.now()));
     }
 
@@ -307,9 +340,10 @@ class PracticeService {
       return;
     }
 
-    final maxDuration = currentState.revealed
-        ? _revealedStateMaxDuration
-        : _hiddenStateMaxDuration;
+    final maxDuration = !currentState.revealed
+        ? getHiddenStateDuration(
+            getHiddenStateDurationType(currentState.currentImpression))
+        : revealedStateDuration;
 
     final elapsedDuration = maxDuration * (currentState.pausedPercentage!);
     final currentStepStart = DateTime.now().subtract(elapsedDuration);

@@ -3,14 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 
 class ImpressionRevealedActions extends StatelessWidget {
-  final double timeElapsedPercentage;
-
   final void Function(bool) onAnswered;
   final VoidCallback toggleTimer;
 
-  const ImpressionRevealedActions(
-      this.onAnswered, this.timeElapsedPercentage, this.toggleTimer,
-      {Key? key})
+  const ImpressionRevealedActions(this.onAnswered, this.toggleTimer, {Key? key})
       : super(key: key);
 
   @override
@@ -34,7 +30,6 @@ class ImpressionRevealedActions extends StatelessWidget {
                         () => onAnswered(false),
                         icon: Icons.close,
                         type: ButtonType.standardProgress,
-                        progressPercentage: timeElapsedPercentage,
                         shortcut: 'n',
                       ),
                       Button(

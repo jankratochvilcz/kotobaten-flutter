@@ -73,6 +73,9 @@ class PracticeView extends HookConsumerWidget {
           case ImpressionViewType.wordRevealed:
             practiceService.nextCard(currentCardIsCorrect: false);
             break;
+          case ImpressionViewType.multiselect:
+            practiceService.reveal(isCorrect: false);
+            break;
           default:
         }
       }
@@ -178,7 +181,8 @@ class PracticeView extends HookConsumerWidget {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ProgressBar(practiceService.getProgress()),
+                          ProgressBar(practiceService.getProgress(),
+                              practiceService.getElapsedPercentage()),
                           Padding(
                               padding: EdgeInsets.fromLTRB(
                                   getPadding(PaddingType.standard), 0, 0, 0),
@@ -224,7 +228,6 @@ class PracticeView extends HookConsumerWidget {
                   onTapCancel: () => practiceService.resumeNextStepTimer(true),
                   child: ImpressionActionsForViewType(
                       impressionViewType,
-                      practiceService.getElapsedPercentage(),
                       practiceService.getHintText(),
                       (correct) => practiceService.nextCard(
                           currentCardIsCorrect: correct),

@@ -35,8 +35,8 @@ class ImpressionActionsForViewType extends StatelessWidget {
         return ImpressionRevealedActions(
             onAnswered, elapsedPercentage, toggleTimer);
       case ImpressionViewType.wordDiscover:
-        return ImpressionNewActions(() => onAnswered(true));
-      case ImpressionViewType.multiselectHidden:
+        return ImpressionNextActions(() => onAnswered(true));
+      case ImpressionViewType.multiselect:
         return const Empty();
       default:
         throw ErrorDescription("Unsupported impressionViewType");

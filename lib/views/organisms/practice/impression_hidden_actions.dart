@@ -29,7 +29,7 @@ class ImpressionHiddenActions extends StatelessWidget {
                   child: Button(
                     'Reveal answer',
                     revealAnswer,
-                    type: ButtonType.primaryProgress,
+                    type: ButtonType.primary,
                     icon: Icons.remove_red_eye_outlined,
                     size: ButtonSize.big,
                     shortcut: '⏎',

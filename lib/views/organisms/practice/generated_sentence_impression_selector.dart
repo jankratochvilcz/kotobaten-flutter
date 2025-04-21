@@ -35,7 +35,9 @@ class GeneratedSentenceImpressionSelector {
       ImpressionViewType viewType,
       PracticeService practiceService) {
     switch (viewType) {
-      case ImpressionViewType.multiselect:
+      case ImpressionViewType.multiselectHidden:
+        return ImpressionMultiselect(impression, practiceService);
+      case ImpressionViewType.multiselectRevealed:
         return ImpressionMultiselect(impression, practiceService);
       default:
         throw ErrorDescription("Unsupported impressionViewType");

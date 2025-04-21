@@ -2,6 +2,7 @@ enum ImpressionViewType {
   wordHidden,
   wordRevealed,
   wordDiscover,
-  multiselect,
+  multiselectHidden,
+  multiselectRevealed,
   none
 }

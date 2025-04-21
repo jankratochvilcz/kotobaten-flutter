@@ -106,10 +106,11 @@ class MultiselectCard extends HookConsumerWidget {
           ),
         if (!practiceModel.revealed)
           Padding(padding: topPadding(PaddingType.xLarge)),
-        const DescriptionRichText(
-          [TextSpan(text: "Select the correct option.")],
-          textAlign: TextAlign.center,
-        )
+        if (!practiceModel.revealed)
+          const DescriptionRichText(
+            [TextSpan(text: "Select the correct option.")],
+            textAlign: TextAlign.center,
+          )
       ])),
     );
   }

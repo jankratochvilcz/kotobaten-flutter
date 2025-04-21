@@ -73,8 +73,11 @@ class PracticeView extends HookConsumerWidget {
           case ImpressionViewType.wordRevealed:
             practiceService.nextCard(currentCardIsCorrect: false);
             break;
-          case ImpressionViewType.multiselect:
+          case ImpressionViewType.multiselectHidden:
             practiceService.reveal(isCorrect: false);
+            break;
+          case ImpressionViewType.multiselectRevealed:
+            practiceService.nextCard();
             break;
           default:
         }

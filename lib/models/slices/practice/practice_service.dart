@@ -23,24 +23,25 @@ final practiceServiceProvider = Provider<PracticeService>((ref) =>
         ref.watch(kotobatenApiServiceProvider),
         ref.watch(userServiceProvider)));
 
-enum HiddenStateDurationType {
-  defaultDuration,
-  longDuration,
-}
+enum StateDurationType { defaultDuration, longDuration, indefinite }
 
 DateTime getHiddenStateExpiry(Impression impression) {
   final duration = getHiddenStateDurationType(impression);
-  final hiddenStateDuration = getHiddenStateDuration(duration);
+  final hiddenStateDuration = getStateDuration(duration);
   return DateTime.now().add(hiddenStateDuration);
 }
 
-final revealedStateDuration = new Duration(hours: 10000);
+final revealedStateDuration =
+    getStateDuration(StateDurationType.defaultDuration);
 
-Duration getHiddenStateDuration(HiddenStateDurationType duration) {
+Duration getStateDuration(StateDurationType duration) {
   int hiddenStateSeconds = 0;
   switch (duration) {
-    case HiddenStateDurationType.longDuration:
+    case StateDurationType.longDuration:
       hiddenStateSeconds = 20;
+      break;
+    case StateDurationType.indefinite:
+      hiddenStateSeconds = 86400; // 1 day
       break;
     default:
       hiddenStateSeconds = 10;
@@ -49,13 +50,13 @@ Duration getHiddenStateDuration(HiddenStateDurationType duration) {
   return Duration(seconds: hiddenStateSeconds);
 }
 
-HiddenStateDurationType getHiddenStateDurationType(Impression impression) {
+StateDurationType getHiddenStateDurationType(Impression impression) {
   if (impression is GeneratedSentenceWithParticlesSelectImpression ||
       impression is GeneratedSentenceGuessImpression) {
-    return HiddenStateDurationType.longDuration;
+    return StateDurationType.longDuration;
   }
 
-  return HiddenStateDurationType.defaultDuration;
+  return StateDurationType.defaultDuration;
 }
 
 class PracticeService {
@@ -120,8 +121,7 @@ class PracticeService {
         pausedPercentage: null,
         revealedIsCorrect: isCorrect,
         revealed: true,
-        nextStepTime: DateTime.now().add(
-            revealedStateDuration), // we don't want to go to the next card automatically
+        nextStepTime: DateTime.now().add(revealedStateDuration),
         currentStepStart: DateTime.now()));
   }
 
@@ -234,7 +234,9 @@ class PracticeService {
 
     if (currentState.currentImpression
         is GeneratedSentenceWithParticlesSelectImpression) {
-      return ImpressionViewType.multiselect;
+      return currentState.revealed
+          ? ImpressionViewType.multiselectRevealed
+          : ImpressionViewType.multiselectHidden;
     }
 
     return currentState.currentImpression is NewCardImpression
@@ -341,7 +343,7 @@ class PracticeService {
     }
 
     final maxDuration = !currentState.revealed
-        ? getHiddenStateDuration(
+        ? getStateDuration(
             getHiddenStateDurationType(currentState.currentImpression))
         : revealedStateDuration;
 

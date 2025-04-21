@@ -8,20 +8,14 @@ import 'package:kotobaten/views/organisms/practice/impression_revealed_actions.d
 class ImpressionActionsForViewType extends StatelessWidget {
   final ImpressionViewType impressionViewType;
 
-  final double elapsedPercentage;
   final String hintText;
 
   final void Function(bool) onAnswered;
   final VoidCallback revealAnswer;
   final VoidCallback toggleTimer;
 
-  const ImpressionActionsForViewType(
-      this.impressionViewType,
-      this.elapsedPercentage,
-      this.hintText,
-      this.onAnswered,
-      this.revealAnswer,
-      this.toggleTimer,
+  const ImpressionActionsForViewType(this.impressionViewType, this.hintText,
+      this.onAnswered, this.revealAnswer, this.toggleTimer,
       {Key? key})
       : super(key: key);
 
@@ -29,15 +23,15 @@ class ImpressionActionsForViewType extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (impressionViewType) {
       case ImpressionViewType.wordHidden:
-        return ImpressionHiddenActions(
-            hintText, revealAnswer, elapsedPercentage, toggleTimer);
+        return ImpressionHiddenActions(hintText, revealAnswer, toggleTimer);
       case ImpressionViewType.wordRevealed:
-        return ImpressionRevealedActions(
-            onAnswered, elapsedPercentage, toggleTimer);
+        return ImpressionRevealedActions(onAnswered, toggleTimer);
       case ImpressionViewType.wordDiscover:
-        return ImpressionNewActions(() => onAnswered(true));
+        return ImpressionNextActions(() => onAnswered(true));
       case ImpressionViewType.multiselectHidden:
-        return Empty();
+        return const Empty();
+      case ImpressionViewType.multiselectRevealed:
+        return const Empty();
       default:
         throw ErrorDescription("Unsupported impressionViewType");
     }

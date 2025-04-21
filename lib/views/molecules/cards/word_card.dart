@@ -27,6 +27,9 @@ class WordCard extends ConsumerWidget {
 
     final canDisplayFurigana = (card.kanji?.isNotEmpty ?? false);
     final hasNote = card.note != null && card.note!.isNotEmpty;
+    final retentionString = retentionEffective != null
+        ? "Estimated retention: ${(retentionEffective * 100).toStringAsFixed(0)}%"
+        : "You haven't discovered this card yet.";
 
     return MouseRegion(
         cursor: SystemMouseCursors.click,
@@ -75,9 +78,11 @@ class WordCard extends ConsumerWidget {
                       Positioned(
                           bottom: 0,
                           right: 0,
-                          child: TinyProgressBar(
-                              progress:
-                                  retentionEffective)), // Set your progress value here )
+                          child: Tooltip(
+                              message: retentionString,
+                              child: TinyProgressBar(
+                                  progress:
+                                      retentionEffective))), // Set your progress value here )
                     ])))));
   }
 }

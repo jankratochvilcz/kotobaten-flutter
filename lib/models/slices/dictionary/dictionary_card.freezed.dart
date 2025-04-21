@@ -22,8 +22,10 @@ DictionaryCard _$DictionaryCardFromJson(Map<String, dynamic> json) {
 mixin _$DictionaryCard {
   String get kanji => throw _privateConstructorUsedError;
   String get kana => throw _privateConstructorUsedError;
-  List<List<String>> get senses => throw _privateConstructorUsedError;
+  List<DictionaryCardSenseInitialized> get senses =>
+      throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  bool get isCommon => throw _privateConstructorUsedError;
 
   /// Serializes this DictionaryCard to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +44,11 @@ abstract class $DictionaryCardCopyWith<$Res> {
       _$DictionaryCardCopyWithImpl<$Res, DictionaryCard>;
   @useResult
   $Res call(
-      {String kanji, String kana, List<List<String>> senses, String? note});
+      {String kanji,
+      String kana,
+      List<DictionaryCardSenseInitialized> senses,
+      String? note,
+      bool isCommon});
 }
 
 /// @nodoc
@@ -64,6 +70,7 @@ class _$DictionaryCardCopyWithImpl<$Res, $Val extends DictionaryCard>
     Object? kana = null,
     Object? senses = null,
     Object? note = freezed,
+    Object? isCommon = null,
   }) {
     return _then(_value.copyWith(
       kanji: null == kanji
@@ -77,11 +84,15 @@ class _$DictionaryCardCopyWithImpl<$Res, $Val extends DictionaryCard>
       senses: null == senses
           ? _value.senses
           : senses // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
+              as List<DictionaryCardSenseInitialized>,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
+      isCommon: null == isCommon
+          ? _value.isCommon
+          : isCommon // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -96,7 +107,11 @@ abstract class _$$DictionaryCardInitializedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String kanji, String kana, List<List<String>> senses, String? note});
+      {String kanji,
+      String kana,
+      List<DictionaryCardSenseInitialized> senses,
+      String? note,
+      bool isCommon});
 }
 
 /// @nodoc
@@ -117,6 +132,7 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
     Object? kana = null,
     Object? senses = null,
     Object? note = freezed,
+    Object? isCommon = null,
   }) {
     return _then(_$DictionaryCardInitializedImpl(
       null == kanji
@@ -130,11 +146,15 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
       null == senses
           ? _value._senses
           : senses // ignore: cast_nullable_to_non_nullable
-              as List<List<String>>,
+              as List<DictionaryCardSenseInitialized>,
       freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
+      null == isCommon
+          ? _value.isCommon
+          : isCommon // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -144,7 +164,11 @@ class __$$DictionaryCardInitializedImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
   _$DictionaryCardInitializedImpl(
-      this.kanji, this.kana, final List<List<String>> senses, this.note)
+      this.kanji,
+      this.kana,
+      final List<DictionaryCardSenseInitialized> senses,
+      this.note,
+      this.isCommon)
       : _senses = senses;
 
   factory _$DictionaryCardInitializedImpl.fromJson(Map<String, dynamic> json) =>
@@ -154,9 +178,9 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
   final String kanji;
   @override
   final String kana;
-  final List<List<String>> _senses;
+  final List<DictionaryCardSenseInitialized> _senses;
   @override
-  List<List<String>> get senses {
+  List<DictionaryCardSenseInitialized> get senses {
     if (_senses is EqualUnmodifiableListView) return _senses;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_senses);
@@ -164,10 +188,12 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
 
   @override
   final String? note;
+  @override
+  final bool isCommon;
 
   @override
   String toString() {
-    return 'DictionaryCard(kanji: $kanji, kana: $kana, senses: $senses, note: $note)';
+    return 'DictionaryCard(kanji: $kanji, kana: $kana, senses: $senses, note: $note, isCommon: $isCommon)';
   }
 
   @override
@@ -178,13 +204,15 @@ class _$DictionaryCardInitializedImpl implements DictionaryCardInitialized {
             (identical(other.kanji, kanji) || other.kanji == kanji) &&
             (identical(other.kana, kana) || other.kana == kana) &&
             const DeepCollectionEquality().equals(other._senses, _senses) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.isCommon, isCommon) ||
+                other.isCommon == isCommon));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, kanji, kana,
-      const DeepCollectionEquality().hash(_senses), note);
+      const DeepCollectionEquality().hash(_senses), note, isCommon);
 
   /// Create a copy of DictionaryCard
   /// with the given fields replaced by the non-null parameter values.
@@ -207,8 +235,9 @@ abstract class DictionaryCardInitialized implements DictionaryCard {
   factory DictionaryCardInitialized(
       final String kanji,
       final String kana,
-      final List<List<String>> senses,
-      final String? note) = _$DictionaryCardInitializedImpl;
+      final List<DictionaryCardSenseInitialized> senses,
+      final String? note,
+      final bool isCommon) = _$DictionaryCardInitializedImpl;
 
   factory DictionaryCardInitialized.fromJson(Map<String, dynamic> json) =
       _$DictionaryCardInitializedImpl.fromJson;
@@ -218,9 +247,11 @@ abstract class DictionaryCardInitialized implements DictionaryCard {
   @override
   String get kana;
   @override
-  List<List<String>> get senses;
+  List<DictionaryCardSenseInitialized> get senses;
   @override
   String? get note;
+  @override
+  bool get isCommon;
 
   /// Create a copy of DictionaryCard
   /// with the given fields replaced by the non-null parameter values.

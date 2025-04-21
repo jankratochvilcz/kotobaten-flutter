@@ -5,11 +5,19 @@ class ProgressBarPainter extends CustomPainter {
   final double width;
   final double height;
   final Color background;
-  final Color foreground;
+  final Color? foreground;
+  final Shader? shader;
   final Color border;
 
-  ProgressBarPainter(this.progress, this.width, this.height, this.background,
-      this.foreground, this.border);
+  ProgressBarPainter({
+    required this.progress,
+    required this.width,
+    required this.height,
+    required this.background,
+    required this.border,
+    this.foreground,
+    this.shader,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -28,13 +36,24 @@ class ProgressBarPainter extends CustomPainter {
           ..strokeWidth = 1.5);
 
     if (progress > 0) {
+      var paint = Paint()
+        ..style = PaintingStyle.fill
+        ..strokeWidth = 2;
+
+      final currentForeground = foreground;
+      if (currentForeground != null) {
+        paint.color = currentForeground;
+      }
+
+      final currentShader = shader;
+      if (currentShader != null) {
+        paint.shader = currentShader;
+      }
+
       canvas.drawRRect(
           RRect.fromLTRBR(
               1, 1, width * progress, height, const Radius.circular(24)),
-          Paint()
-            ..color = foreground
-            ..style = PaintingStyle.fill
-            ..strokeWidth = 2);
+          paint);
     }
   }
 

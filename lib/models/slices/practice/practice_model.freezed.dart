@@ -32,7 +32,8 @@ mixin _$PracticeModel {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) =>
       throw _privateConstructorUsedError;
@@ -51,7 +52,8 @@ mixin _$PracticeModel {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) =>
       throw _privateConstructorUsedError;
@@ -70,7 +72,8 @@ mixin _$PracticeModel {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) =>
@@ -182,7 +185,8 @@ class _$PracticeModelInitialImpl extends PracticeModelInitial {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) {
     return initial();
@@ -204,7 +208,8 @@ class _$PracticeModelInitialImpl extends PracticeModelInitial {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) {
     return initial?.call();
@@ -226,7 +231,8 @@ class _$PracticeModelInitialImpl extends PracticeModelInitial {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -338,7 +344,8 @@ class _$PracticeModelLoadingImpl extends PracticeModelLoading {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) {
     return loading();
@@ -360,7 +367,8 @@ class _$PracticeModelLoadingImpl extends PracticeModelLoading {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) {
     return loading?.call();
@@ -382,7 +390,8 @@ class _$PracticeModelLoadingImpl extends PracticeModelLoading {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -521,7 +530,8 @@ class _$PracticeModelErrorImpl extends PracticeModelError {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) {
     return error(this.error);
@@ -543,7 +553,8 @@ class _$PracticeModelErrorImpl extends PracticeModelError {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) {
     return error?.call(this.error);
@@ -565,7 +576,8 @@ class _$PracticeModelErrorImpl extends PracticeModelError {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -734,7 +746,8 @@ class _$PracticeModelFinishedImpl extends PracticeModelFinished {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) {
     return finished(allImpressions, navigatedAway);
@@ -756,7 +769,8 @@ class _$PracticeModelFinishedImpl extends PracticeModelFinished {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) {
     return finished?.call(allImpressions, navigatedAway);
@@ -778,7 +792,8 @@ class _$PracticeModelFinishedImpl extends PracticeModelFinished {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -859,7 +874,8 @@ abstract class _$$PracticeModelInProgressImplCopyWith<$Res> {
       bool speechPlayed,
       DateTime? nextStepTime,
       DateTime? currentStepStart,
-      double? pausedPercentage});
+      double? pausedPercentage,
+      bool? revealedIsCorrect});
 }
 
 /// @nodoc
@@ -884,6 +900,7 @@ class __$$PracticeModelInProgressImplCopyWithImpl<$Res>
     Object? nextStepTime = freezed,
     Object? currentStepStart = freezed,
     Object? pausedPercentage = freezed,
+    Object? revealedIsCorrect = freezed,
   }) {
     return _then(_$PracticeModelInProgressImpl(
       null == allImpressions
@@ -918,6 +935,10 @@ class __$$PracticeModelInProgressImplCopyWithImpl<$Res>
           ? _value.pausedPercentage
           : pausedPercentage // ignore: cast_nullable_to_non_nullable
               as double?,
+      revealedIsCorrect: freezed == revealedIsCorrect
+          ? _value.revealedIsCorrect
+          : revealedIsCorrect // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -933,7 +954,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
       this.speechPlayed,
       {this.nextStepTime,
       this.currentStepStart,
-      this.pausedPercentage})
+      this.pausedPercentage,
+      this.revealedIsCorrect})
       : _allImpressions = allImpressions,
         _remainingImpressions = remainingImpressions,
         super._();
@@ -967,10 +989,12 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
   final DateTime? currentStepStart;
   @override
   final double? pausedPercentage;
+  @override
+  final bool? revealedIsCorrect;
 
   @override
   String toString() {
-    return 'PracticeModel.inProgress(allImpressions: $allImpressions, remainingImpressions: $remainingImpressions, currentImpression: $currentImpression, revealed: $revealed, speechPlayed: $speechPlayed, nextStepTime: $nextStepTime, currentStepStart: $currentStepStart, pausedPercentage: $pausedPercentage)';
+    return 'PracticeModel.inProgress(allImpressions: $allImpressions, remainingImpressions: $remainingImpressions, currentImpression: $currentImpression, revealed: $revealed, speechPlayed: $speechPlayed, nextStepTime: $nextStepTime, currentStepStart: $currentStepStart, pausedPercentage: $pausedPercentage, revealedIsCorrect: $revealedIsCorrect)';
   }
 
   @override
@@ -993,7 +1017,9 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
             (identical(other.currentStepStart, currentStepStart) ||
                 other.currentStepStart == currentStepStart) &&
             (identical(other.pausedPercentage, pausedPercentage) ||
-                other.pausedPercentage == pausedPercentage));
+                other.pausedPercentage == pausedPercentage) &&
+            (identical(other.revealedIsCorrect, revealedIsCorrect) ||
+                other.revealedIsCorrect == revealedIsCorrect));
   }
 
   @override
@@ -1006,7 +1032,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
       speechPlayed,
       nextStepTime,
       currentStepStart,
-      pausedPercentage);
+      pausedPercentage,
+      revealedIsCorrect);
 
   /// Create a copy of PracticeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1034,7 +1061,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)
+            double? pausedPercentage,
+            bool? revealedIsCorrect)
         inProgress,
   }) {
     return inProgress(
@@ -1045,7 +1073,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
         speechPlayed,
         nextStepTime,
         currentStepStart,
-        pausedPercentage);
+        pausedPercentage,
+        revealedIsCorrect);
   }
 
   @override
@@ -1064,7 +1093,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
   }) {
     return inProgress?.call(
@@ -1075,7 +1105,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
         speechPlayed,
         nextStepTime,
         currentStepStart,
-        pausedPercentage);
+        pausedPercentage,
+        revealedIsCorrect);
   }
 
   @override
@@ -1094,7 +1125,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
             bool speechPlayed,
             DateTime? nextStepTime,
             DateTime? currentStepStart,
-            double? pausedPercentage)?
+            double? pausedPercentage,
+            bool? revealedIsCorrect)?
         inProgress,
     required TResult orElse(),
   }) {
@@ -1107,7 +1139,8 @@ class _$PracticeModelInProgressImpl extends PracticeModelInProgress {
           speechPlayed,
           nextStepTime,
           currentStepStart,
-          pausedPercentage);
+          pausedPercentage,
+          revealedIsCorrect);
     }
     return orElse();
   }
@@ -1162,7 +1195,8 @@ abstract class PracticeModelInProgress extends PracticeModel {
       final bool speechPlayed,
       {final DateTime? nextStepTime,
       final DateTime? currentStepStart,
-      final double? pausedPercentage}) = _$PracticeModelInProgressImpl;
+      final double? pausedPercentage,
+      final bool? revealedIsCorrect}) = _$PracticeModelInProgressImpl;
   const PracticeModelInProgress._() : super._();
 
   List<Impression> get allImpressions;
@@ -1173,6 +1207,7 @@ abstract class PracticeModelInProgress extends PracticeModel {
   DateTime? get nextStepTime;
   DateTime? get currentStepStart;
   double? get pausedPercentage;
+  bool? get revealedIsCorrect;
 
   /// Create a copy of PracticeModel
   /// with the given fields replaced by the non-null parameter values.

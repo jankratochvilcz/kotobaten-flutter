@@ -5,9 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card_type.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
+import 'package:kotobaten/models/slices/practice/generated_sentence_guess_impression.dart';
 import 'package:kotobaten/models/slices/practice/generated_sentence_with_particles_select_impression.dart';
 import 'package:kotobaten/models/slices/practice/impression.dart';
-import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/kana_guess_impression.dart';
 import 'package:kotobaten/models/slices/practice/new_card_impression.dart';
@@ -23,18 +23,48 @@ final practiceServiceProvider = Provider<PracticeService>((ref) =>
         ref.watch(kotobatenApiServiceProvider),
         ref.watch(userServiceProvider)));
 
+enum StateDurationType { defaultDuration, longDuration, indefinite }
+
+DateTime getHiddenStateExpiry(Impression impression) {
+  final duration = getHiddenStateDurationType(impression);
+  final hiddenStateDuration = getStateDuration(duration);
+  return DateTime.now().add(hiddenStateDuration);
+}
+
+final revealedStateDuration =
+    getStateDuration(StateDurationType.defaultDuration);
+
+Duration getStateDuration(StateDurationType duration) {
+  int hiddenStateSeconds = 0;
+  switch (duration) {
+    case StateDurationType.longDuration:
+      hiddenStateSeconds = 20;
+      break;
+    case StateDurationType.indefinite:
+      hiddenStateSeconds = 86400; // 1 day
+      break;
+    default:
+      hiddenStateSeconds = 10;
+      break;
+  }
+  return Duration(seconds: hiddenStateSeconds);
+}
+
+StateDurationType getHiddenStateDurationType(Impression impression) {
+  if (impression is GeneratedSentenceWithParticlesSelectImpression ||
+      impression is GeneratedSentenceGuessImpression) {
+    return StateDurationType.longDuration;
+  }
+
+  return StateDurationType.defaultDuration;
+}
+
 class PracticeService {
   final PracticeRepository repository;
   final KotobatenApiService apiService;
   final UserService userService;
 
-  final _hiddenStateMaxDuration = const Duration(seconds: 10);
-  final _revealedStateMaxDuration = const Duration(seconds: 5);
-
   PracticeService(this.repository, this.apiService, this.userService);
-
-  _getHiddenStateExpiry() => DateTime.now().add(_hiddenStateMaxDuration);
-  _getRevealedStateExpiry() => DateTime.now().add(_revealedStateMaxDuration);
 
   Future initialize() async {
     final currentState = repository.current;
@@ -45,10 +75,7 @@ class PracticeService {
 
     repository.update(const PracticeModel.loading());
 
-    final impressions = (await apiService.getPractice())
-        .where((element) =>
-            element.type != ImpressionType.generatedSentenceWithParticlesSelect)
-        .toList();
+    final impressions = (await apiService.getPractice());
 
     // Ad-hoc code for quickly testing different card types
 
@@ -80,11 +107,11 @@ class PracticeService {
 
     repository.update(PracticeModel.inProgress(
         impressions, impressions.sublist(1), impressions.first, false, false,
-        nextStepTime: _getHiddenStateExpiry(),
+        nextStepTime: getHiddenStateExpiry(impressions.first),
         currentStepStart: DateTime.now()));
   }
 
-  void reveal() {
+  void reveal({bool? isCorrect}) {
     final currentState = repository.current;
     if (currentState is! PracticeModelInProgress) {
       throw ErrorDescription('Cannot reveal when not in in-progress state');
@@ -92,9 +119,71 @@ class PracticeService {
 
     repository.update(currentState.copyWith(
         pausedPercentage: null,
+        revealedIsCorrect: isCorrect,
         revealed: true,
-        nextStepTime: _getRevealedStateExpiry(),
+        nextStepTime: DateTime.now().add(revealedStateDuration),
         currentStepStart: DateTime.now()));
+  }
+
+  Future nextCard({bool? currentCardIsCorrect}) async {
+    final currentState = repository.current;
+
+    if (currentState is! PracticeModelInProgress) {
+      throw ErrorDescription('Cannot evaluate when not in in-progress state');
+    }
+
+    final isCorrectEffective =
+        currentCardIsCorrect ?? currentState.revealedIsCorrect ?? false;
+
+    if (currentState.remainingImpressions.isEmpty) {
+      if (isCorrectEffective) {
+        repository.update(PracticeModel.finished(currentState.allImpressions));
+      } else {
+        repository.update(currentState.copyWith(
+            revealedIsCorrect: null,
+            pausedPercentage: null,
+            revealed: false,
+            nextStepTime: null,
+            currentStepStart: DateTime.now()));
+      }
+      repository.update(PracticeModel.finished(currentState.allImpressions));
+
+      return;
+    }
+
+    if (isCorrectEffective) {
+      repository.update(currentState.copyWith(
+          pausedPercentage: null,
+          revealedIsCorrect: null,
+          revealed: false,
+          speechPlayed: false,
+          remainingImpressions: currentState.remainingImpressions.sublist(1),
+          currentImpression: currentState.remainingImpressions.first,
+          nextStepTime:
+              getHiddenStateExpiry(currentState.remainingImpressions.first),
+          currentStepStart: DateTime.now()));
+    } else {
+      final nextImpressions = currentState.remainingImpressions
+          .shuffleElementIntoListUpToTwice(currentState.currentImpression)
+          .toList();
+
+      final nextCurrentImpression = nextImpressions.first;
+      final nextRemainingImpressions = nextImpressions.sublist(1);
+
+      repository.update(currentState.copyWith(
+          pausedPercentage: null,
+          revealedIsCorrect: null,
+          revealed: false,
+          speechPlayed: false,
+          remainingImpressions: nextRemainingImpressions,
+          currentImpression: nextCurrentImpression,
+          nextStepTime:
+              getHiddenStateExpiry(currentState.remainingImpressions.first),
+          currentStepStart: DateTime.now()));
+    }
+
+    await apiService.postImpression(
+        currentState.currentImpression, isCorrectEffective);
   }
 
   void reset() {
@@ -108,63 +197,6 @@ class PracticeService {
         currentState.navigatedAway != true) {
       repository.update(currentState.copyWith(navigatedAway: true));
     }
-  }
-
-  Future evaluateCorrect() async {
-    final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress) {
-      throw ErrorDescription('Cannot evaluate while not in-progress');
-    }
-
-    if (currentState.remainingImpressions.isEmpty) {
-      repository.update(PracticeModel.finished(currentState.allImpressions));
-      return;
-    }
-
-    repository.update(currentState.copyWith(
-        pausedPercentage: null,
-        revealed: false,
-        speechPlayed: false,
-        remainingImpressions: currentState.remainingImpressions.sublist(1),
-        currentImpression: currentState.remainingImpressions.first,
-        nextStepTime: _getHiddenStateExpiry(),
-        currentStepStart: DateTime.now()));
-
-    await apiService.postImpression(currentState.currentImpression, true);
-  }
-
-  Future evaluateWrong() async {
-    final currentState = repository.current;
-    if (currentState is! PracticeModelInProgress) {
-      throw ErrorDescription('Cannot evaluate while not in-progress');
-    }
-
-    if (currentState.remainingImpressions.isEmpty) {
-      repository.update(currentState.copyWith(
-          pausedPercentage: null,
-          revealed: false,
-          nextStepTime: _getHiddenStateExpiry(),
-          currentStepStart: DateTime.now()));
-      return;
-    }
-
-    final nextImpressions = currentState.remainingImpressions
-        .shuffleElementIntoListUpToTwice(currentState.currentImpression)
-        .toList();
-
-    final nextCurrentImpression = nextImpressions.first;
-    final nextRemainingImpressions = nextImpressions.sublist(1);
-
-    repository.update(currentState.copyWith(
-        pausedPercentage: null,
-        revealed: false,
-        speechPlayed: false,
-        remainingImpressions: nextRemainingImpressions,
-        currentImpression: nextCurrentImpression,
-        nextStepTime: _getHiddenStateExpiry(),
-        currentStepStart: DateTime.now()));
-
-    await apiService.postImpression(currentState.currentImpression, false);
   }
 
   String? getSpeechToPlay() {
@@ -310,9 +342,10 @@ class PracticeService {
       return;
     }
 
-    final maxDuration = currentState.revealed
-        ? _revealedStateMaxDuration
-        : _hiddenStateMaxDuration;
+    final maxDuration = !currentState.revealed
+        ? getStateDuration(
+            getHiddenStateDurationType(currentState.currentImpression))
+        : revealedStateDuration;
 
     final elapsedDuration = maxDuration * (currentState.pausedPercentage!);
     final currentStepStart = DateTime.now().subtract(elapsedDuration);

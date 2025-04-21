@@ -33,7 +33,7 @@ jobs:
             regex: false
             include: "pubspec.yaml"
 
-        - uses: actions/upload-artifact@v3
+        - uses: actions/upload-artifact@v4
           with:
             name: versioned-pubspec-web-android
             path: pubspec.yaml

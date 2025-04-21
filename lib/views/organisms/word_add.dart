@@ -91,8 +91,9 @@ class _WordAddFormState extends ConsumerState<WordAddForm> {
       _noteController.text = widget.existingWord?.note ?? '';
       _cardType = widget.existingWord?.type ?? CardType.word;
     } else if (widget.prefillFromDictionaryCard != null) {
-      _senseController.text =
-          widget.prefillFromDictionaryCard!.senses.first.reduceWithCommas();
+      _senseController.text = widget
+          .prefillFromDictionaryCard!.senses.first.senses
+          .reduceWithCommas();
       _kanjiController.text = widget.prefillFromDictionaryCard!.kanji;
       _kanaController.text = widget.prefillFromDictionaryCard!.kana;
       _cardType = CardType.word;

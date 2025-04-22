@@ -28,6 +28,7 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
   double _currentAnimationProgressSecondary = 0.0;
   late Animation<double> _tweenPrimary;
   late Animation<double> _tweenSecondary;
+  bool _mounted = true;
 
   @override
   void initState() {
@@ -50,8 +51,10 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
 
   @override
   void dispose() {
-    super.dispose();
+    _mounted = false;
     _controllerPrimary.dispose();
+    _controllerSecondary.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,9 +65,11 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
           parent: Tween(begin: 0.0, end: 1.0).animate(_controllerPrimary),
           curve: Curves.easeOutCirc)
         ..addListener(() {
-          setState(() {
-            _currentAnimationProgressPrimary = _tweenPrimary.value;
-          });
+          if (_mounted) {
+            setState(() {
+              _currentAnimationProgressPrimary = _tweenPrimary.value;
+            });
+          }
         })
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
@@ -81,9 +86,11 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
           parent: Tween(begin: 0.0, end: 1.0).animate(_controllerSecondary),
           curve: Curves.easeOutCirc)
         ..addListener(() {
-          setState(() {
-            _currentAnimationProgressSecondary = _tweenSecondary.value;
-          });
+          if (_mounted) {
+            setState(() {
+              _currentAnimationProgressSecondary = _tweenSecondary.value;
+            });
+          }
         })
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
@@ -91,7 +98,6 @@ class _ProgressBarState extends ConsumerState<ProgressBar>
           }
         });
 
-      _controllerPrimary.forward();
       _controllerSecondary.forward();
     }
 

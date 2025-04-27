@@ -62,15 +62,16 @@ class SearchViewModel extends StateNotifier<SearchModel> {
     }
 
     final currentState = state;
-
-    if (currentState is SearchModelLoaded) {
-      state = SearchModel.loading(state.searchFocused, currentState);
-    } else if (currentState is SearchModelLoading) {
-      state = SearchModel.loading(
-          state.searchFocused, currentState.previousResults);
-    } else {
-      state = SearchModel.loading(state.searchFocused, null);
-    }
+    await Future.microtask(() {
+      if (currentState is SearchModelLoaded) {
+        state = SearchModel.loading(state.searchFocused, currentState);
+      } else if (currentState is SearchModelLoading) {
+        state = SearchModel.loading(
+            state.searchFocused, currentState.previousResults);
+      } else {
+        state = SearchModel.loading(state.searchFocused, null);
+      }
+    });
 
     final trimmedText = text.trim();
 

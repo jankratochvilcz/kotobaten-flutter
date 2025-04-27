@@ -130,6 +130,10 @@ class ScaffoldDefault extends HookConsumerWidget {
                                     activeIcon: collectionNavigation.iconActive,
                                     label: collectionNavigation.label),
                                 BottomNavigationBarItem(
+                                    icon: searchNavigation.icon,
+                                    activeIcon: searchNavigation.iconActive,
+                                    label: searchNavigation.label),
+                                BottomNavigationBarItem(
                                     icon: settingsNavigation.icon,
                                     activeIcon: settingsNavigation.iconActive,
                                     label: settingsNavigation.label)

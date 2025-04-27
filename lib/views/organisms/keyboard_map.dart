@@ -21,12 +21,12 @@ class KeyboardMap extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const shortcuts = [
       SectionHeader('Navigation'),
-      Shortcut('Ctrl + S', 'Go to search'),
-      Shortcut('Ctrl + C', 'Go to collection'),
-      Shortcut('Ctrl + P', 'Start practice'),
+      Shortcut('Ctrl + Shift + S', 'Go to search'),
+      Shortcut('Ctrl + Shift + C', 'Go to collection'),
+      Shortcut('Ctrl + Shift + P', 'Start practice'),
       SectionHeader('Global Actions'),
-      Shortcut('Ctrl + A', 'Add new word'),
-      Shortcut('Ctrl + H', 'Show this help'),
+      Shortcut('Ctrl + Shift + A', 'Add new word'),
+      Shortcut('Ctrl + Shift + H', 'Show this help'),
     ];
 
     return Column(

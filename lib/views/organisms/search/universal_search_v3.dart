@@ -35,14 +35,18 @@ class UniversalSearchV3 extends HookConsumerWidget {
               hintStyle: TextStyle(
                   color: getDescriptionColorSubtle(context),
                   fontSize: textSizeSmall),
-              counter: viewModel is SearchModelLoading
-                  ? SizedBox.fromSize(
-                      size: const Size(12, 12),
-                      child: const CircularProgressIndicator(strokeWidth: 1),
+              counter: model is SearchModelLoading
+                  ? Padding(
+                      padding: topPadding(PaddingType.xSmall),
+                      child: const SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      ),
                     )
-                  : (viewModel is SearchModelInitial
-                      ? null
-                      : Text(viewModel.getCounterText())),
+                  : Text(viewModel.getCounterText()),
               border: const OutlineInputBorder(),
             ),
             onSubmitted: (value) {

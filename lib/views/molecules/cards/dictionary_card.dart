@@ -99,24 +99,33 @@ class DictionaryCard extends ConsumerWidget {
             flex: 65,
           )
         ]));
-    return MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-            onTap: () {
-              overlayService.showOverlay(
-                  context,
-                  (context) => Button("Add to collection", () {
-                        Navigator.of(context).pop();
-                        showWordAddBottomSheet(context, ref, (card) async {
-                          if (card is card_entity.CardNew) {
-                            return await cardsService.createCard(card);
-                          }
+    return Card(
+      child: Stack(
+        children: [
+          cardContents,
+          Positioned(
+            bottom: 8,
+            right: 8,
+            child: IconButton(
+              icon: Icon(
+                Icons.add_outlined,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              tooltip: 'Add to collection',
+              onPressed: () => {
+                showWordAddBottomSheet(context, ref, (card) async {
+                  if (card is card_entity.CardNew) {
+                    return await cardsService.createCard(card);
+                  }
 
-                          throw UnsupportedError(
-                              'Action only supported for new and initialized cards');
-                        }, prefillFromDictionaryCard: card);
-                      }));
-            },
-            child: Card(child: cardContents)));
+                  throw UnsupportedError(
+                      'Action only supported for new and initialized cards');
+                }, prefillFromDictionaryCard: card)
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

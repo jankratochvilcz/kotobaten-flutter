@@ -19,16 +19,20 @@ class GlobalShortcuts extends HookConsumerWidget {
     final overlayService = ref.read(overlaysServiceProvider);
 
     return CallbackShortcuts(bindings: {
-      const SingleActivator(LogicalKeyboardKey.keyS, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyS,
+          control: true, shift: true): () {
         navigationService.goSearch(context);
       },
-      const SingleActivator(LogicalKeyboardKey.keyP, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyP,
+          control: true, shift: true): () {
         navigationService.goPractice(context);
       },
-      const SingleActivator(LogicalKeyboardKey.keyC, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyC,
+          control: true, shift: true): () {
         navigationService.goCollection(context);
       },
-      const SingleActivator(LogicalKeyboardKey.keyA, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyA,
+          control: true, shift: true): () {
         showWordAddBottomSheet(context, ref, (card) async {
           if (card is card_entity.CardNew) {
             return await cardsService.createCard(card);
@@ -42,7 +46,8 @@ class GlobalShortcuts extends HookConsumerWidget {
               'Action only supported for new and initialized cards');
         });
       },
-      const SingleActivator(LogicalKeyboardKey.keyH, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyH,
+          control: true, shift: true): () {
         overlayService.showOverlay(context, (_) => const KeyboardMap());
       },
     }, child: Focus(autofocus: true, child: child));

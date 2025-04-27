@@ -8,9 +8,11 @@ import 'package:kotobaten/consts/navigation.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
+import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/global_shortcuts.dart';
+import 'package:kotobaten/views/organisms/keyboard_map.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
 enum HelpMenuItems { about, androidApp, iosApp, help }
@@ -58,6 +60,7 @@ class ScaffoldDefault extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final navigationService = ref.read(navigationServiceProvider);
     final overlaysModel = ref.watch(overlaysRepositoryProvider);
+    final overlaysService = ref.read(overlaysServiceProvider);
     final selectedNavigationIndex = useState(0);
 
     final navigationItems = getNavigationItems(context);
@@ -160,6 +163,22 @@ class ScaffoldDefault extends HookConsumerWidget {
                                             image: AssetImage(
                                                 'assets/logos/logo_square_white.png'),
                                           )),
+                                      Padding(
+                                        padding: topPadding(PaddingType.small),
+                                        child: IconButton(
+                                          icon: Icon(
+                                            Icons.keyboard_outlined,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary
+                                                .withAlpha(128),
+                                          ),
+                                          onPressed: () {
+                                            overlaysService.showOverlay(context,
+                                                (_) => const KeyboardMap());
+                                          },
+                                        ),
+                                      ),
                                     ]))),
                             groupAlignment: 0,
                             backgroundColor: navigationBackgroundColor,

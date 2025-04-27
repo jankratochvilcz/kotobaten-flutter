@@ -21,7 +21,9 @@ class KeyboardMap extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const shortcuts = [
       SectionHeader('Navigation'),
-      Shortcut('Ctrl + P', 'Search'),
+      Shortcut('Ctrl + S', 'Go to search'),
+      Shortcut('Ctrl + C', 'Go to collection'),
+      Shortcut('Ctrl + P', 'Start practice'),
       SectionHeader('Global Actions'),
       Shortcut('Ctrl + A', 'Add new word'),
       Shortcut('Ctrl + H', 'Show this help'),
@@ -30,30 +32,36 @@ class KeyboardMap extends HookConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: shortcuts
-          .map(
-            (shortcut) => Row(
-              children: [
-                if (shortcut is SectionHeader)
-                  Padding(
-                      padding: topPadding(PaddingType.standard),
-                      child: Heading(shortcut.description, HeadingStyle.h3)),
-                if (shortcut is! SectionHeader)
-                  SizedBox(
-                    width: 100,
-                    child: Text(
-                      shortcut.key,
-                      style: const TextStyle(fontFamily: 'monospace'),
+      children: [
+        Padding(
+          padding: bottomPadding(PaddingType.small),
+          child: const Heading('Keyboard shortcuts', HeadingStyle.h2),
+        ),
+        ...shortcuts
+            .map(
+              (shortcut) => Row(
+                children: [
+                  if (shortcut is SectionHeader)
+                    Padding(
+                        padding: topPadding(PaddingType.standard),
+                        child: Heading(shortcut.description, HeadingStyle.h3)),
+                  if (shortcut is! SectionHeader)
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        shortcut.key,
+                        style: const TextStyle(fontFamily: 'monospace'),
+                      ),
                     ),
-                  ),
-                if (shortcut is! SectionHeader)
-                  Text(
-                    shortcut.description,
-                  ),
-              ],
-            ),
-          )
-          .toList(),
+                  if (shortcut is! SectionHeader)
+                    Text(
+                      shortcut.description,
+                    ),
+                ],
+              ),
+            )
+            .toList(),
+      ],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
+import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/organisms/keyboard_map.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
@@ -15,10 +16,17 @@ class GlobalShortcuts extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cardsService = ref.read(cardsServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
+    final overlayService = ref.read(overlaysServiceProvider);
 
     return CallbackShortcuts(bindings: {
-      const SingleActivator(LogicalKeyboardKey.keyP, control: true): () {
+      const SingleActivator(LogicalKeyboardKey.keyS, control: true): () {
         navigationService.goSearch(context);
+      },
+      const SingleActivator(LogicalKeyboardKey.keyP, control: true): () {
+        navigationService.goPractice(context);
+      },
+      const SingleActivator(LogicalKeyboardKey.keyC, control: true): () {
+        navigationService.goCollection(context);
       },
       const SingleActivator(LogicalKeyboardKey.keyA, control: true): () {
         showWordAddBottomSheet(context, ref, (card) async {
@@ -35,19 +43,7 @@ class GlobalShortcuts extends HookConsumerWidget {
         });
       },
       const SingleActivator(LogicalKeyboardKey.keyH, control: true): () {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Keyboard Shortcuts'),
-            content: const KeyboardMap(),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
-              ),
-            ],
-          ),
-        );
+        overlayService.showOverlay(context, (_) => const KeyboardMap());
       },
     }, child: Focus(autofocus: true, child: child));
   }

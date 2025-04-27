@@ -4,8 +4,8 @@ import 'package:kotobaten/consts/colors.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/views/organisms/search/search_results.dart';
-import 'package:kotobaten/views/screens/search.model.dart';
-import 'package:kotobaten/views/screens/search.viewmodel.dart';
+import 'package:kotobaten/views/organisms/search/search.model.dart';
+import 'package:kotobaten/views/organisms/search/search.viewmodel.dart';
 
 class UniversalSearchV3 extends HookConsumerWidget {
   const UniversalSearchV3({super.key});

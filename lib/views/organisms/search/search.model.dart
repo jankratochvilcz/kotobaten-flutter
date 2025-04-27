@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kotobaten/models/slices/cards/card.dart';
 import 'package:kotobaten/models/slices/dictionary/dictionary_card.dart';
 
-part 'search.model.freezed.dart';
+part '../../organisms/search/search.model.freezed.dart';
 
 @freezed
 class SearchModel with _$SearchModel {

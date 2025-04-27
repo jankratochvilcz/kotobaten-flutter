@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/services/kotobaten_api.dart';
-import 'package:kotobaten/views/screens/search.model.dart';
+import 'package:kotobaten/views/organisms/search/search.model.dart';
 import 'package:rxdart/rxdart.dart';
 
 final searchViewModelProvider =

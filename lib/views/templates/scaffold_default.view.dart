@@ -8,11 +8,9 @@ import 'package:kotobaten/consts/navigation.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_repository.dart';
-import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/global_shortcuts.dart';
-import 'package:kotobaten/views/organisms/search/universal_search_v3.dart';
 import 'package:kotobaten/views/templates/fab_selector.dart';
 
 enum HelpMenuItems { about, androidApp, iosApp, help }
@@ -43,8 +41,10 @@ int getRouteIndex(String? navigationPath) {
       return 0;
     case CollectionRoute.name:
       return 1;
-    case SettingsRoute.name:
+    case SearchRoute.name:
       return 2;
+    case SettingsRoute.name:
+      return 3;
     default:
       return 0;
   }
@@ -58,7 +58,6 @@ class ScaffoldDefault extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final navigationService = ref.read(navigationServiceProvider);
     final overlaysModel = ref.watch(overlaysRepositoryProvider);
-    final overlaysService = ref.read(overlaysServiceProvider);
     final selectedNavigationIndex = useState(0);
 
     final navigationItems = getNavigationItems(context);
@@ -68,31 +67,27 @@ class ScaffoldDefault extends HookConsumerWidget {
     final settingsNavigation = navigationItems[NavigationItemType.settings]!;
     final searchNavigation = navigationItems[NavigationItemType.search]!;
 
+    navigateToView(index) {
+      switch (index) {
+        case 0:
+          navigationService.goHome(context, false);
+          break;
+        case 1:
+          navigationService.goCollection(context);
+          break;
+        case 2:
+          navigationService.goSearch(context);
+          break;
+        case 3:
+          navigationService.goSettings(context);
+          break;
+      }
+    }
+
     return AutoRouter(
       builder: (context, child) {
         final nestedRouter = AutoRouter.of(context);
         final pageSpecificFab = getFabForRoute(nestedRouter.current, context);
-
-        final fabToShow = overlaysModel.overlaysOpenedCount > 0
-            ? null
-            : (pageSpecificFab ??
-                (!isDesktop(context)
-                    ? FloatingActionButton(
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                        child: searchNavigation.icon,
-                        onPressed: () {
-                          overlaysService.showOverlay(
-                              context,
-                              (context) => SizedBox.fromSize(
-                                  size: Size(
-                                      MediaQuery.of(context).size.width,
-                                      MediaQuery.of(context).size.height /
-                                          3 *
-                                          2),
-                                  child: const UniversalSearchV3()));
-                        })
-                    : null));
 
         selectedNavigationIndex.value =
             getRouteIndex(nestedRouter.current.name);
@@ -106,7 +101,6 @@ class ScaffoldDefault extends HookConsumerWidget {
             floatingActionButtonLocation: pageSpecificFab == null
                 ? FloatingActionButtonLocation.endDocked
                 : FloatingActionButtonLocation.endFloat,
-            floatingActionButton: fabToShow,
             bottomNavigationBar: !isDesktop(context) &&
                     overlaysModel.overlaysOpenedCount < 1
                 ? Container(
@@ -140,18 +134,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                               landscapeLayout:
                                   BottomNavigationBarLandscapeLayout.spread,
                               currentIndex: selectedNavigationIndex.value,
-                              onTap: (index) {
-                                switch (index) {
-                                  case 0:
-                                    navigationService.goHome(context, false);
-                                    break;
-                                  case 1:
-                                    navigationService.goCollection(context);
-                                    break;
-                                  case 2:
-                                    navigationService.goSettings(context);
-                                }
-                              })),
+                              onTap: navigateToView)),
                       Expanded(
                           child: Container(
                         color: navigationBackgroundColor,
@@ -177,26 +160,6 @@ class ScaffoldDefault extends HookConsumerWidget {
                                             image: AssetImage(
                                                 'assets/logos/logo_square_white.png'),
                                           )),
-                                      Padding(
-                                          padding:
-                                              topPadding(PaddingType.standard),
-                                          child: IconButton.filled(
-                                              tooltip: "Ctrl + P",
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onPrimary,
-                                              onPressed: () {
-                                                overlaysService.showOverlay(
-                                                    context,
-                                                    (context) =>
-                                                        SizedBox.fromSize(
-                                                          size: const Size(
-                                                              600, 800),
-                                                          child:
-                                                              const UniversalSearchV3(),
-                                                        ));
-                                              },
-                                              icon: const Icon(Icons.search)))
                                     ]))),
                             groupAlignment: 0,
                             backgroundColor: navigationBackgroundColor,
@@ -218,6 +181,14 @@ class ScaffoldDefault extends HookConsumerWidget {
                                 ),
                               ),
                               NavigationRailDestination(
+                                icon: searchNavigation.icon,
+                                selectedIcon: searchNavigation.iconActive,
+                                label: Text(
+                                  searchNavigation.label,
+                                  style: navigationRailTextStyle,
+                                ),
+                              ),
+                              NavigationRailDestination(
                                 icon: settingsNavigation.icon,
                                 selectedIcon: settingsNavigation.iconActive,
                                 label: Text(
@@ -228,18 +199,7 @@ class ScaffoldDefault extends HookConsumerWidget {
                             ],
                             selectedIndex: selectedNavigationIndex.value,
                             labelType: NavigationRailLabelType.selected,
-                            onDestinationSelected: (index) {
-                              switch (index) {
-                                case 0:
-                                  navigationService.goHome(context, false);
-                                  break;
-                                case 1:
-                                  navigationService.goCollection(context);
-                                  break;
-                                case 2:
-                                  navigationService.goSettings(context);
-                              }
-                            }),
+                            onDestinationSelected: navigateToView),
                         VerticalDivider(
                           thickness: 1,
                           width: 0,

@@ -4,7 +4,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/molecules/cards/chooser_card.dart';
 import 'package:kotobaten/views/molecules/cards/dictionary_card.dart';
-import 'package:kotobaten/views/screens/search.viewmodel.dart';
+import 'package:kotobaten/views/organisms/search/search.viewmodel.dart';
 
 class SearchResults extends HookConsumerWidget {
   const SearchResults({super.key});

@@ -368,4 +368,33 @@ class PracticeService {
         currentStepStart: currentStepStart,
         nextStepTime: nextStepStart));
   }
+
+  Future markCurrentGeneratedImpressionAsUnwanted() async {
+    final currentState = repository.current;
+
+    if (currentState is! PracticeModelInProgress) {
+      return;
+    }
+
+    var currentImpression = currentState.currentImpression;
+
+    if (currentImpression is GeneratedSentenceWithParticlesSelectImpression) {
+      await apiService
+          .regenerateMultipleChoiceCard(currentImpression.stackCardId);
+    }
+
+    if (currentImpression is GeneratedSentenceGuessImpression) {
+      await apiService.regenerateGeneratedExampleSentenceCard(
+          currentImpression.stackCardId);
+    }
+
+    var remainingImpressionsWithoutCurrent = currentState.remainingImpressions
+        .where((x) => x != currentImpression)
+        .toList();
+
+    repository.update(currentState.copyWith(
+        remainingImpressions: remainingImpressionsWithoutCurrent));
+
+    return await nextCard();
+  }
 }

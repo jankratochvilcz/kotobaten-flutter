@@ -7,13 +7,11 @@ import 'package:kotobaten/extensions/list.dart';
 import 'package:kotobaten/models/slices/cards/card.dart' as card_entity;
 import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/models/slices/dictionary/dictionary_card.dart';
-import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/views/atoms/card/card_furigana_text.dart';
 import 'package:kotobaten/views/atoms/card/card_sense_part_of_speech.dart';
 import 'package:kotobaten/views/atoms/card/card_sense_text.dart';
 import 'package:kotobaten/views/atoms/card/card_japanese_text.dart';
 import 'package:kotobaten/views/atoms/description.dart';
-import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/organisms/word_add.dart';
 
 class DictionaryCard extends ConsumerWidget {
@@ -23,7 +21,6 @@ class DictionaryCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final overlayService = ref.read(overlaysServiceProvider);
     final cardsService = ref.read(cardsServiceProvider);
 
     final canDisplayFurigana = card.kanji.isNotEmpty;

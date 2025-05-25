@@ -10,6 +10,7 @@ import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/consts/routes.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
+import 'package:kotobaten/models/slices/practice/impression_type.dart';
 import 'package:kotobaten/models/slices/practice/impression_view.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
@@ -217,7 +218,21 @@ class PracticeView extends HookConsumerWidget {
                                                           .disableSounds ??
                                                       false)
                                                   ? "Unmute"
-                                                  : "Mute"))
+                                                  : "Mute")),
+                                      if (model.currentImpression.type ==
+                                              ImpressionType
+                                                  .generatedSentenceGuess ||
+                                          model.currentImpression.type ==
+                                              ImpressionType
+                                                  .generatedSentenceWithParticlesSelect)
+                                        PopupMenuItem(
+                                            onTap: () {
+                                              practiceService
+                                                  .markCurrentGeneratedImpressionAsUnwanted();
+                                            },
+                                            child: const HelpMenuItem(
+                                                Icons.auto_fix_high_outlined,
+                                                "Regenerate AI content")),
                                     ]);
                               },
                               icon: const Icon(Icons.more_horiz_outlined))

@@ -7,8 +7,10 @@ class GeneratedSentenceWithParticlesSelectImpression implements Impression {
   final String explanation;
   final String sense;
   final List<Sentence> options;
+  final int id;
+  final int stackCardId;
 
-  GeneratedSentenceWithParticlesSelectImpression(
+  GeneratedSentenceWithParticlesSelectImpression(this.id, this.stackCardId,
       this.correctOption, this.explanation, this.sense, this.options);
 
   @override

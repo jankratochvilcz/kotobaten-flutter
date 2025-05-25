@@ -125,10 +125,16 @@ class KotobatenApiService {
         case "NewCard":
           return NewCardImpression(_getCardInitialized(impression['card']));
         case "GeneratedSentenceGuess":
-          return GeneratedSentenceGuessImpression(impression['kanaOnly'],
-              impression['withKanji'], impression['sense']);
+          return GeneratedSentenceGuessImpression(
+              impression['id'],
+              impression['stackCardId'],
+              impression['kanaOnly'],
+              impression['withKanji'],
+              impression['sense']);
         case "GeneratedSentenceWithParticlesSelect":
           return GeneratedSentenceWithParticlesSelectImpression(
+              impression['id'],
+              impression['stackCardId'],
               impression['correctOption'],
               impression['explanation'],
               impression['sense'],
@@ -262,6 +268,32 @@ class KotobatenApiService {
     final result = CardsResponse.fromJson(responseJson);
 
     return result.cards;
+  }
+
+  Future<bool> regenerateMultipleChoiceCard(int stackCardId) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'multipleChoiceCard', {
+      'cardId': stackCardId.toString(),
+      'scheduleRegeneration': true.toString()
+    });
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    await _kotobatenClient.delete(url, headers: headers);
+    return true;
+  }
+
+  Future<bool> regenerateGeneratedExampleSentenceCard(int stackCardId) async {
+    final url = _getUrl(_appConfiguration.apiRoot, 'generatedExampleSentenc', {
+      'cardId': stackCardId.toString(),
+      'scheduleRegeneration': true.toString()
+    });
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    await _kotobatenClient.delete(url, headers: headers);
+    return true;
   }
 
   Future<dynamic> _getAuthenticated(String relativePath,

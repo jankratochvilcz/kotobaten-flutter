@@ -5,8 +5,11 @@ class GeneratedSentenceGuessImpression implements Impression {
   final String kanaOnly;
   final String withKanji;
   final String sense;
+  final int id;
+  final int stackCardId;
 
-  GeneratedSentenceGuessImpression(this.kanaOnly, this.withKanji, this.sense);
+  GeneratedSentenceGuessImpression(
+      this.id, this.stackCardId, this.kanaOnly, this.withKanji, this.sense);
 
   @override
   ImpressionType get type => ImpressionType.generatedSentenceGuess;

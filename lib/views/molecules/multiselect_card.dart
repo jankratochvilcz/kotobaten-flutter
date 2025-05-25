@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/colors.dart';
@@ -14,6 +15,18 @@ import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/organisms/practice/impression_new_actions.dart';
 
 const double cardSize = 300;
+
+const keyMap = {
+  0: LogicalKeyboardKey.digit1,
+  1: LogicalKeyboardKey.digit2,
+  2: LogicalKeyboardKey.digit3,
+  3: LogicalKeyboardKey.digit4,
+  4: LogicalKeyboardKey.digit5,
+  5: LogicalKeyboardKey.digit6,
+  6: LogicalKeyboardKey.digit7,
+  7: LogicalKeyboardKey.digit8,
+  8: LogicalKeyboardKey.digit9,
+};
 
 class MultiselectCard extends HookConsumerWidget {
   final GeneratedSentenceWithParticlesSelectImpression impression;
@@ -35,84 +48,112 @@ class MultiselectCard extends HookConsumerWidget {
       return null;
     }, [practiceModel.remainingImpressions]);
 
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-          getPadding(PaddingType.small),
-          getPadding(PaddingType.xxLarge),
-          getPadding(PaddingType.small),
-          getPadding(PaddingType.xxLarge)),
-      child: Center(
-          child: Column(children: [
-        Card(
-          elevation: 5,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: cardSize),
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Padding(
-                padding: allPadding(PaddingType.standard),
-                child: Column(
-                  children: [
-                    Text(
-                      impression.sense,
-                      style: const TextStyle(fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: impression.options
-                            .map((sentence) => SentenceRowWidget(
-                                    impression.options.indexOf(sentence),
-                                    sentence,
-                                    impression, (selectedIndex) {
-                                  practiceService.reveal(
-                                      isCorrect: impression.correctOption ==
-                                          selectedIndex);
-                                  selectedOption.value = selectedIndex;
-                                },
-                                    selectedOption.value ==
+    onSelected(selectedIndex) {
+      practiceService.reveal(
+          isCorrect: impression.correctOption == selectedIndex);
+      selectedOption.value = selectedIndex;
+    }
+
+    var optionShortcuts =
+        Map.fromEntries(impression.options.asMap().entries.map(
+              (entry) => MapEntry(
+                LogicalKeySet(keyMap[entry.key]!),
+                () => onSelected(entry.key),
+              ),
+            ));
+
+    var pauseShortcuts = {
+      LogicalKeySet(LogicalKeyboardKey.space): () =>
+          practiceService.togglePause(),
+    };
+
+    var nextShortcuts = {
+      LogicalKeySet(LogicalKeyboardKey.enter): () => practiceService.nextCard(),
+    };
+
+    return CallbackShortcuts(
+        bindings: practiceModel.revealed
+            ? {...nextShortcuts, ...pauseShortcuts}
+            : {...optionShortcuts, ...pauseShortcuts},
+        child: Focus(
+            autofocus: true,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                  getPadding(PaddingType.small),
+                  getPadding(PaddingType.xxLarge),
+                  getPadding(PaddingType.small),
+                  getPadding(PaddingType.xxLarge)),
+              child: Center(
+                  child: Column(children: [
+                Card(
+                  elevation: 5,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: cardSize),
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Padding(
+                        padding: allPadding(PaddingType.standard),
+                        child: Column(
+                          children: [
+                            Text(
+                              impression.sense,
+                              style: const TextStyle(fontSize: 18),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: impression.options
+                                    .map((sentence) => SentenceRowWidget(
                                         impression.options.indexOf(sentence),
-                                    practiceModel.revealed
-                                        ? (impression.options
-                                                .indexOf(sentence) ==
-                                            impression.correctOption)
-                                        : null))
-                            .toList(),
+                                        sentence,
+                                        impression,
+                                        onSelected,
+                                        selectedOption.value ==
+                                            impression.options
+                                                .indexOf(sentence),
+                                        practiceModel.revealed
+                                            ? (impression.options
+                                                    .indexOf(sentence) ==
+                                                impression.correctOption)
+                                            : null))
+                                    .toList(),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        ),
-        if (practiceModel.revealed)
-          Padding(
-            padding: EdgeInsets.only(top: getPadding(PaddingType.xxLarge)),
-            child: Column(children: [
-              Padding(
-                  padding: bottomPadding(PaddingType.xLarge),
-                  child:
-                      ImpressionNextActions(() => practiceService.nextCard())),
-              DescriptionRichText(
-                [TextSpan(text: impression.explanation)],
-                textAlign: TextAlign.center,
-                maxWidth: 300,
-              )
-            ]),
-          ),
-        if (!practiceModel.revealed)
-          Padding(padding: topPadding(PaddingType.xLarge)),
-        if (!practiceModel.revealed)
-          const DescriptionRichText(
-            [TextSpan(text: "Select the correct option.")],
-            textAlign: TextAlign.center,
-          )
-      ])),
-    );
+                if (practiceModel.revealed)
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: getPadding(PaddingType.xxLarge)),
+                    child: Column(children: [
+                      Padding(
+                          padding: bottomPadding(PaddingType.xLarge),
+                          child: ImpressionNextActions(
+                              () => practiceService.nextCard())),
+                      DescriptionRichText(
+                        [TextSpan(text: impression.explanation)],
+                        textAlign: TextAlign.center,
+                        maxWidth: 300,
+                      )
+                    ]),
+                  ),
+                if (!practiceModel.revealed)
+                  Padding(padding: topPadding(PaddingType.xLarge)),
+                if (!practiceModel.revealed)
+                  const DescriptionRichText(
+                    [TextSpan(text: "Select the correct option.")],
+                    textAlign: TextAlign.center,
+                  )
+              ])),
+            )));
   }
 }
 

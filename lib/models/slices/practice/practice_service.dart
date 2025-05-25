@@ -125,6 +125,18 @@ class PracticeService {
         currentStepStart: DateTime.now()));
   }
 
+  void togglePause() {
+    final currentState = repository.current;
+
+    if (currentState is! PracticeModelInProgress) {
+      throw ErrorDescription('Cannot reveal when not in in-progress state');
+    }
+
+    return currentState.pausedPercentage != null
+        ? resumeNextStepTimer(true)
+        : pauseNextStepTimer();
+  }
+
   Future nextCard({bool? currentCardIsCorrect}) async {
     final currentState = repository.current;
 

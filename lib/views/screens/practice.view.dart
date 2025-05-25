@@ -192,7 +192,7 @@ class PracticeView extends HookConsumerWidget {
                               child: IconButton(
                                   color: getDescriptionColorSubtle(context),
                                   onPressed: () =>
-                                      togglePause(model, practiceService),
+                                      practiceService.togglePause(),
                                   icon: Icon(model.pausedPercentage == null
                                       ? Icons.pause_circle_outline_outlined
                                       : Icons.play_circle_outline_rounded))),
@@ -235,7 +235,7 @@ class PracticeView extends HookConsumerWidget {
                       (correct) => practiceService.nextCard(
                           currentCardIsCorrect: correct),
                       practiceService.reveal,
-                      () => togglePause(model, practiceService)),
+                      () => practiceService.togglePause()),
                 )
               ],
             ))),
@@ -247,13 +247,6 @@ class PracticeView extends HookConsumerWidget {
     }
 
     return const loading.Loading();
-  }
-
-  void togglePause(
-      PracticeModelInProgress model, PracticeService practiceService) {
-    return model.pausedPercentage != null
-        ? practiceService.resumeNextStepTimer(true)
-        : practiceService.pauseNextStepTimer();
   }
 }
 

@@ -9,6 +9,7 @@ import 'package:kotobaten/models/slices/cards/cards_service.dart';
 import 'package:kotobaten/models/slices/dictionary/dictionary_card.dart';
 import 'package:kotobaten/models/slices/navigation/overlays_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
+import 'package:kotobaten/views/atoms/alert_dialog_border.dart';
 import 'package:kotobaten/views/molecules/button.dart';
 import 'package:kotobaten/views/molecules/button_async.dart';
 import 'package:kotobaten/views/organisms/word_add/type_grammar.dart';
@@ -203,7 +204,51 @@ class _WordAddFormState extends ConsumerState<WordAddForm> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            if (widget.existingWord != null)
+                            if (widget.existingWord != null) ...[
+                              Tooltip(
+                                message: 'Reset progress',
+                                child: ButtonAsync(
+                                  "",
+                                  () => showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            shape:
+                                                getAlertDialogBorder(context),
+                                            title: const Text(
+                                                'Reset card progress'),
+                                            content: Text(
+                                                'Are you sure you want to reset your progress for "${widget.existingWord!.sense}"?'),
+                                            actions: [
+                                              ButtonAsync(
+                                                'Yes',
+                                                () async {
+                                                  await cardsService
+                                                      .resetCardProgress(widget
+                                                          .existingWord!.id!);
+                                                  Navigator.of(context).pop();
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                        content: Text(
+                                                            'Progress for "${widget.existingWord!.sense}" has been reset.')),
+                                                  );
+                                                },
+                                                icon: Icons.check,
+                                              ),
+                                              Button(
+                                                'No',
+                                                () =>
+                                                    Navigator.of(context).pop(),
+                                                icon: Icons.cancel_outlined,
+                                                type: ButtonType.secondary,
+                                              ),
+                                            ],
+                                          )),
+                                  icon: Icons.restart_alt_outlined,
+                                  color: getDescriptionColor(context),
+                                  size: ButtonSize.standard,
+                                ),
+                              ),
                               ButtonAsync(
                                 "Delete",
                                 () => showDialog(
@@ -239,6 +284,7 @@ class _WordAddFormState extends ConsumerState<WordAddForm> {
                                 color: getDescriptionColor(context),
                                 size: ButtonSize.standard,
                               ),
+                            ],
                             ButtonAsync(
                               widget.existingWord != null ? 'Edit' : 'Add',
                               onEditComplete,

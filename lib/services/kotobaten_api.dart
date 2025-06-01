@@ -296,6 +296,17 @@ class KotobatenApiService {
     return true;
   }
 
+  Future<bool> resetCardProgress(int cardId) async {
+    final url = _getUrl(
+        _appConfiguration.apiRoot, 'cardsreset', {'cardId': cardId.toString()});
+
+    var headers = await _getTokenHeadersOrThrow();
+    headers.addEntries([contentTypeJsonHeader]);
+
+    final response = await _kotobatenClient.post(url, headers: headers);
+    return response.statusCode == 200;
+  }
+
   Future<dynamic> _getAuthenticated(String relativePath,
       {Map<String, dynamic>? params}) async {
     final url = _getUrl(_appConfiguration.apiRoot, relativePath, params);

@@ -154,4 +154,12 @@ class CardsService {
 
     return editedCard;
   }
+
+  Future<bool> resetCardProgress(int cardId) async {
+    final result = await apiService.resetCardProgress(cardId);
+    if (result) {
+      await userService.refreshUser();
+    }
+    return result;
+  }
 }

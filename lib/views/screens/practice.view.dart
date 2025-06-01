@@ -179,9 +179,7 @@ class PracticeView extends HookConsumerWidget {
                 child: Column(
               children: [
                 Padding(
-                    padding: topPadding(isDesktop(context)
-                        ? PaddingType.xxLarge
-                        : PaddingType.standard),
+                    padding: topPadding(PaddingType.xxLarge),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

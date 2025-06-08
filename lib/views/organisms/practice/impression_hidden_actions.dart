@@ -8,9 +8,10 @@ class ImpressionHiddenActions extends StatelessWidget {
   final String hintText;
   final VoidCallback revealAnswer;
   final VoidCallback toggleTimer;
+  final FocusNode focusNode;
 
   const ImpressionHiddenActions(
-      this.hintText, this.revealAnswer, this.toggleTimer,
+      this.hintText, this.revealAnswer, this.toggleTimer, this.focusNode,
       {Key? key})
       : super(key: key);
 
@@ -23,6 +24,8 @@ class ImpressionHiddenActions extends StatelessWidget {
         },
         child: Focus(
             autofocus: true,
+            focusNode: focusNode,
+            debugLabel: 'ImpressionHiddenActions',
             child: Column(children: [
               Padding(
                   padding: bottomPadding(PaddingType.xLarge),

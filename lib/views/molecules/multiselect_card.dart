@@ -77,6 +77,7 @@ class MultiselectCard extends HookConsumerWidget {
             : {...optionShortcuts, ...pauseShortcuts},
         child: Focus(
             autofocus: true,
+            debugLabel: 'MultiselectCard',
             child: Padding(
               padding: EdgeInsets.fromLTRB(
                   getPadding(PaddingType.small),
@@ -137,7 +138,7 @@ class MultiselectCard extends HookConsumerWidget {
                       Padding(
                           padding: bottomPadding(PaddingType.xLarge),
                           child: ImpressionNextActions(
-                              () => practiceService.nextCard())),
+                              () => practiceService.nextCard(), FocusNode())),
                       DescriptionRichText(
                         [TextSpan(text: impression.explanation)],
                         textAlign: TextAlign.center,

@@ -23,6 +23,12 @@ Future<void> main() async {
     appRunner: () => runApp(ProviderScope(child: MyApp())),
   );
 
+  // Uncomment the following lines to enable debug logging for focus management
+  // FocusManager.instance.addListener(() {
+  //   debugPrint(
+  //       'Primary focus: ${FocusManager.instance.primaryFocus?.debugLabel}');
+  // });
+
   try {
     if (io.Platform.isWindows) {
       doWhenWindowReady(() {

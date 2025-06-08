@@ -4,15 +4,19 @@ import 'package:kotobaten/views/molecules/button.dart';
 
 class ImpressionNextActions extends StatelessWidget {
   final void Function() onClick;
+  final FocusNode focusNode;
 
-  const ImpressionNextActions(this.onClick, {Key? key}) : super(key: key);
+  const ImpressionNextActions(this.onClick, this.focusNode, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CallbackShortcuts(
         bindings: {LogicalKeySet(LogicalKeyboardKey.enter): onClick},
         child: Focus(
-            autofocus: true,
+            autofocus: false,
+            focusNode: focusNode,
+            debugLabel: 'ImpressionNextActions',
             child: Column(children: [
               Center(
                   child: Button(

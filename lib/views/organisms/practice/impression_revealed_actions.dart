@@ -5,8 +5,11 @@ import 'package:kotobaten/views/molecules/button.dart';
 class ImpressionRevealedActions extends StatelessWidget {
   final void Function(bool) onAnswered;
   final VoidCallback toggleTimer;
+  final FocusNode focusNode;
 
-  const ImpressionRevealedActions(this.onAnswered, this.toggleTimer, {Key? key})
+  const ImpressionRevealedActions(
+      this.onAnswered, this.toggleTimer, this.focusNode,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -18,7 +21,9 @@ class ImpressionRevealedActions extends StatelessWidget {
           LogicalKeySet(LogicalKeyboardKey.space): toggleTimer
         },
         child: Focus(
-            autofocus: true,
+            autofocus: false,
+            focusNode: focusNode,
+            debugLabel: 'ImpressionRevealedActions',
             child: Column(children: [
               ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 400),

@@ -18,38 +18,41 @@ class GlobalShortcuts extends HookConsumerWidget {
     final navigationService = ref.read(navigationServiceProvider);
     final overlayService = ref.read(overlaysServiceProvider);
 
-    return CallbackShortcuts(bindings: {
-      const SingleActivator(LogicalKeyboardKey.keyS,
-          control: true, shift: true): () {
-        navigationService.goSearch(context);
-      },
-      const SingleActivator(LogicalKeyboardKey.keyP,
-          control: true, shift: true): () {
-        navigationService.goPractice(context);
-      },
-      const SingleActivator(LogicalKeyboardKey.keyC,
-          control: true, shift: true): () {
-        navigationService.goCollection(context);
-      },
-      const SingleActivator(LogicalKeyboardKey.keyA,
-          control: true, shift: true): () {
-        showWordAddBottomSheet(context, ref, (card) async {
-          if (card is card_entity.CardNew) {
-            return await cardsService.createCard(card);
-          }
+    return CallbackShortcuts(
+        bindings: {
+          const SingleActivator(LogicalKeyboardKey.keyS,
+              control: true, shift: true): () {
+            navigationService.goSearch(context);
+          },
+          const SingleActivator(LogicalKeyboardKey.keyP,
+              control: true, shift: true): () {
+            navigationService.goPractice(context);
+          },
+          const SingleActivator(LogicalKeyboardKey.keyC,
+              control: true, shift: true): () {
+            navigationService.goCollection(context);
+          },
+          const SingleActivator(LogicalKeyboardKey.keyA,
+              control: true, shift: true): () {
+            showWordAddBottomSheet(context, ref, (card) async {
+              if (card is card_entity.CardNew) {
+                return await cardsService.createCard(card);
+              }
 
-          if (card is card_entity.CardInitialized) {
-            return await cardsService.editCard(card);
-          }
+              if (card is card_entity.CardInitialized) {
+                return await cardsService.editCard(card);
+              }
 
-          throw UnsupportedError(
-              'Action only supported for new and initialized cards');
-        });
-      },
-      const SingleActivator(LogicalKeyboardKey.keyH,
-          control: true, shift: true): () {
-        overlayService.showOverlay(context, (_) => const KeyboardMap());
-      },
-    }, child: Focus(autofocus: true, child: child));
+              throw UnsupportedError(
+                  'Action only supported for new and initialized cards');
+            });
+          },
+          const SingleActivator(LogicalKeyboardKey.keyH,
+              control: true, shift: true): () {
+            overlayService.showOverlay(context, (_) => const KeyboardMap());
+          },
+        },
+        child: Focus(
+            autofocus: true, debugLabel: 'GlobalShortcuts', child: child));
   }
 }

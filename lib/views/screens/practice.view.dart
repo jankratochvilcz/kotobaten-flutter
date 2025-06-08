@@ -20,7 +20,6 @@ import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
 import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
-import 'package:kotobaten/views/organisms/loading.dart' as loading;
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
@@ -54,7 +53,7 @@ class PracticeView extends HookConsumerWidget {
     final moreMenuKey = useState(GlobalKey());
 
     if (userModelInitialized == null) {
-      return const loading.Loading();
+      return const Loading();
     }
 
     final progressTimer = Timer(const Duration(milliseconds: 25), () {

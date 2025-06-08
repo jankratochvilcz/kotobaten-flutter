@@ -19,6 +19,7 @@ import 'package:kotobaten/views/atoms/empty.dart';
 import 'package:kotobaten/views/atoms/heading.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/word_grid.dart';
+import 'package:kotobaten/views/organisms/collection/fab_collection.dart';
 
 @RoutePage(name: 'CollectionRoute')
 class CollectionView extends HookConsumerWidget {
@@ -50,90 +51,93 @@ class CollectionView extends HookConsumerWidget {
       final groups = groupBy<CardInitialized, DateTime>(cardsModel.cards,
           (x) => DateTime(x.created.year, x.created.month, x.created.day));
 
-      return ListView.builder(
-        itemCount: groups.length + 1,
-        itemBuilder: (context, index) {
-          if (index == groups.length) {
-            if (!cardsModel.loadingNextPage && cardsModel.hasMoreCards) {
-              Future.microtask(() => cardsService.loadMoreCards());
-            }
-
-            if (cardsModel.loadingNextPage) {
-              return Center(
-                child: Padding(
-                    padding: allPadding(PaddingType.standard),
-                    child: const CircularProgressIndicator()),
-              );
-            }
-            return const Empty();
-          }
-
-          final isFirst = index == 0;
-          final group = groups.entries.toList()[index];
-          final date = group.key;
-          final cards = group.value;
-
-          var groupHeader = Align(
-              alignment: Alignment.center,
-              child: Heading(
-                  date.getRelativeToNowString(DateTime.now()).capitalize(),
-                  HeadingStyle.h2));
-          var cardTypeDropdown = DropdownButton<String>(
-            items: cardTypes.map((value) {
-              return DropdownMenuItem<String>(
-                value: value['value'],
-                child: Text(value['title'] as String),
-              );
-            }).toList(),
-            value: currentCardType.value,
-            onChanged: (String? newValue) {
-              switch (newValue) {
-                case "0":
-                  Future.microtask(
-                      () => cardsService.initialize(type: CardType.word));
-                  break;
-                case "1":
-                  Future.microtask(
-                      () => cardsService.initialize(type: CardType.grammar));
-                  break;
-                default:
-                  Future.microtask(() => cardsService.initialize());
+      return Scaffold(
+        floatingActionButton: const FabCollection(),
+        body: ListView.builder(
+          itemCount: groups.length + 1,
+          itemBuilder: (context, index) {
+            if (index == groups.length) {
+              if (!cardsModel.loadingNextPage && cardsModel.hasMoreCards) {
+                Future.microtask(() => cardsService.loadMoreCards());
               }
 
-              currentCardType.value = newValue;
-            },
-          );
+              if (cardsModel.loadingNextPage) {
+                return Center(
+                  child: Padding(
+                      padding: allPadding(PaddingType.standard),
+                      child: const CircularProgressIndicator()),
+                );
+              }
+              return const Empty();
+            }
 
-          return Column(children: [
-            Center(
-              child: Padding(
-                padding: allPadding(PaddingType.xLarge),
-                child: isDesktop(context)
-                    ? Stack(
-                        children: [
-                          groupHeader,
-                          if (isFirst)
-                            Align(
-                                alignment: Alignment.centerRight,
-                                child: cardTypeDropdown),
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          groupHeader,
-                          if (isFirst)
-                            Align(
-                                alignment: Alignment.center,
-                                child: cardTypeDropdown),
-                        ],
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                      ),
+            final isFirst = index == 0;
+            final group = groups.entries.toList()[index];
+            final date = group.key;
+            final cards = group.value;
+
+            var groupHeader = Align(
+                alignment: Alignment.center,
+                child: Heading(
+                    date.getRelativeToNowString(DateTime.now()).capitalize(),
+                    HeadingStyle.h2));
+            var cardTypeDropdown = DropdownButton<String>(
+              items: cardTypes.map((value) {
+                return DropdownMenuItem<String>(
+                  value: value['value'],
+                  child: Text(value['title'] as String),
+                );
+              }).toList(),
+              value: currentCardType.value,
+              onChanged: (String? newValue) {
+                switch (newValue) {
+                  case "0":
+                    Future.microtask(
+                        () => cardsService.initialize(type: CardType.word));
+                    break;
+                  case "1":
+                    Future.microtask(
+                        () => cardsService.initialize(type: CardType.grammar));
+                    break;
+                  default:
+                    Future.microtask(() => cardsService.initialize());
+                }
+
+                currentCardType.value = newValue;
+              },
+            );
+
+            return Column(children: [
+              Center(
+                child: Padding(
+                  padding: allPadding(PaddingType.xLarge),
+                  child: isDesktop(context)
+                      ? Stack(
+                          children: [
+                            groupHeader,
+                            if (isFirst)
+                              Align(
+                                  alignment: Alignment.centerRight,
+                                  child: cardTypeDropdown),
+                          ],
+                        )
+                      : Column(
+                          children: [
+                            groupHeader,
+                            if (isFirst)
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: cardTypeDropdown),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        ),
+                ),
               ),
-            ),
-            WordGrid(cards),
-          ]);
-        },
+              WordGrid(cards),
+            ]);
+          },
+        ),
       );
     }
 

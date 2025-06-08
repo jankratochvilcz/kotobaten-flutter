@@ -19,7 +19,6 @@ import 'package:kotobaten/models/slices/user/user_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/animations/flip.dart';
 import 'package:kotobaten/views/atoms/animations/slide_out.dart';
-import 'package:kotobaten/views/molecules/windowing_app_bar.dart';
 import 'package:kotobaten/views/organisms/loading.dart';
 import 'package:kotobaten/views/organisms/practice/impression_actions_for_view_type.dart';
 import 'package:kotobaten/views/organisms/practice/impression_background_cards.dart';
@@ -97,10 +96,15 @@ class PracticeView extends HookConsumerWidget {
       });
     }
 
+    finishSession() {
+      practiceService.reset();
+      progressTimer.cancel();
+      practiceService.endSession();
+    }
+
     if (model is PracticeModelFinished && model.navigatedAway != true) {
       Future.microtask(() async {
-        progressTimer.cancel();
-        practiceService.endSession();
+        finishSession();
         await navigationService.goPostPractice(context);
       });
     }
@@ -167,133 +171,149 @@ class PracticeView extends HookConsumerWidget {
                   children: current != null ? [current, ...previous] : previous,
                 ),
       );
-
       cards.add(currentImpressionInSwitcher);
 
       return WillPopScope(
-        child: Scaffold(
-            appBar: const WindowingAppBar(),
-            backgroundColor: Theme.of(context).colorScheme.background,
-            body: SafeArea(
-                child: FocusScope(
-                    debugLabel: "PracticeView",
-                    descendantsAreFocusable: true,
-                    onFocusChange: (focused) {
-                      if (focused) {
-                        // This exists because when the multiselect card
-                        // leaves view, the focus is not set to the impression
-                        // actions for some reason, so I enforce focus manually.
-                        impressionActionsFocusNode.value.requestFocus();
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Padding(
-                            padding: topPadding(PaddingType.xxLarge),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ProgressBar(practiceService.getProgress(),
-                                      practiceService.getElapsedPercentage()),
-                                  Padding(
-                                      padding: EdgeInsets.fromLTRB(
-                                          getPadding(PaddingType.standard),
-                                          0,
-                                          0,
-                                          0),
-                                      child: IconButton(
-                                          color: getDescriptionColorSubtle(
-                                              context),
-                                          onPressed: () => practiceService
-                                              .togglePause(),
-                                          icon: Icon(model
-                                                      .pausedPercentage ==
-                                                  null
-                                              ? Icons
-                                                  .pause_circle_outline_outlined
-                                              : Icons
-                                                  .play_circle_outline_rounded))),
-                                  IconButton(
-                                      key: moreMenuKey.value,
-                                      color: getDescriptionColorSubtle(context),
-                                      onPressed: () {
-                                        showMenu(
-                                            context: context,
-                                            position: getRelativeRect(
-                                                moreMenuKey.value, context),
-                                            items: [
-                                              PopupMenuItem(
-                                                  onTap:
-                                                      userService.toggleAudio,
-                                                  child: HelpMenuItem(
-                                                      (userModelInitialized
-                                                                  .user
-                                                                  .user
-                                                                  .disableSounds ??
-                                                              false)
-                                                          ? Icons
-                                                              .volume_up_outlined
-                                                          : Icons
-                                                              .volume_off_outlined,
-                                                      (userModelInitialized
-                                                                  .user
-                                                                  .user
-                                                                  .disableSounds ??
-                                                              false)
-                                                          ? "Unmute"
-                                                          : "Mute")),
-                                              if (model.currentImpression
-                                                          .type ==
-                                                      ImpressionType
-                                                          .generatedSentenceGuess ||
-                                                  model.currentImpression
-                                                          .type ==
-                                                      ImpressionType
-                                                          .generatedSentenceWithParticlesSelect)
+          onWillPop: () {
+            practiceService.reset();
+            return Future.value(true);
+          },
+          child: Scaffold(
+              backgroundColor: Theme.of(context).colorScheme.background,
+              body: SafeArea(
+                child: Stack(
+                  children: [
+                    FocusScope(
+                      debugLabel: "PracticeView",
+                      descendantsAreFocusable: true,
+                      onFocusChange: (focused) {
+                        if (focused) {
+                          // This exists because when the multiselect card
+                          // leaves view, the focus is not set to the impression
+                          // actions for some reason, so I enforce focus manually.
+                          impressionActionsFocusNode.value.requestFocus();
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Padding(
+                              padding: topPadding(PaddingType.xxLarge),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ProgressBar(practiceService.getProgress(),
+                                        practiceService.getElapsedPercentage()),
+                                    Padding(
+                                        padding: EdgeInsets.fromLTRB(
+                                            getPadding(PaddingType.standard),
+                                            0,
+                                            0,
+                                            0),
+                                        child: IconButton(
+                                            color: getDescriptionColorSubtle(
+                                                context),
+                                            onPressed: () =>
+                                                practiceService.togglePause(),
+                                            icon: Icon(model.pausedPercentage ==
+                                                    null
+                                                ? Icons
+                                                    .pause_circle_outline_outlined
+                                                : Icons
+                                                    .play_circle_outline_rounded))),
+                                    IconButton(
+                                        key: moreMenuKey.value,
+                                        color:
+                                            getDescriptionColorSubtle(context),
+                                        onPressed: () {
+                                          showMenu(
+                                              context: context,
+                                              position: getRelativeRect(
+                                                  moreMenuKey.value, context),
+                                              items: [
                                                 PopupMenuItem(
-                                                    onTap: () {
-                                                      practiceService
-                                                          .markCurrentGeneratedImpressionAsUnwanted();
-                                                    },
-                                                    child: const HelpMenuItem(
-                                                        Icons
-                                                            .auto_fix_high_outlined,
-                                                        "Regenerate AI content")),
-                                            ]);
-                                      },
-                                      icon:
-                                          const Icon(Icons.more_horiz_outlined))
-                                ])),
-                        Stack(
-                          children: cards,
-                        ),
-                        GestureDetector(
-                          onTapDown: (_) =>
-                              practiceService.pauseNextStepTimer(),
-                          onTapUp: (_) =>
-                              practiceService.resumeNextStepTimer(false),
-                          onTapCancel: () =>
-                              practiceService.resumeNextStepTimer(true),
-                          child: ImpressionActionsForViewType(
-                            impressionViewType,
-                            practiceService.getHintText(),
-                            (correct) => practiceService.nextCard(
-                                currentCardIsCorrect: correct),
-                            practiceService.reveal,
-                            () => practiceService.togglePause(),
-                            impressionActionsFocusNode.value,
+                                                    onTap:
+                                                        userService.toggleAudio,
+                                                    child: HelpMenuItem(
+                                                        (userModelInitialized
+                                                                    .user
+                                                                    .user
+                                                                    .disableSounds ??
+                                                                false)
+                                                            ? Icons
+                                                                .volume_up_outlined
+                                                            : Icons
+                                                                .volume_off_outlined,
+                                                        (userModelInitialized
+                                                                    .user
+                                                                    .user
+                                                                    .disableSounds ??
+                                                                false)
+                                                            ? "Unmute"
+                                                            : "Mute")),
+                                                if (model.currentImpression
+                                                            .type ==
+                                                        ImpressionType
+                                                            .generatedSentenceGuess ||
+                                                    model.currentImpression
+                                                            .type ==
+                                                        ImpressionType
+                                                            .generatedSentenceWithParticlesSelect)
+                                                  PopupMenuItem(
+                                                      onTap: () {
+                                                        practiceService
+                                                            .markCurrentGeneratedImpressionAsUnwanted();
+                                                      },
+                                                      child: const HelpMenuItem(
+                                                          Icons
+                                                              .auto_fix_high_outlined,
+                                                          "Regenerate AI content")),
+                                              ]);
+                                        },
+                                        icon: const Icon(
+                                            Icons.more_horiz_outlined))
+                                  ])),
+                          Stack(
+                            children: cards,
                           ),
-                        )
-                      ],
-                    )))),
-        onWillPop: () {
-          practiceService.reset();
-          return Future.value(true);
-        },
-      );
+                          GestureDetector(
+                            onTapDown: (_) =>
+                                practiceService.pauseNextStepTimer(),
+                            onTapUp: (_) =>
+                                practiceService.resumeNextStepTimer(false),
+                            onTapCancel: () =>
+                                practiceService.resumeNextStepTimer(true),
+                            child: ImpressionActionsForViewType(
+                              impressionViewType,
+                              practiceService.getHintText(),
+                              (correct) => practiceService.nextCard(
+                                  currentCardIsCorrect: correct),
+                              practiceService.reveal,
+                              () => practiceService.togglePause(),
+                              impressionActionsFocusNode.value,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      left: 16,
+                      top: 16,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: getDescriptionColorSubtle(context),
+                        ),
+                        onPressed: () {
+                          finishSession();
+                          navigationService.goHome(context, true);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              )));
     }
-
-    return const loading.Loading();
+    return const Loading();
   }
 }
 

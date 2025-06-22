@@ -67,12 +67,6 @@ class PracticeService {
   PracticeService(this.repository, this.apiService, this.userService);
 
   Future initialize() async {
-    final currentState = repository.current;
-
-    if (currentState is PracticeModelInProgress) {
-      return;
-    }
-
     repository.update(const PracticeModel.loading());
 
     final impressions = (await apiService.getPractice());

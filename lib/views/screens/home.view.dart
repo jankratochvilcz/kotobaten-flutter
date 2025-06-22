@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kotobaten/consts/paddings.dart';
 import 'package:kotobaten/consts/sizes.dart';
 import 'package:kotobaten/hooks/bootstrap_hook.dart';
-import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/services/navigation_service.dart';
 import 'package:kotobaten/views/atoms/desktop_card.dart';
 import 'package:kotobaten/views/molecules/goals_card.dart';
@@ -21,11 +20,9 @@ class HomeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final practiceService = ref.read(practiceServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
 
     goToPractice() async {
-      await practiceService.initialize();
       await navigationService.goPractice(context);
     }
 

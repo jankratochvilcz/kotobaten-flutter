@@ -8,7 +8,6 @@ import 'package:kotobaten/extensions/iterable.dart';
 import 'package:kotobaten/models/slices/practice/card_impression.dart';
 import 'package:kotobaten/models/slices/practice/practice_model.dart';
 import 'package:kotobaten/models/slices/practice/practice_repository.dart';
-import 'package:kotobaten/models/slices/practice/practice_service.dart';
 import 'package:kotobaten/models/slices/user/user_model.dart';
 import 'package:kotobaten/models/slices/user/user_repository.dart';
 import 'package:kotobaten/models/slices/user/user_service.dart';
@@ -25,7 +24,6 @@ class PostPracticeView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final practiceService = ref.read(practiceServiceProvider);
     final navigationService = ref.read(navigationServiceProvider);
     final userService = ref.read(userServiceProvider);
     final userModel = ref.watch(userRepositoryProvider);
@@ -47,7 +45,6 @@ class PostPracticeView extends HookConsumerWidget {
     }, [userModel, practiceModel]);
 
     goToPractice() async {
-      await practiceService.initialize();
       await navigationService.goPractice(context, replaceCurrent: true);
     }
 

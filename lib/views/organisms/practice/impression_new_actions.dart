@@ -14,7 +14,7 @@ class ImpressionNextActions extends StatelessWidget {
     return CallbackShortcuts(
         bindings: {LogicalKeySet(LogicalKeyboardKey.enter): onClick},
         child: Focus(
-            autofocus: false,
+            autofocus: true,
             focusNode: focusNode,
             debugLabel: 'ImpressionNextActions',
             child: Column(children: [

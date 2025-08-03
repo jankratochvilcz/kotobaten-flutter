@@ -99,7 +99,9 @@ class Button extends ConsumerWidget {
     final platform =
         ref.watch(appConfigurationProvider.select((value) => value.platform));
 
-    final secondaryForeground = Theme.of(context).colorScheme.onSecondary;
+    final secondaryForeground = Theme.of(context).brightness == Brightness.light
+        ? textPrimary // from colors.dart for good contrast
+        : Theme.of(context).colorScheme.onSecondary;
 
     var shortcutForegroundLight =
         type == ButtonType.primary ? Colors.white24 : Colors.black26;

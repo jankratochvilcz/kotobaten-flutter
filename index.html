@@ -61,6 +61,9 @@
         }
       }
     </style>
+
+    <!-- Auth0 SPA JS SDK, required by auth0_flutter on the web platform. -->
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js" defer></script>
   </head>
   <body style="margin: 0">
     <div
@@ -83,7 +86,7 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
     <script>
-      const serviceWorkerVersion = "1493178777";
+      const serviceWorkerVersion = "1722846495";
       var scriptLoaded = false;
       function loadMainDartJs() {
         if (scriptLoaded) {
